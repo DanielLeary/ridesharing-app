@@ -46,4 +46,17 @@
                                         userLocation.location.coordinate, 500, 500);
     [_mapView setRegion:region animated:YES];
 }
+
+- (IBAction)doASearch:(UIBarButtonItem *)sender {
+    MKPointAnnotation *imperial = [[MKPointAnnotation alloc] init];
+    CLLocationCoordinate2D imperialCoordinate;
+    imperialCoordinate.latitude = 51.500505;
+    imperialCoordinate.longitude = -0.178219;
+    imperial.coordinate = imperialCoordinate;
+    MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (imperial.
+                                            coordinate,
+                                            500, 500);
+    [_mapView setRegion:region animated:YES];
+    [self.mapView addAnnotation:imperial];
+}
 @end
