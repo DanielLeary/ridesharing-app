@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 - (IBAction)goToCurrentLocation:(UIBarButtonItem *)sender;
 - (IBAction)doASearch:(UIBarButtonItem *)sender;
+- (IBAction)getARoute:(UIBarButtonItem *)sender;
 
 
 @end
