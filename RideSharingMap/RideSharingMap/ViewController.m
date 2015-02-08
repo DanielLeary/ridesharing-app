@@ -38,7 +38,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
+- (IBAction)goToCurrentLocation:(UIBarButtonItem *)sender {
+    MKUserLocation *userLocation = _mapView.userLocation;
+    MKCoordinateRegion region =
+    MKCoordinateRegionMakeWithDistance (
+                                        userLocation.location.coordinate, 20000, 20000);
+    [_mapView setRegion:region animated:NO];
+}
 @end
