@@ -7,58 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E8077671A86A2C900535792 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8077661A86A2C900535792 /* main.m */; };
-		7E80776A1A86A2C900535792 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8077691A86A2C900535792 /* AppDelegate.m */; };
-		7E80776D1A86A2C900535792 /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E80776B1A86A2C900535792 /* RideSharingMap.xcdatamodeld */; };
-		7E8077701A86A2C900535792 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E80776F1A86A2C900535792 /* ViewController.m */; };
-		7E8077731A86A2C900535792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8077711A86A2C900535792 /* Main.storyboard */; };
-		7E8077751A86A2C900535792 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E8077741A86A2C900535792 /* Images.xcassets */; };
-		7E8077781A86A2C900535792 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8077761A86A2C900535792 /* LaunchScreen.xib */; };
-		7E8077841A86A2C900535792 /* RideSharingMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8077831A86A2C900535792 /* RideSharingMapTests.m */; };
-		7E80778E1A86A3E300535792 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E80778D1A86A3E300535792 /* MapKit.framework */; };
-		7E8077901A86B4F800535792 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E80778F1A86B4F800535792 /* CoreLocation.framework */; };
+		7EF361C31A87C4EC0004D0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C21A87C4EC0004D0FC /* main.m */; };
+		7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C51A87C4EC0004D0FC /* AppDelegate.m */; };
+		7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */; };
+		7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361CB1A87C4EC0004D0FC /* ViewController.m */; };
+		7EF361CF1A87C4EC0004D0FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361CD1A87C4EC0004D0FC /* Main.storyboard */; };
+		7EF361D11A87C4EC0004D0FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361D01A87C4EC0004D0FC /* Images.xcassets */; };
+		7EF361D41A87C4EC0004D0FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */; };
+		7EF361E01A87C4EC0004D0FC /* RideSharingMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361DF1A87C4EC0004D0FC /* RideSharingMapTests.m */; };
+		7EF361EE1A87CB910004D0FC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF361ED1A87CB910004D0FC /* MapKit.framework */; };
+		7EF361F01A87CB9F0004D0FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF361EF1A87CB9F0004D0FC /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7E80777E1A86A2C900535792 /* PBXContainerItemProxy */ = {
+		7EF361DA1A87C4EC0004D0FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7E8077591A86A2C900535792 /* Project object */;
+			containerPortal = 7EF361B51A87C4EC0004D0FC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7E8077601A86A2C900535792;
+			remoteGlobalIDString = 7EF361BC1A87C4EC0004D0FC;
 			remoteInfo = RideSharingMap;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7E8077611A86A2C900535792 /* RideSharingMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideSharingMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E8077651A86A2C900535792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E8077661A86A2C900535792 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7E8077681A86A2C900535792 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		7E8077691A86A2C900535792 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7E80776C1A86A2C900535792 /* RideSharingMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RideSharingMap.xcdatamodel; sourceTree = "<group>"; };
-		7E80776E1A86A2C900535792 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7E80776F1A86A2C900535792 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		7E8077721A86A2C900535792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7E8077741A86A2C900535792 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		7E8077771A86A2C900535792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7E80777D1A86A2C900535792 /* RideSharingMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RideSharingMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E8077821A86A2C900535792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E8077831A86A2C900535792 /* RideSharingMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RideSharingMapTests.m; sourceTree = "<group>"; };
-		7E80778D1A86A3E300535792 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		7E80778F1A86B4F800535792 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7EF361BD1A87C4EC0004D0FC /* RideSharingMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideSharingMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF361C11A87C4EC0004D0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EF361C21A87C4EC0004D0FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7EF361C41A87C4EC0004D0FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7EF361C51A87C4EC0004D0FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7EF361C81A87C4EC0004D0FC /* RideSharingMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RideSharingMap.xcdatamodel; sourceTree = "<group>"; };
+		7EF361CA1A87C4EC0004D0FC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7EF361CB1A87C4EC0004D0FC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7EF361CE1A87C4EC0004D0FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7EF361D01A87C4EC0004D0FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7EF361D31A87C4EC0004D0FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		7EF361D91A87C4EC0004D0FC /* RideSharingMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RideSharingMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF361DE1A87C4EC0004D0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EF361DF1A87C4EC0004D0FC /* RideSharingMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RideSharingMapTests.m; sourceTree = "<group>"; };
+		7EF361ED1A87CB910004D0FC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7EF361EF1A87CB9F0004D0FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7E80775E1A86A2C900535792 /* Frameworks */ = {
+		7EF361BA1A87C4EC0004D0FC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E8077901A86B4F800535792 /* CoreLocation.framework in Frameworks */,
-				7E80778E1A86A3E300535792 /* MapKit.framework in Frameworks */,
+				7EF361F01A87CB9F0004D0FC /* CoreLocation.framework in Frameworks */,
+				7EF361EE1A87CB910004D0FC /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7E80777A1A86A2C900535792 /* Frameworks */ = {
+		7EF361D61A87C4EC0004D0FC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -68,64 +68,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7E8077581A86A2C900535792 = {
+		7EF361B41A87C4EC0004D0FC = {
 			isa = PBXGroup;
 			children = (
-				7E80778F1A86B4F800535792 /* CoreLocation.framework */,
-				7E80778D1A86A3E300535792 /* MapKit.framework */,
-				7E8077631A86A2C900535792 /* RideSharingMap */,
-				7E8077801A86A2C900535792 /* RideSharingMapTests */,
-				7E8077621A86A2C900535792 /* Products */,
+				7EF361EF1A87CB9F0004D0FC /* CoreLocation.framework */,
+				7EF361ED1A87CB910004D0FC /* MapKit.framework */,
+				7EF361BF1A87C4EC0004D0FC /* RideSharingMap */,
+				7EF361DC1A87C4EC0004D0FC /* RideSharingMapTests */,
+				7EF361BE1A87C4EC0004D0FC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7E8077621A86A2C900535792 /* Products */ = {
+		7EF361BE1A87C4EC0004D0FC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7E8077611A86A2C900535792 /* RideSharingMap.app */,
-				7E80777D1A86A2C900535792 /* RideSharingMapTests.xctest */,
+				7EF361BD1A87C4EC0004D0FC /* RideSharingMap.app */,
+				7EF361D91A87C4EC0004D0FC /* RideSharingMapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7E8077631A86A2C900535792 /* RideSharingMap */ = {
+		7EF361BF1A87C4EC0004D0FC /* RideSharingMap */ = {
 			isa = PBXGroup;
 			children = (
-				7E8077681A86A2C900535792 /* AppDelegate.h */,
-				7E8077691A86A2C900535792 /* AppDelegate.m */,
-				7E80776E1A86A2C900535792 /* ViewController.h */,
-				7E80776F1A86A2C900535792 /* ViewController.m */,
-				7E8077711A86A2C900535792 /* Main.storyboard */,
-				7E8077741A86A2C900535792 /* Images.xcassets */,
-				7E8077761A86A2C900535792 /* LaunchScreen.xib */,
-				7E80776B1A86A2C900535792 /* RideSharingMap.xcdatamodeld */,
-				7E8077641A86A2C900535792 /* Supporting Files */,
+				7EF361C41A87C4EC0004D0FC /* AppDelegate.h */,
+				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
+				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
+				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
+				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
+				7EF361D01A87C4EC0004D0FC /* Images.xcassets */,
+				7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */,
+				7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */,
+				7EF361C01A87C4EC0004D0FC /* Supporting Files */,
 			);
 			path = RideSharingMap;
 			sourceTree = "<group>";
 		};
-		7E8077641A86A2C900535792 /* Supporting Files */ = {
+		7EF361C01A87C4EC0004D0FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7E8077651A86A2C900535792 /* Info.plist */,
-				7E8077661A86A2C900535792 /* main.m */,
+				7EF361C11A87C4EC0004D0FC /* Info.plist */,
+				7EF361C21A87C4EC0004D0FC /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7E8077801A86A2C900535792 /* RideSharingMapTests */ = {
+		7EF361DC1A87C4EC0004D0FC /* RideSharingMapTests */ = {
 			isa = PBXGroup;
 			children = (
-				7E8077831A86A2C900535792 /* RideSharingMapTests.m */,
-				7E8077811A86A2C900535792 /* Supporting Files */,
+				7EF361DF1A87C4EC0004D0FC /* RideSharingMapTests.m */,
+				7EF361DD1A87C4EC0004D0FC /* Supporting Files */,
 			);
 			path = RideSharingMapTests;
 			sourceTree = "<group>";
 		};
-		7E8077811A86A2C900535792 /* Supporting Files */ = {
+		7EF361DD1A87C4EC0004D0FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7E8077821A86A2C900535792 /* Info.plist */,
+				7EF361DE1A87C4EC0004D0FC /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -133,13 +133,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7E8077601A86A2C900535792 /* RideSharingMap */ = {
+		7EF361BC1A87C4EC0004D0FC /* RideSharingMap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7E8077871A86A2C900535792 /* Build configuration list for PBXNativeTarget "RideSharingMap" */;
+			buildConfigurationList = 7EF361E31A87C4EC0004D0FC /* Build configuration list for PBXNativeTarget "RideSharingMap" */;
 			buildPhases = (
-				7E80775D1A86A2C900535792 /* Sources */,
-				7E80775E1A86A2C900535792 /* Frameworks */,
-				7E80775F1A86A2C900535792 /* Resources */,
+				7EF361B91A87C4EC0004D0FC /* Sources */,
+				7EF361BA1A87C4EC0004D0FC /* Frameworks */,
+				7EF361BB1A87C4EC0004D0FC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -147,37 +147,37 @@
 			);
 			name = RideSharingMap;
 			productName = RideSharingMap;
-			productReference = 7E8077611A86A2C900535792 /* RideSharingMap.app */;
+			productReference = 7EF361BD1A87C4EC0004D0FC /* RideSharingMap.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7E80777C1A86A2C900535792 /* RideSharingMapTests */ = {
+		7EF361D81A87C4EC0004D0FC /* RideSharingMapTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7E80778A1A86A2C900535792 /* Build configuration list for PBXNativeTarget "RideSharingMapTests" */;
+			buildConfigurationList = 7EF361E61A87C4EC0004D0FC /* Build configuration list for PBXNativeTarget "RideSharingMapTests" */;
 			buildPhases = (
-				7E8077791A86A2C900535792 /* Sources */,
-				7E80777A1A86A2C900535792 /* Frameworks */,
-				7E80777B1A86A2C900535792 /* Resources */,
+				7EF361D51A87C4EC0004D0FC /* Sources */,
+				7EF361D61A87C4EC0004D0FC /* Frameworks */,
+				7EF361D71A87C4EC0004D0FC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7E80777F1A86A2C900535792 /* PBXTargetDependency */,
+				7EF361DB1A87C4EC0004D0FC /* PBXTargetDependency */,
 			);
 			name = RideSharingMapTests;
 			productName = RideSharingMapTests;
-			productReference = 7E80777D1A86A2C900535792 /* RideSharingMapTests.xctest */;
+			productReference = 7EF361D91A87C4EC0004D0FC /* RideSharingMapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7E8077591A86A2C900535792 /* Project object */ = {
+		7EF361B51A87C4EC0004D0FC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Vaneet Mehta";
 				TargetAttributes = {
-					7E8077601A86A2C900535792 = {
+					7EF361BC1A87C4EC0004D0FC = {
 						CreatedOnToolsVersion = 6.1.1;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -185,13 +185,13 @@
 							};
 						};
 					};
-					7E80777C1A86A2C900535792 = {
+					7EF361D81A87C4EC0004D0FC = {
 						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 7E8077601A86A2C900535792;
+						TestTargetID = 7EF361BC1A87C4EC0004D0FC;
 					};
 				};
 			};
-			buildConfigurationList = 7E80775C1A86A2C900535792 /* Build configuration list for PBXProject "RideSharingMap" */;
+			buildConfigurationList = 7EF361B81A87C4EC0004D0FC /* Build configuration list for PBXProject "RideSharingMap" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -199,29 +199,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 7E8077581A86A2C900535792;
-			productRefGroup = 7E8077621A86A2C900535792 /* Products */;
+			mainGroup = 7EF361B41A87C4EC0004D0FC;
+			productRefGroup = 7EF361BE1A87C4EC0004D0FC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7E8077601A86A2C900535792 /* RideSharingMap */,
-				7E80777C1A86A2C900535792 /* RideSharingMapTests */,
+				7EF361BC1A87C4EC0004D0FC /* RideSharingMap */,
+				7EF361D81A87C4EC0004D0FC /* RideSharingMapTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7E80775F1A86A2C900535792 /* Resources */ = {
+		7EF361BB1A87C4EC0004D0FC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E8077731A86A2C900535792 /* Main.storyboard in Resources */,
-				7E8077781A86A2C900535792 /* LaunchScreen.xib in Resources */,
-				7E8077751A86A2C900535792 /* Images.xcassets in Resources */,
+				7EF361CF1A87C4EC0004D0FC /* Main.storyboard in Resources */,
+				7EF361D41A87C4EC0004D0FC /* LaunchScreen.xib in Resources */,
+				7EF361D11A87C4EC0004D0FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7E80777B1A86A2C900535792 /* Resources */ = {
+		7EF361D71A87C4EC0004D0FC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -231,48 +231,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7E80775D1A86A2C900535792 /* Sources */ = {
+		7EF361B91A87C4EC0004D0FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E80776D1A86A2C900535792 /* RideSharingMap.xcdatamodeld in Sources */,
-				7E80776A1A86A2C900535792 /* AppDelegate.m in Sources */,
-				7E8077701A86A2C900535792 /* ViewController.m in Sources */,
-				7E8077671A86A2C900535792 /* main.m in Sources */,
+				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
+				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
+				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
+				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7E8077791A86A2C900535792 /* Sources */ = {
+		7EF361D51A87C4EC0004D0FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E8077841A86A2C900535792 /* RideSharingMapTests.m in Sources */,
+				7EF361E01A87C4EC0004D0FC /* RideSharingMapTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7E80777F1A86A2C900535792 /* PBXTargetDependency */ = {
+		7EF361DB1A87C4EC0004D0FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7E8077601A86A2C900535792 /* RideSharingMap */;
-			targetProxy = 7E80777E1A86A2C900535792 /* PBXContainerItemProxy */;
+			target = 7EF361BC1A87C4EC0004D0FC /* RideSharingMap */;
+			targetProxy = 7EF361DA1A87C4EC0004D0FC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7E8077711A86A2C900535792 /* Main.storyboard */ = {
+		7EF361CD1A87C4EC0004D0FC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7E8077721A86A2C900535792 /* Base */,
+				7EF361CE1A87C4EC0004D0FC /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		7E8077761A86A2C900535792 /* LaunchScreen.xib */ = {
+		7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7E8077771A86A2C900535792 /* Base */,
+				7EF361D31A87C4EC0004D0FC /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -280,7 +280,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7E8077851A86A2C900535792 /* Debug */ = {
+		7EF361E11A87C4EC0004D0FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -321,7 +321,7 @@
 			};
 			name = Debug;
 		};
-		7E8077861A86A2C900535792 /* Release */ = {
+		7EF361E21A87C4EC0004D0FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -356,7 +356,7 @@
 			};
 			name = Release;
 		};
-		7E8077881A86A2C900535792 /* Debug */ = {
+		7EF361E41A87C4EC0004D0FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -366,7 +366,7 @@
 			};
 			name = Debug;
 		};
-		7E8077891A86A2C900535792 /* Release */ = {
+		7EF361E51A87C4EC0004D0FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -376,7 +376,7 @@
 			};
 			name = Release;
 		};
-		7E80778B1A86A2C900535792 /* Debug */ = {
+		7EF361E71A87C4EC0004D0FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -395,7 +395,7 @@
 			};
 			name = Debug;
 		};
-		7E80778C1A86A2C900535792 /* Release */ = {
+		7EF361E81A87C4EC0004D0FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -413,45 +413,47 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7E80775C1A86A2C900535792 /* Build configuration list for PBXProject "RideSharingMap" */ = {
+		7EF361B81A87C4EC0004D0FC /* Build configuration list for PBXProject "RideSharingMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7E8077851A86A2C900535792 /* Debug */,
-				7E8077861A86A2C900535792 /* Release */,
+				7EF361E11A87C4EC0004D0FC /* Debug */,
+				7EF361E21A87C4EC0004D0FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7E8077871A86A2C900535792 /* Build configuration list for PBXNativeTarget "RideSharingMap" */ = {
+		7EF361E31A87C4EC0004D0FC /* Build configuration list for PBXNativeTarget "RideSharingMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7E8077881A86A2C900535792 /* Debug */,
-				7E8077891A86A2C900535792 /* Release */,
+				7EF361E41A87C4EC0004D0FC /* Debug */,
+				7EF361E51A87C4EC0004D0FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		7E80778A1A86A2C900535792 /* Build configuration list for PBXNativeTarget "RideSharingMapTests" */ = {
+		7EF361E61A87C4EC0004D0FC /* Build configuration list for PBXNativeTarget "RideSharingMapTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7E80778B1A86A2C900535792 /* Debug */,
-				7E80778C1A86A2C900535792 /* Release */,
+				7EF361E71A87C4EC0004D0FC /* Debug */,
+				7EF361E81A87C4EC0004D0FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7E80776B1A86A2C900535792 /* RideSharingMap.xcdatamodeld */ = {
+		7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				7E80776C1A86A2C900535792 /* RideSharingMap.xcdatamodel */,
+				7EF361C81A87C4EC0004D0FC /* RideSharingMap.xcdatamodel */,
 			);
-			currentVersion = 7E80776C1A86A2C900535792 /* RideSharingMap.xcdatamodel */;
+			currentVersion = 7EF361C81A87C4EC0004D0FC /* RideSharingMap.xcdatamodel */;
 			path = RideSharingMap.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 7E8077591A86A2C900535792 /* Project object */;
+	rootObject = 7EF361B51A87C4EC0004D0FC /* Project object */;
 }

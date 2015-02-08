@@ -2,7 +2,7 @@
 //  ViewController.h
 //  RideSharingMap
 //
-//  Created by Vaneet Mehta on 07/02/2015.
+//  Created by Vaneet Mehta on 08/02/2015.
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 - (IBAction)goToCurrentLocation:(UIBarButtonItem *)sender;
+
 
 @end
 
