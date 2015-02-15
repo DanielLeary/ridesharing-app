@@ -16,6 +16,8 @@
 - (IBAction)goToCurrentLocation:(UIBarButtonItem *)sender;
 - (IBAction)doASearch:(UIBarButtonItem *)sender;
 - (IBAction)getARoute:(UIBarButtonItem *)sender;
+- (IBAction)SearchBox:(UITextField *)sender;
+
 
 
 @end

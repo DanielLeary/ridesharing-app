@@ -16,8 +16,9 @@
 @implementation ViewController
 
 MKRoute *routeDetails;
-CLPlacemark *destination;
+//CLPlacemark *destination;
 MKPolyline *routeOverlay;
+MKPlacemark *the_placemark;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -98,14 +99,14 @@ MKPolyline *routeOverlay;
     MKPlacemark *sourcePlacemark = [[MKPlacemark alloc] initWithCoordinate:sourceCoordinate addressDictionary:nil];
     
     MKMapItem *source = [[MKMapItem alloc] initWithPlacemark:sourcePlacemark];
-    */
+    
     CLLocationCoordinate2D destinationCoordinate;
     destinationCoordinate.latitude = 51.500505;
     destinationCoordinate.longitude = -0.178219;
     
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoordinate addressDictionary:nil];
-    
-    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    */
+    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:the_placemark];
     
     [directionsRequest setSource:[MKMapItem mapItemForCurrentLocation]];
     
@@ -125,7 +126,52 @@ MKPolyline *routeOverlay;
         }
         
     }];
+    CLLocationCoordinate2D regionCoord;
+    regionCoord.latitude = self.locationManager.location.coordinate.latitude + ((the_placemark.coordinate.latitude - self.locationManager.location.coordinate.latitude)/2);
     
+    regionCoord.longitude = self.locationManager.location.coordinate.longitude + ((the_placemark.coordinate.longitude - self.locationManager.location.coordinate.longitude)/2);
+    
+    MKPlacemark *regionPlace = [[MKPlacemark alloc] initWithCoordinate:regionCoord addressDictionary:nil];
+    
+    MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (regionPlace.
+                                            coordinate,
+                                            20000, 20000);
+    
+    //MKCoordinateRegion region;
+    //region.center = regionPlace.coordinate;
+    //region.span = MKCoordinateSpanMake(1.00000725, 1.00000725);
+    [self.mapView setRegion:region animated:YES];
+    
+}
+
+- (IBAction)SearchBox:(UITextField *)sender {
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:sender.text completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            CLPlacemark *placemark = [placemarks lastObject];
+            the_placemark = [[MKPlacemark alloc] initWithPlacemark:placemark];
+            /*
+            float spanX = 0.00725;
+            float spanY = 0.00725;
+            
+            MKCoordinateRegion region;
+            region.center.latitude = placemark.location.coordinate.latitude;
+            region.center.longitude = placemark.location.coordinate.longitude;
+            region.span = MKCoordinateSpanMake(spanX, spanY);
+            [self.mapView setRegion:region animated:YES];
+             
+            MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+            annotation.l = placemark.location;
+             */
+            MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (the_placemark.coordinate,
+                                                    500, 500);
+            [self.mapView setRegion:region animated:YES];
+            [self.mapView removeAnnotations:self.mapView.annotations];
+            [self.mapView addAnnotation:the_placemark];
+        }
+    }];
 }
 
 @end
