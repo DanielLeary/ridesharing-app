@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B556AF11A9A3B6300CF0388 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B556AF01A9A3B6300CF0388 /* ProfileViewController.m */; };
+		6B556AF31A9A3BB100CF0388 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556AF21A9A3BB100CF0388 /* AudioToolbox.framework */; };
+		6B556AF51A9A3BBD00CF0388 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556AF41A9A3BBD00CF0388 /* CFNetwork.framework */; };
+		6B556AF71A9A3BC400CF0388 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556AF61A9A3BC400CF0388 /* CoreGraphics.framework */; };
+		6B556AF91A9A3BD800CF0388 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556AF81A9A3BD800CF0388 /* MobileCoreServices.framework */; };
+		6B556AFB1A9A3BEF00CF0388 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556AFA1A9A3BEF00CF0388 /* QuartzCore.framework */; };
+		6B556AFD1A9A3BF600CF0388 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556AFC1A9A3BF600CF0388 /* Security.framework */; };
+		6B556AFF1A9A3BFF00CF0388 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556AFE1A9A3BFF00CF0388 /* StoreKit.framework */; };
+		6B556B011A9A3C0700CF0388 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556B001A9A3C0700CF0388 /* SystemConfiguration.framework */; };
+		6B556B031A9A3C1200CF0388 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556B021A9A3C1200CF0388 /* libz.dylib */; };
+		6B556B051A9A3C1B00CF0388 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556B041A9A3C1B00CF0388 /* libsqlite3.dylib */; };
+		6B556B091A9A470F00CF0388 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556B071A9A470F00CF0388 /* Bolts.framework */; };
+		6B556B0A1A9A470F00CF0388 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B556B081A9A470F00CF0388 /* Parse.framework */; };
 		7EF361C31A87C4EC0004D0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C21A87C4EC0004D0FC /* main.m */; };
 		7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C51A87C4EC0004D0FC /* AppDelegate.m */; };
 		7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */; };
@@ -30,6 +43,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B556AEF1A9A3B6300CF0388 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		6B556AF01A9A3B6300CF0388 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		6B556AF21A9A3BB100CF0388 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6B556AF41A9A3BBD00CF0388 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6B556AF61A9A3BC400CF0388 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6B556AF81A9A3BD800CF0388 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6B556AFA1A9A3BEF00CF0388 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6B556AFC1A9A3BF600CF0388 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6B556AFE1A9A3BFF00CF0388 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6B556B001A9A3C0700CF0388 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6B556B021A9A3C1200CF0388 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6B556B041A9A3C1B00CF0388 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		6B556B071A9A470F00CF0388 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		6B556B081A9A470F00CF0388 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7EF361BD1A87C4EC0004D0FC /* RideSharingMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideSharingMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF361C11A87C4EC0004D0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EF361C21A87C4EC0004D0FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -53,6 +80,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B556B051A9A3C1B00CF0388 /* libsqlite3.dylib in Frameworks */,
+				6B556B031A9A3C1200CF0388 /* libz.dylib in Frameworks */,
+				6B556B011A9A3C0700CF0388 /* SystemConfiguration.framework in Frameworks */,
+				6B556AFF1A9A3BFF00CF0388 /* StoreKit.framework in Frameworks */,
+				6B556AFD1A9A3BF600CF0388 /* Security.framework in Frameworks */,
+				6B556AFB1A9A3BEF00CF0388 /* QuartzCore.framework in Frameworks */,
+				6B556AF91A9A3BD800CF0388 /* MobileCoreServices.framework in Frameworks */,
+				6B556B091A9A470F00CF0388 /* Bolts.framework in Frameworks */,
+				6B556AF71A9A3BC400CF0388 /* CoreGraphics.framework in Frameworks */,
+				6B556AF51A9A3BBD00CF0388 /* CFNetwork.framework in Frameworks */,
+				6B556B0A1A9A470F00CF0388 /* Parse.framework in Frameworks */,
+				6B556AF31A9A3BB100CF0388 /* AudioToolbox.framework in Frameworks */,
 				7EF361F01A87CB9F0004D0FC /* CoreLocation.framework in Frameworks */,
 				7EF361EE1A87CB910004D0FC /* MapKit.framework in Frameworks */,
 			);
@@ -68,11 +107,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B556B061A9A3C3700CF0388 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B556B071A9A470F00CF0388 /* Bolts.framework */,
+				6B556B081A9A470F00CF0388 /* Parse.framework */,
+				6B556B041A9A3C1B00CF0388 /* libsqlite3.dylib */,
+				6B556B021A9A3C1200CF0388 /* libz.dylib */,
+				6B556B001A9A3C0700CF0388 /* SystemConfiguration.framework */,
+				6B556AFE1A9A3BFF00CF0388 /* StoreKit.framework */,
+				6B556AFC1A9A3BF600CF0388 /* Security.framework */,
+				6B556AFA1A9A3BEF00CF0388 /* QuartzCore.framework */,
+				6B556AF81A9A3BD800CF0388 /* MobileCoreServices.framework */,
+				6B556AF61A9A3BC400CF0388 /* CoreGraphics.framework */,
+				6B556AF41A9A3BBD00CF0388 /* CFNetwork.framework */,
+				6B556AF21A9A3BB100CF0388 /* AudioToolbox.framework */,
+				7EF361EF1A87CB9F0004D0FC /* CoreLocation.framework */,
+				7EF361ED1A87CB910004D0FC /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7EF361B41A87C4EC0004D0FC = {
 			isa = PBXGroup;
 			children = (
-				7EF361EF1A87CB9F0004D0FC /* CoreLocation.framework */,
-				7EF361ED1A87CB910004D0FC /* MapKit.framework */,
+				6B556B061A9A3C3700CF0388 /* Frameworks */,
 				7EF361BF1A87C4EC0004D0FC /* RideSharingMap */,
 				7EF361DC1A87C4EC0004D0FC /* RideSharingMapTests */,
 				7EF361BE1A87C4EC0004D0FC /* Products */,
@@ -91,6 +150,8 @@
 		7EF361BF1A87C4EC0004D0FC /* RideSharingMap */ = {
 			isa = PBXGroup;
 			children = (
+				6B556AEF1A9A3B6300CF0388 /* ProfileViewController.h */,
+				6B556AF01A9A3B6300CF0388 /* ProfileViewController.m */,
 				7EF361C41A87C4EC0004D0FC /* AppDelegate.h */,
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
 				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
@@ -239,6 +300,7 @@
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
+				6B556AF11A9A3B6300CF0388 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +422,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/parse-library-1",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RideSharingMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -370,6 +437,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/parse-library-1",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RideSharingMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
