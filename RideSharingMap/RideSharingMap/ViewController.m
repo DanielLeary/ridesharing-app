@@ -145,6 +145,22 @@ MKPlacemark *the_placemark;
 }
 
 - (IBAction)SearchBox:(UITextField *)sender {
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    
+    request.naturalLanguageQuery = sender.text;
+    request.region = _mapView.region;
+    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            for (MKMapItem *item in response.mapItems) {
+                the_placemark = item.placemark;
+                break;
+            }
+            
+        }
+    /*
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:sender.text completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
@@ -152,7 +168,7 @@ MKPlacemark *the_placemark;
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
             the_placemark = [[MKPlacemark alloc] initWithPlacemark:placemark];
-            /*
+            
             float spanX = 0.00725;
             float spanY = 0.00725;
             
@@ -165,12 +181,11 @@ MKPlacemark *the_placemark;
             MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
             annotation.l = placemark.location;
              */
-            MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (the_placemark.coordinate,
-                                                    500, 500);
+            MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (the_placemark.coordinate, 500, 500);
             [self.mapView setRegion:region animated:YES];
             [self.mapView removeAnnotations:self.mapView.annotations];
             [self.mapView addAnnotation:the_placemark];
-        }
+        //}
     }];
 }
 
