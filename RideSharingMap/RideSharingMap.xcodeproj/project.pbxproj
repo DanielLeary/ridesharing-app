@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191899191A9A68B200C73208 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191899181A9A68B200C73208 /* ProfileViewController.m */; };
+		1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918991B1A9A711D00C73208 /* AddPlaceViewController.m */; };
 		7EF361C31A87C4EC0004D0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C21A87C4EC0004D0FC /* main.m */; };
 		7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C51A87C4EC0004D0FC /* AppDelegate.m */; };
 		7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */; };
@@ -30,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		191899171A9A68B200C73208 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		191899181A9A68B200C73208 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		1918991A1A9A711D00C73208 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
+		1918991B1A9A711D00C73208 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
 		7EF361BD1A87C4EC0004D0FC /* RideSharingMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideSharingMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF361C11A87C4EC0004D0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EF361C21A87C4EC0004D0FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -95,6 +101,10 @@
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
 				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
 				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
+				191899171A9A68B200C73208 /* ProfileViewController.h */,
+				191899181A9A68B200C73208 /* ProfileViewController.m */,
+				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
+				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
 				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
 				7EF361D01A87C4EC0004D0FC /* Images.xcassets */,
 				7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */,
@@ -235,10 +245,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
+				191899191A9A68B200C73208 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
