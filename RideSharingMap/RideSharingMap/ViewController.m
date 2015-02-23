@@ -52,7 +52,7 @@ MKPlacemark *the_placemark;
                                         userLocation.location.coordinate, 500, 500);
     [_mapView setRegion:region animated:YES];
 }
-
+/*
 - (IBAction)doASearch:(UIBarButtonItem *)sender {
     MKPointAnnotation *imperial = [[MKPointAnnotation alloc] init];
     CLLocationCoordinate2D imperialCoordinate;
@@ -65,7 +65,7 @@ MKPlacemark *the_placemark;
     [_mapView setRegion:region animated:YES];
     [self.mapView addAnnotation:imperial];
 }
-
+*/
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     
     MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
