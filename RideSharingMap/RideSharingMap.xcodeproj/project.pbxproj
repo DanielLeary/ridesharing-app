@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		191899191A9A68B200C73208 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191899181A9A68B200C73208 /* ProfileViewController.m */; };
 		1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918991B1A9A711D00C73208 /* AddPlaceViewController.m */; };
+		274A2BBC1A9CCD6800967E42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A2BBB1A9CCD6800967E42 /* LoginViewController.m */; };
+		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
+		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
 		6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */; };
 		6BA7258F1A9B71CF0039DCDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */; };
 		6BA725911A9B71D60039DCDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA725901A9B71D60039DCDC /* CoreGraphics.framework */; };
@@ -46,6 +49,10 @@
 		191899181A9A68B200C73208 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		1918991A1A9A711D00C73208 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
 		1918991B1A9A711D00C73208 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
+		274A2BBA1A9CCD6800967E42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		274A2BBB1A9CCD6800967E42 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		274A2BBF1A9CD03400967E42 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6BA725901A9B71D60039DCDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,8 +93,10 @@
 				6BA725971A9B71EC0039DCDC /* Security.framework in Frameworks */,
 				6BA725951A9B71E50039DCDC /* QuartzCore.framework in Frameworks */,
 				6BA725931A9B71DF0039DCDC /* MobileCoreServices.framework in Frameworks */,
+				274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */,
 				6BA725911A9B71D60039DCDC /* CoreGraphics.framework in Frameworks */,
 				6BA7258F1A9B71CF0039DCDC /* CFNetwork.framework in Frameworks */,
+				274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */,
 				6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */,
 				7EF361F01A87CB9F0004D0FC /* CoreLocation.framework in Frameworks */,
 				7EF361EE1A87CB910004D0FC /* MapKit.framework in Frameworks */,
@@ -107,6 +116,8 @@
 		6BA725A01A9B720E0039DCDC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				274A2BBF1A9CD03400967E42 /* Parse.framework */,
+				274A2BBD1A9CD02E00967E42 /* Bolts.framework */,
 				6BA7259E1A9B72080039DCDC /* libsqlite3.dylib */,
 				6BA7259C1A9B72000039DCDC /* libz.dylib */,
 				6BA7259A1A9B71FA0039DCDC /* SystemConfiguration.framework */,
@@ -154,6 +165,8 @@
 				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
 				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
 				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
+				274A2BBA1A9CCD6800967E42 /* LoginViewController.h */,
+				274A2BBB1A9CCD6800967E42 /* LoginViewController.m */,
 				7EF361D01A87C4EC0004D0FC /* Images.xcassets */,
 				7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */,
 				7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */,
@@ -297,6 +310,7 @@
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
+				274A2BBC1A9CCD6800967E42 /* LoginViewController.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
 				191899191A9A68B200C73208 /* ProfileViewController.m in Sources */,
 			);
@@ -420,6 +434,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RideSharingMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -430,6 +448,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RideSharingMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
