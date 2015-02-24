@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import <Parse/Parse.h>
 
 @implementation ProfileViewController {
     
@@ -18,6 +19,14 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     placesArray = [[NSMutableArray alloc] initWithObjects:@"Home", @"Work", nil];
+    
+    // Create currentUser object from locally cached user
+    PFUser *currentUser = [PFUser currentUser];
+    // If user is currently signed in
+    if(currentUser) {
+        // Set the name_label to the current users username
+        _name_label.text = currentUser.username;
+    }
 }
 
 

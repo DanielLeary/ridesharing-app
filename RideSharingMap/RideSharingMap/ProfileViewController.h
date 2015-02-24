@@ -11,6 +11,7 @@
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddPlaceViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *name_label;
 @property (weak, nonatomic) IBOutlet UITableView *placesTableView;
 
 @property (weak, nonatomic) IBOutlet UIButton *editPlacesButton;

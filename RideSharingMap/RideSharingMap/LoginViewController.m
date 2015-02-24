@@ -18,9 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        usernameField.text = currentUser.username;
+        passwordField.text = currentUser.password;
+    }   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +41,25 @@
 */
 
 - (IBAction)log_in:(id)sender {
+    [PFUser logInWithUsernameInBackground:usernameField.text password:passwordField.text
+        block:^(PFUser *user, NSError *error) {
+            if (user) {
+                // Do stuff after successful login.
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                // The login failed. Check error to see why.
+            }
+    }];
+    
+}
+
+- (IBAction)input_user:(id)sender {
+}
+
+- (IBAction)input_password:(id)sender {
+}
+
+- (IBAction)sign_up:(id)sender {
     PFUser *user = [PFUser user];
     user.username = usernameField.text;
     user.password = passwordField.text;
@@ -52,11 +73,5 @@
             // Show the errorString somewhere and let the user try again.
         }
     }];
-}
-
-- (IBAction)input_user:(id)sender {
-}
-
-- (IBAction)input_password:(id)sender {
 }
 @end

@@ -16,5 +16,6 @@
 - (IBAction)log_in:(id)sender;
 - (IBAction)input_user:(id)sender;
 - (IBAction)input_password:(id)sender;
+- (IBAction)sign_up:(id)sender;
 
 @end
