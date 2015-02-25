@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 @interface InitialViewController : UIViewController{
     PFUser *currentUser;
-    __weak IBOutlet UILabel *logLabel;
 }
 - (IBAction)logout:(id)sender;
 

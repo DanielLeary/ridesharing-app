@@ -19,11 +19,8 @@
     NSLog(@"ViewDidLoad");
     currentUser = [PFUser currentUser];
     if (currentUser) {
-        
-        [logLabel setText:currentUser.username];
         // do stuff with the user
     } else {
-        [logLabel setText:@"Logged out"];
         // show the signup or login screen
     }
     
@@ -34,19 +31,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSLog(@"ViewDidAppear");
-    currentUser = [PFUser currentUser];
-    if (currentUser) {
-        
-        [logLabel setText:currentUser.username];
-        // do stuff with the user
-    } else {
-        [logLabel setText:@"Logged out"];
-        // show the signup or login screen
-    }
 }
 
 /*
@@ -62,7 +46,6 @@
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
     currentUser = [PFUser currentUser]; // this will now be nil
-    [logLabel setText:@"Logged out"];
 
 }
 @end
