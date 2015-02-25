@@ -26,6 +26,10 @@
     if(currentUser) {
         // Set the name_label to the current users username
         _name_label.text = currentUser.username;
+        if(currentUser[@"Car"] != nil){
+            _carField.text = currentUser[@"Car"];
+            
+        }
     }
 }
 
@@ -117,4 +121,22 @@
 
 
 
+- (IBAction)inputCar:(id)sender {
+    NSLog(@"edited Car");
+    PFUser *currentUser = [PFUser currentUser];
+    // If user is currently signed in
+    if(currentUser) {
+        NSLog(_carField.text);
+        NSLog(currentUser.username);
+        currentUser[@"Car"] = _carField.text;
+        [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }];
+    }
+
+}
 @end

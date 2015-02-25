@@ -13,10 +13,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *name_label;
 @property (weak, nonatomic) IBOutlet UITableView *placesTableView;
+@property (weak, nonatomic) IBOutlet UITextField *carField;
 
 @property (weak, nonatomic) IBOutlet UIButton *editPlacesButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *addNewPlaceButton;
+- (IBAction)inputCar:(id)sender;
 
 
 
