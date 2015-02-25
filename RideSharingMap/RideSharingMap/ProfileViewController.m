@@ -23,13 +23,9 @@
 
 /* TABLE DELEGATE METHODS */
 
-
-
-// function to determine number of rows in table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [placesArray count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"cell";
@@ -42,27 +38,44 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+    editPlaceVC.delegate = self;
+    editPlaceVC.editing = YES;
+    // set up editPlaceVC for selected place
+    NSString *placeName = [[[tableView cellForRowAtIndexPath:indexPath] textLabel] text];
+    [editPlaceVC view];
+    editPlaceVC.placeNameField.text = placeName;
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(51.498639, -0.179344);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500);
+    [editPlaceVC.mapView setRegion:region animated:YES];
+    [self.navigationController pushViewController:editPlaceVC animated:YES];
+}
+
+
+/* METHODS FOR UI RESPONSES */
 
 //segue to AddPlaceViewController
 - (IBAction)addNewPlaceButtonPressed:(id)sender {
-    AddPlaceViewController *addPlaceVC = [[AddPlaceViewController alloc] initWithNibName:@"AddPlaceViewController" bundle:nil];
+    AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
     addPlaceVC.delegate = self;
+    [self.navigationController pushViewController:addPlaceVC animated:YES];
 }
 
 
+/* ADDPLACEVC DELEGATE METHODS */
 
-
-/* ADD PLACE TO TABLE */
-
-- (void) addNewPlace:(AddPlaceViewController *)vc didFinishEnteringPlace:(NSString *)placeName and:(NSString *)placeLocation {
+- (void) addNewPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D)placeCoord {
     [placesArray addObject:placeName];
-    //NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:placesArray.count];
-    //[_placesTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.placesTableView reloadData];
 }
 
+- (void)editPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D)placeCoord {
+    
+}
 
-/* FUNCTIONS FOR EDITING THE TABLE */
+
+/* METHODS FOR EDITING THE TABLE */
 
 - (IBAction)editButtonPressed:(id)sender {
     if ([_editPlacesButton.currentTitle isEqualToString:@"Edit"]) {

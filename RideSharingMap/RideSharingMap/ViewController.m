@@ -170,6 +170,7 @@ MKPlacemark *the_placemark;
             [self.mapView setRegion:region animated:YES];
             [self.mapView removeAnnotations:self.mapView.annotations];
             [self.mapView addAnnotation:the_placemark];
+            
         }
     }];
 }
