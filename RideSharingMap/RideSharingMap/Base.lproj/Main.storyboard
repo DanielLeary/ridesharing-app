@@ -176,12 +176,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0JN-E3-59e"/>
-                                    <barButtonItem title="Search" id="H24-xu-XMw">
-                                        <connections>
-                                            <action selector="doASearch:" destination="vXZ-lx-hvc" id="NYG-HP-9cF"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hzr-E4-lGc"/>
                                     <barButtonItem title="Route" id="b7I-bW-0yx">
                                         <connections>
                                             <action selector="getARoute:" destination="vXZ-lx-hvc" id="XlC-O8-Wbk"/>

@@ -52,7 +52,7 @@ MKPlacemark *the_placemark;
                                         userLocation.location.coordinate, 500, 500);
     [_mapView setRegion:region animated:YES];
 }
-
+/*
 - (IBAction)doASearch:(UIBarButtonItem *)sender {
     MKPointAnnotation *imperial = [[MKPointAnnotation alloc] init];
     CLLocationCoordinate2D imperialCoordinate;
@@ -65,7 +65,7 @@ MKPlacemark *the_placemark;
     [_mapView setRegion:region animated:YES];
     [self.mapView addAnnotation:imperial];
 }
-
+*/
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     
     MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
@@ -126,25 +126,71 @@ MKPlacemark *the_placemark;
         }
         
     }];
+    /*
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    if (the_placemark.location.coordinate.latitude > self.locationManager.location.coordinate.latitude) {
+        region.center.latitude = (the_placemark.location.coordinate.latitude - self.locationManager.location.coordinate.latitude)/2;
+        span.latitudeDelta = the_placemark.location.coordinate.latitude - self.locationManager.location.coordinate.latitude;
+    } else {
+        region.center.latitude = (self.locationManager.location.coordinate.latitude - the_placemark.location.coordinate.latitude)/2;
+        span.latitudeDelta = self.locationManager.location.coordinate.latitude - the_placemark.location.coordinate.latitude;
+    }
+    
+    if (the_placemark.location.coordinate.longitude > self.locationManager.location.coordinate.longitude) {
+        region.center.longitude = (the_placemark.location.coordinate.longitude - self.locationManager.location.coordinate.longitude)/2;
+        span.longitudeDelta = the_placemark.location.coordinate.longitude - self.locationManager.location.coordinate.longitude;
+    } else {
+        region.center.longitude = (self.locationManager.location.coordinate.longitude - the_placemark.location.coordinate.longitude)/2;
+        span.longitudeDelta = self.locationManager.location.coordinate.longitude - the_placemark.location.coordinate.longitude;
+    }
+     */
     CLLocationCoordinate2D regionCoord;
     regionCoord.latitude = self.locationManager.location.coordinate.latitude + ((the_placemark.coordinate.latitude - self.locationManager.location.coordinate.latitude)/2);
     
     regionCoord.longitude = self.locationManager.location.coordinate.longitude + ((the_placemark.coordinate.longitude - self.locationManager.location.coordinate.longitude)/2);
     
+    
     MKPlacemark *regionPlace = [[MKPlacemark alloc] initWithCoordinate:regionCoord addressDictionary:nil];
     
-    MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (regionPlace.
-                                            coordinate,
-                                            20000, 20000);
+    //MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (regionPlace.
+                                            //coordinate,
+                                            //20000, 20000);
     
-    //MKCoordinateRegion region;
-    //region.center = regionPlace.coordinate;
-    //region.span = MKCoordinateSpanMake(1.00000725, 1.00000725);
+    MKCoordinateRegion region;
+    region.center = regionPlace.coordinate;
+    if (the_placemark.location.coordinate.latitude > self.locationManager.location.coordinate.latitude) {
+        region.span.latitudeDelta = (the_placemark.location.coordinate.latitude - self.locationManager.location.coordinate.latitude) * 1.2;
+    } else {
+        region.span.latitudeDelta = (self.locationManager.location.coordinate.latitude - the_placemark.location.coordinate.latitude) * 1.2;
+    }
+    if (the_placemark.location.coordinate.longitude > self.locationManager.location.coordinate.longitude) {
+        region.span.longitudeDelta = (the_placemark.location.coordinate.longitude - self.locationManager.location.coordinate.longitude) * 1.2;
+    } else {
+        region.span.longitudeDelta = (self.locationManager.location.coordinate.longitude -  the_placemark.location.coordinate.longitude) * 1.2;
+    }
+    
     [self.mapView setRegion:region animated:YES];
     
 }
 
 - (IBAction)SearchBox:(UITextField *)sender {
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    
+    request.naturalLanguageQuery = sender.text;
+    request.region = _mapView.region;
+    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            for (MKMapItem *item in response.mapItems) {
+                the_placemark = item.placemark;
+                break;
+            }
+            
+        }
+    /*
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:sender.text completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error) {
@@ -152,7 +198,7 @@ MKPlacemark *the_placemark;
         } else {
             CLPlacemark *placemark = [placemarks lastObject];
             the_placemark = [[MKPlacemark alloc] initWithPlacemark:placemark];
-            /*
+            
             float spanX = 0.00725;
             float spanY = 0.00725;
             
@@ -165,13 +211,11 @@ MKPlacemark *the_placemark;
             MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
             annotation.l = placemark.location;
              */
-            MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (the_placemark.coordinate,
-                                                    500, 500);
-            [self.mapView setRegion:region animated:YES];
-            [self.mapView removeAnnotations:self.mapView.annotations];
-            [self.mapView addAnnotation:the_placemark];
-            
-        }
+        MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (the_placemark.coordinate, 500, 500);
+        [self.mapView setRegion:region animated:YES];
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        [self.mapView addAnnotation:the_placemark];
+        //}
     }];
 }
 
