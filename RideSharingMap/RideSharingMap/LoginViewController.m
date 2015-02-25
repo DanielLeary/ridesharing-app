@@ -40,6 +40,35 @@
 }
 */
 
+- (IBAction)input_firstname:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    if (firstname_field.text != nil && user) {
+        user[@"Name"] = firstname_field.text;
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }];
+    }
+}
+
+- (IBAction)input_surname:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    if (firstname_field.text != nil && user) {
+        user[@"Surname"] = surname_field.text;
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }];
+
+    }
+}
+
 - (IBAction)log_in:(id)sender {
     [PFUser logInWithUsernameInBackground:usernameField.text password:passwordField.text
         block:^(PFUser *user, NSError *error) {
@@ -63,7 +92,6 @@
     PFUser *user = [PFUser user];
     user.username = usernameField.text;
     user.password = passwordField.text;
-    
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {

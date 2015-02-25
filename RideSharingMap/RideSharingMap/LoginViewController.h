@@ -11,7 +11,12 @@
 @interface LoginViewController : UIViewController{
     __weak IBOutlet UITextField *passwordField;
     __weak IBOutlet UITextField *usernameField;
+    __weak IBOutlet UITextField *firstname_field;
+    __weak IBOutlet UITextField *surname_field;
 }
+
+- (IBAction)input_firstname:(id)sender;
+- (IBAction)input_surname:(id)sender;
 
 - (IBAction)log_in:(id)sender;
 - (IBAction)input_user:(id)sender;

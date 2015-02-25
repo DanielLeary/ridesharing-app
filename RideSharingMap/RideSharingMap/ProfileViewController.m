@@ -25,9 +25,17 @@
     // If user is currently signed in
     if(currentUser) {
         // Set the name_label to the current users username
-        _name_label.text = currentUser.username;
+        _username_label.text = currentUser.username;
         if(currentUser[@"Car"] != nil){
             _carField.text = currentUser[@"Car"];
+            
+        }
+        if(currentUser[@"Name"] != nil){
+            _name_label.text = currentUser[@"Name"];
+            
+        }
+        if(currentUser[@"Surname"] != nil){
+            _surname_label.text = currentUser[@"Surname"];
             
         }
     }
