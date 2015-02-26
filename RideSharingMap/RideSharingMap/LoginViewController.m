@@ -106,6 +106,10 @@
     user[@"Surname"] = surname_field.text;
     user[@"Name"] = firstname_field.text;
     
+    if (position_field.text.length != 0) {
+        user[@"Position"] = position_field.text;
+    }
+    
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             // Hooray! Let them use the app now.
