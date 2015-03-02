@@ -13,7 +13,6 @@
     __weak IBOutlet UITextField *usernameField;
     __weak IBOutlet UITextField *firstname_field;
     __weak IBOutlet UITextField *surname_field;
-    __weak IBOutlet UITextField *position_field;
     __weak IBOutlet UILabel *error_label;
 }
 
