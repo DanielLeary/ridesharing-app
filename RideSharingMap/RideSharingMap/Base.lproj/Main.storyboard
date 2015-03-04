@@ -282,11 +282,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ERROR LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydR-WN-pcp">
+                                <rect key="frame" x="92" y="440" width="191" height="113"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="error_label" destination="ydR-WN-pcp" id="pCN-tA-8bt"/>
                         <outlet property="firstname_field" destination="Ao6-ez-CKi" id="xds-jQ-PaX"/>
                         <outlet property="passwordField" destination="csW-mI-CJ3" id="7f5-ay-Hir"/>
                         <outlet property="surname_field" destination="wB5-a1-evn" id="Aes-zD-VPI"/>

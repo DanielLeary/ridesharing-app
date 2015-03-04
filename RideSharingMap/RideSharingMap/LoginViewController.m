@@ -89,9 +89,22 @@
 }
 
 - (IBAction)sign_up:(id)sender {
+    NSLog(@"entered signup");
+    if (firstname_field.text.length == 0) {
+        error_label.text = @"You must provide a Frist Name to sign up!";
+        return;
+    }
+    if (surname_field.text.length == 0) {
+        error_label.text = @"You must provide a Surname to sign up!";
+        return;
+    }
+    
     PFUser *user = [PFUser user];
     user.username = usernameField.text;
     user.password = passwordField.text;
+    
+    user[@"Surname"] = surname_field.text;
+    user[@"Name"] = firstname_field.text;
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
