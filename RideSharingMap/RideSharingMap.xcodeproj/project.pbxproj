@@ -13,6 +13,7 @@
 		274A2BBC1A9CCD6800967E42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A2BBB1A9CCD6800967E42 /* LoginViewController.m */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
+		6B62444F1AA8AFA600E617AD /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B62444E1AA8AFA600E617AD /* UserModel.m */; };
 		6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74423E1A9E08B9006ED680 /* InitialViewController.m */; };
 		6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */; };
 		6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */; };
@@ -64,6 +65,8 @@
 		274A2BBB1A9CCD6800967E42 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		274A2BBF1A9CD03400967E42 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		6B62444D1AA8AFA600E617AD /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserModel.h; path = ../../Documents/UserModel.h; sourceTree = "<group>"; };
+		6B62444E1AA8AFA600E617AD /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserModel.m; path = ../../Documents/UserModel.m; sourceTree = "<group>"; };
 		6B74423D1A9E08B9006ED680 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		6B74423E1A9E08B9006ED680 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 		7EF361B41A87C4EC0004D0FC = {
 			isa = PBXGroup;
 			children = (
+				6B62444D1AA8AFA600E617AD /* UserModel.h */,
+				6B62444E1AA8AFA600E617AD /* UserModel.m */,
 				1931C6011AA8A48D00B76E8B /* MapViewModel.h */,
 				1931C6021AA8A48D00B76E8B /* MapViewModel.m */,
 				6BA725A01A9B720E0039DCDC /* Frameworks */,
@@ -356,6 +361,7 @@
 				6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */,
 				1931C6031AA8A48D00B76E8B /* MapViewModel.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
+				6B62444F1AA8AFA600E617AD /* UserModel.m in Sources */,
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
