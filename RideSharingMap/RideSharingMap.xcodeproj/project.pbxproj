@@ -10,6 +10,9 @@
 		191899191A9A68B200C73208 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191899181A9A68B200C73208 /* ProfileViewController.m */; };
 		1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918991B1A9A711D00C73208 /* AddPlaceViewController.m */; };
 		1931C6031AA8A48D00B76E8B /* MapViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6021AA8A48D00B76E8B /* MapViewModel.m */; };
+		1931C6061AA8A4E800B76E8B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6051AA8A4E800B76E8B /* Place.m */; };
+		1931C6091AA8AAC900B76E8B /* ProfileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */; };
+		1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C60B1AA8B84900B76E8B /* UserModel.m */; };
 		274A2BBC1A9CCD6800967E42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A2BBB1A9CCD6800967E42 /* LoginViewController.m */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
@@ -58,8 +61,14 @@
 		191899181A9A68B200C73208 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		1918991A1A9A711D00C73208 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
 		1918991B1A9A711D00C73208 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
-		1931C6011AA8A48D00B76E8B /* MapViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewModel.h; path = RideSharingMap/MapViewModel.h; sourceTree = "<group>"; };
-		1931C6021AA8A48D00B76E8B /* MapViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewModel.m; path = RideSharingMap/MapViewModel.m; sourceTree = "<group>"; };
+		1931C6011AA8A48D00B76E8B /* MapViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewModel.h; sourceTree = "<group>"; };
+		1931C6021AA8A48D00B76E8B /* MapViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewModel.m; sourceTree = "<group>"; };
+		1931C6041AA8A4E800B76E8B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		1931C6051AA8A4E800B76E8B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewModel.h; sourceTree = "<group>"; };
+		1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewModel.m; sourceTree = "<group>"; };
+		1931C60A1AA8B84900B76E8B /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		1931C60B1AA8B84900B76E8B /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		274A2BBA1A9CCD6800967E42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		274A2BBB1A9CCD6800967E42 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -164,8 +173,6 @@
 		7EF361B41A87C4EC0004D0FC = {
 			isa = PBXGroup;
 			children = (
-				1931C6011AA8A48D00B76E8B /* MapViewModel.h */,
-				1931C6021AA8A48D00B76E8B /* MapViewModel.m */,
 				6BA725A01A9B720E0039DCDC /* Frameworks */,
 				7EF361BF1A87C4EC0004D0FC /* RideSharingMap */,
 				7EF361DC1A87C4EC0004D0FC /* RideSharingMapTests */,
@@ -193,6 +200,14 @@
 				191899181A9A68B200C73208 /* ProfileViewController.m */,
 				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
 				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
+				1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */,
+				1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */,
+				1931C60A1AA8B84900B76E8B /* UserModel.h */,
+				1931C60B1AA8B84900B76E8B /* UserModel.m */,
+				1931C6011AA8A48D00B76E8B /* MapViewModel.h */,
+				1931C6021AA8A48D00B76E8B /* MapViewModel.m */,
+				1931C6041AA8A4E800B76E8B /* Place.h */,
+				1931C6051AA8A4E800B76E8B /* Place.m */,
 				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
 				C5A5423B1A9FB317004A4303 /* SettingsViewController.h */,
 				C5A5423C1A9FB317004A4303 /* SettingsViewController.m */,
@@ -359,12 +374,15 @@
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
+				1931C6091AA8AAC900B76E8B /* ProfileViewModel.m in Sources */,
 				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
+				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
 				274A2BBC1A9CCD6800967E42 /* LoginViewController.m in Sources */,
 				C5A5423D1A9FB317004A4303 /* SettingsViewController.m in Sources */,
+				1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
 				191899191A9A68B200C73208 /* ProfileViewController.m in Sources */,
 			);

@@ -7,19 +7,28 @@
 //
 
 #import "ProfileViewController.h"
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 
 @implementation ProfileViewController {
     
-    NSMutableArray *placesArray;
+    //NSMutableArray *placesArray;
     
 }
 
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    placesArray = [[NSMutableArray alloc] initWithObjects:@"Home", @"Work", nil];
+    UserModel *user = [[UserModel alloc] init];
+    self.profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
     
+    if (user) {
+        self.username_label.text = self.profileViewModel.usernameText;
+        self.name_label.text = self.profileViewModel.firstNameText;
+        self.surname_label.text = self.profileViewModel.lastNameText;
+        self.carField.text = self.profileViewModel.carText;
+    }
+    
+    /*
     // Create currentUser object from locally cached user
     PFUser *currentUser = [PFUser currentUser];
     // If user is currently signed in
@@ -38,14 +47,15 @@
             _surname_label.text = currentUser[@"Surname"];
             
         }
-    }
+    }*/
 }
 
 
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [placesArray count];
+    return [self.profileViewModel getFavPlacesCount];
+    //return [placesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,7 +65,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [placesArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.profileViewModel getPlaceAtIndex:indexPath.row];
+    //cell.textLabel.text = [placesArray objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -86,12 +97,15 @@
 
 /* ADDPLACEVC DELEGATE METHODS */
 
-- (void) addNewPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D)placeCoord {
-    [placesArray addObject:placeName];
+- (void) addNewPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D *)placeCoord {
+    //lose object after function ends?.....
+    Place *place = [[Place alloc] initWithName:placeName andCoordinates:placeCoord];
+    [self.profileViewModel addPlace:place];
+    //[placesArray addObject:placeName];
     [self.placesTableView reloadData];
 }
 
-- (void)editPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D)placeCoord {
+- (void)editPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D *)placeCoord {
     
 }
 
@@ -126,7 +140,8 @@
 - (void)tableView: (UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath: (NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // delete the row from data source
-        [placesArray removeObjectAtIndex:[indexPath row]];
+        [self.profileViewModel removePlaceAtIndex:[indexPath row]];
+        //[placesArray removeObjectAtIndex:[indexPath row]];
         // delete row from table
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -134,9 +149,13 @@
 
 // function to drag move rows in placesTableView
 - (void)tableView: (UITableView *)tableView moveRowAtIndexPath: (NSIndexPath *)fromIndexPath toIndexPath: (NSIndexPath *)toIndexPath {
-    NSString *mover = [placesArray objectAtIndex:[fromIndexPath row]];
-    [placesArray removeObjectAtIndex:[fromIndexPath row]];
-    [placesArray insertObject:mover atIndex:[toIndexPath row]];
+    Place *mover = [self.profileViewModel getPlaceAtIndex:[fromIndexPath row]];
+    [self.profileViewModel removePlaceAtIndex:[fromIndexPath row]];
+    [self.profileViewModel insertPlace:mover atIndex:[toIndexPath row]];
+    
+    //NSString *mover = [placesArray objectAtIndex:[fromIndexPath row]];
+    //[placesArray removeObjectAtIndex:[fromIndexPath row]];
+    //[placesArray insertObject:mover atIndex:[toIndexPath row]];
     [tableView setEditing:NO animated:YES];
 }
 

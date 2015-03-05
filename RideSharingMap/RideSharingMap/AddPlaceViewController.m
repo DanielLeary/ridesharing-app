@@ -67,11 +67,11 @@
         CLLocationCoordinate2D placeCoord = CLLocationCoordinate2DMake(self.pin.coordinate.latitude, self.pin.coordinate.longitude);
         //if place is being edited
         if (self.editing==YES) {
-            [self.delegate editPlace:self withName:placeName andCoord:placeCoord];
+            [self.delegate editPlace:self withName:placeName andCoord:&placeCoord];
             [self.navigationController popViewControllerAnimated:YES];
         //if place is being added
         } else {
-            [self.delegate addNewPlace:self withName:placeName andCoord:placeCoord];
+            [self.delegate addNewPlace:self withName:placeName andCoord:&placeCoord];
             [self.navigationController popViewControllerAnimated:YES];
         }
     } else {

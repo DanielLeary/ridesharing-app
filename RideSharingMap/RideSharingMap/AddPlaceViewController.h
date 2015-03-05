@@ -14,8 +14,8 @@
 
 @protocol AddPlaceViewControllerDelegate <NSObject>
 
-- (void)addNewPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D)placeCoord;
-- (void)editPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D)placeCoord;
+- (void)addNewPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D *)placeCoord;
+- (void)editPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D *)placeCoord;
 
 @end
 
