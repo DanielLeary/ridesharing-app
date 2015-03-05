@@ -15,6 +15,7 @@
 
 @implementation LoginViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -22,7 +23,8 @@
     if (currentUser) {
         usernameField.text = currentUser.username;
         passwordField.text = currentUser.password;
-    }   
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,44 +43,16 @@
 */
 
 - (IBAction)input_firstname:(id)sender {
-    PFUser *user = [PFUser currentUser];
-    if (firstname_field.text != nil && user) {
-        user[@"Name"] = firstname_field.text;
-        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }];
-    }
+    [LoginViewModel inputFirstName:firstname_field.text];
 }
 
 - (IBAction)input_surname:(id)sender {
-    PFUser *user = [PFUser currentUser];
-    if (firstname_field.text != nil && user) {
-        user[@"Surname"] = surname_field.text;
-        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }];
-
-    }
+    [LoginViewModel inputFirstName:surname_field.text];
 }
 
 - (IBAction)log_in:(id)sender {
-    [PFUser logInWithUsernameInBackground:usernameField.text password:passwordField.text
-        block:^(PFUser *user, NSError *error) {
-            if (user) {
-                // Do stuff after successful login.
-                [self.navigationController popViewControllerAnimated:YES];
-            } else {
-                // The login failed. Check error to see why.
-            }
-    }];
+    if([LoginViewModel log_in:usernameField.text :passwordField.text])
+        [self.navigationController popViewControllerAnimated:YES];
     
 }
 
