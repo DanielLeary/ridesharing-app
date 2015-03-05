@@ -57,6 +57,7 @@
 }
 
 +(BOOL)sign_up{
+    /* TODO setup login with User Model */
     return TRUE;
 }
 
