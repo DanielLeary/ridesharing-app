@@ -8,17 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "UserModel.h"
 
 @interface LoginViewModel : NSObject
 
-
-+(void)inputFirstName:(NSString*) text;
-+(void)inputSurname:(NSString*) text;
+@property (strong, nonatomic) UserModel *model;
+-(instancetype)initWithModel:(UserModel *) model;
+-(void)inputFirstName:(NSString*) text;
+-(void)inputSurname:(NSString*) text;
 
 /* returns TRUE if login was successful */
-+(BOOL)log_in:(NSString*) username :(NSString *)password;
+-(BOOL)log_in:(NSString*) username :(NSString *)password;
 
-+(BOOL)sign_up;
+-(BOOL)sign_up;
 
 
 
