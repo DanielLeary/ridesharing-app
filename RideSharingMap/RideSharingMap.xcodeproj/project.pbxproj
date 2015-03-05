@@ -13,6 +13,7 @@
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
 		6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74423E1A9E08B9006ED680 /* InitialViewController.m */; };
+		6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */; };
 		6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */; };
 		6BA7258F1A9B71CF0039DCDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */; };
 		6BA725911A9B71D60039DCDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA725901A9B71D60039DCDC /* CoreGraphics.framework */; };
@@ -56,6 +57,8 @@
 		274A2BBF1A9CD03400967E42 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6B74423D1A9E08B9006ED680 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		6B74423E1A9E08B9006ED680 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
+		6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
 		6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6BA725901A9B71D60039DCDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -172,6 +175,8 @@
 				6B74423E1A9E08B9006ED680 /* InitialViewController.m */,
 				274A2BBA1A9CCD6800967E42 /* LoginViewController.h */,
 				274A2BBB1A9CCD6800967E42 /* LoginViewController.m */,
+				6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */,
+				6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */,
 				7EF361D01A87C4EC0004D0FC /* Images.xcassets */,
 				7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */,
 				7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */,
@@ -313,6 +318,7 @@
 			files = (
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
+				6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,

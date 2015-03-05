@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "LoginViewModel.h"
+@class LoginViewModel;
 @interface LoginViewController : UIViewController{
     __weak IBOutlet UITextField *passwordField;
     __weak IBOutlet UITextField *usernameField;
