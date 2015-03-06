@@ -23,10 +23,10 @@
         _currentUser = [PFUser currentUser];
         if (_currentUser) {
             _firstname = _currentUser[firstnameString];
-            _surname = _currentUser[surnameString];
+            _lastname = _currentUser[surnameString];
             _car = _currentUser[carString];
             _position = _currentUser[positionString];
-            _userName = _currentUser[usernameString];
+            _username = _currentUser[usernameString];
 
         }
     }

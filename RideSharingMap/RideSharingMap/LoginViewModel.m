@@ -24,7 +24,7 @@
 //#pragma mark - Public Methods
 -(void)inputFirstName:(NSString*) text{
     
-    [self.model setSurname:text];
+    [self.model setFirstname:text];
     [self.model updateUser];
     /*
     PFUser *user = [PFUser currentUser];
@@ -42,7 +42,7 @@
 
 
 -(void)inputSurname:(NSString*) text{
-    [self.model setSurname:text];
+    [self.model setLastname:text];
     [self.model updateUser];
     
     /*PFUser *user = [PFUser currentUser];

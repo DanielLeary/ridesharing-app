@@ -15,9 +15,9 @@
 
 // Readonly used to state that methods cannot be changed use set method
 // The compilor doesn't produce a set method for such properties
-@property NSString *firstName;
+@property NSString *firstname;
 
-@property NSString *lastName;
+@property NSString *lastname;
 
 @property NSString *car;
 

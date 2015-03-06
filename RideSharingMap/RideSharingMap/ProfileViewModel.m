@@ -21,8 +21,8 @@
     if (self) {
         self.user = user;
         self.usernameText = user.username;
-        self.firstNameText = user.firstName;
-        self.lastNameText = user.lastName;
+        self.firstNameText = user.firstname;
+        self.lastNameText = user.lastname;
         self.carText = user.car;
         placesArray = [[NSMutableArray alloc] initWithObjects:@"Home", @"Work", nil];
     }
