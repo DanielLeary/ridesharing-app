@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginViewModel.h"
+#import "UserModel.h"
 
 
 @interface LoginViewController ()
@@ -24,7 +26,8 @@
         usernameField.text = currentUser.username;
         passwordField.text = currentUser.password;
     }
-    
+    UserModel *model = [[UserModel alloc] init];
+    self.viewModel = [[LoginViewModel alloc] initWithModel:model];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,15 +46,15 @@
 */
 
 - (IBAction)input_firstname:(id)sender {
-    [LoginViewModel inputFirstName:firstname_field.text];
+    [self.viewModel inputFirstName:firstname_field.text];
 }
 
 - (IBAction)input_surname:(id)sender {
-    [LoginViewModel inputFirstName:surname_field.text];
+    [self.viewModel inputSurname:surname_field.text];
 }
 
 - (IBAction)log_in:(id)sender {
-    if([LoginViewModel log_in:usernameField.text :passwordField.text])
+    if([self.viewModel log_in:usernameField.text :passwordField.text])
         [self.navigationController popViewControllerAnimated:YES];
     
 }

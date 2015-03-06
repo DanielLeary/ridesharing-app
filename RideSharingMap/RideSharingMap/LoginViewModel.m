@@ -11,9 +11,22 @@
 @implementation LoginViewModel
 
 
+-(instancetype)initWithModel:(UserModel *) model{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    _model = model;
+ 
+    return self;
+}
 
 //#pragma mark - Public Methods
-+(void)inputFirstName:(NSString*) text{
+-(void)inputFirstName:(NSString*) text{
+    
+    [self.model setSurname:text];
+    [self.model updateUser];
+    /*
     PFUser *user = [PFUser currentUser];
     if (text != nil && user) {
         user[@"Name"] = text;
@@ -24,12 +37,15 @@
                 // There was a problem, check error.description
             }
         }];
-    }
+    }*/
 }
 
 
-+(void)inputSurname:(NSString*) text{
-    PFUser *user = [PFUser currentUser];
+-(void)inputSurname:(NSString*) text{
+    [self.model setSurname:text];
+    [self.model updateUser];
+    
+    /*PFUser *user = [PFUser currentUser];
     if (text != nil && user) {
         user[@"Surname"] = text;
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -39,10 +55,10 @@
                 // There was a problem, check error.description
             }
         }];
-    }
+    }*/
 }
 
-+(BOOL)log_in:(NSString*) username :(NSString *)password{
+-(BOOL)log_in:(NSString*) username :(NSString *)password{
     [PFUser logInWithUsernameInBackground:username password:password
         block:^(PFUser *user, NSError *error) {
             if (user) {
@@ -56,7 +72,7 @@
     return TRUE;
 }
 
-+(BOOL)sign_up{
+-(BOOL)sign_up{
     /* TODO setup login with User Model */
     return TRUE;
 }

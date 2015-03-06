@@ -12,6 +12,7 @@
 
 @class LoginViewModel;
 
+@class UserModel;
 @interface LoginViewController : UIViewController{
     __weak IBOutlet UITextField *passwordField;
     __weak IBOutlet UITextField *usernameField;
@@ -20,6 +21,7 @@
     __weak IBOutlet UILabel *error_label;
 }
 
+@property (strong, nonatomic) LoginViewModel *viewModel;
 - (IBAction)input_firstname:(id)sender;
 - (IBAction)input_surname:(id)sender;
 
