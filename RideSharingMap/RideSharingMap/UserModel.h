@@ -46,7 +46,6 @@
 
 // TODO Constructor that when insantiated checks if there is a user currently
 // Logged on and if there is each of these properties are updated
-// If not returns False, if there is returns true.
 -(id)init;
 
 -(BOOL)updateUser;

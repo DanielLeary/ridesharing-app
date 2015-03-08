@@ -40,9 +40,11 @@
     return self;
 }
 -(BOOL)updateUser {
-    /*_currentUser[@"Surname"]=_surname;
-    _currentUser[@"Name"]=_firstname;
-    _currentUser[@"Car"]=_car;*/
+    _currentUser[surnameString]=_lastname;
+    _currentUser[firstnameString]=_firstname;
+    _currentUser[carString]=_car;
+    _currentUser[positionString] = _position;
+    _currentUser[usernameString] = _username;
     
     [_currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
