@@ -34,17 +34,26 @@
             _car = _currentUser[carString];
             _position = _currentUser[positionString];
             _username = _currentUser[usernameString];
-
         }
     }
     return self;
 }
 -(BOOL)updateUser {
-    _currentUser[surnameString]=_lastname;
-    _currentUser[firstnameString]=_firstname;
-    _currentUser[carString]=_car;
-    _currentUser[positionString] = _position;
-    _currentUser[usernameString] = _username;
+    if(_lastname != nil) {
+        _currentUser[surnameString]=_lastname;
+    }
+    if(_firstname != nil) {
+        _currentUser[firstnameString]=_firstname;
+    }
+    if(_car != nil) {
+        _currentUser[carString]=_car;
+    }
+    if(_position != nil) {
+        _currentUser[positionString] = _position;
+    }
+    if (_username != nil) {
+        _currentUser[usernameString] = _username;
+    }
     
     [_currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
