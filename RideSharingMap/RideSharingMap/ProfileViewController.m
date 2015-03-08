@@ -8,6 +8,9 @@
 
 #import "ProfileViewController.h"
 
+static const CLLocationDegrees emptyCoord = -1000;
+static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
+
 @implementation ProfileViewController
 
 
@@ -45,6 +48,15 @@
     }*/
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    NSUInteger count = [self.profileViewModel getFavPlacesCount];
+    NSLog(@"IN ARRAY: %lu", (unsigned long)count);
+    for (int i=0; i<count; i++) {
+        Place *place = [self.profileViewModel getPlaceAtIndex:i];
+        NSLog(@"%@, %f, %f", place.getName, place.getLatitude, place.getLongitude);
+    }
+}
+
 
 /* TABLE DELEGATE METHODS */
 
@@ -63,17 +75,29 @@
     return cell;
 }
 
+// upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
     editPlaceVC.delegate = self;
     editPlaceVC.editing = YES;
+    editPlaceVC.placeIndexPath = indexPath.row;
     // set up editPlaceVC for selected place
-    NSString *placeName = [[[tableView cellForRowAtIndexPath:indexPath] textLabel] text];
+    //[editPlaceVC view];
+    Place *place = [self.profileViewModel getPlaceAtIndex:indexPath.row];
+    NSLog(@"!!coordinates for place: %@, %f, %f", place.getName, place.getLatitude, place.getLongitude);
     [editPlaceVC view];
-    editPlaceVC.placeNameField.text = placeName;
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(51.498639, -0.179344);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500);
-    [editPlaceVC.mapView setRegion:region animated:YES];
+    editPlaceVC.placeNameField.text = place.getName;
+    editPlaceVC.placeLocationField.text = place.getZipCode;
+    MKCoordinateRegion region;
+    if (CLLocationCoordinate2DIsValid(place.getCoordinates)) {
+        region = MKCoordinateRegionMakeWithDistance(place.getCoordinates, 500, 500);
+        [editPlaceVC.mapView setRegion:region animated:YES];
+    } else {
+        // hardcode location for now
+        NSLog(@"hardcoded location");
+        region = MKCoordinateRegionMakeWithDistance(imperialCoord, 500, 500);
+        [editPlaceVC.mapView setRegion:region animated:YES];
+    }
     [self.navigationController pushViewController:editPlaceVC animated:YES];
 }
 
@@ -90,15 +114,14 @@
 
 /* ADDPLACEVC DELEGATE METHODS */
 
-- (void) addNewPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D *)placeCoord {
-    //lose object after function ends?.....
-    Place *place = [[Place alloc] initWithName:placeName andCoordinates:placeCoord];
+- (void) addNewPlace:(AddPlaceViewController *)vc place:(Place *)place {
     [self.profileViewModel addPlace:place];
     [self.placesTableView reloadData];
 }
 
-- (void)editPlace:(AddPlaceViewController *)vc withName:(NSString *)placeName andCoord:(CLLocationCoordinate2D *)placeCoord {
-    
+- (void) editPlace:(AddPlaceViewController *)vc atIndex:(NSUInteger)indexPath withPlace:(Place *)place {
+    [self.profileViewModel replacePlaceAtIndex:indexPath withPlace:place];
+    [self.placesTableView reloadData];
 }
 
 

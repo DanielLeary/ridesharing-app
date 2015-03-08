@@ -74,11 +74,17 @@
 }
 
 - (void) addPlace:(Place *)place {
-    [favPlacesArray insertObject:place atIndex:favPlacesArray.count];
+    [favPlacesArray addObject:place];
+    Place *place2 = [favPlacesArray objectAtIndex:2];
+    NSLog(@"array: %@, %f, %f", place2.name, place2.coordinates.latitude, place2.coordinates.longitude);
 }
 
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
     [favPlacesArray insertObject:place atIndex:indexPath];
+}
+
+- (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
+    [favPlacesArray replaceObjectAtIndex:indexPath withObject:place];
 }
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {

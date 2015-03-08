@@ -12,7 +12,7 @@
 
 @interface ProfileViewModel : NSObject
 
-@property UserModel *user;
+@property (strong) UserModel *user;
 
 @property NSString *usernameText;
 
@@ -33,7 +33,13 @@
 
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath;
 
+- (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place;
+
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
+
++ (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark;
+
++ (NSString *) getZipCodeFromCoordinates:(CLLocationCoordinate2D)coordinates;
 
 
 @end

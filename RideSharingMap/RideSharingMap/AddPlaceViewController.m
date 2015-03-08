@@ -64,14 +64,17 @@
 - (IBAction)saveButtonPressed:(id)sender {
     if (self.placeNameField.text.length!=0) {
         NSString *placeName = self.placeNameField.text;
-        CLLocationCoordinate2D placeCoord = CLLocationCoordinate2DMake(self.pin.coordinate.latitude, self.pin.coordinate.longitude);
+        CLLocationDegrees latitude = self.pin.coordinate.latitude;
+        CLLocationDegrees longitude = self.pin.coordinate.longitude;
+        CLLocationCoordinate2D placeCoords = CLLocationCoordinate2DMake(latitude, longitude);
+        Place *place = [[Place alloc] initWithName:placeName andCoordinates:placeCoords];
         //if place is being edited
         if (self.editing==YES) {
-            [self.delegate editPlace:self withName:placeName andCoord:&placeCoord];
+            [self.delegate editPlace:self atIndex:self.placeIndexPath withPlace:place];
             [self.navigationController popViewControllerAnimated:YES];
         //if place is being added
         } else {
-            [self.delegate addNewPlace:self withName:placeName andCoord:&placeCoord];
+            [self.delegate addNewPlace:self place:place];
             [self.navigationController popViewControllerAnimated:YES];
         }
     } else {

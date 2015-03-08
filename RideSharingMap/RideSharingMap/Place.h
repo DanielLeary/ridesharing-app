@@ -11,14 +11,27 @@
 
 @interface Place : NSObject
 
-@property NSString *name;
-@property CLLocationCoordinate2D *coordinates;
+@property (nonatomic) NSString *name;
+@property (nonatomic) CLLocationCoordinate2D coordinates;
+//@property (strong, nonatomic) CLPlacemark *placemark;
+@property (nonatomic) NSString *zipcode;
 
 - (id) initWithName:(NSString *)name;
-- (id) initWithName:(NSString *)name andCoordinates:(CLLocationCoordinate2D *)coordinates;
+
+- (id) initWithName:(NSString *)name andCoordinates:(CLLocationCoordinate2D)coordinates;
+
 - (NSString *) getName;
-- (CLLocationCoordinate2D *) getCoordinates;
+
+- (CLLocationCoordinate2D) getCoordinates;
+
 - (float) getLatitude;
+
 - (float) getLongitude;
+
+- (NSString *) getZipCode;
+
+//- (void) setPlacemark:(CLPlacemark *)placemark;
+
+- (void) getPlacemarkFromCoordinates:(CLLocationCoordinate2D)coordinates;
 
 @end
