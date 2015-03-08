@@ -9,10 +9,9 @@
 #import "ProfileViewModel.h"
 
 
-
 @implementation ProfileViewModel {
 
-    NSMutableArray *placesArray;
+    //NSMutableArray *placesArray;
 
 }
 
@@ -24,29 +23,28 @@
         self.firstNameText = user.firstname;
         self.lastNameText = user.lastname;
         self.carText = user.car;
-        placesArray = [[NSMutableArray alloc] initWithObjects:@"Home", @"Work", nil];
     }
     return self;
 }
 
-- (int) getFavPlacesCount {
-    return [placesArray count];
+- (NSUInteger) getFavPlacesCount {
+    return [self.user getFavPlacesCount];
 }
 
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
-    return [placesArray objectAtIndex:indexPath];
+    return [self.user getPlaceAtIndex:indexPath];
 }
 
 - (void) addPlace:(Place *)place {
-    [placesArray insertObject:place atIndex:placesArray.count];
+    [self.user addPlace:place];
 }
 
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
-    [placesArray insertObject:place atIndex:indexPath];
+    [self.user insertPlace:place atIndex:indexPath];
 }
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
-    [placesArray removeObjectAtIndex:indexPath];
+    [self.user removePlaceAtIndex:indexPath];
 }
 
 

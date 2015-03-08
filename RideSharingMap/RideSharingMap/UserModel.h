@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Place.h"
 
 @interface UserModel : NSObject
 
@@ -28,6 +29,19 @@
 @property NSString *username;
 
 @property PFUser *currentUser;
+
+
+// functions for favPlacesArray
+
+- (NSUInteger) getFavPlacesCount;
+
+- (Place *) getPlaceAtIndex:(NSUInteger)indexPath;
+
+- (void) addPlace:(Place *)place;
+
+- (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath;
+
+- (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
 
 // TODO Constructor that when insantiated checks if there is a user currently

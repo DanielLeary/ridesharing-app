@@ -15,13 +15,20 @@
 #define usernameString @"username"
 
 
-@implementation UserModel
+@implementation UserModel {
+    
+    NSMutableArray *favPlacesArray;
+
+}
 
 -(id)init {
     self = [super init];
-    if(self) {
+    if (self) {
         _currentUser = [PFUser currentUser];
         if (_currentUser) {
+            Place *home = [[Place alloc] initWithName:@"Home"];
+            Place *work = [[Place alloc] initWithName:@"Work"];
+            self->favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
             _firstname = _currentUser[firstnameString];
             _lastname = _currentUser[surnameString];
             _car = _currentUser[carString];
@@ -45,6 +52,26 @@
         }
     }];
     return true;
+}
+
+- (NSUInteger) getFavPlacesCount {
+    return [favPlacesArray count];
+}
+
+- (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
+    return [favPlacesArray objectAtIndex:indexPath];
+}
+
+- (void) addPlace:(Place *)place {
+    [favPlacesArray insertObject:place atIndex:favPlacesArray.count];
+}
+
+- (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
+    [favPlacesArray insertObject:place atIndex:indexPath];
+}
+
+- (void) removePlaceAtIndex:(NSUInteger)indexPath {
+    [favPlacesArray removeObjectAtIndex:indexPath];
 }
 
 @end

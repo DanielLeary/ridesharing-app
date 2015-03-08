@@ -10,6 +10,14 @@
 
 @implementation Place
 
+- (id) initWithName:(NSString *)name {
+    self = [super init];
+    if (self) {
+        self.name = name;
+    }
+    return self;
+}
+
 - (id) initWithName:(NSString *)name andCoordinates:(CLLocationCoordinate2D *)coordinates {
     self = [super init];
     if (self) {

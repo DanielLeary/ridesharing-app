@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		191899191A9A68B200C73208 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191899181A9A68B200C73208 /* ProfileViewController.m */; };
 		1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918991B1A9A711D00C73208 /* AddPlaceViewController.m */; };
-		1931C6031AA8A48D00B76E8B /* MapViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6021AA8A48D00B76E8B /* MapViewModel.m */; };
 		1931C6061AA8A4E800B76E8B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6051AA8A4E800B76E8B /* Place.m */; };
 		1931C6091AA8AAC900B76E8B /* ProfileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */; };
 		1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C60B1AA8B84900B76E8B /* UserModel.m */; };
@@ -61,8 +60,6 @@
 		191899181A9A68B200C73208 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		1918991A1A9A711D00C73208 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaceViewController.h; sourceTree = "<group>"; };
 		1918991B1A9A711D00C73208 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
-		1931C6011AA8A48D00B76E8B /* MapViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewModel.h; sourceTree = "<group>"; };
-		1931C6021AA8A48D00B76E8B /* MapViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewModel.m; sourceTree = "<group>"; };
 		1931C6041AA8A4E800B76E8B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		1931C6051AA8A4E800B76E8B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewModel.h; sourceTree = "<group>"; };
@@ -196,18 +193,7 @@
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
 				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
 				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
-				191899171A9A68B200C73208 /* ProfileViewController.h */,
-				191899181A9A68B200C73208 /* ProfileViewController.m */,
-				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
-				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
-				1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */,
-				1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */,
-				1931C60A1AA8B84900B76E8B /* UserModel.h */,
-				1931C60B1AA8B84900B76E8B /* UserModel.m */,
-				1931C6011AA8A48D00B76E8B /* MapViewModel.h */,
-				1931C6021AA8A48D00B76E8B /* MapViewModel.m */,
-				1931C6041AA8A4E800B76E8B /* Place.h */,
-				1931C6051AA8A4E800B76E8B /* Place.m */,
+				EBF643F01AA9F6E40042F6F8 /* Profile */,
 				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
 				C5A5423B1A9FB317004A4303 /* SettingsViewController.h */,
 				C5A5423C1A9FB317004A4303 /* SettingsViewController.m */,
@@ -259,6 +245,23 @@
 				7EF361DE1A87C4EC0004D0FC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EBF643F01AA9F6E40042F6F8 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				191899171A9A68B200C73208 /* ProfileViewController.h */,
+				191899181A9A68B200C73208 /* ProfileViewController.m */,
+				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
+				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
+				1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */,
+				1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */,
+				1931C60A1AA8B84900B76E8B /* UserModel.h */,
+				1931C60B1AA8B84900B76E8B /* UserModel.m */,
+				1931C6041AA8A4E800B76E8B /* Place.h */,
+				1931C6051AA8A4E800B76E8B /* Place.m */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,7 +372,6 @@
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
 				6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */,
-				1931C6031AA8A48D00B76E8B /* MapViewModel.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,

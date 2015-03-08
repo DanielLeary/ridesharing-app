@@ -25,7 +25,7 @@
 
 - (instancetype) initWithProfile:(UserModel *)user;
 
-- (int) getFavPlacesCount;
+- (NSUInteger) getFavPlacesCount;
 
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath;
 

@@ -7,13 +7,8 @@
 //
 
 #import "ProfileViewController.h"
-//#import <Parse/Parse.h>
 
-@implementation ProfileViewController {
-    
-    //NSMutableArray *placesArray;
-    
-}
+@implementation ProfileViewController
 
 
 - (void) viewDidLoad {
@@ -55,7 +50,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.profileViewModel getFavPlacesCount];
-    //return [placesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -65,8 +59,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [self.profileViewModel getPlaceAtIndex:indexPath.row];
-    //cell.textLabel.text = [placesArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[self.profileViewModel getPlaceAtIndex:indexPath.row] getName];
     return cell;
 }
 
@@ -101,7 +94,6 @@
     //lose object after function ends?.....
     Place *place = [[Place alloc] initWithName:placeName andCoordinates:placeCoord];
     [self.profileViewModel addPlace:place];
-    //[placesArray addObject:placeName];
     [self.placesTableView reloadData];
 }
 
@@ -141,7 +133,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // delete the row from data source
         [self.profileViewModel removePlaceAtIndex:[indexPath row]];
-        //[placesArray removeObjectAtIndex:[indexPath row]];
         // delete row from table
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -152,11 +143,6 @@
     Place *mover = [self.profileViewModel getPlaceAtIndex:[fromIndexPath row]];
     [self.profileViewModel removePlaceAtIndex:[fromIndexPath row]];
     [self.profileViewModel insertPlace:mover atIndex:[toIndexPath row]];
-    
-    //NSString *mover = [placesArray objectAtIndex:[fromIndexPath row]];
-    //[placesArray removeObjectAtIndex:[fromIndexPath row]];
-    //[placesArray insertObject:mover atIndex:[toIndexPath row]];
-    [tableView setEditing:NO animated:YES];
 }
 
 
