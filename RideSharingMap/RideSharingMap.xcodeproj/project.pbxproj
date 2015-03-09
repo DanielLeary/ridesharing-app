@@ -15,6 +15,7 @@
 		274A2BBC1A9CCD6800967E42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A2BBB1A9CCD6800967E42 /* LoginViewController.m */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
+		27702BF11AAE152B00D20FFA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
 		6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74423E1A9E08B9006ED680 /* InitialViewController.m */; };
 		6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */; };
 		6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */; };
@@ -129,9 +130,9 @@
 				274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */,
 				6BA725911A9B71D60039DCDC /* CoreGraphics.framework in Frameworks */,
 				6BA7258F1A9B71CF0039DCDC /* CFNetwork.framework in Frameworks */,
-				274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */,
 				6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */,
 				7EF361F01A87CB9F0004D0FC /* CoreLocation.framework in Frameworks */,
+				274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */,
 				7EF361EE1A87CB910004D0FC /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27702BF11AAE152B00D20FFA /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +541,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -558,6 +561,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RideSharingMapTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
