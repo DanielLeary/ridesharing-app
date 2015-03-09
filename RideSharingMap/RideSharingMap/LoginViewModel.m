@@ -72,9 +72,32 @@
     return TRUE;
 }
 
--(BOOL)sign_up{
-    /* TODO setup login with User Model */
-    return TRUE;
+-(BOOL)sign_up:(NSString*) username :(NSString*) password{
+    //TODO deal with different types of errors while signing up
+    if (self.model.firstname.length <2 || self.model.lastname.length <2) {
+        return FALSE;
+    }
+    
+    PFUser *user = [PFUser user];
+    user.username = username;
+    user.password = password;
+    
+    user[@"Surname"] = self.model.lastname;
+    user[@"Name"] = self.model.firstname;
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // Hooray! Let them use the app now.
+        } else {
+            //NSString *errorString = [error userInfo][@"error"];
+            // Show the errorString somewhere and let the user try again.
+        }
+    }];
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        return TRUE;
+    }
+    return FALSE;
 }
 
 @end

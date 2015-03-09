@@ -66,6 +66,15 @@
 }
 
 - (IBAction)sign_up:(id)sender {
+    //TODO deal with different types of errors
+    if (![self.viewModel sign_up:usernameField.text :passwordField.text]){
+        error_label.text = @"Sign up was unsuccessfull. Check whether you entered all neccessary fields";
+    }
+    else{
+        error_label.text = @"Sign up was successfull";
+    }
+    
+    /*
     NSLog(@"entered signup");
     if (firstname_field.text.length == 0) {
         error_label.text = @"You must provide a Frist Name to sign up!";
@@ -90,6 +99,6 @@
             NSString *errorString = [error userInfo][@"error"];
             // Show the errorString somewhere and let the user try again.
         }
-    }];
+    }];*/
 }
 @end

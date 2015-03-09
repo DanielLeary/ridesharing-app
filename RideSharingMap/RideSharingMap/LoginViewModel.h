@@ -20,7 +20,7 @@
 /* returns TRUE if login was successful */
 -(BOOL)log_in:(NSString*) username :(NSString *)password;
 
--(BOOL)sign_up;
+-(BOOL)sign_up:(NSString*) username :(NSString*) password;
 
 
 
