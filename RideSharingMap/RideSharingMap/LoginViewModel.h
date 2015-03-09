@@ -10,6 +10,14 @@
 #import <Parse/Parse.h>
 #import "UserModel.h"
 
+#define NO_ERROR 0
+#define NAME_ERROR 1
+#define SURNAME_ERROR 2
+#define USERNAME_ERROR 3
+#define PASSWORD_ERROR 4
+
+
+
 @interface LoginViewModel : NSObject
 
 @property (strong, nonatomic) UserModel *model;
@@ -20,7 +28,7 @@
 /* returns TRUE if login was successful */
 -(BOOL)log_in:(NSString*) username :(NSString *)password;
 
--(BOOL)sign_up:(NSString*) username :(NSString*) password;
+-(int)sign_up:(NSString*) username :(NSString*) password;
 
 
 

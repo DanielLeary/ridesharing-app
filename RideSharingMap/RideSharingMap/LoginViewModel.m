@@ -72,12 +72,20 @@
     return TRUE;
 }
 
--(BOOL)sign_up:(NSString*) username :(NSString*) password{
+-(int)sign_up:(NSString*) username :(NSString*) password{
     //TODO deal with different types of errors while signing up
-    if (self.model.firstname.length <2 || self.model.lastname.length <2) {
-        return FALSE;
+    if (self.model.firstname.length <2 ) {
+        return NAME_ERROR;
+    }
+    if (self.model.lastname.length<2) {
+        return SURNAME_ERROR;
     }
     
+    BOOL containsLetter = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
+    BOOL containsNumber = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
+    if (!containsLetter || !containsNumber || password.length < 6) {
+        return PASSWORD_ERROR;
+    }
     PFUser *user = [PFUser user];
     user.username = username;
     user.password = password;
@@ -95,9 +103,9 @@
     }];
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        return TRUE;
+        return NO_ERROR;
     }
-    return FALSE;
+    return USERNAME_ERROR;
 }
 
 @end

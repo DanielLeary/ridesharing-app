@@ -67,38 +67,27 @@
 
 - (IBAction)sign_up:(id)sender {
     //TODO deal with different types of errors
-    if (![self.viewModel sign_up:usernameField.text :passwordField.text]){
-        error_label.text = @"Sign up was unsuccessfull. Check whether you entered all neccessary fields";
+    int error = [self.viewModel sign_up:usernameField.text :passwordField.text];
+    NSString *error_text;
+    switch (error) {
+        case NO_ERROR:
+            error_text = @"Sign up was successfull";
+            break;
+        case NAME_ERROR:
+            error_text = @"Incorrect Name, signup unsuccessful";
+            break;
+        case SURNAME_ERROR:
+            error_text = @"Incorrect Surname, signup unsiccessful";
+            break;
+        case USERNAME_ERROR:
+            error_text = @"Username already in use. Please choose another uesrname";
+            break;
+        case PASSWORD_ERROR:
+            error_text = @"Password must contain at least one letter and nmber, and be at least 6 characters long";
+        
+        default:
+            break;
     }
-    else{
-        error_label.text = @"Sign up was successfull";
-    }
-    
-    /*
-    NSLog(@"entered signup");
-    if (firstname_field.text.length == 0) {
-        error_label.text = @"You must provide a Frist Name to sign up!";
-        return;
-    }
-    if (surname_field.text.length == 0) {
-        error_label.text = @"You must provide a Surname to sign up!";
-        return;
-    }
-    
-    PFUser *user = [PFUser user];
-    user.username = usernameField.text;
-    user.password = passwordField.text;
-    
-    user[@"Surname"] = surname_field.text;
-    user[@"Name"] = firstname_field.text;
-    
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // Hooray! Let them use the app now.
-        } else {
-            NSString *errorString = [error userInfo][@"error"];
-            // Show the errorString somewhere and let the user try again.
-        }
-    }];*/
+    error_label.text = error_text;
 }
 @end
