@@ -8,7 +8,6 @@
 
 #import "ProfileViewController.h"
 
-static const CLLocationDegrees emptyCoord = -1000;
 static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 @implementation ProfileViewController
@@ -61,44 +60,53 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.profileViewModel getFavPlacesCount];
+    return [self.profileViewModel getFavPlacesCount] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"cell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [[self.profileViewModel getPlaceAtIndex:indexPath.row] getName];
+    if (indexPath.row < [self.profileViewModel getFavPlacesCount]) {
+        cell.textLabel.text = [[self.profileViewModel getPlaceAtIndex:indexPath.row] getName];
+    } else {
+        cell.textLabel.text = @"+ Add new place";
+    }
     return cell;
 }
 
 // upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-    editPlaceVC.delegate = self;
-    editPlaceVC.editing = YES;
-    editPlaceVC.placeIndexPath = indexPath.row;
-    // set up editPlaceVC for selected place
-    //[editPlaceVC view];
-    Place *place = [self.profileViewModel getPlaceAtIndex:indexPath.row];
-    NSLog(@"!!coordinates for place: %@, %f, %f", place.getName, place.getLatitude, place.getLongitude);
-    [editPlaceVC view];
-    editPlaceVC.placeNameField.text = place.getName;
-    editPlaceVC.placeLocationField.text = place.getZipCode;
-    MKCoordinateRegion region;
-    if (CLLocationCoordinate2DIsValid(place.getCoordinates)) {
-        region = MKCoordinateRegionMakeWithDistance(place.getCoordinates, 500, 500);
-        [editPlaceVC.mapView setRegion:region animated:YES];
+    if (indexPath.row < [self.profileViewModel getFavPlacesCount]) {
+        // set up editPlaceVC
+        AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+        editPlaceVC.delegate = self;
+        editPlaceVC.editing = YES;
+        editPlaceVC.placeIndexPath = indexPath.row;
+        // update editPlaceVC for selected place
+        Place *place = [self.profileViewModel getPlaceAtIndex:indexPath.row];
+        [editPlaceVC view];
+        editPlaceVC.placeNameField.text = place.getName;
+        editPlaceVC.placeLocationField.text = place.getZipCode;
+        MKCoordinateRegion region;
+        if (CLLocationCoordinate2DIsValid(place.getCoordinates)) {
+            region = MKCoordinateRegionMakeWithDistance(place.getCoordinates, 500, 500);
+            [editPlaceVC.mapView setRegion:region animated:YES];
+        } else {
+            // hardcode location for now
+            NSLog(@"hardcoded location");
+            region = MKCoordinateRegionMakeWithDistance(imperialCoord, 500, 500);
+            [editPlaceVC.mapView setRegion:region animated:YES];
+        }
+        [self.navigationController pushViewController:editPlaceVC animated:YES];
     } else {
-        // hardcode location for now
-        NSLog(@"hardcoded location");
-        region = MKCoordinateRegionMakeWithDistance(imperialCoord, 500, 500);
-        [editPlaceVC.mapView setRegion:region animated:YES];
+        AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+        addPlaceVC.delegate = self;
+        addPlaceVC.editing = NO;
+        [self.navigationController pushViewController:addPlaceVC animated:YES];
     }
-    [self.navigationController pushViewController:editPlaceVC animated:YES];
 }
 
 
@@ -168,6 +176,9 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     [self.profileViewModel insertPlace:mover atIndex:[toIndexPath row]];
 }
 
+/* FUNCTIONS FOR PROFILE PICTURE */
+
+
 
 
 - (IBAction)inputCar:(id)sender {
@@ -188,4 +199,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     }
 
 }
+
+
+
 @end

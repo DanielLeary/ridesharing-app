@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h> //only for UIImage...
 #import <Parse/Parse.h>
 #import "Place.h"
 
@@ -16,20 +17,26 @@
 
 // Readonly used to state that methods cannot be changed use set method
 // The compilor doesn't produce a set method for such properties
-@property NSString *firstname;
 
-@property NSString *lastname;
+@property (nonatomic) UIImage *profilePicture;
 
-@property NSString *car;
+@property (nonatomic) NSString *firstname;
 
-@property NSString *position;
+@property (nonatomic) NSString *lastname;
 
-@property NSString *phoneNumber;
+@property (nonatomic) NSString *car;
 
-@property NSString *username;
+@property (nonatomic) NSString *position;
+
+@property (nonatomic) NSString *phoneNumber;
+
+@property (nonatomic) NSString *username;
 
 @property PFUser *currentUser;
 
+- (UIImage *) getProfilePicture;
+
+- (void) setProfilePicture:(UIImage *)image;
 
 // functions for favPlacesArray
 

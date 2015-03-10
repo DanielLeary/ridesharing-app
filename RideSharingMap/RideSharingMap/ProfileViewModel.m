@@ -47,6 +47,15 @@
     [self.user removePlaceAtIndex:indexPath];
 }
 
+- (UIImage *) getProfilePicture {
+    return [self.user getProfilePicture];
+}
+
+- (void) setProfilePicture:(UIImage *)image {
+    [self.user setProfilePicture:image];
+}
+
+
 + (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark {
     NSString *address = [NSString stringWithFormat:@"%@", placemark.postalCode];
     return address;

@@ -91,4 +91,12 @@
     [favPlacesArray removeObjectAtIndex:indexPath];
 }
 
+- (UIImage *) getProfilePicture {
+    return self.profilePicture;
+}
+
+- (void) setProfilePicture:(UIImage *)image {
+    self.profilePicture = image;
+}
+
 @end

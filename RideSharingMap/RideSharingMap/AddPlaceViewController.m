@@ -43,19 +43,28 @@
     self.mapView.delegate = self;
     // set up annotation pin
     self.pin = [[MKPointAnnotation alloc] init];
-    
+    //zoom to current location
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
+    MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
+    [self.mapView setRegion:adjustRegion animated:YES];
+    // add pin to center of map
+    self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
+    [self.mapView addAnnotation:self.pin];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     // show keyboard
     [self.placeNameField becomeFirstResponder];
     // zoom to current location ------ what if not allowed?
+    /*
     MKUserLocation *userLocation = self.mapView.userLocation;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500, 500);
-    [self.mapView setRegion:region animated:YES];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
+    MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
+    [self.mapView setRegion:adjustRegion animated:YES];
     // add pin to center of map
-    self.pin.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+    self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
     [self.mapView addAnnotation:self.pin];
+     */
 }
 
 

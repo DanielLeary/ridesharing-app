@@ -14,6 +14,8 @@
 
 @property (strong) UserModel *user;
 
+@property UIImage *profilePictureImage;
+
 @property NSString *usernameText;
 
 @property NSString *firstNameText;
@@ -36,6 +38,10 @@
 - (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place;
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
+
+- (UIImage *) getProfilePicture;
+
+- (void) setProfilePicture:(UIImage *)image;
 
 + (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark;
 

@@ -44,6 +44,7 @@
 		C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542421A9FC034004A4303 /* DashboardTableViewController.m */; };
 		C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */; };
 		C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EB585B1AA78E6700A081C8 /* DashboardMV.m */; };
+		EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,8 @@
 		C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewCell.m; sourceTree = "<group>"; };
 		C5EB585A1AA78E6700A081C8 /* DashboardMV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardMV.h; sourceTree = "<group>"; };
 		C5EB585B1AA78E6700A081C8 /* DashboardMV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardMV.m; sourceTree = "<group>"; };
+		EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +257,8 @@
 			children = (
 				191899171A9A68B200C73208 /* ProfileViewController.h */,
 				191899181A9A68B200C73208 /* ProfileViewController.m */,
+				EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */,
+				EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */,
 				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
 				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
 				1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */,
@@ -378,6 +383,7 @@
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
+				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				1931C6091AA8AAC900B76E8B /* ProfileViewModel.m in Sources */,
 				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,

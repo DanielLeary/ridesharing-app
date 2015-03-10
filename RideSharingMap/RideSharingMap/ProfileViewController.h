@@ -20,6 +20,8 @@
 
 // profile UI
 
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *username_label;
 
 @property (weak, nonatomic) IBOutlet UILabel *name_label;
@@ -35,7 +37,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *editPlacesButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *addNewPlaceButton;
-
 
 
 - (IBAction)inputCar:(id)sender;
