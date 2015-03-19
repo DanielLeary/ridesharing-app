@@ -26,18 +26,7 @@
     
     [self.model setFirstname:text];
     [self.model updateUser];
-    /*
-    PFUser *user = [PFUser currentUser];
-    if (text != nil && user) {
-        user[@"Name"] = text;
-        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }];
-    }*/
+
 }
 
 
@@ -45,17 +34,8 @@
     [self.model setLastname:text];
     [self.model updateUser];
     
-    /*PFUser *user = [PFUser currentUser];
-    if (text != nil && user) {
-        user[@"Surname"] = text;
-        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }];
-    }*/
+}
+
 }
 
 -(BOOL)log_in:(NSString*) username :(NSString *)password{
