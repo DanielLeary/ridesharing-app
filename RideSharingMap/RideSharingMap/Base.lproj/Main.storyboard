@@ -978,6 +978,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="femaleSelected" destination="rqa-hu-jkx" id="F6h-QK-bvW"/>
+                        <outlet property="imageView" destination="VhN-pK-BcY" id="mgI-AU-y04"/>
                         <outlet property="maleSelected" destination="rWM-kC-AuJ" id="R90-zy-RXh"/>
                         <outlet property="position" destination="tfp-14-Ak8" id="Sht-B7-gAe"/>
                     </connections>

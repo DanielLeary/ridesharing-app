@@ -17,6 +17,7 @@
     IBOutlet UIButton *femaleSelected;
     IBOutlet UIButton *maleSelected;
     IBOutlet UITextField *position;
+    IBOutlet UIImageView *imageView;
 }
 @property (strong, nonatomic) LoginViewModel *viewModel;
 - (IBAction)position:(id)sender;
