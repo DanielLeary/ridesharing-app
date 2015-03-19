@@ -1,33 +1,26 @@
 //
-//  LoginViewController.m
+//  SignupViewController.m
 //  RideSharingMap
 //
-//  Created by Shah, Priyav on 24/02/2015.
+//  Created by Agata Lach on 19/03/2015.
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "LoginViewModel.h"
+#import "SignupViewController.h"
 #import "UserModel.h"
 
-
-@interface LoginViewController ()
+@interface SignupViewController ()
 
 @end
 
-@implementation LoginViewController
-
+@implementation SignupViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        usernameField.text = currentUser.username;
-        passwordField.text = currentUser.password;
-    }
     UserModel *model = [[UserModel alloc] init];
     self.viewModel = [[LoginViewModel alloc] initWithModel:model];
+    
+    signup_succ = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,52 +35,55 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-*/
+}*/
 
-- (IBAction)input_firstname:(id)sender {
-    [self.viewModel inputFirstName:firstname_field.text];
-}
 
-- (IBAction)input_surname:(id)sender {
-    [self.viewModel inputSurname:surname_field.text];
-}
-
-- (IBAction)log_in:(id)sender {
-    if([self.viewModel log_in:usernameField.text :passwordField.text])
-        [self.navigationController popViewControllerAnimated:YES];
-    
-}
-
-- (IBAction)input_user:(id)sender {
-}
-
-- (IBAction)input_password:(id)sender {
-}
-
-- (IBAction)sign_up:(id)sender {
-    //TODO deal with different types of errors
-    int error = [self.viewModel sign_up:usernameField.text :passwordField.text];
+- (void)signup{
+    int error = [self.viewModel sign_up:username.text :password.text :name.text :surname.text];
     NSString *error_text;
     switch (error) {
         case NO_ERROR:
+            [self.viewModel inputFirstName:name.text];
+            [self.viewModel inputSurname:surname.text];
             error_text = @"Sign up was successfull";
+            signup_succ = true;
+            
             break;
         case NAME_ERROR:
+            signup_succ = false;
             error_text = @"Incorrect Name, signup unsuccessful";
             break;
         case SURNAME_ERROR:
+            signup_succ = false;
             error_text = @"Incorrect Surname, signup unsiccessful";
             break;
         case USERNAME_ERROR:
+            signup_succ = false;
             error_text = @"Username already in use. Please choose another uesrname";
             break;
         case PASSWORD_ERROR:
-            error_text = @"Password must contain at least one letter and nmber, and be at least 6 characters long";
-        
+            signup_succ = false;
+            error_text = @"Password must contain at least one letter and number, and be at least 6 characters long";
+            
         default:
+            signup_succ = false;
             break;
     }
     error_label.text = error_text;
+    
+}
+
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    [self signup];
+    if ([identifier isEqualToString:@"signup"]) {
+        if (signup_succ)
+            return YES;
+        else
+            return NO;
+    }
+    
+    return YES;
 }
 @end

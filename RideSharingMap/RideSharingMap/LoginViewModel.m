@@ -59,25 +59,18 @@
 }
 
 -(BOOL)log_in:(NSString*) username :(NSString *)password{
-    [PFUser logInWithUsernameInBackground:username password:password
-        block:^(PFUser *user, NSError *error) {
-            if (user) {
-                // Do stuff after successful login.
-                
-            } else {
-                // The login failed. Check error to see why.
-            }
-        }];
-    //TODO  set the return value in the login call
-    return TRUE;
+    if ([PFUser logInWithUsername:username password:password] != NULL)
+        return true;
+    else
+        return false;
 }
 
--(int)sign_up:(NSString*) username :(NSString*) password{
+-(int)sign_up:(NSString*)username :(NSString*)password : (NSString*)name : (NSString*)surname{
     //TODO deal with different types of errors while signing up
-    if (self.model.firstname.length <2 ) {
+    if (name.length <2 ) {
         return NAME_ERROR;
     }
-    if (self.model.lastname.length<2) {
+    if (surname.length<2) {
         return SURNAME_ERROR;
     }
     
@@ -90,22 +83,13 @@
     user.username = username;
     user.password = password;
     
-    user[@"Surname"] = self.model.lastname;
-    user[@"Name"] = self.model.firstname;
+    user[@"Surname"] = surname;
+    user[@"Name"] = name;
     
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // Hooray! Let them use the app now.
-        } else {
-            //NSString *errorString = [error userInfo][@"error"];
-            // Show the errorString somewhere and let the user try again.
-        }
-    }];
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        return NO_ERROR;
-    }
-    return USERNAME_ERROR;
+    if (![user signUp]){
+        return USERNAME_ERROR;
+    };
+    return NO_ERROR;
 }
 
 @end
