@@ -32,6 +32,8 @@
 
 @property (nonatomic) NSString *username;
 
+@property (nonatomic) NSString *gender;
+
 @property PFUser *currentUser;
 
 - (UIImage *) getProfilePicture;

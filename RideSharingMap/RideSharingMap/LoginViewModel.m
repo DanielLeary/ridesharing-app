@@ -36,6 +36,14 @@
     
 }
 
+-(void)changeSex:(NSString*) text{
+    [self.model setGender:text];
+    [self.model updateUser];
+}
+
+-(void)changePosition:(NSString*) text{
+    [self.model setPosition:text];
+    [self.model updateUser];
 }
 
 -(BOOL)log_in:(NSString*) username :(NSString *)password{

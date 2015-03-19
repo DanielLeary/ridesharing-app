@@ -17,6 +17,10 @@
 		27702BF11AAE152B00D20FFA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
 		49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CA704C1ABB0B2D009DAC79 /* LoginNewViewController.m */; };
 		49CA70501ABB1027009DAC79 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CA704F1ABB1027009DAC79 /* SignupViewController.m */; };
+		49CA70531ABB321D009DAC79 /* Signup2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CA70521ABB321D009DAC79 /* Signup2ViewController.m */; };
+		49CA70591ABB3554009DAC79 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70561ABB3554009DAC79 /* checkbox-checked.png */; };
+		49CA705A1ABB3554009DAC79 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70571ABB3554009DAC79 /* checkbox-pressed.png */; };
+		49CA705B1ABB3554009DAC79 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70581ABB3554009DAC79 /* checkbox.png */; };
 		6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74423E1A9E08B9006ED680 /* InitialViewController.m */; };
 		6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */; };
 		6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */; };
@@ -75,6 +79,11 @@
 		49CA704C1ABB0B2D009DAC79 /* LoginNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginNewViewController.m; sourceTree = "<group>"; };
 		49CA704E1ABB1027009DAC79 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		49CA704F1ABB1027009DAC79 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		49CA70511ABB321D009DAC79 /* Signup2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signup2ViewController.h; sourceTree = "<group>"; };
+		49CA70521ABB321D009DAC79 /* Signup2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signup2ViewController.m; sourceTree = "<group>"; };
+		49CA70561ABB3554009DAC79 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
+		49CA70571ABB3554009DAC79 /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
+		49CA70581ABB3554009DAC79 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		6B74423D1A9E08B9006ED680 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		6B74423E1A9E08B9006ED680 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
@@ -157,12 +166,26 @@
 		49CA704A1ABB0B14009DAC79 /* Login/Signup */ = {
 			isa = PBXGroup;
 			children = (
+				6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */,
+				6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */,
 				49CA704B1ABB0B2D009DAC79 /* LoginNewViewController.h */,
 				49CA704C1ABB0B2D009DAC79 /* LoginNewViewController.m */,
 				49CA704E1ABB1027009DAC79 /* SignupViewController.h */,
 				49CA704F1ABB1027009DAC79 /* SignupViewController.m */,
+				49CA70511ABB321D009DAC79 /* Signup2ViewController.h */,
+				49CA70521ABB321D009DAC79 /* Signup2ViewController.m */,
 			);
 			name = Login/Signup;
+			sourceTree = "<group>";
+		};
+		49CA70551ABB3542009DAC79 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				49CA70561ABB3554009DAC79 /* checkbox-checked.png */,
+				49CA70571ABB3554009DAC79 /* checkbox-pressed.png */,
+				49CA70581ABB3554009DAC79 /* checkbox.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		6BA725A01A9B720E0039DCDC /* Frameworks */ = {
@@ -189,6 +212,7 @@
 		7EF361B41A87C4EC0004D0FC = {
 			isa = PBXGroup;
 			children = (
+				49CA70551ABB3542009DAC79 /* Images */,
 				6BA725A01A9B720E0039DCDC /* Frameworks */,
 				7EF361BF1A87C4EC0004D0FC /* RideSharingMap */,
 				7EF361DC1A87C4EC0004D0FC /* RideSharingMapTests */,
@@ -229,8 +253,6 @@
 				C5A542361A9FB2B3004A4303 /* InboxViewController.m */,
 				6B74423D1A9E08B9006ED680 /* InitialViewController.h */,
 				6B74423E1A9E08B9006ED680 /* InitialViewController.m */,
-				6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */,
-				6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */,
 				7EF361D01A87C4EC0004D0FC /* Images.xcassets */,
 				7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */,
 				7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */,
@@ -371,7 +393,10 @@
 			files = (
 				7EF361CF1A87C4EC0004D0FC /* Main.storyboard in Resources */,
 				7EF361D41A87C4EC0004D0FC /* LaunchScreen.xib in Resources */,
+				49CA705B1ABB3554009DAC79 /* checkbox.png in Resources */,
+				49CA70591ABB3554009DAC79 /* checkbox-checked.png in Resources */,
 				7EF361D11A87C4EC0004D0FC /* Images.xcassets in Resources */,
+				49CA705A1ABB3554009DAC79 /* checkbox-pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +426,7 @@
 				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
+				49CA70531ABB321D009DAC79 /* Signup2ViewController.m in Sources */,
 				49CA70501ABB1027009DAC79 /* SignupViewController.m in Sources */,
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,

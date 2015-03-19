@@ -13,6 +13,7 @@
 #define carString @"Car"
 #define positionString @"Position"
 #define usernameString @"username"
+#define genderString @"Gender"
 
 
 @implementation UserModel {
@@ -53,6 +54,9 @@
     }
     if (_username != nil) {
         _currentUser[usernameString] = _username;
+    }
+    if (_gender != nil) {
+        _currentUser[genderString] = _gender;
     }
     
     [_currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

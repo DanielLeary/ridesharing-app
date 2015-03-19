@@ -74,10 +74,11 @@
 }
 
 
+
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     [self signup];
-    if ([identifier isEqualToString:@"signup"]) {
+    if ([identifier isEqualToString:@"gotoSignup2"]) {
         if (signup_succ)
             return YES;
         else
@@ -86,4 +87,5 @@
     
     return YES;
 }
+
 @end
