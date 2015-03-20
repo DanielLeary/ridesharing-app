@@ -46,6 +46,12 @@
     [self.model updateUser];
 }
 
+
+-(void)changePicture:(UIImage*) picture{
+    [self.model setProfilePicture:picture];
+}
+
+
 -(BOOL)log_in:(NSString*) username :(NSString *)password{
     if ([PFUser logInWithUsername:username password:password] != NULL)
         return true;

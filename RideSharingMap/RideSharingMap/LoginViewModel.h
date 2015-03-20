@@ -26,6 +26,7 @@
 -(void)inputSurname:(NSString*) text;
 -(void)changeSex:(NSString*) text;
 -(void)changePosition:(NSString*) text;
+-(void)changePicture:(UIImage*) picture;
 /* returns TRUE if login was successful */
 -(BOOL)log_in:(NSString*) username :(NSString *)password;
 -(int)sign_up:(NSString*)username :(NSString*)password :(NSString*)name : (NSString*)surname;

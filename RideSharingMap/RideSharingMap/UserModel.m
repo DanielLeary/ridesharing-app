@@ -14,6 +14,7 @@
 #define positionString @"Position"
 #define usernameString @"username"
 #define genderString @"Gender"
+#define pictureString @"ProfilePicture"
 
 
 @implementation UserModel {
@@ -58,6 +59,7 @@
     if (_gender != nil) {
         _currentUser[genderString] = _gender;
     }
+   
     
     [_currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
@@ -100,7 +102,22 @@
 }
 
 - (void) setProfilePicture:(UIImage *)image {
-    self.profilePicture = image;
+    _profilePicture = image;
+    NSData *imageData = UIImagePNGRepresentation(image);
+    PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            if (succeeded) {
+                PFUser *user = [PFUser currentUser];
+                if (user != nil) {
+                    user[pictureString] = imageFile;
+                    [user saveInBackground];
+                }
+            }
+        } else {
+            // Handle error
+        }
+    }];
 }
 
 @end
