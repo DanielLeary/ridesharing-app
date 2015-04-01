@@ -14,15 +14,15 @@
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddPlaceViewControllerDelegate>
 
+
 // profileViewModel instance
 
 @property (strong, nonatomic) ProfileViewModel *profileViewModel;
 
+
 // profile UI
 
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
-
-@property (weak, nonatomic) IBOutlet UILabel *username_label;
 
 @property (weak, nonatomic) IBOutlet UILabel *name_label;
 
@@ -30,7 +30,10 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *placesTableView;
 
-@property (weak, nonatomic) IBOutlet UITextField *carField;
+@property (weak, nonatomic) IBOutlet UILabel *numRidesLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *interestsLabel;
+
 
 // table UI
 
