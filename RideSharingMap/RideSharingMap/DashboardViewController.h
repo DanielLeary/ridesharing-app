@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DashboardViewController : UIViewController
+@property NSMutableArray *tableData;
+@property NSMutableArray *itemTypes;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
