@@ -19,10 +19,8 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     self.profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
     
     if (user) {
-        self.username_label.text = self.profileViewModel.usernameText;
         self.name_label.text = self.profileViewModel.firstNameText;
         self.surname_label.text = self.profileViewModel.lastNameText;
-        self.carField.text = self.profileViewModel.carText;
     }
     
     /*
@@ -186,9 +184,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     PFUser *currentUser = [PFUser currentUser];
     // If user is currently signed in
     if(currentUser) {
-        NSLog(_carField.text);
         NSLog(currentUser.username);
-        currentUser[@"Car"] = _carField.text;
         [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 // The object has been saved.
