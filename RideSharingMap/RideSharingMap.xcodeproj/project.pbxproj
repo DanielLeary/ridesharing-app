@@ -50,6 +50,7 @@
 		C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */; };
 		C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EB585B1AA78E6700A081C8 /* DashboardMV.m */; };
 		EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */; };
+		EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,8 @@
 		C5EB585B1AA78E6700A081C8 /* DashboardMV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardMV.m; sourceTree = "<group>"; };
 		EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestsViewController.h; sourceTree = "<group>"; };
+		EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +297,8 @@
 				191899181A9A68B200C73208 /* ProfileViewController.m */,
 				EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */,
 				EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */,
+				EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */,
+				EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */,
 				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
 				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
 				1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */,
@@ -414,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */,
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
 				6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */,

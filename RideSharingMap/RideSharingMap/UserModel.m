@@ -19,6 +19,7 @@
 @implementation UserModel {
     
     NSMutableArray *favPlacesArray;
+    NSMutableArray *interestsArray;
 
 }
 
@@ -29,7 +30,8 @@
         if (_currentUser) {
             Place *home = [[Place alloc] initWithName:@"Home"];
             Place *work = [[Place alloc] initWithName:@"Work"];
-            self->favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
+            favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
+            interestsArray = [[NSMutableArray alloc] init];
             _firstname = _currentUser[firstnameString];
             _lastname = _currentUser[surnameString];
             _car = _currentUser[carString];
@@ -69,6 +71,9 @@
     return true;
 }
 
+
+/* methods for fav places */
+
 - (NSUInteger) getFavPlacesCount {
     return [favPlacesArray count];
 }
@@ -94,6 +99,29 @@
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
     [favPlacesArray removeObjectAtIndex:indexPath];
 }
+
+
+/* METHODS FOR INTERESTS */
+
+- (NSUInteger) getInterestsCount {
+    return [interestsArray count];
+}
+
+- (NSMutableArray *) getInterestsArray {
+    return interestsArray;
+}
+
+- (bool) hasInterest:(NSString *)interest {
+    return [interestsArray containsObject:interest];
+}
+
+- (void) updateInterests:(NSArray *)newInterestArray {
+    [interestsArray removeAllObjects];
+    [interestsArray addObjectsFromArray:newInterestArray];
+}
+
+
+/* methods for profile picture */
 
 - (UIImage *) getProfilePicture {
     return self.profilePicture;

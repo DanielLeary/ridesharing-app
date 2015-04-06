@@ -36,11 +36,27 @@
 
 @property PFUser *currentUser;
 
-- (UIImage *) getProfilePicture;
 
-- (void) setProfilePicture:(UIImage *)image;
+// can specify accessor method using getter
+@property (readonly, getter=isLoggedIn) BOOL loggedIn;
 
-// functions for favPlacesArray
+// get and set methods can be called using dot notation (objectName.fieldname = ValueToSet)
+// But these are simply wrappers for [objectName fieldname] and
+// [objectName setFieldName:ValueToSet]
+
+
+// Too specify multiple arguments, we must use secondValue, thirdValue etc e.g below
+//+(BOOL) setUserNameAndPassword:(NSString*)userName secondValue:(NSString*)password;
+
+
+// TODO Constructor that when insantiated checks if there is a user currently
+// Logged on and if there is each of these properties are updated
+-(id)init;
+
+-(BOOL)updateUser;
+
+
+/* methods for fav places */
 
 - (NSUInteger) getFavPlacesCount;
 
@@ -55,22 +71,24 @@
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
 
-// TODO Constructor that when insantiated checks if there is a user currently
-// Logged on and if there is each of these properties are updated
--(id)init;
+/* methods for interests */
 
--(BOOL)updateUser;
+- (NSUInteger) getInterestsCount;
 
-// can specify accessor method using getter
-@property (readonly, getter=isLoggedIn) BOOL loggedIn;
+- (NSMutableArray *) getInterestsArray;
 
-// get and set methods can be called using dot notation (objectName.fieldname = ValueToSet)
-// But these are simply wrappers for [objectName fieldname] and
-// [objectName setFieldName:ValueToSet]
+- (bool) hasInterest:(NSString *)interest;
+
+- (void) updateInterests:(NSArray *)newInterestArray;
 
 
-// Too specify multiple arguments, we must use secondValue, thirdValue etc e.g below
-//+(BOOL) setUserNameAndPassword:(NSString*)userName secondValue:(NSString*)password;
+/* methods for profile picture */
+
+- (UIImage *) getProfilePicture;
+
+- (void) setProfilePicture:(UIImage *)image;
+
+
 @end
 
 

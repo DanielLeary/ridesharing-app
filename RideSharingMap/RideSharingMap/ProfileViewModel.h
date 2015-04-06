@@ -39,6 +39,16 @@
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
+
+- (NSUInteger) getInterestsCount;
+
+- (NSMutableArray *) getInterestsArray;
+
+- (bool) hasInterest:(NSString *)interest;
+
+- (void) updateInterests:(NSArray *)newInterestsArray;
+    
+
 - (UIImage *) getProfilePicture;
 
 - (void) setProfilePicture:(UIImage *)image;

@@ -24,6 +24,7 @@
 
 @synthesize delegate;
 
+
 /* FUNCTIONS FOR VIEW CONFIGURATION */
 
 - (void)viewDidLoad {

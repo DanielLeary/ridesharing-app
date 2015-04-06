@@ -8,16 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "AddPlaceViewController.h"
+#import "InterestsViewController.h"
 #import "ProfileViewModel.h"
 
 @class ProfileViewModel;
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddPlaceViewControllerDelegate>
-
-
-// profileViewModel instance
-
-@property (strong, nonatomic) ProfileViewModel *profileViewModel;
 
 
 // profile UI
@@ -32,7 +28,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *numRidesLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *interestsLabel;
+@property (strong, nonatomic) IBOutlet UIButton *interestsButton;
+
 
 
 // table UI

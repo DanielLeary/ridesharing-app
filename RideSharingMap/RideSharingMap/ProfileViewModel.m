@@ -23,6 +23,9 @@
     return self;
 }
 
+
+/* methods for fav places */
+
 - (NSUInteger) getFavPlacesCount {
     return [self.user getFavPlacesCount];
 }
@@ -47,9 +50,33 @@
     [self.user removePlaceAtIndex:indexPath];
 }
 
+
+/* methods for interests */
+
+- (NSUInteger) getInterestsCount {
+    return [self.user getInterestsCount];
+}
+
+- (NSMutableArray *) getInterestsArray {
+    return [self.user getInterestsArray];
+}
+
+- (bool) hasInterest:(NSString *)interest {
+    return [self.user hasInterest:interest];
+}
+
+- (void) updateInterests:(NSArray *)newInterestsArray {
+    [self.user updateInterests:newInterestsArray];
+}
+
+/* methods for profile picture */
+
 - (UIImage *) getProfilePicture {
     return [self.user getProfilePicture];
 }
+
+
+/* methods for geocoding */
 
 - (void) setProfilePicture:(UIImage *)image {
     [self.user setProfilePicture:image];

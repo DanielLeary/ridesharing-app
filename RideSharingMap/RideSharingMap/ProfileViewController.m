@@ -10,55 +10,65 @@
 
 static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
-@implementation ProfileViewController
+@implementation ProfileViewController {
+    
+    ProfileViewModel *profileViewModel;
+    
+}
 
 
 - (void) viewDidLoad {
     [super viewDidLoad];
     UserModel *user = [[UserModel alloc] init];
-    self.profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
+    profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
     
     if (user) {
-        self.name_label.text = self.profileViewModel.firstNameText;
-        self.surname_label.text = self.profileViewModel.lastNameText;
+        self.name_label.text = profileViewModel.firstNameText;
+        self.surname_label.text = profileViewModel.lastNameText;
     }
-    
-    /*
-    // Create currentUser object from locally cached user
-    PFUser *currentUser = [PFUser currentUser];
-    // If user is currently signed in
-    if(currentUser) {
-        // Set the name_label to the current users username
-        _username_label.text = currentUser.username;
-        if(currentUser[@"Car"] != nil){
-            _carField.text = currentUser[@"Car"];
-            
-        }
-        if(currentUser[@"Name"] != nil){
-            _name_label.text = currentUser[@"Name"];
-            
-        }
-        if(currentUser[@"Surname"] != nil){
-            _surname_label.text = currentUser[@"Surname"];
-            
-        }
-    }*/
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    NSUInteger count = [self.profileViewModel getFavPlacesCount];
-    NSLog(@"IN ARRAY: %lu", (unsigned long)count);
-    for (int i=0; i<count; i++) {
-        Place *place = [self.profileViewModel getPlaceAtIndex:i];
-        NSLog(@"%@, %f, %f", place.getName, place.getLatitude, place.getLongitude);
-    }
+    NSUInteger count = [profileViewModel getInterestsCount];
+    NSLog(@"IN INTEREST ARRAY: %lu", (unsigned long)count);
+    NSLog(@"interests: %@", [profileViewModel getInterestsArray]);
+}
+
+
+/* METHODS FOR UI RESPONSES */
+
+/*
+- (IBAction)interestsPressed:(id)sender {
+    InterestsViewController *interestsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InterestsViewController"];
+    [self.navigationController pushViewController:interestsVC animated:YES];
+}
+*/
+
+//segue to AddPlaceViewController
+- (IBAction)addNewPlaceButtonPressed:(id)sender {
+    AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+    addPlaceVC.delegate = self;
+    [self.navigationController pushViewController:addPlaceVC animated:YES];
+}
+
+
+/* ADDPLACEVC DELEGATE METHODS */
+
+- (void) addNewPlace:(AddPlaceViewController *)vc place:(Place *)place {
+    [profileViewModel addPlace:place];
+    [self.placesTableView reloadData];
+}
+
+- (void) editPlace:(AddPlaceViewController *)vc atIndex:(NSUInteger)indexPath withPlace:(Place *)place {
+    [profileViewModel replacePlaceAtIndex:indexPath withPlace:place];
+    [self.placesTableView reloadData];
 }
 
 
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.profileViewModel getFavPlacesCount] + 1;
+    return [profileViewModel getFavPlacesCount] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,8 +77,8 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if (indexPath.row < [self.profileViewModel getFavPlacesCount]) {
-        cell.textLabel.text = [[self.profileViewModel getPlaceAtIndex:indexPath.row] getName];
+    if (indexPath.row < [profileViewModel getFavPlacesCount]) {
+        cell.textLabel.text = [[profileViewModel getPlaceAtIndex:indexPath.row] getName];
     } else {
         cell.textLabel.text = @"+ Add new place";
     }
@@ -77,14 +87,14 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 // upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < [self.profileViewModel getFavPlacesCount]) {
+    if (indexPath.row < [profileViewModel getFavPlacesCount]) {
         // set up editPlaceVC
         AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
         editPlaceVC.delegate = self;
         editPlaceVC.editing = YES;
         editPlaceVC.placeIndexPath = indexPath.row;
         // update editPlaceVC for selected place
-        Place *place = [self.profileViewModel getPlaceAtIndex:indexPath.row];
+        Place *place = [profileViewModel getPlaceAtIndex:indexPath.row];
         [editPlaceVC view];
         editPlaceVC.placeNameField.text = place.getName;
         editPlaceVC.placeLocationField.text = place.getZipCode;
@@ -105,29 +115,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         addPlaceVC.editing = NO;
         [self.navigationController pushViewController:addPlaceVC animated:YES];
     }
-}
-
-
-/* METHODS FOR UI RESPONSES */
-
-//segue to AddPlaceViewController
-- (IBAction)addNewPlaceButtonPressed:(id)sender {
-    AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-    addPlaceVC.delegate = self;
-    [self.navigationController pushViewController:addPlaceVC animated:YES];
-}
-
-
-/* ADDPLACEVC DELEGATE METHODS */
-
-- (void) addNewPlace:(AddPlaceViewController *)vc place:(Place *)place {
-    [self.profileViewModel addPlace:place];
-    [self.placesTableView reloadData];
-}
-
-- (void) editPlace:(AddPlaceViewController *)vc atIndex:(NSUInteger)indexPath withPlace:(Place *)place {
-    [self.profileViewModel replacePlaceAtIndex:indexPath withPlace:place];
-    [self.placesTableView reloadData];
 }
 
 
@@ -161,7 +148,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 - (void)tableView: (UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath: (NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // delete the row from data source
-        [self.profileViewModel removePlaceAtIndex:[indexPath row]];
+        [profileViewModel removePlaceAtIndex:[indexPath row]];
         // delete row from table
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -169,9 +156,9 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 // function to drag move rows in placesTableView
 - (void)tableView: (UITableView *)tableView moveRowAtIndexPath: (NSIndexPath *)fromIndexPath toIndexPath: (NSIndexPath *)toIndexPath {
-    Place *mover = [self.profileViewModel getPlaceAtIndex:[fromIndexPath row]];
-    [self.profileViewModel removePlaceAtIndex:[fromIndexPath row]];
-    [self.profileViewModel insertPlace:mover atIndex:[toIndexPath row]];
+    Place *mover = [profileViewModel getPlaceAtIndex:[fromIndexPath row]];
+    [profileViewModel removePlaceAtIndex:[fromIndexPath row]];
+    [profileViewModel insertPlace:mover atIndex:[toIndexPath row]];
 }
 
 /* FUNCTIONS FOR PROFILE PICTURE */
