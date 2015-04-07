@@ -94,8 +94,9 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     imageView.image = chosenImage;
-    
+    [self.viewModel changePicture:chosenImage];
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
     
 }
 
