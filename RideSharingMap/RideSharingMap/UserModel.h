@@ -18,23 +18,23 @@
 // Readonly used to state that methods cannot be changed use set method
 // The compilor doesn't produce a set method for such properties
 
-@property (nonatomic) UIImage *profilePicture;
+@property (strong, nonatomic) UIImage *profilePicture;
 
-@property (nonatomic) NSString *firstname;
+@property (strong, nonatomic) NSString *firstName;
 
-@property (nonatomic) NSString *lastname;
+@property (strong, nonatomic) NSString *lastName;
 
-@property (nonatomic) NSString *car;
+@property (strong, nonatomic) NSString *email;
 
-@property (nonatomic) NSString *position;
+@property (strong, nonatomic) NSDate *dob;
 
-@property (nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) NSString *gender;
 
-@property (nonatomic) NSString *username;
+@property (strong, nonatomic) NSString *car;
 
-@property (nonatomic) NSString *gender;
+@property (strong, nonatomic) NSString *position;
 
-@property PFUser *currentUser;
+@property (strong, nonatomic) NSString *phoneNumber;
 
 
 // can specify accessor method using getter
@@ -56,7 +56,7 @@
 -(BOOL)updateUser;
 
 
-/* methods for fav places */
+/* METHODS FOR FAV PLACES */
 
 - (NSUInteger) getFavPlacesCount;
 
@@ -71,7 +71,7 @@
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
 
-/* methods for interests */
+/* METHODS FOR INTERESTS */
 
 - (NSUInteger) getInterestsCount;
 
@@ -82,11 +82,11 @@
 - (void) updateInterests:(NSArray *)newInterestArray;
 
 
-/* methods for profile picture */
+/* METHODS FOR PROFILE PICTURE */
 
-- (UIImage *) getProfilePicture;
+//- (UIImage *) getProfilePicture;
 
-- (void) setProfilePicture:(UIImage *)image;
+//- (void) setProfilePicture:(UIImage *)image;
 
 
 @end

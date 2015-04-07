@@ -33,14 +33,6 @@ static const CLLocationCoordinate2D emptyCoords = {emptyCoord, emptyCoord};
     return self;
 }
 
-- (NSString *) getName {
-    return self.name;
-}
-
-- (CLLocationCoordinate2D) getCoordinates {
-    return self.coordinates;
-}
-
 - (float) getLatitude {
     return self.coordinates.latitude;
 }
@@ -48,16 +40,6 @@ static const CLLocationCoordinate2D emptyCoords = {emptyCoord, emptyCoord};
 - (float) getLongitude {
     return self.coordinates.longitude;
 }
-
-- (NSString *) getZipCode {
-    return self.zipcode;
-}
-
-/*
-- (void) setPlacemark:(CLPlacemark *)placemark {
-    //self.placemark = placemark;
-    self.zipcode = [NSString stringWithFormat:@"%@", placemark.postalCode];
-}*/
 
 - (void) getPlacemarkFromCoordinates:(CLLocationCoordinate2D)coordinates {
     CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];

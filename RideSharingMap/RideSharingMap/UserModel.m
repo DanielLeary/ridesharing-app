@@ -15,53 +15,53 @@
 #define usernameString @"username"
 #define genderString @"Gender"
 
-
 @implementation UserModel {
     
+    PFUser *user;
     NSMutableArray *favPlacesArray;
     NSMutableArray *interestsArray;
 
 }
 
+
 -(id)init {
     self = [super init];
     if (self) {
-        _currentUser = [PFUser currentUser];
-        if (_currentUser) {
+        user = [PFUser currentUser];
+        if (user) {
             Place *home = [[Place alloc] initWithName:@"Home"];
             Place *work = [[Place alloc] initWithName:@"Work"];
             favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
             interestsArray = [[NSMutableArray alloc] init];
-            _firstname = _currentUser[firstnameString];
-            _lastname = _currentUser[surnameString];
-            _car = _currentUser[carString];
-            _position = _currentUser[positionString];
-            _username = _currentUser[usernameString];
+            self.firstName = user[firstnameString];
+            self.lastName = user[surnameString];
+            self.car = user[carString];
+            self.position = user[positionString];
+            //NSString *pathForBlankProfilePicture = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"png"];
+            //self.profilePicture = [[UIImage alloc] initWithContentsOfFile:pathForBlankProfilePicture];
         }
     }
     return self;
 }
+
 -(BOOL)updateUser {
-    if(_lastname != nil) {
-        _currentUser[surnameString]=_lastname;
+    if (self.lastName != nil) {
+        user[surnameString] = self.lastName;
     }
-    if(_firstname != nil) {
-        _currentUser[firstnameString]=_firstname;
+    if (self.firstName != nil) {
+        user[firstnameString] = self.firstName;
     }
-    if(_car != nil) {
-        _currentUser[carString]=_car;
+    if (self.car != nil) {
+        user[carString] = self.car;
     }
-    if(_position != nil) {
-        _currentUser[positionString] = _position;
+    if (self.position != nil) {
+        user[positionString] = self.position;
     }
-    if (_username != nil) {
-        _currentUser[usernameString] = _username;
-    }
-    if (_gender != nil) {
-        _currentUser[genderString] = _gender;
+    if (self.gender != nil) {
+        user[genderString] = self.gender;
     }
     
-    [_currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
             NSLog(@"updated user");
         } else {
@@ -72,7 +72,7 @@
 }
 
 
-/* methods for fav places */
+/* METHODS FOR FAV PLACES */
 
 - (NSUInteger) getFavPlacesCount {
     return [favPlacesArray count];
@@ -122,13 +122,13 @@
 
 
 /* methods for profile picture */
-
+/*
 - (UIImage *) getProfilePicture {
     return self.profilePicture;
 }
 
 - (void) setProfilePicture:(UIImage *)image {
     self.profilePicture = image;
-}
+}*/
 
 @end

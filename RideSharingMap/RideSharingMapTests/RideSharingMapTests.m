@@ -47,24 +47,24 @@
     NSString* surname = @"testSurname";
     NSString* username = @"testUser";
     NSString* password = @"incorrectPassword";
-    model.firstname = firstname;
-    model.lastname = surname;
+    model.firstName = firstname;
+    model.lastName = surname;
     
     // Password doesn't have one letter and one number
     XCTAssertEqual([viewModel sign_up:username :password :firstname :surname], PASSWORD_ERROR, @"Issue with password returned incorrect error");
     
     // Set password to correct value and change so firstname doesn't exist
     password = @"c0rrectP4ssword";
-    model.firstname= nil;
+    model.firstName= nil;
     XCTAssertEqual([viewModel sign_up:username :password :firstname :surname], NAME_ERROR, @"Issue with signing in without firstname");
     
     // Set firstname to value and remove surname
-    model.firstname = @"testFirstName";
-    model.lastname = nil;
+    model.firstName = @"testFirstName";
+    model.lastName = nil;
     XCTAssertEqual([viewModel sign_up:username :password :firstname :surname], SURNAME_ERROR, @"Issue with password returned incorrect error");
     
     // Check that signing in with correct values produces no error
-    model.lastname = @"testSurname";
+    model.lastName = @"testSurname";
     XCTAssertEqual([viewModel sign_up:username :password :firstname :surname], NO_ERROR, @"Issue with correct values for login");
     
     // try and login as newly Created user and see if that works

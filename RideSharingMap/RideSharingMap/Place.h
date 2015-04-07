@@ -20,17 +20,9 @@
 
 - (id) initWithName:(NSString *)name andCoordinates:(CLLocationCoordinate2D)coordinates;
 
-- (NSString *) getName;
-
-- (CLLocationCoordinate2D) getCoordinates;
-
 - (float) getLatitude;
 
 - (float) getLongitude;
-
-- (NSString *) getZipCode;
-
-//- (void) setPlacemark:(CLPlacemark *)placemark;
 
 - (void) getPlacemarkFromCoordinates:(CLLocationCoordinate2D)coordinates;
 

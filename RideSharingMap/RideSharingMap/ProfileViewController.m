@@ -25,9 +25,11 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     if (user) {
         self.name_label.text = profileViewModel.firstNameText;
         self.surname_label.text = profileViewModel.lastNameText;
+        //self.profileImageView = [[UIImageView alloc] initWithImage:profileViewModel.profilePictureImage];
     }
 }
 
+//temp for testing
 - (void) viewDidAppear:(BOOL)animated {
     NSUInteger count = [profileViewModel getInterestsCount];
     NSLog(@"IN INTEREST ARRAY: %lu", (unsigned long)count);
@@ -36,13 +38,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 
 /* METHODS FOR UI RESPONSES */
-
-/*
-- (IBAction)interestsPressed:(id)sender {
-    InterestsViewController *interestsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InterestsViewController"];
-    [self.navigationController pushViewController:interestsVC animated:YES];
-}
-*/
 
 //segue to AddPlaceViewController
 - (IBAction)addNewPlaceButtonPressed:(id)sender {
@@ -78,7 +73,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if (indexPath.row < [profileViewModel getFavPlacesCount]) {
-        cell.textLabel.text = [[profileViewModel getPlaceAtIndex:indexPath.row] getName];
+        cell.textLabel.text = [[profileViewModel getPlaceAtIndex:indexPath.row] name];
     } else {
         cell.textLabel.text = @"+ Add new place";
     }
@@ -96,11 +91,11 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         // update editPlaceVC for selected place
         Place *place = [profileViewModel getPlaceAtIndex:indexPath.row];
         [editPlaceVC view];
-        editPlaceVC.placeNameField.text = place.getName;
-        editPlaceVC.placeLocationField.text = place.getZipCode;
+        editPlaceVC.placeNameField.text = place.name;
+        editPlaceVC.placeLocationField.text = place.zipcode;
         MKCoordinateRegion region;
-        if (CLLocationCoordinate2DIsValid(place.getCoordinates)) {
-            region = MKCoordinateRegionMakeWithDistance(place.getCoordinates, 500, 500);
+        if (CLLocationCoordinate2DIsValid(place.coordinates)) {
+            region = MKCoordinateRegionMakeWithDistance(place.coordinates, 500, 500);
             [editPlaceVC.mapView setRegion:region animated:YES];
         } else {
             // hardcode location for now

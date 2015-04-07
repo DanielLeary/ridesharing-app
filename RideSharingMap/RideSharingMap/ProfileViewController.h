@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddPlaceViewController.h"
+#import "EditProfileViewController.h"
 #import "InterestsViewController.h"
 #import "ProfileViewModel.h"
 

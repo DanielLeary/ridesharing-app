@@ -11,26 +11,18 @@
 
 @interface EditProfileViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-// profileViewModel instance
-
-@property (strong, nonatomic) ProfileViewModel *profileViewModel;
-
 // nav bar UI
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
+
 
 // view UI
 
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 
-@property (strong, nonatomic) IBOutlet UITextField *firstNameField;
-
-@property (strong, nonatomic) IBOutlet UITextField *lastNameField;
-
-@property (strong, nonatomic) IBOutlet UITextField *emailField;
-
-@property (strong, nonatomic) IBOutlet UITextField *passwordField;
-
 @property (strong, nonatomic) IBOutlet UIButton *addImageButton;
+
+@property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
+
 
 @end

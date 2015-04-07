@@ -12,17 +12,35 @@
 
 @interface ProfileViewModel : NSObject
 
-@property (strong) UserModel *user;
-
 @property UIImage *profilePictureImage;
-
-@property NSString *usernameText;
 
 @property NSString *firstNameText;
 
 @property NSString *lastNameText;
 
+@property NSString *emailText;
+
+@property NSString *genderText;
+
 @property NSString *carText;
+
+
+/* METHODS FOR BASIC INFO */
+
+- (NSString *) getFirstName;
+
+- (NSString *) getLastName;
+
+- (NSString *) getEmail;
+
+- (NSDate *) getDob;
+
+- (NSString *) getAge;
+
+- (NSString *) getGender;
+
+
+
 
 
 - (instancetype) initWithProfile:(UserModel *)user;
@@ -54,8 +72,6 @@
 - (void) setProfilePicture:(UIImage *)image;
 
 + (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark;
-
-+ (NSString *) getZipCodeFromCoordinates:(CLLocationCoordinate2D)coordinates;
 
 
 @end

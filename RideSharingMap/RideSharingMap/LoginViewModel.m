@@ -24,14 +24,14 @@
 //#pragma mark - Public Methods
 -(void)inputFirstName:(NSString*) text{
     
-    [self.model setFirstname:text];
+    [self.model setFirstName:text];
     [self.model updateUser];
 
 }
 
 
 -(void)inputSurname:(NSString*) text{
-    [self.model setLastname:text];
+    [self.model setLastName:text];
     [self.model updateUser];
     
 }

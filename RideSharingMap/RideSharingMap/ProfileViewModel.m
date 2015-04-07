@@ -9,77 +9,112 @@
 #import "ProfileViewModel.h"
 
 
-@implementation ProfileViewModel
+@implementation ProfileViewModel {
+    
+    UserModel *user;
+    
+}
 
-- (instancetype) initWithProfile:(UserModel *)user {
+- (instancetype) initWithProfile:(UserModel *)currentUser {
     self = [super init];
     if (self) {
-        self.user = user;
-        self.usernameText = user.username;
-        self.firstNameText = user.firstname;
-        self.lastNameText = user.lastname;
+        user = currentUser;
+        self.firstNameText = user.firstName;
+        self.lastNameText = user.lastName;
         self.carText = user.car;
+        self.profilePictureImage = user.profilePicture;
     }
     return self;
 }
 
 
-/* methods for fav places */
+/* METHODS FOR USER INFO */
+
+- (NSString *) getFirstName {
+    return [user firstName];
+}
+
+- (NSString *) getLastName {
+    return [user lastName];
+}
+
+- (NSString *) getEmail {
+    return [user email];
+}
+
+- (NSDate *) getDob {
+    return [user dob];
+}
+
+- (NSString *) getAge {
+    NSDate *dob = [user dob];
+    NSDate *now = [NSDate date];
+    NSDateComponents *ageComps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:dob toDate:now options:0];
+    NSString *age = [NSString stringWithFormat:@"%ld", (long)ageComps.year];
+    return age;
+}
+
+- (NSString *) getGender {
+    return [user gender];
+}
+
+
+/* METHODS FOR FAV PLACES */
 
 - (NSUInteger) getFavPlacesCount {
-    return [self.user getFavPlacesCount];
+    return [user getFavPlacesCount];
 }
 
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
-    return [self.user getPlaceAtIndex:indexPath];
+    return [user getPlaceAtIndex:indexPath];
 }
 
 - (void) addPlace:(Place *)place {
-    [self.user addPlace:place];
+    [user addPlace:place];
 }
 
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
-    [self.user insertPlace:place atIndex:indexPath];
+    [user insertPlace:place atIndex:indexPath];
 }
 
 - (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
-    [self.user replacePlaceAtIndex:indexPath withPlace:place];
+    [user replacePlaceAtIndex:indexPath withPlace:place];
 }
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
-    [self.user removePlaceAtIndex:indexPath];
+    [user removePlaceAtIndex:indexPath];
 }
 
 
 /* methods for interests */
 
 - (NSUInteger) getInterestsCount {
-    return [self.user getInterestsCount];
+    return [user getInterestsCount];
 }
 
 - (NSMutableArray *) getInterestsArray {
-    return [self.user getInterestsArray];
+    return [user getInterestsArray];
 }
 
 - (bool) hasInterest:(NSString *)interest {
-    return [self.user hasInterest:interest];
+    return [user hasInterest:interest];
 }
 
 - (void) updateInterests:(NSArray *)newInterestsArray {
-    [self.user updateInterests:newInterestsArray];
+    [user updateInterests:newInterestsArray];
 }
 
 /* methods for profile picture */
 
 - (UIImage *) getProfilePicture {
-    return [self.user getProfilePicture];
+    return [user profilePicture];
 }
 
 
 /* methods for geocoding */
 
 - (void) setProfilePicture:(UIImage *)image {
-    [self.user setProfilePicture:image];
+    [user setProfilePicture:image];
 }
 
 
