@@ -49,6 +49,8 @@
 		C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542421A9FC034004A4303 /* DashboardTableViewController.m */; };
 		C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */; };
 		C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EB585B1AA78E6700A081C8 /* DashboardMV.m */; };
+		EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */; };
+		EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB08F8911AD4971A006C6AA5 /* InfoCell.m */; };
 		EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */; };
 		EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */; };
 /* End PBXBuildFile section */
@@ -127,6 +129,9 @@
 		C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewCell.m; sourceTree = "<group>"; };
 		C5EB585A1AA78E6700A081C8 /* DashboardMV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardMV.h; sourceTree = "<group>"; };
 		C5EB585B1AA78E6700A081C8 /* DashboardMV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardMV.m; sourceTree = "<group>"; };
+		EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-profile-picture.png"; sourceTree = "<group>"; };
+		EB08F8901AD4971A006C6AA5 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoCell.h; sourceTree = "<group>"; };
+		EB08F8911AD4971A006C6AA5 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
 		EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestsViewController.h; sourceTree = "<group>"; };
@@ -184,6 +189,7 @@
 		49CA70551ABB3542009DAC79 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */,
 				49CA70561ABB3554009DAC79 /* checkbox-checked.png */,
 				49CA70571ABB3554009DAC79 /* checkbox-pressed.png */,
 				49CA70581ABB3554009DAC79 /* checkbox.png */,
@@ -297,6 +303,8 @@
 				191899181A9A68B200C73208 /* ProfileViewController.m */,
 				EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */,
 				EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */,
+				EB08F8901AD4971A006C6AA5 /* InfoCell.h */,
+				EB08F8911AD4971A006C6AA5 /* InfoCell.m */,
 				EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */,
 				EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */,
 				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
@@ -397,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EF361CF1A87C4EC0004D0FC /* Main.storyboard in Resources */,
+				EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */,
 				7EF361D41A87C4EC0004D0FC /* LaunchScreen.xib in Resources */,
 				49CA705B1ABB3554009DAC79 /* checkbox.png in Resources */,
 				49CA70591ABB3554009DAC79 /* checkbox-checked.png in Resources */,
@@ -428,6 +437,7 @@
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
+				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
 				1931C6091AA8AAC900B76E8B /* ProfileViewModel.m in Sources */,
 				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
