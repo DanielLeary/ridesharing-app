@@ -26,6 +26,8 @@
 
 @property (strong, nonatomic) NSString *email;
 
+@property (strong, nonatomic) NSString *password;
+
 @property (strong, nonatomic) NSDate *dob;
 
 @property (strong, nonatomic) NSString *gender;

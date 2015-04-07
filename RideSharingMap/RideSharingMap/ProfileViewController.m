@@ -23,8 +23,8 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
     
     if (user) {
-        self.name_label.text = profileViewModel.firstNameText;
-        self.surname_label.text = profileViewModel.lastNameText;
+        self.firstNameLabel.text = [profileViewModel getFirstName];
+        self.lastNameLabel.text = [profileViewModel getLastName];
         //self.profileImageView = [[UIImageView alloc] initWithImage:profileViewModel.profilePictureImage];
     }
 }
@@ -46,6 +46,12 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     [self.navigationController pushViewController:addPlaceVC animated:YES];
 }
 
+- (IBAction)editProfileButtonPressed:(UIBarButtonItem *)sender {
+    EditProfileViewController *editProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
+    editProfileVC.delegate = self;
+    [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
 
 /* ADDPLACEVC DELEGATE METHODS */
 
@@ -57,6 +63,19 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 - (void) editPlace:(AddPlaceViewController *)vc atIndex:(NSUInteger)indexPath withPlace:(Place *)place {
     [profileViewModel replacePlaceAtIndex:indexPath withPlace:place];
     [self.placesTableView reloadData];
+}
+
+
+/* EDITPROFILEVC DELEGATE METHODS */
+
+- (void) updateProfileImage:(EditProfileViewController *)vc image:(UIImage *)image {
+    //[profileViewModel setProfilePicture:image];
+    [self.profileImageView reloadInputViews];
+}
+
+- (void) updateProfileName:(EditProfileViewController *)vc firstName:(NSString *)firstName lastName:(NSString *)lastName {
+    self.firstNameLabel.text = firstName;
+    self.lastNameLabel.text = lastName;
 }
 
 

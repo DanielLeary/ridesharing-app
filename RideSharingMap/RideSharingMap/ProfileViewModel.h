@@ -14,13 +14,13 @@
 
 @property UIImage *profilePictureImage;
 
-@property NSString *firstNameText;
+//@property NSString *firstNameText;
 
-@property NSString *lastNameText;
+//@property NSString *lastNameText;
 
-@property NSString *emailText;
+//@property NSString *emailText;
 
-@property NSString *genderText;
+//@property NSString *genderText;
 
 @property NSString *carText;
 
@@ -29,9 +29,15 @@
 
 - (NSString *) getFirstName;
 
+- (void) setFirstName:(NSString *)firstName;
+
 - (NSString *) getLastName;
 
+- (void) setLastName:(NSString *)lastName;
+
 - (NSString *) getEmail;
+
+- (NSString *) getPassword;
 
 - (NSDate *) getDob;
 

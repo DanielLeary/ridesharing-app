@@ -185,6 +185,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="1jt-pL-57V">
                             <color key="tintColor" red="0.3008131608484878" green="0.54746619375023176" blue="0.82832429846938771" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
+                                <action selector="editProfileButtonPressed:" destination="n9U-nd-LWa" id="3fi-pj-nVT"/>
                                 <segue destination="Z7k-C0-ypT" kind="show" id="6Xw-fZ-or4"/>
                             </connections>
                         </barButtonItem>
@@ -193,12 +194,12 @@
                     <connections>
                         <outlet property="addNewPlaceButton" destination="lxe-WO-Xvc" id="UM1-pQ-6If"/>
                         <outlet property="editPlacesButton" destination="JcL-mS-cdm" id="FZ8-1m-LB1"/>
+                        <outlet property="firstNameLabel" destination="tXW-l3-i3g" id="bwx-gE-XdM"/>
                         <outlet property="interestsButton" destination="0QK-XA-ufF" id="678-6k-JDY"/>
-                        <outlet property="name_label" destination="tXW-l3-i3g" id="tms-m0-NOC"/>
+                        <outlet property="lastNameLabel" destination="yMr-1S-o7w" id="zGz-gu-Rbx"/>
                         <outlet property="numRidesLabel" destination="1np-BJ-8Zm" id="c10-KW-LzX"/>
                         <outlet property="placesTableView" destination="fPE-PG-uSU" id="O7A-hd-BW9"/>
                         <outlet property="profileImageView" destination="9io-O7-RHd" id="cFB-Ll-pHr"/>
-                        <outlet property="surname_label" destination="yMr-1S-o7w" id="WsM-7c-S8C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bP9-5D-F2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,7 +209,7 @@
         <!--Edit Profile-->
         <scene sceneID="nJz-c9-onJ">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Z7k-C0-ypT" customClass="EditProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z7k-C0-ypT" customClass="EditProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VSj-Zh-fOA"/>
                         <viewControllerLayoutGuide type="bottom" id="vMy-nK-C8W"/>
@@ -238,25 +239,28 @@
                                 <rect key="frame" x="16" y="138" width="343" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="infoCell" textLabel="LNj-ol-3NU" detailTextLabel="WSi-HE-b9r" style="IBUITableViewCellStyleValue2" id="eYD-mU-w8o">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="infoCell" id="eYD-mU-w8o" customClass="InfoCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eYD-mU-w8o" id="62u-Us-dMa">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LNj-ol-3NU">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WSi-HE-b9r">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-PH-ho9">
+                                                    <rect key="frame" x="118" y="6" width="225" height="30"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OG1-c3-Lkz">
+                                                    <rect key="frame" x="14" y="11" width="80" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="infoField" destination="ad6-PH-ho9" id="mfw-VU-ELU"/>
+                                            <outlet property="infoLabel" destination="OG1-c3-Lkz" id="XHl-J8-I2s"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dobPickerCell" rowHeight="180" id="cu3-2U-6bs">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -782,10 +786,10 @@
             </objects>
             <point key="canvasLocation" x="440.5" y="1160.5"/>
         </scene>
-        <!--Title-->
+        <!--Add a Favourite Place-->
         <scene sceneID="52h-eL-yUA">
             <objects>
-                <viewController storyboardIdentifier="AddPlaceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7XB-UC-3ia" customClass="AddPlaceViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPlaceViewController" title="Add a Favourite Place" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7XB-UC-3ia" customClass="AddPlaceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NP8-c9-pur"/>
                         <viewControllerLayoutGuide type="bottom" id="BQD-qU-alA"/>
@@ -818,6 +822,9 @@
                             </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR1-DA-K3u">
                                 <rect key="frame" x="0.0" y="103" width="375" height="500"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7XB-UC-3ia" id="NKg-1i-skT"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

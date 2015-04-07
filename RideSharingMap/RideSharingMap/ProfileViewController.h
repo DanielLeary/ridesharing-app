@@ -14,16 +14,16 @@
 
 @class ProfileViewModel;
 
-@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddPlaceViewControllerDelegate>
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddPlaceViewControllerDelegate, EditProfileViewControllerDelegate>
 
 
 // profile UI
 
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *name_label;
+@property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *surname_label;
+@property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *placesTableView;
 

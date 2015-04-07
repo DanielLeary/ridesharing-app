@@ -14,6 +14,8 @@ static const int numOfRows = 6;
     
     ProfileViewModel *profileViewModel;
     NSIndexPath *dobPickerIndexPath;
+    BOOL pictureChanged;
+    BOOL nameChanged;
     
 }
 
@@ -21,18 +23,33 @@ static const int numOfRows = 6;
     [super viewDidLoad];
     UserModel *user = [[UserModel alloc] init];
     profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
+    pictureChanged = NO;
 }
 
 
 /* METHODS FOR UI */
 
+//save new info if changed
 - (IBAction)saveBarButtonPressed:(id)sender {
-    //save new info
+    if (pictureChanged) {
+        UIImage *newProfilePicture = self.profileImageView.image;
+        [profileViewModel setProfilePicture:newProfilePicture];
+        [self.delegate updateProfileImage:self image:newProfilePicture];
+    }
+    if (nameChanged) {
+        NSIndexPath *indexPath0 = [NSIndexPath indexPathForRow:0 inSection:0];
+        NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:1 inSection:0];
+        NSString *newFirstName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath0] textLabel] text];
+        NSString *newLastName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath1] textLabel] text];
+        [profileViewModel setFirstName:newFirstName];
+        [profileViewModel setLastName:newLastName];
+        [self.delegate updateProfileName:self firstName:newFirstName lastName:newLastName];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
-/* PROFILE PICTURE FUNCTIONS */
+/* METHODS FOR PROFILE PICTURE */
 
 - (IBAction)changeProfilePicturePressed:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Change profile picture"
@@ -44,8 +61,7 @@ static const int numOfRows = 6;
 }
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex==0) {
+    if (buttonIndex==0) { //take picture
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             UIImagePickerController *picker = [[UIImagePickerController alloc] init];
             picker.delegate = self;
@@ -56,7 +72,7 @@ static const int numOfRows = 6;
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }
-    } else if (buttonIndex==1) { //take picture
+    } else if (buttonIndex==1) { //upload picture
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = true;
@@ -68,7 +84,8 @@ static const int numOfRows = 6;
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     self.profileImageView.image = chosenImage;
-    [profileViewModel setProfilePicture:chosenImage];
+    //only save image if save pressed
+    pictureChanged = YES;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -88,47 +105,52 @@ static const int numOfRows = 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *infoCell = @"infoCell";
-    UITableViewCell *cell;
     
     //create picker cell
     if ([self dobPickerIsShown] && (dobPickerIndexPath.row == indexPath.row)) {
-        cell = [self createDobPickerCell:[profileViewModel getDob]];
-    
-        //create normal info cell
+            UITableViewCell *cell = [self createDobPickerCell:[profileViewModel getDob]];
+        return cell;
+    //create normal info cell
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:infoCell];
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"First name:";
-                cell.detailTextLabel.text = [profileViewModel firstNameText];
-                break;
-            case 1:
-                cell.textLabel.text = @"Last name:";
-                cell.detailTextLabel.text = [profileViewModel lastNameText];
-                break;
-            case 2:
-                cell.textLabel.text = @"Email:";
-                cell.detailTextLabel.text = [profileViewModel emailText];
-                break;
-            case 3:
-                cell.textLabel.text = @"Password:";
-                break;
-            case 4:
-                cell.textLabel.text = @"Age:";
-                cell.detailTextLabel.text = [profileViewModel getAge];
-                break;
-            case 5:
-                cell.textLabel.text = @"Gender:";
-                cell.detailTextLabel.text = [profileViewModel getGender];
-                break;
-        }
+        InfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
+        return infoCell;
     }
-    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(InfoCell *)infoCell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0:
+            infoCell.infoLabel.text = @"First name:";
+            infoCell.infoField.text = [profileViewModel getFirstName];
+            break;
+        case 1:
+            infoCell.infoLabel.text = @"Last name:";
+            infoCell.infoField.text = [profileViewModel getLastName];
+            break;
+        case 2:
+            infoCell.infoLabel.text = @"Email:";
+            infoCell.infoField.text = [profileViewModel getEmail];
+            break;
+        case 3:
+            infoCell.infoLabel.text = @"Password:";
+            infoCell.infoField.text = [profileViewModel getPassword];
+            break;
+        case 4:
+            infoCell.infoLabel.text = @"Age:";
+            infoCell.infoField.text = [profileViewModel getAge];
+            break;
+        case 5:
+            infoCell.infoLabel.text = @"Gender:";
+            infoCell.infoField.text = [profileViewModel getGender];
+            break;
+    }
 }
 
 // upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row>=0 && indexPath.row<=4) {
+        
+    }
     [tableView beginUpdates];
     if ([self dobPickerIsShown] && (dobPickerIndexPath.row -1 == indexPath.row)) {
         [self hideDobPicker];

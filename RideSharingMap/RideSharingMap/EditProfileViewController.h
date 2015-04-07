@@ -8,21 +8,40 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileViewModel.h"
+#import "infoCell.h"
+
+@class EditProfileViewController;
+
+@protocol EditProfileViewControllerDelegate <NSObject>
+
+- (void) updateProfileImage:(EditProfileViewController *)vc image:(UIImage *)image;
+
+- (void) updateProfileName:(EditProfileViewController *)vc firstName:(NSString *)firstName lastName:(NSString *)lastName;
+
+@end
+
 
 @interface EditProfileViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-// nav bar UI
+@property (assign, nonatomic) id <EditProfileViewControllerDelegate> delegate;
+
+
+// NAV BAR UI
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 
 
-// view UI
+// VIEW UI
 
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @property (strong, nonatomic) IBOutlet UIButton *addImageButton;
 
+
+// TABLE UI
+
 @property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
+
 
 
 @end

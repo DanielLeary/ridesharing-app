@@ -19,8 +19,8 @@
     self = [super init];
     if (self) {
         user = currentUser;
-        self.firstNameText = user.firstName;
-        self.lastNameText = user.lastName;
+        //self.firstNameText = user.firstName;
+        //self.lastNameText = user.lastName;
         self.carText = user.car;
         self.profilePictureImage = user.profilePicture;
     }
@@ -34,12 +34,24 @@
     return [user firstName];
 }
 
+- (void) setFirstName:(NSString *)firstName {
+    [user setFirstName:firstName];
+}
+
 - (NSString *) getLastName {
     return [user lastName];
 }
 
+- (void) setLastName:(NSString *)lastName {
+    [user setLastName:lastName];
+}
+
 - (NSString *) getEmail {
     return [user email];
+}
+
+- (NSString *) getPassword {
+    return [user password];
 }
 
 - (NSDate *) getDob {
@@ -104,19 +116,18 @@
     [user updateInterests:newInterestsArray];
 }
 
-/* methods for profile picture */
+/* METHODS FOR PROFILE PICTURE */
 
 - (UIImage *) getProfilePicture {
     return [user profilePicture];
 }
 
-
-/* methods for geocoding */
-
 - (void) setProfilePicture:(UIImage *)image {
     [user setProfilePicture:image];
 }
 
+
+/* METHODS FOR GEOCODING */
 
 + (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark {
     NSString *address = [NSString stringWithFormat:@"%@", placemark.postalCode];
