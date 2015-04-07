@@ -124,14 +124,10 @@
 
 
 /* methods for profile picture */
-/*
-- (UIImage *) getProfilePicture {
-    return self.profilePicture;
-}
 
+/*
 - (void) setProfilePicture:(UIImage *)image {
     self.profilePicture = image;
-}*/
     _profilePicture = image;
     NSData *imageData = UIImagePNGRepresentation(image);
     PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
@@ -148,6 +144,6 @@
             // Handle error
         }
     }];
-}
+}*/
 
 @end
