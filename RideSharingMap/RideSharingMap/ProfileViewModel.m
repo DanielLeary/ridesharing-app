@@ -30,7 +30,7 @@
 
 /* METHODS FOR USER INFO */
 
-- (NSString *) getFirstName {
+- (NSString *)getFirstName {
     return [user firstName];
 }
 
@@ -38,7 +38,7 @@
     [user setFirstName:firstName];
 }
 
-- (NSString *) getLastName {
+- (NSString *)getLastName {
     return [user lastName];
 }
 
@@ -46,16 +46,27 @@
     [user setLastName:lastName];
 }
 
-- (NSString *) getEmail {
+- (NSString *)getEmail {
     return [user email];
 }
 
-- (NSString *) getPassword {
+- (NSString *)getPassword {
     return [user password];
 }
 
-- (NSDate *) getDob {
+- (NSDate *)getDob {
     return [user dob];
+}
+
+- (void) setDob:(NSDate *)dob {
+    [user setDob:dob];
+}
+
+- (NSString *)getDobString {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy"];
+    NSString *dobString = [df stringFromDate:[user dob]];
+    return dobString;
 }
 
 - (NSString *) getAge {

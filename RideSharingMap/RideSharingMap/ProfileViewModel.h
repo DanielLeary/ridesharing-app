@@ -14,36 +14,32 @@
 
 @property UIImage *profilePictureImage;
 
-//@property NSString *firstNameText;
-
-//@property NSString *lastNameText;
-
-//@property NSString *emailText;
-
-//@property NSString *genderText;
-
 @property NSString *carText;
 
 
 /* METHODS FOR BASIC INFO */
 
-- (NSString *) getFirstName;
+- (NSString *)getFirstName;
 
 - (void) setFirstName:(NSString *)firstName;
 
-- (NSString *) getLastName;
+- (NSString *)getLastName;
 
 - (void) setLastName:(NSString *)lastName;
 
-- (NSString *) getEmail;
+- (NSString *)getEmail;
 
-- (NSString *) getPassword;
+- (NSString *)getPassword;
 
-- (NSDate *) getDob;
+- (NSDate *)getDob;
 
-- (NSString *) getAge;
+- (void) setDob:(NSDate *)dob;
 
-- (NSString *) getGender;
+- (NSString *)getDobString;
+
+- (NSString *)getAge;
+
+- (NSString *)getGender;
 
 
 

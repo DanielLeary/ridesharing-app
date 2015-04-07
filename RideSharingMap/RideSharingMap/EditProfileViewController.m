@@ -13,7 +13,9 @@ static const int numOfRows = 6;
 @implementation EditProfileViewController {
     
     ProfileViewModel *profileViewModel;
-    NSIndexPath *dobPickerIndexPath;
+    NSDateFormatter *dateFormatter;
+    int pickerCellRowHeight;
+    BOOL dobPickerIsShown;
     BOOL pictureChanged;
     BOOL nameChanged;
     
@@ -23,7 +25,13 @@ static const int numOfRows = 6;
     [super viewDidLoad];
     UserModel *user = [[UserModel alloc] init];
     profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    pickerCellRowHeight = 180;
+    dobPickerIsShown = NO;
     pictureChanged = NO;
+    nameChanged = NO;
 }
 
 
@@ -47,6 +55,16 @@ static const int numOfRows = 6;
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)dobChanged:(UIDatePicker *)sender {
+    if (dobPickerIsShown) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:5 inSection:0];
+        UITableViewCell *cell = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
+        [profileViewModel setDob:sender.date];
+        cell.detailTextLabel.text = [dateFormatter stringFromDate:sender.date];
+    }
+}
+
 
 
 /* METHODS FOR PROFILE PICTURE */
@@ -97,7 +115,7 @@ static const int numOfRows = 6;
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([self dobPickerIsShown]) {
+    if (dobPickerIsShown) {
         return numOfRows + 1;
     } else {
         return numOfRows;
@@ -105,102 +123,79 @@ static const int numOfRows = 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     //create picker cell
-    if ([self dobPickerIsShown] && (dobPickerIndexPath.row == indexPath.row)) {
-            UITableViewCell *cell = [self createDobPickerCell:[profileViewModel getDob]];
+    if (dobPickerIsShown && indexPath.row == 5) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
         return cell;
     //create normal info cell
     } else {
-        InfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
-        return infoCell;
+        if (indexPath.row == 4) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+            cell.textLabel.text = @"Date of birth:";
+            cell.detailTextLabel.text = [dateFormatter stringFromDate:[profileViewModel getDob]];
+            return cell;
+        } else if (indexPath.row == 5) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+            cell.textLabel.text = @"Gender:";
+            cell.detailTextLabel.text = [profileViewModel getGender];
+            return cell;
+        } else {
+            InfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
+            return cell;
+        }
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(InfoCell *)infoCell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView willDisplayCell:(InfoCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:
-            infoCell.infoLabel.text = @"First name:";
-            infoCell.infoField.text = [profileViewModel getFirstName];
+            cell.infoLabel.text = @"First name:";
+            cell.infoField.text = [profileViewModel getFirstName];
             break;
         case 1:
-            infoCell.infoLabel.text = @"Last name:";
-            infoCell.infoField.text = [profileViewModel getLastName];
+            cell.infoLabel.text = @"Last name:";
+            cell.infoField.text = [profileViewModel getLastName];
             break;
         case 2:
-            infoCell.infoLabel.text = @"Email:";
-            infoCell.infoField.text = [profileViewModel getEmail];
+            cell.infoLabel.text = @"Email:";
+            cell.infoField.text = [profileViewModel getEmail];
             break;
         case 3:
-            infoCell.infoLabel.text = @"Password:";
-            infoCell.infoField.text = [profileViewModel getPassword];
-            break;
-        case 4:
-            infoCell.infoLabel.text = @"Age:";
-            infoCell.infoField.text = [profileViewModel getAge];
-            break;
-        case 5:
-            infoCell.infoLabel.text = @"Gender:";
-            infoCell.infoField.text = [profileViewModel getGender];
+            cell.infoLabel.text = @"Password:";
+            cell.infoField.text = [profileViewModel getPassword];
             break;
     }
 }
 
 // upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row>=0 && indexPath.row<=4) {
-        
-    }
     [tableView beginUpdates];
-    if ([self dobPickerIsShown] && (dobPickerIndexPath.row -1 == indexPath.row)) {
-        [self hideDobPicker];
-    } else {
-        NSIndexPath *newDobPickerIndexPath = [self calculateIndexPathForNewDobPicker:indexPath];
-        if ([self dobPickerIsShown]) {
-            [self hideDobPicker];
+    if (dobPickerIsShown) {
+        if (indexPath.row == 4) {
+            //hide picker
+            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:5 inSection:0]];
+            [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            dobPickerIsShown = NO;
         }
-        [self showDobPicker:newDobPickerIndexPath];
-        dobPickerIndexPath = [NSIndexPath indexPathForRow:newDobPickerIndexPath.row +1 inSection:0];
+    } else {
+        if (indexPath.row == 4) {
+            //show dob picker
+            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:5 inSection:0]];
+            [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
+            dobPickerIsShown = YES;
+        } else if (indexPath.row == 5) {
+        }
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [tableView endUpdates];
 }
 
-
-/* HELPER PICKER METHODS */
-
-- (bool) dobPickerIsShown {
-    return dobPickerIndexPath != nil;
-}
-        
-- (UITableViewCell *)createDobPickerCell:(NSDate *)date {
-    static NSString *dobPickerCell = @"dobPickerCell";
-    static int dobPickerTag = 1;
-    UITableViewCell *cell = [self.userInfoTableView dequeueReusableCellWithIdentifier:dobPickerCell];
-    UIDatePicker *dobPicker = (UIDatePicker *)[cell viewWithTag:dobPickerTag];
-    [dobPicker setDate:date animated:NO];
-    return cell;
-}
-
-- (void) showDobPicker:(NSIndexPath *)indexPath {
-    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row +1 inSection:0]];
-    [self.userInfoTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-}
-
-- (void) hideDobPicker {
-    [self.userInfoTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:dobPickerIndexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    dobPickerIndexPath = nil;
-}
-
-- (NSIndexPath *)calculateIndexPathForNewDobPicker:(NSIndexPath *)indexPath {
-    NSIndexPath *newIndexPath;
-    if (([self dobPickerIsShown]) && (dobPickerIndexPath.row < indexPath.row)) {
-        newIndexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:0];
-    } else {
-        newIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHeight = tableView.rowHeight;
+    if (dobPickerIsShown && indexPath.row == 5) {
+        rowHeight = pickerCellRowHeight;
     }
-    return newIndexPath;
+    return rowHeight;
 }
-
 
 @end
