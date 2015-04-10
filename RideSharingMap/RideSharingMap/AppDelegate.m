@@ -22,6 +22,10 @@
     [Parse setApplicationId:@"0zdgGDC7qYvZQpbRjXPasx5DsW1jJn6CcJSwyZbP"
                   clientKey:@"QBDLxnKEkvCSJugxfHY3hr3kT9gn55JbVWMcpWU2"];
     
+    
+    //hardcoded a user so that user = [PFUser currentUser] returns someone in simulator
+    [PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
+    
     // Override point for customization after application launch.
     return YES;
 }
