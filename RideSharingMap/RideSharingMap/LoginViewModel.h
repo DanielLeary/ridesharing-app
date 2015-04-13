@@ -17,7 +17,6 @@
 #define PASSWORD_ERROR 4
 
 
-
 @interface LoginViewModel : NSObject
 
 @property (strong, nonatomic) UserModel *model;
@@ -31,7 +30,7 @@
 -(BOOL)log_in:(NSString*) username :(NSString *)password;
 -(int)sign_up:(NSString*)username :(NSString*)password :(NSString*)name : (NSString*)surname;
 
-
+- (int) checkForSignupErrors:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password;
 
 
 @end

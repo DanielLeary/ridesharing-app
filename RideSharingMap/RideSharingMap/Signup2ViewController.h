@@ -8,22 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewModel.h"
+#import "InfoCell.h"
+#import "InterestsViewController.h"
+#import "DashboardViewController.h"
 
 @class LoginViewModel;
 
-@interface Signup2ViewController : UIViewController{
-    bool is_female;
-    bool is_male;
-    IBOutlet UIButton *femaleSelected;
-    IBOutlet UIButton *maleSelected;
-    IBOutlet UITextField *position;
-    IBOutlet UIImageView *imageView;
-}
-@property (strong, nonatomic) LoginViewModel *viewModel;
-- (IBAction)position:(id)sender;
+@interface Signup2ViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-- (IBAction)female:(id)sender;
-- (IBAction)male:(id)sender;
-- (IBAction)changeImage:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (strong, nonatomic) IBOutlet UIButton *addProfilePictureButton;
+
+@property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
+
+@property (weak, nonatomic) IBOutlet UIButton *signUpbutton;
 
 @end

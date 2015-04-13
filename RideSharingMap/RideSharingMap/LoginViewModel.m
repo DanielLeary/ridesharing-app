@@ -59,6 +59,22 @@
         return false;
 }
 
+- (int) checkForSignupErrors:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password {
+    if (firstName.length <2 ) {
+        return NAME_ERROR;
+    }
+    if (lastName.length<2) {
+        return SURNAME_ERROR;
+    }
+    //check password
+    BOOL containsLetter = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
+    BOOL containsNumber = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
+    if (!containsLetter || !containsNumber || password.length < 6) {
+        return PASSWORD_ERROR;
+    }
+    return NO_ERROR;
+}
+
 -(int)sign_up:(NSString*)username :(NSString*)password : (NSString*)name : (NSString*)surname{
     //TODO deal with different types of errors while signing up
     if (name.length <2 ) {
@@ -73,6 +89,7 @@
     if (!containsLetter || !containsNumber || password.length < 6) {
         return PASSWORD_ERROR;
     }
+
     PFUser *user = [PFUser user];
     user.username = username;
     user.password = password;

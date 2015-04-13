@@ -84,11 +84,7 @@
 - (void) updateInterests:(NSArray *)newInterestArray;
 
 
-/* METHODS FOR PROFILE PICTURE */
 
-//- (UIImage *) getProfilePicture;
-
-//- (void) setProfilePicture:(UIImage *)image;
 
 
 @end

@@ -33,7 +33,9 @@
             Place *home = [[Place alloc] initWithName:@"Home"];
             Place *work = [[Place alloc] initWithName:@"Work"];
             favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
+            
             interestsArray = [[NSMutableArray alloc] init];
+            
             self.firstName = user[firstnameString];
             self.lastName = user[surnameString];
             self.car = user[carString];
@@ -61,7 +63,6 @@
     if (self.gender != nil) {
         user[genderString] = self.gender;
     }
-   
     
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {

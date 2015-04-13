@@ -9,19 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewModel.h"
 
-@class LoginViewModel;
+@interface LoginNewViewController : UIViewController
 
-@interface LoginNewViewController : UIViewController{
-    __weak IBOutlet UILabel *error_label;
-    __weak IBOutlet UITextField *username;
-    __weak IBOutlet UITextField *password;
-    
-}
-// action that allows unwinding to this view from the Signup view
-- (IBAction)backToLoginView:(UIStoryboardSegue *)segue;
+
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+@property (weak, nonatomic) IBOutlet UILabel *error_label;
 
 - (IBAction)login:(id)sender;
-
-@property (strong, nonatomic) LoginViewModel *viewModel;
 
 @end

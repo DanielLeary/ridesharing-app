@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>795DC348-D7DF-4F22-9FE5-2764B36DE67A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>RideSharingMap</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>669D26B744DE04E917ECA6099C092CD761A56F59</key>
 		<string>https://gitlab.doc.ic.ac.uk/g1453018/ridesharing.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>RideSharingMap/RideSharingMap.xcodeproj</string>
+	<string>RideSharingMap/RideSharingMap.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>669D26B744DE04E917ECA6099C092CD761A56F59</key>

@@ -10,43 +10,50 @@
 #import "UserModel.h"
 
 
-@interface LoginNewViewController ()
+@implementation LoginNewViewController {
+    
+    LoginViewModel *viewModel;
+    
+}
 
-@end
-
-@implementation LoginNewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     UserModel *model = [[UserModel alloc] init];
-    self.viewModel = [[LoginViewModel alloc] initWithModel:model];
-    // Do any additional setup after loading the view.
+    viewModel = [[LoginViewModel alloc] initWithModel:model];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-- (IBAction)backToLoginView:(UIStoryboardSegue *)segue
-{
-    //necessary action to retrieve this view when sign-up is completed in the signup view
+- (void)viewDidAppear:(BOOL)animated {
+    [self.emailField becomeFirstResponder];
 }
 
 - (IBAction)login:(id)sender {
-    if (![self.viewModel log_in:username.text :password.text])
-        error_label.text = @"Incorrect login details";
-    else
-        error_label.text = @"Logged in successfully";
+    //if (![viewModel log_in:username.text :password.text])
+        self.error_label.text = @"Incorrect email or password";
+    //else
+        self.error_label.text = @"Logged in successfully";
 }
+
+
+/* KEYBOARD FUNCTIONS */
+
+//dismiss keyboard on done button
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.passwordField) {
+        [self.passwordField becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+//dismiss keyboard on touch outside
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
+
+
 @end

@@ -9,45 +9,31 @@
 #import "Signup2ViewController.h"
 #import "UserModel.h"
 
-@interface Signup2ViewController ()
+static const int numOfRows = 3;
 
-@end
-
-@implementation Signup2ViewController
+@implementation Signup2ViewController {
+    
+    LoginViewModel *viewModel;
+    NSDateFormatter *dateFormatter;
+    int pickerCellRowHeight;
+    BOOL dobPickerIsShown;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UserModel *model = [[UserModel alloc] init];
-    self.viewModel = [[LoginViewModel alloc] initWithModel:model];
-    
-    is_female = false;
-    is_male = false;
-    
-    [femaleSelected setSelected:NO];
-    [maleSelected setSelected:NO];
-    // Do any additional setup after loading the view.
+    viewModel = [[LoginViewModel alloc] initWithModel:model];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    pickerCellRowHeight = 180;
+    dobPickerIsShown = false;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
 - (IBAction)position:(id)sender {
     if (position.text.length > 3) {
-        [self.viewModel changePosition:position.text];
+        [viewModel changePosition:position.text];
     }
 }
 
@@ -63,7 +49,7 @@
         is_female = 0;
         is_male = 1;
     }
-    [self.viewModel changeSex:is_female? @"F":@"M"];
+    [viewModel changeSex:is_female? @"F":@"M"];
 }
 
 - (IBAction)male:(id)sender {
@@ -78,32 +64,142 @@
         is_male = 0;
         is_female = 1;
     }
-    [self.viewModel changeSex:is_female? @"F":@"M"];
+    [viewModel changeSex:is_female? @"F":@"M"];
+}*/
+
+
+/* METHODS FOR UI */
+
+- (IBAction)signUpPressed:(UIButton *)sender {
+    //need to check info
+    DashboardViewController *dashboardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
+    [self.navigationController pushViewController:dashboardVC animated:YES];
 }
 
-- (IBAction)changeImage:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentViewController:picker animated:YES completion:NULL];
+
+/* TABLE DELEGATE METHODS */
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (dobPickerIsShown) {
+        return numOfRows + 1;
+    } else {
+        return numOfRows;
+    }
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    imageView.image = chosenImage;
-    [self.viewModel changePicture:chosenImage];
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //create picker cell
+    if (dobPickerIsShown && indexPath.row == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
+        return cell;
+        //create normal info cell
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Date of birth:";
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Gender:";
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Interests:";
+        }
+        return cell;
+    }
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView beginUpdates];
+    if (dobPickerIsShown) {
+        if (indexPath.row == 0) {
+            //hide picker
+            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:1 inSection:0]];
+            [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            dobPickerIsShown = NO;
+        }
+    } else {
+        if (indexPath.row == 0) {
+            //show dob picker
+            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:1 inSection:0]];
+            [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
+            dobPickerIsShown = YES;
+        } else if (indexPath.row == 1) {
+            
+        } else if (indexPath.row == 2) {
+            //show Interests VC
+            InterestsViewController *interestsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InterestsViewController"];
+            [self.navigationController pushViewController:interestsVC animated:YES];
+        }
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    [tableView endUpdates];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHeight = tableView.rowHeight;
+    if (dobPickerIsShown && indexPath.row == 1) {
+        rowHeight = pickerCellRowHeight;
+    }
+    return rowHeight;
+}
+
+
+/* METHODS FOR PROFILE PICTURE */
+
+- (IBAction)addProfilePicturePressed:(UIButton *)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add profile picture"
+        delegate:self
+        cancelButtonTitle:@"Cancel"
+        destructiveButtonTitle:nil
+        otherButtonTitles:@"Take picture", @"Upload picture", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //take picture
+    if (buttonIndex == 0) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.delegate = self;
+            picker.allowsEditing = true;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:nil];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    //upload picture
+    } else if (buttonIndex == 1) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    self.imageView.image = chosenImage;
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+/* KEYBOARD FUNCTIONS */
+
+//MAY NOT NEED THIS
+//dismiss keyboard on done button
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+//dismiss keyboard on touch outside
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 @end

@@ -8,21 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewModel.h"
+#import "Signup2ViewController.h"
 
-@class LoginViewModel;
 
-@interface SignupViewController : UIViewController{
+@interface SignupViewController : UIViewController
     
-    __weak IBOutlet UITextField *name;
-    __weak IBOutlet UITextField *surname;
-    __weak IBOutlet UITextField *username;
-    __weak IBOutlet UITextField *password;
-    __weak IBOutlet UILabel *error_label;
-    
-    BOOL signup_succ;
-}
+@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 
-@property (strong, nonatomic) LoginViewModel *viewModel;
-- (void)signup;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
+
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 @end

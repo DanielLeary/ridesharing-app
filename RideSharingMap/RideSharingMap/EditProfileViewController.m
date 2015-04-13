@@ -167,7 +167,6 @@ static const int numOfRows = 6;
     }
 }
 
-// upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView beginUpdates];
     if (dobPickerIsShown) {
