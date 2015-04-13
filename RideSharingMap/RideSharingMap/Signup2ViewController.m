@@ -9,7 +9,6 @@
 #import "Signup2ViewController.h"
 #import "UserModel.h"
 
-static const int numOfRows = 3;
 static const int dobPickerRowHeight = 180;
 static const int genderPickerRowHeight = 140;
 
@@ -35,7 +34,7 @@ static const int genderPickerRowHeight = 140;
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
     infoArray = @[@"Date of Birth:", @"Gender:", @"Interests:"];
-    genderArray = @[@"Female", @"Male", @"Unindentified"];
+    genderArray = @[@"Female", @"Male", @"Other"];
     
     dobPickerIsShown = NO;
     genderPickerIsShown = NO;
@@ -63,16 +62,19 @@ static const int genderPickerRowHeight = 140;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (dobPickerIsShown && genderPickerIsShown) {
-        return numOfRows + 2;
+        return [infoArray count] + 2;
     } else if (dobPickerIsShown || genderPickerIsShown) {
-        return numOfRows + 1;
+        return [infoArray count] + 1;
     } else {
-        return numOfRows;
+        return [infoArray count];
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
+    if (indexPath.row == 0) {
+        cell.textLabel.text = infoArray[0];
+    }
     if (dobPickerIsShown && genderPickerIsShown) {
         if (indexPath.row == 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
@@ -80,16 +82,8 @@ static const int genderPickerRowHeight = 140;
             cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"Date of birth:";
-                    break;
-                case 2:
-                    cell.textLabel.text = @"Gender:";
-                    break;
-                case 4:
-                    cell.textLabel.text = @"Interests:";
-                    break;
+            if (indexPath.row == 2 || indexPath.row == 4) {
+                cell.textLabel.text = infoArray[indexPath.row / 2];
             }
         }
     } else if (dobPickerIsShown) {
@@ -97,16 +91,8 @@ static const int genderPickerRowHeight = 140;
             cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"Date of birth:";
-                    break;
-                case 2:
-                    cell.textLabel.text = @"Gender:";
-                    break;
-                case 3:
-                    cell.textLabel.text = @"Interests:";
-                    break;
+            if (indexPath.row == 2 || indexPath.row == 3) {
+                cell.textLabel.text = infoArray[indexPath.row - 1];
             }
         }
     } else if (genderPickerIsShown) {
@@ -114,31 +100,15 @@ static const int genderPickerRowHeight = 140;
             cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"Date of birth:";
-                    break;
-                case 1:
-                    cell.textLabel.text = @"Gender:";
-                    break;
-                case 3:
-                    cell.textLabel.text = @"Interests:";
-                    break;
+            if (indexPath.row == 1) {
+                cell.textLabel.text = infoArray[1];
+            } else if (indexPath.row == 3) {
+                cell.textLabel.text = infoArray[2];
             }
         }
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"Date of birth:";
-                break;
-            case 1:
-                cell.textLabel.text = @"Gender:";
-                break;
-            case 2:
-                cell.textLabel.text = @"Interests:";
-                break;
-        }
+        cell.textLabel.text = infoArray[indexPath.row];
     }
     return cell;
 }

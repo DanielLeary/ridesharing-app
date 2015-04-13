@@ -23,21 +23,13 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    switch (row) {
-        case 0:
-            return @"Female";
-        case 1:
-            return @"Male";
-        case 2:
-            return @"Unindentified";
-        default:
-            return @"";
-    }
+    NSArray *genderArray = @[@"Female", @"Male", @"Other"];
+    return genderArray[row];
 }
 
 //set layout of picker
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-    NSArray *genderArray = @[@"Female", @"Male", @"Unindentified"];
+    NSArray *genderArray = @[@"Female", @"Male", @"Other"];
     UILabel *label = (id)view;
     if (!label) {
         label = [[UILabel alloc] init];
