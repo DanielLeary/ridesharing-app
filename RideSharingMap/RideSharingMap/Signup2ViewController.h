@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewModel.h"
 #import "InfoCell.h"
+#import "GenderPickerCell.h"
 #import "InterestsViewController.h"
 #import "DashboardViewController.h"
 
 @class LoginViewModel;
 
-@interface Signup2ViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface Signup2ViewController : UIViewController <GenderPickerCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 

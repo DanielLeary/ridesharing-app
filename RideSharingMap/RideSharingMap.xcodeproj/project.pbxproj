@@ -52,6 +52,7 @@
 		EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */; };
 		EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB08F8911AD4971A006C6AA5 /* InfoCell.m */; };
 		EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */; };
+		EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */; };
 		EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,8 @@
 		EB08F8911AD4971A006C6AA5 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
 		EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		EB9ECDFE1ADC5739002A954E /* GenderPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderPickerCell.h; sourceTree = "<group>"; };
+		EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderPickerCell.m; sourceTree = "<group>"; };
 		EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestsViewController.h; sourceTree = "<group>"; };
 		EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,11 +244,12 @@
 		7EF361BF1A87C4EC0004D0FC /* RideSharingMap */ = {
 			isa = PBXGroup;
 			children = (
-				49CA704A1ABB0B14009DAC79 /* Login/Signup */,
 				7EF361C41A87C4EC0004D0FC /* AppDelegate.h */,
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
 				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
 				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
+				49CA704A1ABB0B14009DAC79 /* Login/Signup */,
+				EB9ECE011ADC746D002A954E /* Cells */,
 				EBF643F01AA9F6E40042F6F8 /* Profile */,
 				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
 				C5A5423B1A9FB317004A4303 /* SettingsViewController.h */,
@@ -296,6 +300,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EB9ECE011ADC746D002A954E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EB08F8901AD4971A006C6AA5 /* InfoCell.h */,
+				EB08F8911AD4971A006C6AA5 /* InfoCell.m */,
+				EB9ECDFE1ADC5739002A954E /* GenderPickerCell.h */,
+				EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		EBF643F01AA9F6E40042F6F8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,8 +318,6 @@
 				191899181A9A68B200C73208 /* ProfileViewController.m */,
 				EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */,
 				EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */,
-				EB08F8901AD4971A006C6AA5 /* InfoCell.h */,
-				EB08F8911AD4971A006C6AA5 /* InfoCell.m */,
 				EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */,
 				EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */,
 				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
@@ -432,6 +445,7 @@
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
 				6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */,
+				EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,

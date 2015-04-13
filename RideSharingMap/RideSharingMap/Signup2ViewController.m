@@ -10,13 +10,18 @@
 #import "UserModel.h"
 
 static const int numOfRows = 3;
+static const int dobPickerRowHeight = 180;
+static const int genderPickerRowHeight = 140;
 
 @implementation Signup2ViewController {
     
     LoginViewModel *viewModel;
+    NSArray *infoArray;
+    NSArray *genderArray;
+    
     NSDateFormatter *dateFormatter;
-    int pickerCellRowHeight;
     BOOL dobPickerIsShown;
+    BOOL genderPickerIsShown;
     
 }
 
@@ -24,47 +29,23 @@ static const int numOfRows = 3;
     [super viewDidLoad];
     UserModel *model = [[UserModel alloc] init];
     viewModel = [[LoginViewModel alloc] initWithModel:model];
+    
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    pickerCellRowHeight = 180;
-    dobPickerIsShown = false;
+    
+    infoArray = @[@"Date of Birth:", @"Gender:", @"Interests:"];
+    genderArray = @[@"Female", @"Male", @"Unindentified"];
+    
+    dobPickerIsShown = NO;
+    genderPickerIsShown = NO;
 }
+
 /*
 - (IBAction)position:(id)sender {
     if (position.text.length > 3) {
         [viewModel changePosition:position.text];
     }
-}
-
-- (IBAction)female:(id)sender {
-    if (is_female == 0){
-        [femaleSelected setSelected:YES];
-        [maleSelected setSelected:NO];
-        is_female = 1;
-        is_male = 0;
-    } else {
-        [femaleSelected setSelected:NO];
-        [maleSelected setSelected:YES];
-        is_female = 0;
-        is_male = 1;
-    }
-    [viewModel changeSex:is_female? @"F":@"M"];
-}
-
-- (IBAction)male:(id)sender {
-    if (is_male == 0){
-        [maleSelected setSelected:YES];
-        [femaleSelected setSelected:NO];
-        is_male = 1;
-        is_female = 0;
-    } else {
-        [maleSelected setSelected:NO];
-        [femaleSelected setSelected:YES];
-        is_male = 0;
-        is_female = 1;
-    }
-    [viewModel changeSex:is_female? @"F":@"M"];
 }*/
 
 
@@ -72,6 +53,7 @@ static const int numOfRows = 3;
 
 - (IBAction)signUpPressed:(UIButton *)sender {
     //need to check info
+    
     DashboardViewController *dashboardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
     [self.navigationController pushViewController:dashboardVC animated:YES];
 }
@@ -80,7 +62,9 @@ static const int numOfRows = 3;
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (dobPickerIsShown) {
+    if (dobPickerIsShown && genderPickerIsShown) {
+        return numOfRows + 2;
+    } else if (dobPickerIsShown || genderPickerIsShown) {
         return numOfRows + 1;
     } else {
         return numOfRows;
@@ -88,57 +72,163 @@ static const int numOfRows = 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //create picker cell
-    if (dobPickerIsShown && indexPath.row == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-        return cell;
-        //create normal info cell
-    } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Date of birth:";
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Gender:";
-        } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Interests:";
+    UITableViewCell *cell;
+    if (dobPickerIsShown && genderPickerIsShown) {
+        if (indexPath.row == 1) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
+        } else if (indexPath.row == 3) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
+        } else {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"Date of birth:";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"Gender:";
+                    break;
+                case 4:
+                    cell.textLabel.text = @"Interests:";
+                    break;
+            }
         }
-        return cell;
+    } else if (dobPickerIsShown) {
+        if (indexPath.row == 1) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
+        } else {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"Date of birth:";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"Gender:";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"Interests:";
+                    break;
+            }
+        }
+    } else if (genderPickerIsShown) {
+        if (indexPath.row == 2) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
+        } else {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"Date of birth:";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"Gender:";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"Interests:";
+                    break;
+            }
+        }
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"Date of birth:";
+                break;
+            case 1:
+                cell.textLabel.text = @"Gender:";
+                break;
+            case 2:
+                cell.textLabel.text = @"Interests:";
+                break;
+        }
     }
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView beginUpdates];
-    if (dobPickerIsShown) {
+    if (dobPickerIsShown && genderPickerIsShown) {
         if (indexPath.row == 0) {
-            //hide picker
-            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:1 inSection:0]];
-            [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            [self hidePicker:tableView inRow:1];
             dobPickerIsShown = NO;
+        } else if (indexPath.row == 2) {
+            [self hidePicker:tableView inRow:3];
+            genderPickerIsShown = NO;
+        } else if (indexPath.row == 4) {
+            [self showInterestsVC];
+        }
+    } else if (dobPickerIsShown) {
+        if (indexPath.row == 0) {
+            [self hidePicker:tableView inRow:1];
+            dobPickerIsShown = NO;
+        } else if (indexPath.row ==2) {
+            [self showPicker:tableView inRow:3];
+            genderPickerIsShown = YES;
+        } else if (indexPath.row == 3) {
+            [self showInterestsVC];
+        }
+    } else if (genderPickerIsShown) {
+        if (indexPath.row ==0) {
+            [self showPicker:tableView inRow:1];
+            dobPickerIsShown = YES;
+        } else if (indexPath.row == 1) {
+            [self hidePicker:tableView inRow:2];
+            genderPickerIsShown = NO;
+        } else if (indexPath.row == 3) {
+            [self showInterestsVC];
         }
     } else {
         if (indexPath.row == 0) {
-            //show dob picker
-            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:1 inSection:0]];
-            [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
+            [self showPicker:tableView inRow:1];
             dobPickerIsShown = YES;
         } else if (indexPath.row == 1) {
-            
+            [self showPicker:tableView inRow:2];
+            genderPickerIsShown = YES;
         } else if (indexPath.row == 2) {
-            //show Interests VC
-            InterestsViewController *interestsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InterestsViewController"];
-            [self.navigationController pushViewController:interestsVC animated:YES];
+            [self showInterestsVC];
         }
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [tableView endUpdates];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = tableView.rowHeight;
-    if (dobPickerIsShown && indexPath.row == 1) {
-        rowHeight = pickerCellRowHeight;
+    if (dobPickerIsShown && genderPickerIsShown) {
+        if (indexPath.row == 1) {
+            rowHeight = dobPickerRowHeight;
+        } else if (indexPath.row == 3) {
+            rowHeight = genderPickerRowHeight;
+        }
+    } else if (dobPickerIsShown && indexPath.row == 1) {
+        rowHeight = dobPickerRowHeight;
+    } else if (genderPickerIsShown && indexPath.row == 2) {
+        rowHeight = genderPickerRowHeight;
     }
     return rowHeight;
+}
+
+
+/* DELEGATE METHOD FOR PICKERS */
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    //[viewModel changeSex:genderArray[row]];
+}
+
+
+/* HELPER METHODS FOR PICKERS */
+
+- (void)showPicker:(UITableView *)tableView inRow:(int)row {
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:row inSection:0]];
+    [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
+}
+
+- (void)hidePicker:(UITableView *)tableView inRow:(int)row {
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:row inSection:0]];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)showInterestsVC {
+    InterestsViewController *interestsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InterestsViewController"];
+    [self.navigationController pushViewController:interestsVC animated:YES];
 }
 
 
