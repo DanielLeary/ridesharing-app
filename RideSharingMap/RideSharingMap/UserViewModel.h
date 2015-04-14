@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 #import "UserModel.h"
 #import "Place.h"
 
@@ -69,25 +69,27 @@
 
 /* METHODS FOR INTERESTS */
 
-- (NSUInteger) getInterestsCount;
+- (NSUInteger)getInterestsCount;
 
-- (NSMutableArray *) getInterestsArray;
+- (NSMutableArray *)getInterestsArray;
 
-- (bool) hasInterest:(NSString *)interest;
+- (bool)hasInterest:(NSString *)interest;
 
-- (void) updateInterests:(NSArray *)newInterestsArray;
+- (void)updateInterests:(NSArray *)newInterestsArray;
 
 
 /* METHODS FOR PROFILE PICTURE */
 
-- (UIImage *) getProfilePicture;
+- (UIImage *)getProfilePicture;
 
-- (void) setProfilePicture:(UIImage *)image;
+- (void)setProfilePicture:(UIImage *)image;
 
 
 /* METHODS FOR LOGIN & SIGNUP */
 
--(BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password;
+- (void)logOut;
+
+- (BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password;
 
 - (int)checkSignupErrorsForFirstName:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password;
 
@@ -96,7 +98,7 @@
 
 /* METHODS FOR GEOCODING */
 
-+ (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark;
++ (NSString *)getZipCodeFromPlacemark:(CLPlacemark *)placemark;
 
 
 @end

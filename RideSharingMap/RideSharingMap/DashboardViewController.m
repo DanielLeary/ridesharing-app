@@ -37,8 +37,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
-    return cell;
+    if (indexPath.row == 0) {
+        GivingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"givingRideCell"];
+        cell.nameLabel.text = @"Christina Hicks";
+        return cell;
+    } else {
+        GettingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gettingRideCell"];
+        cell.nameLabel.text = @"Kevin Smith";
+        return cell;
+    }
     
     
     /*

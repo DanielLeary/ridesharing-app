@@ -57,6 +57,10 @@
     return self;
 }
 
+- (void)logOut {
+    [PFUser logOut];
+}
+
 -(BOOL)updateUser {
     if (self.lastName != nil) {
         user[surnameString] = self.lastName;

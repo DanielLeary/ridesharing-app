@@ -12,6 +12,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property BOOL isLoggedIn;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

@@ -18,13 +18,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Initialise parse application
-    
     [Parse setApplicationId:@"0zdgGDC7qYvZQpbRjXPasx5DsW1jJn6CcJSwyZbP"
                   clientKey:@"QBDLxnKEkvCSJugxfHY3hr3kT9gn55JbVWMcpWU2"];
     
-    
     //hardcoded a user so that user = [PFUser currentUser] returns someone in simulator
     [PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
+    
+    self.isLoggedIn = YES; //need to get from parse later
+    NSString *storyboardID = self.isLoggedIn ? @"MainStoryboard" : @"LoginStoryboard";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *initialVC = [storyboard instantiateViewControllerWithIdentifier:storyboardID];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = initialVC;
+    [self.window makeKeyAndVisible];
+    //self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:storyboardID];
     
     // Override point for customization after application launch.
     return YES;

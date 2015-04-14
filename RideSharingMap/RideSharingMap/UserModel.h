@@ -45,9 +45,12 @@
 
 // TODO Constructor that when insantiated checks if there is a user currently
 // Logged on and if there is each of these properties are updated
--(id)init;
+- (id)init;
 
--(BOOL)updateUser;
+- (void)logOut;
+
+- (BOOL)updateUser;
+
 
 
 /* METHODS FOR FAV PLACES */

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GivingRideCell.h"
+#import "GettingRideCell.h"
 
 @interface DashboardViewController : UIViewController
 

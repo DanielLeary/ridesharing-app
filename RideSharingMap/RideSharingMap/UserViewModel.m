@@ -145,6 +145,10 @@
 
 /* METHODS FOR LOGIN & SIGNUP */
 
+- (void)logOut {
+    [user logOut];
+}
+
 - (BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password {
     return ([PFUser logInWithUsername:email password:password] != NULL);
 }

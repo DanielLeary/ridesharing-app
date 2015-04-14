@@ -39,8 +39,18 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 /* METHODS FOR UI RESPONSES */
 
-//segue to AddPlaceViewController
+- (IBAction)logoutBarButtonPressed:(UIBarButtonItem *)sender {
+    [viewModel logOut];
+    //show loginViewController
+    /*
+    for (UINavigationController *navC in self.tabBarController.viewControllers) {
+        [navC popToRootViewControllerAnimated:NO];
+    }*/
+    //[self.storyboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
+}
+
 - (IBAction)addNewPlaceButtonPressed:(id)sender {
+    //segue to AddPlaceViewController
     AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
     addPlaceVC.delegate = self;
     [self.navigationController pushViewController:addPlaceVC animated:YES];
