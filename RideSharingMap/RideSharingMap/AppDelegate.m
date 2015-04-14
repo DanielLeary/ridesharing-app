@@ -24,15 +24,17 @@
     //hardcoded a user so that user = [PFUser currentUser] returns someone in simulator
     [PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
     
-    self.isLoggedIn = YES; //need to get from parse later
-    NSString *storyboardID = self.isLoggedIn ? @"MainStoryboard" : @"LoginStoryboard";
+    self.isLoggedIn = NO; //need to get from parse later
+
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *initialVC = [storyboard instantiateViewControllerWithIdentifier:storyboardID];
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = initialVC;
-    [self.window makeKeyAndVisible];
-    //self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:storyboardID];
+    if (self.isLoggedIn) {
+        UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+        self.window.rootViewController = tabBarVC;
+    } else {
+        UIViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
+        //UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        self.window.rootViewController = loginVC;
+    }
     
     // Override point for customization after application launch.
     return YES;

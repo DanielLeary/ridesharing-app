@@ -50,13 +50,13 @@ static const int genderPickerRowHeight = 140;
 
 /* METHODS FOR UI */
 
-/*
+
 - (IBAction)signUpPressed:(UIButton *)sender {
     //need to check info
-    
-    DashboardViewController *dashboardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DashboardViewController"];
-    [self.navigationController pushViewController:dashboardVC animated:YES];
-}*/
+    //....
+    AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
+    appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+}
 
 
 /* TABLE DELEGATE METHODS */

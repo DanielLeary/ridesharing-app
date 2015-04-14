@@ -40,13 +40,13 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* METHODS FOR UI RESPONSES */
 
 - (IBAction)logoutBarButtonPressed:(UIBarButtonItem *)sender {
+    //need to clear user info?
     [viewModel logOut];
-    //show loginViewController
-    /*
-    for (UINavigationController *navC in self.tabBarController.viewControllers) {
-        [navC popToRootViewControllerAnimated:NO];
-    }*/
-    //[self.storyboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
+    AppDelegate *appDelegateTemp = [[UIApplication sharedApplication] delegate];
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
+    //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    appDelegateTemp.window.rootViewController = loginVC;
 }
 
 - (IBAction)addNewPlaceButtonPressed:(id)sender {

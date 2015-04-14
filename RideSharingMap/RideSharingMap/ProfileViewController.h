@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 #import "AddPlaceViewController.h"
 #import "EditProfileViewController.h"
 #import "InterestsViewController.h"
