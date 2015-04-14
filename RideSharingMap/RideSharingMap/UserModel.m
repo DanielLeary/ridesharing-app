@@ -18,10 +18,19 @@
 
 @implementation UserModel {
     
+    // PROFILE
     PFUser *user;
     NSMutableArray *favPlacesArray;
     NSMutableArray *interestsArray;
-
+    
+    // AS PASSENGER
+    NSMutableArray *gettingRideFromArray;
+    NSMutableArray *requestsSentArray;
+    
+    // AS DRIVER
+    NSMutableArray *givingRideToArray;
+    NSMutableArray *requestsReceivedArray;
+    
 }
 
 
@@ -32,14 +41,15 @@
         if (user) {
             Place *home = [[Place alloc] initWithName:@"Home"];
             Place *work = [[Place alloc] initWithName:@"Work"];
-            favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
             
+            favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
             interestsArray = [[NSMutableArray alloc] init];
             
             self.firstName = user[firstnameString];
             self.lastName = user[surnameString];
             self.car = user[carString];
             self.position = user[positionString];
+            
             //NSString *pathForBlankProfilePicture = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"png"];
             //self.profilePicture = [[UIImage alloc] initWithContentsOfFile:pathForBlankProfilePicture];
         }

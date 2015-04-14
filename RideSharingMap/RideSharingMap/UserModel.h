@@ -11,12 +11,9 @@
 #import <Parse/Parse.h>
 #import "Place.h"
 
+
 @interface UserModel : NSObject
 
-// Get and set methods automatically produced by compilor when using property
-
-// Readonly used to state that methods cannot be changed use set method
-// The compilor doesn't produce a set method for such properties
 
 @property (strong, nonatomic) UIImage *profilePicture;
 
@@ -41,11 +38,6 @@
 
 // can specify accessor method using getter
 @property (readonly, getter=isLoggedIn) BOOL loggedIn;
-
-// get and set methods can be called using dot notation (objectName.fieldname = ValueToSet)
-// But these are simply wrappers for [objectName fieldname] and
-// [objectName setFieldName:ValueToSet]
-
 
 // Too specify multiple arguments, we must use secondValue, thirdValue etc e.g below
 //+(BOOL) setUserNameAndPassword:(NSString*)userName secondValue:(NSString*)password;

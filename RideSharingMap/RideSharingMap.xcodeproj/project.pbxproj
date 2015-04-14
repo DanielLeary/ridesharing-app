@@ -51,6 +51,8 @@
 		EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */; };
 		EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB08F8911AD4971A006C6AA5 /* InfoCell.m */; };
 		EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */; };
+		EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB99313B1ADD52E500532271 /* GettingRideCell.m */; };
+		EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB99313E1ADD538100532271 /* GivingRideCell.m */; };
 		EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */; };
 		EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,10 @@
 		EB08F8911AD4971A006C6AA5 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
 		EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		EB99313A1ADD52E500532271 /* GettingRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GettingRideCell.h; sourceTree = "<group>"; };
+		EB99313B1ADD52E500532271 /* GettingRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GettingRideCell.m; sourceTree = "<group>"; };
+		EB99313D1ADD538100532271 /* GivingRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GivingRideCell.h; sourceTree = "<group>"; };
+		EB99313E1ADD538100532271 /* GivingRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GivingRideCell.m; sourceTree = "<group>"; };
 		EB9ECDFE1ADC5739002A954E /* GenderPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderPickerCell.h; sourceTree = "<group>"; };
 		EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderPickerCell.m; sourceTree = "<group>"; };
 		EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestsViewController.h; sourceTree = "<group>"; };
@@ -324,6 +330,10 @@
 				EB08F8911AD4971A006C6AA5 /* InfoCell.m */,
 				EB9ECDFE1ADC5739002A954E /* GenderPickerCell.h */,
 				EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */,
+				EB99313A1ADD52E500532271 /* GettingRideCell.h */,
+				EB99313B1ADD52E500532271 /* GettingRideCell.m */,
+				EB99313D1ADD538100532271 /* GivingRideCell.h */,
+				EB99313E1ADD538100532271 /* GivingRideCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -459,9 +469,11 @@
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,
+				EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
+				EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */,
 				1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */,
 				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
