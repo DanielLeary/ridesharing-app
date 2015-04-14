@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--What do you want to do?-->
@@ -619,6 +619,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="UuC-OD-0iq" kind="show" identifier="unwindToDashBoard" id="xRb-Fd-0GJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -634,6 +637,148 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHw-iT-kgT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2293.5" y="1930.5"/>
+        </scene>
+        <!--Offer Ride Time View Controller-->
+        <scene sceneID="217-db-1B4">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="UuC-OD-0iq" customClass="OfferRideTimeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rev-R9-CK5"/>
+                        <viewControllerLayoutGuide type="bottom" id="hVq-sm-Q5h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hiV-9w-fwE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Liy-4M-fV4">
+                                <rect key="frame" x="21" y="147" width="338" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="450744112.07730103">
+                                    <!--2015-04-14 22:41:52 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9V-Lx-ROa">
+                                <rect key="frame" x="21" y="586" width="338" height="46"/>
+                                <color key="backgroundColor" red="0.064523633915780726" green="0.16209058679235955" blue="0.38422413472964945" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eyP-9Z-BqX" kind="show" identifier="OfferRideDestinationSeague" id="Xdp-Of-J8I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="timeWheel" destination="Liy-4M-fV4" id="5g5-Ui-188"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lAh-yJ-OcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2507.5" y="2876.5"/>
+        </scene>
+        <!--Destination-->
+        <scene sceneID="5N9-ll-Wsa">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="eyP-9Z-BqX" customClass="OfferRideDestinationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Am-35-LFa"/>
+                        <viewControllerLayoutGuide type="bottom" id="mJH-BT-68P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="twk-fR-xGJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZc-l9-552">
+                                <rect key="frame" x="16" y="580" width="343" height="43"/>
+                                <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="GfA-De-cIW" kind="show" identifier="OfferRideStartSeague" id="dkI-4z-UsR"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mPn-sH-zYX">
+                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
+                            </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-28-bGh">
+                                <rect key="frame" x="16" y="83" width="349" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="SearchBox:" destination="eyP-9Z-BqX" eventType="editingDidEndOnExit" id="erE-AK-q9L"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Destination" id="BI3-Km-nec"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="mapView" destination="mPn-sH-zYX" id="MRo-oK-XnH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rzO-PA-FPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3095.5" y="2883.5"/>
+        </scene>
+        <!--Start-->
+        <scene sceneID="yCZ-RS-T3y">
+            <objects>
+                <viewController id="GfA-De-cIW" customClass="OfferRideStartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hYS-DA-3x3"/>
+                        <viewControllerLayoutGuide type="bottom" id="2pr-QK-mKn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jYY-QX-kMu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-si-cdJ">
+                                <rect key="frame" x="16" y="580" width="343" height="43"/>
+                                <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Finish">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="finishButton" destination="GfA-De-cIW" eventType="touchUpInside" id="0YM-N5-0Xc"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="coh-UY-d54">
+                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
+                            </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-uK-ec9">
+                                <rect key="frame" x="16" y="83" width="349" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="SearchBox:" destination="GfA-De-cIW" eventType="editingDidEndOnExit" id="GTg-OA-OMF"/>
+                                </connections>
+                            </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-Jt-ZVJ">
+                                <rect key="frame" x="172" y="335" width="37" height="37"/>
+                                <color key="color" red="0.064936468087044619" green="0.13235576798950599" blue="0.38512305964052296" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Start" id="e6d-X2-W5e"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="activityView" destination="QkD-Jt-ZVJ" id="eO6-n8-ZOl"/>
+                        <outlet property="mapView" destination="coh-UY-d54" id="IJy-ro-KTA"/>
+                        <segue destination="Wrj-1R-NEV" kind="unwind" identifier="unwindToDashBoard" unwindAction="unWindFromOfferView:" id="vZM-s1-tJt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hh9-nr-twM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Wrj-1R-NEV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3668.5" y="2876.5"/>
         </scene>
         <!--Inbox-->
         <scene sceneID="aM1-wl-Ndp">

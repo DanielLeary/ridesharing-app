@@ -55,6 +55,10 @@
 		EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB99313E1ADD538100532271 /* GivingRideCell.m */; };
 		EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */; };
 		EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */; };
+		EE525DB91ADDCE17009DA645 /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = EE525DB81ADDCE17009DA645 /* Ride.m */; };
+		EE525DC11ADDCE26009DA645 /* OfferRideDestinationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE525DBC1ADDCE26009DA645 /* OfferRideDestinationViewController.m */; };
+		EE525DC21ADDCE26009DA645 /* OfferRideStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE525DBE1ADDCE26009DA645 /* OfferRideStartViewController.m */; };
+		EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE525DC01ADDCE26009DA645 /* OfferRideTimeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +146,14 @@
 		EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderPickerCell.m; sourceTree = "<group>"; };
 		EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestsViewController.h; sourceTree = "<group>"; };
 		EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestsViewController.m; sourceTree = "<group>"; };
+		EE525DB71ADDCE17009DA645 /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
+		EE525DB81ADDCE17009DA645 /* Ride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ride.m; sourceTree = "<group>"; };
+		EE525DBB1ADDCE26009DA645 /* OfferRideDestinationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferRideDestinationViewController.h; sourceTree = "<group>"; };
+		EE525DBC1ADDCE26009DA645 /* OfferRideDestinationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferRideDestinationViewController.m; sourceTree = "<group>"; };
+		EE525DBD1ADDCE26009DA645 /* OfferRideStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferRideStartViewController.h; sourceTree = "<group>"; };
+		EE525DBE1ADDCE26009DA645 /* OfferRideStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferRideStartViewController.m; sourceTree = "<group>"; };
+		EE525DBF1ADDCE26009DA645 /* OfferRideTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferRideTimeViewController.h; sourceTree = "<group>"; };
+		EE525DC01ADDCE26009DA645 /* OfferRideTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferRideTimeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +262,7 @@
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
 				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
 				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
+				EE525DBA1ADDCE26009DA645 /* Offer_ride */,
 				49CA704A1ABB0B14009DAC79 /* Login/Signup */,
 				EBF643F01AA9F6E40042F6F8 /* Profile */,
 				EB2536F91ADD4AE800B6A23F /* User */,
@@ -317,6 +330,8 @@
 		EB2536FA1ADD4B0800B6A23F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EE525DB71ADDCE17009DA645 /* Ride.h */,
+				EE525DB81ADDCE17009DA645 /* Ride.m */,
 				1931C6041AA8A4E800B76E8B /* Place.h */,
 				1931C6051AA8A4E800B76E8B /* Place.m */,
 			);
@@ -351,6 +366,19 @@
 				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		EE525DBA1ADDCE26009DA645 /* Offer_ride */ = {
+			isa = PBXGroup;
+			children = (
+				EE525DBB1ADDCE26009DA645 /* OfferRideDestinationViewController.h */,
+				EE525DBC1ADDCE26009DA645 /* OfferRideDestinationViewController.m */,
+				EE525DBD1ADDCE26009DA645 /* OfferRideStartViewController.h */,
+				EE525DBE1ADDCE26009DA645 /* OfferRideStartViewController.m */,
+				EE525DBF1ADDCE26009DA645 /* OfferRideTimeViewController.h */,
+				EE525DC01ADDCE26009DA645 /* OfferRideTimeViewController.m */,
+			);
+			path = Offer_ride;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,16 +498,20 @@
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,
 				EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */,
+				EE525DC11ADDCE26009DA645 /* OfferRideDestinationViewController.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
 				EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */,
 				1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */,
+				EE525DB91ADDCE17009DA645 /* Ride.m in Sources */,
 				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
+				EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
 				49CA70531ABB321D009DAC79 /* Signup2ViewController.m in Sources */,
 				49CA70501ABB1027009DAC79 /* SignupViewController.m in Sources */,
+				EE525DC21ADDCE26009DA645 /* OfferRideStartViewController.m in Sources */,
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
