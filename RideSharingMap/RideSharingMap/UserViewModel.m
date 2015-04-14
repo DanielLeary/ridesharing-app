@@ -1,30 +1,30 @@
 //
-//  ProfileViewModel.m
+//  UserViewModel.m
 //  RideSharingMap
 //
 //  Created by Han, Lin on 05/03/2015.
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import "ProfileViewModel.h"
+#import "UserViewModel.h"
 
 
-@implementation ProfileViewModel {
+@implementation UserViewModel {
     
     UserModel *user;
     
 }
 
-- (instancetype) initWithProfile:(UserModel *)currentUser {
+- (instancetype) initWithModel:(UserModel *)currentUser {
     self = [super init];
     if (self) {
         user = currentUser;
-        //self.firstNameText = user.firstName;
-        //self.lastNameText = user.lastName;
-        self.carText = user.car;
-        self.profilePictureImage = user.profilePicture;
     }
     return self;
+}
+
+- (void)updateParseUser {
+    [user updateUser];
 }
 
 
@@ -81,6 +81,10 @@
     return [user gender];
 }
 
+- (void)setGender:(NSString *)gender {
+    [user setGender:gender];
+}
+
 
 /* METHODS FOR FAV PLACES */
 
@@ -109,7 +113,7 @@
 }
 
 
-/* methods for interests */
+/* METHODS FOR INTERESTS */
 
 - (NSUInteger) getInterestsCount {
     return [user getInterestsCount];
@@ -127,6 +131,7 @@
     [user updateInterests:newInterestsArray];
 }
 
+
 /* METHODS FOR PROFILE PICTURE */
 
 - (UIImage *) getProfilePicture {
@@ -135,6 +140,57 @@
 
 - (void) setProfilePicture:(UIImage *)image {
     [user setProfilePicture:image];
+}
+
+
+/* METHODS FOR LOGIN & SIGNUP */
+
+- (BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password {
+    return ([PFUser logInWithUsername:email password:password] != NULL);
+}
+
+- (int)checkSignupErrorsForFirstName:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password {
+    if (firstName.length <2 ) {
+        return FIRSTNAME_ERROR;
+    }
+    if (lastName.length<2) {
+        return LASTNAME_ERROR;
+    }
+    //check password
+    BOOL containsLetter = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
+    BOOL containsNumber = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
+    if (!containsLetter || !containsNumber || password.length < 6) {
+        return PASSWORD_ERROR;
+    }
+    return NO_ERROR;
+}
+
+- (int)signupWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName andLastName:(NSString *)lastName {
+    //TODO deal with different types of errors while signing up
+    if (firstName.length <2 ) {
+        return FIRSTNAME_ERROR;
+    }
+    if (lastName.length<2) {
+        return LASTNAME_ERROR;
+    }
+    
+    BOOL containsLetter = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
+    BOOL containsNumber = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
+    if (!containsLetter || !containsNumber || password.length < 6) {
+        return PASSWORD_ERROR;
+    }
+    
+    PFUser *pfUser = [PFUser user];
+    pfUser.username = email;
+    pfUser.password = password;
+    
+    pfUser[@"Surname"] = lastName;
+    pfUser[@"Name"] = firstName;
+    
+    if (![pfUser signUp]){
+        return EMAIL_ERROR;
+    };
+    return NO_ERROR;
 }
 
 

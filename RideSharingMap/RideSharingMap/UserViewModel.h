@@ -1,5 +1,5 @@
 //
-//  ProfileViewModel.h
+//  UserViewModel.h
 //  RideSharingMap
 //
 //  Created by Han, Lin on 05/03/2015.
@@ -7,17 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 #import "UserModel.h"
 #import "Place.h"
 
-@interface ProfileViewModel : NSObject
+#define NO_ERROR 0
+#define FIRSTNAME_ERROR 1
+#define LASTNAME_ERROR 2
+#define EMAIL_ERROR 3
+#define PASSWORD_ERROR 4
 
-@property UIImage *profilePictureImage;
 
-@property NSString *carText;
+@interface UserViewModel : NSObject
+
+
+/* INIT METHOD */
+
+- (instancetype) initWithModel:(UserModel *)user;
 
 
 /* METHODS FOR BASIC INFO */
+
+- (void)updateParseUser;
 
 - (NSString *)getFirstName;
 
@@ -41,11 +52,7 @@
 
 - (NSString *)getGender;
 
-
-
-
-
-- (instancetype) initWithProfile:(UserModel *)user;
+/* METHODS FOR FAV PLACES */
 
 - (NSUInteger) getFavPlacesCount;
 
@@ -60,6 +67,8 @@
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
 
+/* METHODS FOR INTERESTS */
+
 - (NSUInteger) getInterestsCount;
 
 - (NSMutableArray *) getInterestsArray;
@@ -67,11 +76,25 @@
 - (bool) hasInterest:(NSString *)interest;
 
 - (void) updateInterests:(NSArray *)newInterestsArray;
-    
+
+
+/* METHODS FOR PROFILE PICTURE */
 
 - (UIImage *) getProfilePicture;
 
 - (void) setProfilePicture:(UIImage *)image;
+
+
+/* METHODS FOR LOGIN & SIGNUP */
+
+-(BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password;
+
+- (int)checkSignupErrorsForFirstName:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password;
+
+- (int)signupWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName andLastName:(NSString *)lastName;
+
+
+/* METHODS FOR GEOCODING */
 
 + (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark;
 

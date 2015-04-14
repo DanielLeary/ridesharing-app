@@ -12,7 +12,7 @@
 
 @implementation LoginNewViewController {
     
-    LoginViewModel *viewModel;
+    UserViewModel *viewModel;
     
 }
 
@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     UserModel *model = [[UserModel alloc] init];
-    viewModel = [[LoginViewModel alloc] initWithModel:model];
+    viewModel = [[UserViewModel alloc] initWithModel:model];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

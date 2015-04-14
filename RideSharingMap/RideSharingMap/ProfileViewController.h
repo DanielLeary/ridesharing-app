@@ -10,9 +10,9 @@
 #import "AddPlaceViewController.h"
 #import "EditProfileViewController.h"
 #import "InterestsViewController.h"
-#import "ProfileViewModel.h"
+#import "UserViewModel.h"
 
-@class ProfileViewModel;
+//@class ProfileViewController;
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddPlaceViewControllerDelegate, EditProfileViewControllerDelegate>
 

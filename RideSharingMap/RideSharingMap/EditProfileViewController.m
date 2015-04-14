@@ -12,7 +12,7 @@ static const int numOfRows = 6;
 
 @implementation EditProfileViewController {
     
-    ProfileViewModel *profileViewModel;
+    UserViewModel *viewModel;
     NSDateFormatter *dateFormatter;
     int pickerCellRowHeight;
     BOOL dobPickerIsShown;
@@ -24,7 +24,7 @@ static const int numOfRows = 6;
 - (void) viewDidLoad {
     [super viewDidLoad];
     UserModel *user = [[UserModel alloc] init];
-    profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
+    viewModel = [[UserViewModel alloc] initWithModel:user];
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -41,7 +41,7 @@ static const int numOfRows = 6;
 - (IBAction)saveBarButtonPressed:(id)sender {
     if (pictureChanged) {
         UIImage *newProfilePicture = self.profileImageView.image;
-        [profileViewModel setProfilePicture:newProfilePicture];
+        [viewModel setProfilePicture:newProfilePicture];
         [self.delegate updateProfileImage:self image:newProfilePicture];
     }
     if (nameChanged) {
@@ -49,8 +49,8 @@ static const int numOfRows = 6;
         NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:1 inSection:0];
         NSString *newFirstName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath0] textLabel] text];
         NSString *newLastName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath1] textLabel] text];
-        [profileViewModel setFirstName:newFirstName];
-        [profileViewModel setLastName:newLastName];
+        [viewModel setFirstName:newFirstName];
+        [viewModel setLastName:newLastName];
         [self.delegate updateProfileName:self firstName:newFirstName lastName:newLastName];
     }
     [self.navigationController popViewControllerAnimated:YES];
@@ -60,7 +60,7 @@ static const int numOfRows = 6;
     if (dobPickerIsShown) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:5 inSection:0];
         UITableViewCell *cell = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
-        [profileViewModel setDob:sender.date];
+        [viewModel setDob:sender.date];
         cell.detailTextLabel.text = [dateFormatter stringFromDate:sender.date];
     }
 }
@@ -132,12 +132,12 @@ static const int numOfRows = 6;
         if (indexPath.row == 4) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
             cell.textLabel.text = @"Date of birth:";
-            cell.detailTextLabel.text = [dateFormatter stringFromDate:[profileViewModel getDob]];
+            cell.detailTextLabel.text = [dateFormatter stringFromDate:[viewModel getDob]];
             return cell;
         } else if (indexPath.row == 5) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
             cell.textLabel.text = @"Gender:";
-            cell.detailTextLabel.text = [profileViewModel getGender];
+            cell.detailTextLabel.text = [viewModel getGender];
             return cell;
         } else {
             InfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
@@ -150,19 +150,19 @@ static const int numOfRows = 6;
     switch (indexPath.row) {
         case 0:
             cell.infoLabel.text = @"First name:";
-            cell.infoField.text = [profileViewModel getFirstName];
+            cell.infoField.text = [viewModel getFirstName];
             break;
         case 1:
             cell.infoLabel.text = @"Last name:";
-            cell.infoField.text = [profileViewModel getLastName];
+            cell.infoField.text = [viewModel getLastName];
             break;
         case 2:
             cell.infoLabel.text = @"Email:";
-            cell.infoField.text = [profileViewModel getEmail];
+            cell.infoField.text = [viewModel getEmail];
             break;
         case 3:
             cell.infoLabel.text = @"Password:";
-            cell.infoField.text = [profileViewModel getPassword];
+            cell.infoField.text = [viewModel getPassword];
             break;
     }
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginViewModel.h"
+#import "UserViewModel.h"
 #import "InfoCell.h"
 #import "GenderPickerCell.h"
 #import "InterestsViewController.h"

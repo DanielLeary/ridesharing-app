@@ -14,7 +14,7 @@ static const int genderPickerRowHeight = 140;
 
 @implementation Signup2ViewController {
     
-    LoginViewModel *viewModel;
+    UserViewModel *viewModel;
     NSArray *infoArray;
     NSArray *genderArray;
     
@@ -27,7 +27,7 @@ static const int genderPickerRowHeight = 140;
 - (void)viewDidLoad {
     [super viewDidLoad];
     UserModel *model = [[UserModel alloc] init];
-    viewModel = [[LoginViewModel alloc] initWithModel:model];
+    viewModel = [[UserViewModel alloc] initWithModel:model];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];

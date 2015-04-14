@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProfileViewModel.h"
+#import "UserViewModel.h"
 #import "infoCell.h"
 
 @class EditProfileViewController;

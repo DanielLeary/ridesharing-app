@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProfileViewModel.h"
+#import "UserViewModel.h"
 
 
 @interface InterestsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>

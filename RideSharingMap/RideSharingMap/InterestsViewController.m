@@ -12,7 +12,7 @@ static NSArray *allInterests;
 
 @implementation InterestsViewController {
     
-    ProfileViewModel *profileViewModel;
+    UserViewModel *viewModel;
     NSMutableArray *checkedInterests;
     
 }
@@ -20,11 +20,11 @@ static NSArray *allInterests;
 - (void) viewDidLoad {
     [super viewDidLoad];
     UserModel *user = [[UserModel alloc] init];
-    profileViewModel = [[ProfileViewModel alloc] initWithProfile:user];
+    viewModel = [[UserViewModel alloc] initWithModel:user];
     
     if (user) {
         allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
-        checkedInterests = [profileViewModel getInterestsArray];
+        checkedInterests = [viewModel getInterestsArray];
     }
 }
 
@@ -32,10 +32,10 @@ static NSArray *allInterests;
 /* METHODS FOR UI */
 
 - (IBAction)savePressed:(UIBarButtonItem *)sender {
-    [profileViewModel updateInterests:checkedInterests];
+    [viewModel updateInterests:checkedInterests];
     NSLog(@"in table");
     NSLog(@"interests: %@", checkedInterests);
-    NSLog(@"count: %lu", (unsigned long)[profileViewModel getInterestsCount]);
+    NSLog(@"count: %lu", (unsigned long)[viewModel getInterestsCount]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -54,7 +54,7 @@ static NSArray *allInterests;
     }
     cell.textLabel.text = [allInterests objectAtIndex:indexPath.row];
     // assign checkmarks to cells
-    if ([profileViewModel hasInterest:cell.textLabel.text]) {
+    if ([viewModel hasInterest:cell.textLabel.text]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;

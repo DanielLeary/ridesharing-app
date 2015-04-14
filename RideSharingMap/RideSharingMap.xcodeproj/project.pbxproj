@@ -10,7 +10,7 @@
 		191899191A9A68B200C73208 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191899181A9A68B200C73208 /* ProfileViewController.m */; };
 		1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918991B1A9A711D00C73208 /* AddPlaceViewController.m */; };
 		1931C6061AA8A4E800B76E8B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6051AA8A4E800B76E8B /* Place.m */; };
-		1931C6091AA8AAC900B76E8B /* ProfileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */; };
+		1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6081AA8AAC900B76E8B /* UserViewModel.m */; };
 		1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C60B1AA8B84900B76E8B /* UserModel.m */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
@@ -22,7 +22,6 @@
 		49CA705A1ABB3554009DAC79 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70571ABB3554009DAC79 /* checkbox-pressed.png */; };
 		49CA705B1ABB3554009DAC79 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70581ABB3554009DAC79 /* checkbox.png */; };
 		6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74423E1A9E08B9006ED680 /* InitialViewController.m */; };
-		6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */; };
 		6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */; };
 		6BA7258F1A9B71CF0039DCDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */; };
 		6BA725911A9B71D60039DCDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA725901A9B71D60039DCDC /* CoreGraphics.framework */; };
@@ -73,8 +72,8 @@
 		1918991B1A9A711D00C73208 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
 		1931C6041AA8A4E800B76E8B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		1931C6051AA8A4E800B76E8B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewModel.h; sourceTree = "<group>"; };
-		1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewModel.m; sourceTree = "<group>"; };
+		1931C6071AA8AAC900B76E8B /* UserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewModel.h; sourceTree = "<group>"; };
+		1931C6081AA8AAC900B76E8B /* UserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewModel.m; sourceTree = "<group>"; };
 		1931C60A1AA8B84900B76E8B /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		1931C60B1AA8B84900B76E8B /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -90,8 +89,6 @@
 		49CA70581ABB3554009DAC79 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		6B74423D1A9E08B9006ED680 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		6B74423E1A9E08B9006ED680 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
-		6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
-		6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
 		6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6BA725901A9B71D60039DCDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -177,8 +174,6 @@
 		49CA704A1ABB0B14009DAC79 /* Login/Signup */ = {
 			isa = PBXGroup;
 			children = (
-				6B87AB7A1AA75E7900DAF46F /* LoginViewModel.h */,
-				6B87AB7B1AA75E7900DAF46F /* LoginViewModel.m */,
 				49CA704B1ABB0B2D009DAC79 /* LoginNewViewController.h */,
 				49CA704C1ABB0B2D009DAC79 /* LoginNewViewController.m */,
 				49CA704E1ABB1027009DAC79 /* SignupViewController.h */,
@@ -244,14 +239,16 @@
 		7EF361BF1A87C4EC0004D0FC /* RideSharingMap */ = {
 			isa = PBXGroup;
 			children = (
+				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
 				7EF361C41A87C4EC0004D0FC /* AppDelegate.h */,
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
 				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
 				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
 				49CA704A1ABB0B14009DAC79 /* Login/Signup */,
-				EB9ECE011ADC746D002A954E /* Cells */,
 				EBF643F01AA9F6E40042F6F8 /* Profile */,
-				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
+				EB2536F91ADD4AE800B6A23F /* User */,
+				EB2536FA1ADD4B0800B6A23F /* Classes */,
+				EB9ECE011ADC746D002A954E /* Cells */,
 				C5A5423B1A9FB317004A4303 /* SettingsViewController.h */,
 				C5A5423C1A9FB317004A4303 /* SettingsViewController.m */,
 				C5A542381A9FB2DD004A4303 /* DashboardViewController.h */,
@@ -300,6 +297,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EB2536F91ADD4AE800B6A23F /* User */ = {
+			isa = PBXGroup;
+			children = (
+				1931C6071AA8AAC900B76E8B /* UserViewModel.h */,
+				1931C6081AA8AAC900B76E8B /* UserViewModel.m */,
+				1931C60A1AA8B84900B76E8B /* UserModel.h */,
+				1931C60B1AA8B84900B76E8B /* UserModel.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		EB2536FA1ADD4B0800B6A23F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1931C6041AA8A4E800B76E8B /* Place.h */,
+				1931C6051AA8A4E800B76E8B /* Place.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		EB9ECE011ADC746D002A954E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,12 +339,6 @@
 				EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */,
 				1918991A1A9A711D00C73208 /* AddPlaceViewController.h */,
 				1918991B1A9A711D00C73208 /* AddPlaceViewController.m */,
-				1931C6071AA8AAC900B76E8B /* ProfileViewModel.h */,
-				1931C6081AA8AAC900B76E8B /* ProfileViewModel.m */,
-				1931C60A1AA8B84900B76E8B /* UserModel.h */,
-				1931C60B1AA8B84900B76E8B /* UserModel.m */,
-				1931C6041AA8A4E800B76E8B /* Place.h */,
-				1931C6051AA8A4E800B76E8B /* Place.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -444,7 +455,6 @@
 				EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */,
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
-				6B87AB7C1AA75E7900DAF46F /* LoginViewModel.m in Sources */,
 				EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
@@ -452,7 +462,7 @@
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
-				1931C6091AA8AAC900B76E8B /* ProfileViewModel.m in Sources */,
+				1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */,
 				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
