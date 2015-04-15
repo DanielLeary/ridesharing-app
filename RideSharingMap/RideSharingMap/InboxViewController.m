@@ -53,8 +53,12 @@
         cell.declinebutton.tag = indexPath.row;
         
         // dispatch button taps to the below accept/declineTapped methods, with tag set to indexpath row
-        [cell.acceptbutton addTarget:self action:@selector(acceptTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.declinebutton addTarget:self action:@selector(declineTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.acceptbutton addTarget:self
+                              action:@selector(acceptTapped:)
+                    forControlEvents:UIControlEventTouchUpInside];
+        [cell.declinebutton addTarget:self
+                               action:@selector(declineTapped:)
+                     forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
     }

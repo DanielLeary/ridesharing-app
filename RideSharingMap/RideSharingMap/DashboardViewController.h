@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GivingRideCell.h"
 #import "GettingRideCell.h"
+#import "Journey.h"
+#import <Parse/Parse.h>
 
 @interface DashboardViewController : UIViewController
 

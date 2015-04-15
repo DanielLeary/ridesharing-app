@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "InboxAccepted.h"
 #import "InboxRequest.h"
+#import "Journey.h"
+#import <Parse/Parse.h>
+
 
 @interface InboxViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
