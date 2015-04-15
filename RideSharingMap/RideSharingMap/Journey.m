@@ -14,7 +14,8 @@
 -(id)init {
     self = [super init];
     if (self) {
-        CLLocationCoordinate2D emptyCoordinates = {0, 0};
+        CLLocationDegrees empty = -1000;
+        CLLocationCoordinate2D emptyCoordinates = {empty, empty};
         self.journeyDateTime = [NSDate date];
         self.startCoordinate = emptyCoordinates;
         self.endCoordinate = emptyCoordinates;
@@ -44,6 +45,7 @@
     journey[@"driverEmail"] = self.driverEmail;
     
     journey[@"passengerEmail"] = self.passengerEmail;
+    
     
     [journey saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {

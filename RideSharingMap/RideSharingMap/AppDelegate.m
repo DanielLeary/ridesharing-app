@@ -22,7 +22,7 @@
                   clientKey:@"QBDLxnKEkvCSJugxfHY3hr3kT9gn55JbVWMcpWU2"];
     
     //hardcoded a user so that user = [PFUser currentUser] returns someone in simulator
-    [PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
+    //[PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
     
     self.isLoggedIn = NO; //need to get from parse later
 
