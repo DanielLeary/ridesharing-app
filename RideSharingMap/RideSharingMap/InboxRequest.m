@@ -1,14 +1,14 @@
 //
-//  DashboardTableViewCell.m
+//  InboxRequest.m
 //  RideSharingMap
 //
-//  Created by Daniel Leary on 26/02/2015.
+//  Created by Daniel Leary on 15/04/2015.
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import "DashboardTableViewCell.h"
+#import "InboxRequest.h"
 
-@implementation DashboardTableViewCell
+@implementation InboxRequest
 
 - (void)awakeFromNib {
     // Initialization code

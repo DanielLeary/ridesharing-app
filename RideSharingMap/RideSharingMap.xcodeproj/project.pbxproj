@@ -45,8 +45,8 @@
 		C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542361A9FB2B3004A4303 /* InboxViewController.m */; };
 		C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542391A9FB2DD004A4303 /* DashboardViewController.m */; };
 		C5A5423D1A9FB317004A4303 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A5423C1A9FB317004A4303 /* SettingsViewController.m */; };
-		C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542421A9FC034004A4303 /* DashboardTableViewController.m */; };
-		C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */; };
+		C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA054B1ADE77AE007F2FD5 /* InboxAccepted.m */; };
+		C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */; };
 		C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EB585B1AA78E6700A081C8 /* DashboardMV.m */; };
 		EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */; };
 		EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB08F8911AD4971A006C6AA5 /* InfoCell.m */; };
@@ -127,10 +127,10 @@
 		C5A542391A9FB2DD004A4303 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		C5A5423B1A9FB317004A4303 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C5A5423C1A9FB317004A4303 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		C5A542411A9FC034004A4303 /* DashboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardTableViewController.h; path = ../DashboardTableViewController.h; sourceTree = "<group>"; };
-		C5A542421A9FC034004A4303 /* DashboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardTableViewController.m; path = ../DashboardTableViewController.m; sourceTree = "<group>"; };
-		C5A542441A9FDD06004A4303 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewCell.h; sourceTree = "<group>"; };
-		C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewCell.m; sourceTree = "<group>"; };
+		C5EA054A1ADE77AE007F2FD5 /* InboxAccepted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxAccepted.h; sourceTree = "<group>"; };
+		C5EA054B1ADE77AE007F2FD5 /* InboxAccepted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxAccepted.m; sourceTree = "<group>"; };
+		C5EA054D1ADE77D1007F2FD5 /* InboxRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxRequest.h; sourceTree = "<group>"; };
+		C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxRequest.m; sourceTree = "<group>"; };
 		C5EB585A1AA78E6700A081C8 /* DashboardMV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardMV.h; sourceTree = "<group>"; };
 		C5EB585B1AA78E6700A081C8 /* DashboardMV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardMV.m; sourceTree = "<group>"; };
 		EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-profile-picture.png"; sourceTree = "<group>"; };
@@ -272,12 +272,8 @@
 				C5A5423C1A9FB317004A4303 /* SettingsViewController.m */,
 				C5A542381A9FB2DD004A4303 /* DashboardViewController.h */,
 				C5A542391A9FB2DD004A4303 /* DashboardViewController.m */,
-				C5A542411A9FC034004A4303 /* DashboardTableViewController.h */,
-				C5A542421A9FC034004A4303 /* DashboardTableViewController.m */,
 				C5EB585A1AA78E6700A081C8 /* DashboardMV.h */,
 				C5EB585B1AA78E6700A081C8 /* DashboardMV.m */,
-				C5A542441A9FDD06004A4303 /* DashboardTableViewCell.h */,
-				C5A542451A9FDD06004A4303 /* DashboardTableViewCell.m */,
 				C5A542351A9FB2B3004A4303 /* InboxViewController.h */,
 				C5A542361A9FB2B3004A4303 /* InboxViewController.m */,
 				6B74423D1A9E08B9006ED680 /* InitialViewController.h */,
@@ -349,6 +345,10 @@
 				EB99313B1ADD52E500532271 /* GettingRideCell.m */,
 				EB99313D1ADD538100532271 /* GivingRideCell.h */,
 				EB99313E1ADD538100532271 /* GivingRideCell.m */,
+				C5EA054A1ADE77AE007F2FD5 /* InboxAccepted.h */,
+				C5EA054B1ADE77AE007F2FD5 /* InboxAccepted.m */,
+				C5EA054D1ADE77D1007F2FD5 /* InboxRequest.h */,
+				C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -492,11 +492,11 @@
 			files = (
 				EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */,
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
+				C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
 				EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
-				C5A542461A9FDD06004A4303 /* DashboardTableViewCell.m in Sources */,
 				EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */,
 				EE525DC11ADDCE26009DA645 /* OfferRideDestinationViewController.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
@@ -505,8 +505,8 @@
 				EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */,
 				1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */,
 				EE525DB91ADDCE17009DA645 /* Ride.m in Sources */,
-				C5A542431A9FC034004A4303 /* DashboardTableViewController.m in Sources */,
 				EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */,
+				C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
 				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
 				49CA70531ABB321D009DAC79 /* Signup2ViewController.m in Sources */,

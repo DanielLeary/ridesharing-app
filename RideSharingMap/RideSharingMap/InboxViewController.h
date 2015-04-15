@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InboxAccepted.h"
+#import "InboxRequest.h"
 
 @interface InboxViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
