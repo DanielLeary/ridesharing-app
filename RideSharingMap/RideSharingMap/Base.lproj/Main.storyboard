@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--What do you want to do?-->
@@ -1089,7 +1089,6 @@
                                 </state>
                                 <connections>
                                     <action selector="nextPressed:" destination="MSb-vX-5jc" eventType="touchUpInside" id="3CT-5O-5cZ"/>
-                                    <segue destination="2vN-ZI-FFN" kind="show" identifier="gotoSignup2" id="gJ7-fR-qKf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1253,14 +1252,14 @@
                         <viewControllerLayoutGuide type="bottom" id="h7l-1m-6nD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ka5-Q8-ac4">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank-profile-picture.png" translatesAutoresizingMaskIntoConstraints="NO" id="qDH-Ak-CkN">
-                                <rect key="frame" x="16" y="20" width="100" height="100"/>
+                                <rect key="frame" x="16" y="28" width="100" height="100"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoS-WV-SdC">
-                                <rect key="frame" x="135" y="20" width="224" height="40"/>
+                                <rect key="frame" x="135" y="28" width="224" height="40"/>
                                 <color key="backgroundColor" red="0.35091376120000001" green="0.84476642219999998" blue="0.4899011291" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                 <state key="normal" title="Add profile picture">
@@ -1272,7 +1271,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k84-XL-nV3">
-                                <rect key="frame" x="16" y="543" width="343" height="40"/>
+                                <rect key="frame" x="16" y="551" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Sign up">
@@ -1284,7 +1283,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yng-mI-NSs">
-                                <rect key="frame" x="16" y="140" width="343" height="386"/>
+                                <rect key="frame" x="16" y="148" width="343" height="386"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="infoCellWithPicker" textLabel="ZzZ-Wy-717" detailTextLabel="2nq-D6-flf" rowHeight="44" style="IBUITableViewCellStyleValue2" id="J20-42-va8" customClass="InfoCell">

@@ -34,7 +34,7 @@
 - (IBAction)nextPressed:(UIButton *)sender {
     NSString *errorText;
     //check for errors
-    int error = [viewModel checkSignupErrorsForFirstName:self.firstNameField.text andLastName:self.lastNameField.text andPassword:self.passwordField.text];
+    int error = [viewModel signupWithEmail:self.emailField.text password:self.passwordField.text firstName:self.firstNameField.text andLastName:self.lastNameField.text];
     /*
     int error = [viewModel sign_up:self.emailField.text
                                   :self.passwordField.text
@@ -62,19 +62,22 @@
         case PASSWORD_ERROR:
             signup_succ = false;
             errorText = @"Password must contain at least one letter and one number, and be at least 6 characters long.";
+            break;
         default:
             signup_succ = false;
             break;
     }
     self.errorLabel.text = errorText;
+
     
     //no errors so perform segue
-    if (signup_succ) {
-        [self shouldPerformSegueWithIdentifier:@"gotoSignup2" sender:self];
-        /*
+   if (signup_succ) {
+       //[self shouldPerformSegueWithIdentifier:@"gotoSignup2" sender:self];
+       
         Signup2ViewController *signup2VC = [self.storyboard instantiateViewControllerWithIdentifier:@"Signup2ViewController"];
-        [self.navigationController pushViewController:signup2VC animated:YES];*/
+        [self.navigationController pushViewController:signup2VC animated:YES];
     }
+    
 }
 
 /*
