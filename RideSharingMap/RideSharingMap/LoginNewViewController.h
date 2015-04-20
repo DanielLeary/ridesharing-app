@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserViewModel.h"
+#import "AppDelegate.h"
 
 @interface LoginNewViewController : UIViewController
 

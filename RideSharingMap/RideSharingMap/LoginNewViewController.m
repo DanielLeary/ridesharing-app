@@ -29,10 +29,14 @@
 }
 
 - (IBAction)login:(id)sender {
-    //if (![viewModel log_in:username.text :password.text])
+    if (![viewModel loginwithEmail:self.emailField.text andPassword:self.passwordField.text]){
         self.error_label.text = @"Incorrect email or password";
-    //else
+    } else {
         self.error_label.text = @"Logged in successfully";
+        
+        AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
+        appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+    }
 }
 
 
