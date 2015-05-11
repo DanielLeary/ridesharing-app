@@ -19,6 +19,7 @@
 
 
 // profile UI
+@property (weak, nonatomic) IBOutlet UILabel *interestsLabel;
 
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 

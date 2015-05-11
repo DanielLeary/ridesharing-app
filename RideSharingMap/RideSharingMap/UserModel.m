@@ -15,6 +15,7 @@
 #define usernameString @"username"
 #define genderString @"Gender"
 #define pictureString @"ProfilePicture"
+#define interestArray @"Interests"
 
 @implementation UserModel {
     
@@ -49,6 +50,9 @@
             self.lastName = user[surnameString];
             self.car = user[carString];
             self.position = user[positionString];
+            [interestsArray removeAllObjects];
+            [interestsArray addObjectsFromArray:user[interestArray]];
+            
             
             //NSString *pathForBlankProfilePicture = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"png"];
             //self.profilePicture = [[UIImage alloc] initWithContentsOfFile:pathForBlankProfilePicture];
@@ -121,44 +125,43 @@
 /* METHODS FOR INTERESTS */
 
 - (NSUInteger) getInterestsCount {
-    return [interestsArray count];
+    return [user[interestArray] count];
 }
 
 - (NSMutableArray *) getInterestsArray {
-    return interestsArray;
+    return user[interestArray];
 }
 
 - (bool) hasInterest:(NSString *)interest {
-    return [interestsArray containsObject:interest];
+    //interestsArray = user[interestArray];
+    return [user[interestArray] containsObject:interest];
 }
 
 - (void) updateInterests:(NSArray *)newInterestArray {
-    [interestsArray removeAllObjects];
-    [interestsArray addObjectsFromArray:newInterestArray];
+    //[interestsArray removeAllObjects];
+    //[interestsArray addObjectsFromArray:newInterestArray];
+    user[interestArray] = newInterestArray;
+    [user save];
+    
 }
 
 
 /* methods for profile picture */
 
-/*
-- (void) setProfilePicture:(UIImage *)image {
-    self.profilePicture = image;
-    _profilePicture = image;
-    NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            if (succeeded) {
-                PFUser *user = [PFUser currentUser];
-                if (user != nil) {
-                    user[pictureString] = imageFile;
-                    [user saveInBackground];
-                }
-            }
-        } else {
-            // Handle error
-        }
-    }];
-}*/
+-(NSData*) getPicture{
+    PFFile* file = user[pictureString];
+    NSData *imageData = [file getData];
+    return imageData;
+}
+
+-(void) setProfilePicture:(UIImage *)profilePicture{
+    NSData *imageData = UIImagePNGRepresentation(profilePicture);
+    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    
+    user[pictureString] = imageFile;
+    [user save];
+
+}
+
 
 @end

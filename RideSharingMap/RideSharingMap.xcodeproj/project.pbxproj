@@ -32,6 +32,11 @@
 		6BA7259B1A9B71FA0039DCDC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7259A1A9B71FA0039DCDC /* SystemConfiguration.framework */; };
 		6BA7259D1A9B72000039DCDC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7259C1A9B72000039DCDC /* libz.dylib */; };
 		6BA7259F1A9B72080039DCDC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7259E1A9B72080039DCDC /* libsqlite3.dylib */; };
+		7E1D70071B00CC3F0087A5BB /* RequestRideTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D70061B00CC3F0087A5BB /* RequestRideTimeViewController.m */; };
+		7E1D70111B00E0940087A5BB /* RequestRideStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D70101B00E0940087A5BB /* RequestRideStartViewController.m */; };
+		7E1D70171B00EFC20087A5BB /* Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D70161B00EFC20087A5BB /* Requests.m */; };
+		7E4E14331B0102CD00F3652B /* RequestRideCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E14321B0102CD00F3652B /* RequestRideCompleteViewController.m */; };
+		7E4E14361B0102E300F3652B /* RequestRideDestinationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E14351B0102E300F3652B /* RequestRideDestinationViewController.m */; };
 		7EF361C31A87C4EC0004D0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C21A87C4EC0004D0FC /* main.m */; };
 		7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C51A87C4EC0004D0FC /* AppDelegate.m */; };
 		7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */; };
@@ -106,6 +111,16 @@
 		6BA7259A1A9B71FA0039DCDC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6BA7259C1A9B72000039DCDC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6BA7259E1A9B72080039DCDC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7E1D70051B00CC3F0087A5BB /* RequestRideTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideTimeViewController.h; sourceTree = "<group>"; };
+		7E1D70061B00CC3F0087A5BB /* RequestRideTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideTimeViewController.m; sourceTree = "<group>"; };
+		7E1D700F1B00E0940087A5BB /* RequestRideStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideStartViewController.h; sourceTree = "<group>"; };
+		7E1D70101B00E0940087A5BB /* RequestRideStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideStartViewController.m; sourceTree = "<group>"; };
+		7E1D70151B00EFC20087A5BB /* Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Requests.h; sourceTree = "<group>"; };
+		7E1D70161B00EFC20087A5BB /* Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Requests.m; sourceTree = "<group>"; };
+		7E4E14311B0102CD00F3652B /* RequestRideCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideCompleteViewController.h; sourceTree = "<group>"; };
+		7E4E14321B0102CD00F3652B /* RequestRideCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideCompleteViewController.m; sourceTree = "<group>"; };
+		7E4E14341B0102E300F3652B /* RequestRideDestinationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideDestinationViewController.h; sourceTree = "<group>"; };
+		7E4E14351B0102E300F3652B /* RequestRideDestinationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideDestinationViewController.m; sourceTree = "<group>"; };
 		7EF361BD1A87C4EC0004D0FC /* RideSharingMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideSharingMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF361C11A87C4EC0004D0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EF361C21A87C4EC0004D0FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -237,6 +252,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7E1D70081B00CC4A0087A5BB /* Request_ride */ = {
+			isa = PBXGroup;
+			children = (
+				7E1D70051B00CC3F0087A5BB /* RequestRideTimeViewController.h */,
+				7E1D70061B00CC3F0087A5BB /* RequestRideTimeViewController.m */,
+				7E1D700F1B00E0940087A5BB /* RequestRideStartViewController.h */,
+				7E1D70101B00E0940087A5BB /* RequestRideStartViewController.m */,
+				7E4E14341B0102E300F3652B /* RequestRideDestinationViewController.h */,
+				7E4E14351B0102E300F3652B /* RequestRideDestinationViewController.m */,
+				7E4E14311B0102CD00F3652B /* RequestRideCompleteViewController.h */,
+				7E4E14321B0102CD00F3652B /* RequestRideCompleteViewController.m */,
+			);
+			name = Request_ride;
+			sourceTree = "<group>";
+		};
 		7EF361B41A87C4EC0004D0FC = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +295,7 @@
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
 				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
 				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
+				7E1D70081B00CC4A0087A5BB /* Request_ride */,
 				EE525DBA1ADDCE26009DA645 /* Offer_ride */,
 				49CA704A1ABB0B14009DAC79 /* Login/Signup */,
 				EBF643F01AA9F6E40042F6F8 /* Profile */,
@@ -333,6 +364,8 @@
 				C5D9603B1ADEB631002DF274 /* Journey.m */,
 				EE525DB71ADDCE17009DA645 /* Ride.h */,
 				EE525DB81ADDCE17009DA645 /* Ride.m */,
+				7E1D70151B00EFC20087A5BB /* Requests.h */,
+				7E1D70161B00EFC20087A5BB /* Requests.m */,
 				1931C6041AA8A4E800B76E8B /* Place.h */,
 				1931C6051AA8A4E800B76E8B /* Place.m */,
 			);
@@ -499,6 +532,7 @@
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
+				7E1D70111B00E0940087A5BB /* RequestRideStartViewController.m in Sources */,
 				EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
@@ -508,7 +542,9 @@
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
 				EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */,
+				7E1D70071B00CC3F0087A5BB /* RequestRideTimeViewController.m in Sources */,
 				1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */,
+				7E1D70171B00EFC20087A5BB /* Requests.m in Sources */,
 				EE525DB91ADDCE17009DA645 /* Ride.m in Sources */,
 				EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */,
 				C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */,
@@ -518,9 +554,11 @@
 				49CA70501ABB1027009DAC79 /* SignupViewController.m in Sources */,
 				EE525DC21ADDCE26009DA645 /* OfferRideStartViewController.m in Sources */,
 				C5D9603C1ADEB631002DF274 /* Journey.m in Sources */,
+				7E4E14331B0102CD00F3652B /* RequestRideCompleteViewController.m in Sources */,
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
+				7E4E14361B0102E300F3652B /* RequestRideDestinationViewController.m in Sources */,
 				C5A5423D1A9FB317004A4303 /* SettingsViewController.m in Sources */,
 				1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
