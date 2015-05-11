@@ -239,6 +239,7 @@ static const int genderPickerRowHeight = 140;
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    [viewModel setProfilePicture:chosenImage];
     self.imageView.image = chosenImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
