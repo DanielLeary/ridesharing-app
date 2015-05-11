@@ -16,6 +16,7 @@
 #define genderString @"Gender"
 #define pictureString @"ProfilePicture"
 #define interestArray @"Interests"
+#define passwordString @"password"
 
 @implementation UserModel {
     
@@ -40,22 +41,21 @@
     if (self) {
         user = [PFUser currentUser];
         if (user) {
-            Place *home = [[Place alloc] initWithName:@"Home"];
-            Place *work = [[Place alloc] initWithName:@"Work"];
-            
-            favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
-            interestsArray = [[NSMutableArray alloc] init];
-            
             self.firstName = user[firstnameString];
             self.lastName = user[surnameString];
+            self.username = user[usernameString];
+            self.password = user[passwordString];
+            
             self.car = user[carString];
             self.position = user[positionString];
+
+            Place *home = [[Place alloc] initWithName:@"Home"];
+            Place *work = [[Place alloc] initWithName:@"Work"];
+            favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
+            
+            interestsArray = [[NSMutableArray alloc] init];
             [interestsArray removeAllObjects];
             [interestsArray addObjectsFromArray:user[interestArray]];
-            
-            
-            //NSString *pathForBlankProfilePicture = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"png"];
-            //self.profilePicture = [[UIImage alloc] initWithContentsOfFile:pathForBlankProfilePicture];
         }
     }
     return self;
@@ -133,13 +133,10 @@
 }
 
 - (bool) hasInterest:(NSString *)interest {
-    //interestsArray = user[interestArray];
     return [user[interestArray] containsObject:interest];
 }
 
 - (void) updateInterests:(NSArray *)newInterestArray {
-    //[interestsArray removeAllObjects];
-    //[interestsArray addObjectsFromArray:newInterestArray];
     user[interestArray] = newInterestArray;
     [user save];
     

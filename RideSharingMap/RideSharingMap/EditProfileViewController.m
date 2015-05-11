@@ -25,6 +25,7 @@ static const int numOfRows = 6;
     [super viewDidLoad];
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
+    self.profileImageView.image = [UIImage imageWithData:[viewModel getPicture]];
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -64,7 +65,6 @@ static const int numOfRows = 6;
         cell.detailTextLabel.text = [dateFormatter stringFromDate:sender.date];
     }
 }
-
 
 
 /* METHODS FOR PROFILE PICTURE */
@@ -157,8 +157,8 @@ static const int numOfRows = 6;
             cell.infoField.text = [viewModel getLastName];
             break;
         case 2:
-            cell.infoLabel.text = @"Email:";
-            cell.infoField.text = [viewModel getEmail];
+            cell.infoLabel.text = @"Username:";
+            cell.infoField.text = [viewModel getUsername];
             break;
         case 3:
             cell.infoLabel.text = @"Password:";

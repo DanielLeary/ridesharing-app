@@ -37,11 +37,7 @@
 
 // table UI
 
-@property (weak, nonatomic) IBOutlet UIButton *editPlacesButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *addNewPlaceButton;
 
-
-- (IBAction)inputCar:(id)sender;
 
 @end
