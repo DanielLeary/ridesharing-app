@@ -920,6 +920,9 @@
                                     <action selector="finishButton" destination="GfA-De-cIW" eventType="touchUpInside" id="0YM-N5-0Xc"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="coh-UY-d54">
+                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
+                            </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-uK-ec9">
                                 <rect key="frame" x="13" y="102" width="349" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -928,19 +931,16 @@
                                     <action selector="SearchBox:" destination="GfA-De-cIW" eventType="editingDidEndOnExit" id="GTg-OA-OMF"/>
                                 </connections>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-Jt-ZVJ">
-                                <rect key="frame" x="172" y="335" width="37" height="37"/>
-                                <color key="color" red="0.064936468087044619" green="0.13235576798950599" blue="0.38512305964052296" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a Departure Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAT-eZ-i3S">
                                 <rect key="frame" x="13" y="78" width="226" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="coh-UY-d54">
-                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
-                            </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-Jt-ZVJ">
+                                <rect key="frame" x="169" y="335" width="37" height="37"/>
+                                <color key="color" red="0.064936468087044619" green="0.13235576798950599" blue="0.38512305964052296" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -952,7 +952,7 @@
                         <outlet property="activityView" destination="QkD-Jt-ZVJ" id="eO6-n8-ZOl"/>
                         <outlet property="mapView" destination="coh-UY-d54" id="IJy-ro-KTA"/>
                         <segue destination="Wrj-1R-NEV" kind="unwind" identifier="unwindToDashBoard" unwindAction="unWindFromOfferView:" id="vZM-s1-tJt"/>
-                        <segue destination="u3Y-8v-rT8" kind="show" identifier="" id="SQ2-gR-tz1"/>
+                        <segue destination="u3Y-8v-rT8" kind="show" identifier="listOfRides" id="SQ2-gR-tz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hh9-nr-twM" userLabel="First Responder" sceneMemberID="firstResponder"/>

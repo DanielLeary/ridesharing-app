@@ -9,7 +9,11 @@
 #import "Ride.h"
 #import <Parse/Parse.h>
 
-#define journe
+#define JOURNEY @"Offers"
+#define STARTPOS @"start"
+#define ENDPOS @"end"
+#define TIME @"dateTimeStart"
+
 
 static const CLLocationDegrees empty = -1000;
 static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
@@ -32,30 +36,33 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 }
 
 -(void)uploadToCloudWithBlock:(void (^) (BOOL, NSError*))block {
-    PFObject *ride = [PFObject objectWithClassName:@"Offers"];
+    PFObject *ride = [PFObject objectWithClassName:JOURNEY];
     
     // Creates PF geopoint for the start location, this can be querried
     PFGeoPoint *start = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude
                                                longitude:self.startCordinate.longitude];
-    ride[@"start"] = start;
+    ride[STARTPOS] = start;
     
     // Convert end double cordintes into NSnumber objects and store in array
     NSArray * end = [NSArray arrayWithObjects:[NSNumber numberWithDouble:self.endCordinate.latitude],
                      [NSNumber numberWithDouble:self.endCordinate.longitude], nil];
-    ride[@"end"] = end;
-    ride[@"dateTimeStart"] = self.dateTimeStart;
+    ride[ENDPOS] = end;
+    ride[TIME] = self.dateTimeStart;
     [ride saveInBackgroundWithBlock:block];
 }
 
 - (void)queryRidesWithBlock:(void (^)(bool, NSError*))block {
     PFGeoPoint* start = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
-    PFQuery* query = [PFQuery queryWithClassName:@"Offers"];
+    PFQuery* query = [PFQuery queryWithClassName:JOURNEY];
     
     // Search for Offers that are within 0.2 Miles of Pickup point
-    [query whereKey:@"start" nearGeoPoint:start withinMiles:0.2];
+    //[query whereKey:@"start" nearGeoPoint:start withinMiles:0.2];
     NSNumber* endLatitude = [NSNumber numberWithFloat:self.endCordinate.latitude];
     NSNumber* endLongitude = [NSNumber numberWithFloat:self.endCordinate.longitude];
-    [query whereKey:@"end" containsAllObjectsInArray:@[endLatitude, endLongitude]];
+    [query whereKey:ENDPOS containsAllObjectsInArray:@[endLatitude, endLongitude]];
+    
+    // Need to find adequate times
+    //[query whereKey:TIME ];
     
     // Limit results of query to 10
     query.limit = 10;

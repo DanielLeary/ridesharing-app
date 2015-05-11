@@ -8,6 +8,7 @@
 
 #import "OfferRideStartViewController.h"
 #import "OfferRideDestinationViewController.h"
+#import <Parse/Parse.h>
 
 
 
@@ -129,13 +130,13 @@
     //Start spinning and don't allow interaction
     [self.activityView startAnimating];
     [self.view setUserInteractionEnabled:NO];
+    
     //[self navigationController setUserInteractionEnabled:NO];
     
     //Set the start location to current pin location
     self.ride.startCordinate = self.pin.coordinate;
     
     // creat alert view controller to display upload information
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Offer Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
     
     // stays on page
     UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
@@ -150,7 +151,8 @@
     
         // This block runs after parse completes or fails upload to cloud
         void(^displayInfoBlock)(BOOL, NSError*) = ^(BOOL succeded, NSError* error){
-            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Offer Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
+
             if(!succeded) {
                 alert.message = @"Could not upload to server, please check your internet connection and try again";
                 
@@ -182,14 +184,30 @@
     } else {
         // run if requesting ride
         void(^retrieveObjBlock)(BOOL, NSError*) = ^(BOOL success, NSError* error) {
+            
+            
+            
             if (success) {
+                
+                NSLog(@"Success in retrieving block");
+                NSLog(@"Size of results: %lu", (unsigned long)[self.ride.rideOffers count]);
+                for (PFObject* object in self.ride.rideOffers) {
+                    NSLog(@"found %@", object.objectId);
+                }
+                
                 // Run seague to relevant view controller
-                [self performSegueWithIdentifier:<#(NSString *)#> sender:self]
+                [self performSegueWithIdentifier:@"listOfRides" sender:self];
             } else {
                 // Display alert that couldn't upload
+                NSString* string = @"Could not connect to server, please check your internet connection and try again";
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Request Ride" message:string preferredStyle:UIAlertControllerStyleAlert];
                 [alert addAction:retry];
                 [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
             }
+            [self.activityView stopAnimating];
+            [self.view setUserInteractionEnabled:YES];
+            
             
         };
         [self.ride queryRidesWithBlock:retrieveObjBlock];
@@ -197,6 +215,13 @@
         
     }
     
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"listOfRides"]) {
+        // Initialise values for table view controller
+    }
 }
 
 - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer
