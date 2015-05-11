@@ -9,6 +9,8 @@
 #import "Ride.h"
 #import <Parse/Parse.h>
 
+#define journe
+
 static const CLLocationDegrees empty = -1000;
 static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 
@@ -24,6 +26,7 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
         self.dateTimeStart = date;
         self.startCordinate = emptyCoordinates;
         self.endCordinate = emptyCoordinates;
+        self.offerRide = nil;
     }
     return self;
 }
@@ -42,6 +45,32 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     ride[@"end"] = end;
     ride[@"dateTimeStart"] = self.dateTimeStart;
     [ride saveInBackgroundWithBlock:block];
+}
+
+- (void)queryRidesWithBlock:(void (^)(bool, NSError*))block {
+    PFGeoPoint* start = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
+    PFQuery* query = [PFQuery queryWithClassName:@"Offers"];
+    
+    // Search for Offers that are within 0.2 Miles of Pickup point
+    [query whereKey:@"start" nearGeoPoint:start withinMiles:0.2];
+    NSNumber* endLatitude = [NSNumber numberWithFloat:self.endCordinate.latitude];
+    NSNumber* endLongitude = [NSNumber numberWithFloat:self.endCordinate.longitude];
+    [query whereKey:@"end" containsAllObjectsInArray:@[endLatitude, endLongitude]];
+    
+    // Limit results of query to 10
+    query.limit = 10;
+    
+    // Run query
+    [query findObjectsInBackgroundWithBlock:^(NSArray* array, NSError* error) {
+        // issues with saving to background, should be delt with here
+        if (error) {
+            block(false, error);
+        } else {
+            // Assign returned array to ride offers
+            self.rideOffers = array;
+            block(true, nil);
+        }
+    }];
 }
 
 @end

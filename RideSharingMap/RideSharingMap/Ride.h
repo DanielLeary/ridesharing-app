@@ -15,8 +15,11 @@
 @property CLLocationCoordinate2D startCordinate;
 @property CLLocationCoordinate2D endCordinate;
 @property (strong) NSDate * dateTimeStart;
+@property BOOL offerRide;
+@property NSArray* rideOffers;
 
 - (id)initWithDate:(NSDate*) date;
 - (void)uploadToCloudWithBlock:(void (^) (BOOL, NSError*))block;
+- (void)queryRidesWithBlock:(void (^)(BOOL, NSError*))block;
 
 @end

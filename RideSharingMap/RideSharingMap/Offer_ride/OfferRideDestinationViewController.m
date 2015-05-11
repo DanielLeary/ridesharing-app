@@ -14,6 +14,7 @@
 
 @property (strong, atomic) CLLocationManager* locationManager;
 @property (strong, atomic) MKPointAnnotation* pin;
+@property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
 
 @end
 MKPlacemark *the_placemark;
@@ -22,8 +23,13 @@ MKPlacemark *the_placemark;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Set Self as delegate for search box
-    //self.searchBar.delegate = self;
+    
+    // Set up UINavbar Item
+    if (self.ride.offerRide) {
+        self.NavTitle.title = @"Offer Ride";
+    } else {
+        self.NavTitle.title = @"Request Ride";
+    }
     
     // Might have to check if authorized to get location first
     self.locationManager = [[CLLocationManager alloc] init];

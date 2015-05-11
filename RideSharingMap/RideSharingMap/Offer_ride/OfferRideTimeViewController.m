@@ -11,7 +11,8 @@
 #import "Ride.h"
 
 @interface OfferRideTimeViewController ()
-@property (strong)Ride* ride;
+@property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
+
 @end
 
 @implementation OfferRideTimeViewController
@@ -20,10 +21,15 @@
     [super viewDidLoad];
     // Do view setup here.
     
+    //If Offering a ride
+    if (self.ride.offerRide) {
+        self.NavTitle.title = @"Offer Ride";
+    } else {
+        self.NavTitle.title = @"Request Ride";
+    }
+    
     // set minimum date to today
-    NSDate * today = [NSDate date];
-    self.ride = [[Ride alloc] initWithDate:today];
-    [self.timeWheel setMinimumDate:today];
+    [self.timeWheel setMinimumDate:self.ride.dateTimeStart];
     
     // Everytime wheel changes (UIControlEventValueChanged) runs the method printChange
     [self.timeWheel addTarget:self action:@selector(printChange) forControlEvents:UIControlEventValueChanged];

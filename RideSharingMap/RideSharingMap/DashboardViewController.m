@@ -9,11 +9,12 @@
 #import "DashboardViewController.h"
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Ride.h"
+#import "OfferRideTimeViewController.h"
 
 @implementation DashboardViewController {
     
     NSMutableArray *tableData;
-    
 }
 
 - (void)viewDidLoad {
@@ -121,5 +122,22 @@
     //do nothing, FOR NOWWWWW TAN TAN TAAAAAN
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSDate * today = [NSDate date];
+    Ride* ride = [[Ride alloc] initWithDate:today];
+    
+    if([segue.identifier  isEqual: @"OfferRideSeague"]) {
+        ride.offerRide = TRUE;
+        OfferRideTimeViewController* vc = (OfferRideTimeViewController*)segue.destinationViewController;
+        vc.ride = ride;
+    }
+    
+    if([segue.identifier  isEqual: @"RequestRideSeague"]) {
+        ride.offerRide = FALSE;
+        OfferRideTimeViewController* vc = (OfferRideTimeViewController*)segue.destinationViewController;
+        vc.ride = ride;
+    }
+}
 
 @end

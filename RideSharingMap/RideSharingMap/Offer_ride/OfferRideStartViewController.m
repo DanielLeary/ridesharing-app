@@ -15,6 +15,8 @@
 
 @property (strong, atomic) CLLocationManager* locationManager;
 @property (strong, atomic) MKPointAnnotation* pin;
+@property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
+@property (weak, nonatomic) IBOutlet UILabel *Descriptor;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
@@ -24,6 +26,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set up UINavbar Item
+    if (self.ride.offerRide) {
+        self.NavTitle.title = @"Offer Ride";
+    } else {
+        self.NavTitle.title = @"Request Ride";
+    }
+    
+    // Set up label description
+    if (self.ride.offerRide) {
+        self.Descriptor.text = @"Choose a Departure Location";
+    } else {
+        self.Descriptor.text = @"Choose a Pick-up Point";
+    }
 
     // Might have to check if authorized to get location first
     self.locationManager = [[CLLocationManager alloc] init];
@@ -118,41 +134,68 @@
     //Set the start location to current pin location
     self.ride.startCordinate = self.pin.coordinate;
     
-    // This block runs after parse completes or fails upload to cloud
-    void(^displayInfoBlock)(BOOL, NSError*) = ^(BOOL succeded, NSError* error){
-        
-        // creat alert view controller to display upload information
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Offer Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
-        
-        if(!succeded) {
-            alert.message = @"Could not upload to server, please check your internet connection and try again";
+    // creat alert view controller to display upload information
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Offer Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
+    
+    // stays on page
+    UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    
+    // goesback to dashboard view controller
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+    }];
+
+    // Run if offering a ride
+    if (self.ride.offerRide) {
+    
+        // This block runs after parse completes or fails upload to cloud
+        void(^displayInfoBlock)(BOOL, NSError*) = ^(BOOL succeded, NSError* error){
             
-            // stays on page
-            UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-            
-            // goes back to DashBoardViewController
-            UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            if(!succeded) {
+                alert.message = @"Could not upload to server, please check your internet connection and try again";
+                
+                // stays on page
+                //UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                
+                // goes back to DashBoardViewController
+                //UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                //        [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+                //    }];
+                [alert addAction:retry];
+                [alert addAction:cancel];
+            } else {
+                UIAlertAction* OK = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    NSLog(@"OK Pressed");
                     [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
                 }];
-            [alert addAction:retry];
-            [alert addAction:cancel];
-        } else {
-            UIAlertAction* OK = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@"OK Pressed");
-                [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
-            }];
-            [alert addAction:OK];
-        }
-        
-        // Stop spinning, enable interaction, show alert on screen
-        [self.activityView stopAnimating];
-        [self.view setUserInteractionEnabled:YES];
-        [self presentViewController:alert animated:YES completion:nil];
+                [alert addAction:OK];
+            }
+            
+            // Stop spinning, enable interaction, show alert on screen
+            [self.activityView stopAnimating];
+            [self.view setUserInteractionEnabled:YES];
+            [self presentViewController:alert animated:YES completion:nil];
 
-    };
-    
-    [self.ride uploadToCloudWithBlock:displayInfoBlock];
-    
+        };
+        
+        [self.ride uploadToCloudWithBlock:displayInfoBlock];
+    } else {
+        // run if requesting ride
+        void(^retrieveObjBlock)(BOOL, NSError*) = ^(BOOL success, NSError* error) {
+            if (success) {
+                // Run seague to relevant view controller
+                [self performSegueWithIdentifier:<#(NSString *)#> sender:self]
+            } else {
+                // Display alert that couldn't upload
+                [alert addAction:retry];
+                [alert addAction:cancel];
+            }
+            
+        };
+        [self.ride queryRidesWithBlock:retrieveObjBlock];
+        
+        
+    }
     
 }
 
