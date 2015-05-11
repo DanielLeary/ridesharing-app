@@ -26,7 +26,7 @@
     
     
     //--------------------------------------------------------
-    // Try creating a journey object and sending it to parse
+    // Test creating a journey object and sending it to parse
     //--------------------------------------------------------
     /*
     CLLocationDegrees lat = 51.4922470;
@@ -57,9 +57,11 @@
     */
     
     
-    //------------
-    // Test query
-    //------------
+    //---------------------------------------------------------------------
+    // Get journeys that user is involved in as either driver or passenger
+    //---------------------------------------------------------------------
+    
+    //note: replace hardcoding of "leon@gmail.com" with current user email
     
     PFQuery *query1 = [PFQuery queryWithClassName:@"Journeys"];
     [query1 whereKey:@"passengerEmail" equalTo:@"leon@gmail.com"];
@@ -67,20 +69,14 @@
     [query2 whereKey:@"driverEmail" equalTo:@"leon@gmail.com"];    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1,query2]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
-            NSLog(@"Returned object count: %d .", objects.count);
+            
             // Do something with the found objects
             for (PFObject *object in objects) {
                 NSLog(@"Id is %@", object.objectId);
             }
-            
-            PFObject *item = objects[0];
-            NSString *driveremail = item[@"driverEmail"];
-            NSString *passengeremail = item[@"passengerEmail"];
-            
-            NSLog(@"Driver Email %@", driveremail);
-            NSLog(@"Passenger Email %@", passengeremail);
-            
+            tableData = objects;
+            // reloads tableview after async call complete
+            [self.tableView reloadData];
             
         } else {
             // Log details of the failure
@@ -106,14 +102,72 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //replace hardcoding with call to PFUser object here
+    NSString *userEmail = @"leon@gmail.com";
     
-    if (indexPath.row == 0) {
-        GivingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"givingRideCell"];
-        cell.nameLabel.text = @"Christina Hicks";
+    PFObject *item = tableData[indexPath.row];
+    NSString *driveremail = item[@"driverEmail"];
+    NSString *passengeremail = item[@"passengerEmail"];
+    NSDate *date = item[@"journeyDateTime"];
+
+    // check if user is the driver
+    if ([userEmail isEqualToString:driveremail]) {
+        GivingRideCell *cell = [tableView
+                                dequeueReusableCellWithIdentifier:@"givingRideCell"];
+        
+        // query user table for name
+        if (passengeremail != NULL) {
+            PFQuery *query = [PFUser query];
+            [query whereKey:@"email" equalTo:passengeremail];
+            NSArray *result = [query findObjects];
+            PFUser *person = result[0];
+            NSString *forename = person[@"Name"];
+            NSString *surname = person[@"Surname"];
+            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
+        }
+        
+        
+        // date formatting stuff
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEE, d MMM"];
+        cell.dateLabel.text = [dateFormatter stringFromDate:date];
+        
+        // time formatting stuff
+        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+        [timeFormatter setDateFormat:@"HH:MM"];
+        cell.timeLabel.text = [timeFormatter stringFromDate:date];
+        
+        
         return cell;
+    
+    // else user is getting a ride from driver
     } else {
-        GettingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gettingRideCell"];
-        cell.nameLabel.text = @"Kevin Smith";
+        GettingRideCell *cell = [tableView
+                                 dequeueReusableCellWithIdentifier:@"gettingRideCell"];
+        
+        // query user table for name
+        if (driveremail != NULL) {
+            PFQuery *query = [PFUser query];
+            [query whereKey:@"email" equalTo:driveremail];
+            NSArray *result = [query findObjects];
+            PFUser *person = result[0];
+            NSString *forename = person[@"Name"];
+            NSString *surname = person[@"Surname"];
+            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
+        }
+
+        
+        // date formatting stuff
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEE, d MMM"];
+        cell.dateLabel.text = [dateFormatter stringFromDate:date];
+        
+        // time formatting stuff
+        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+        [timeFormatter setDateFormat:@"HH:MM"];
+        cell.timeLabel.text = [timeFormatter stringFromDate:date];
+
+        
         return cell;
     }
 }
