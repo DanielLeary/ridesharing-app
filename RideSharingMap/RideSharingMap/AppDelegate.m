@@ -17,6 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     // Initialise parse application
     [Parse setApplicationId:@"0zdgGDC7qYvZQpbRjXPasx5DsW1jJn6CcJSwyZbP"
                   clientKey:@"QBDLxnKEkvCSJugxfHY3hr3kT9gn55JbVWMcpWU2"];
@@ -24,10 +25,10 @@
     //hardcoded a user so that user = [PFUser currentUser] returns someone in simulator
     //[PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
     
-    self.isLoggedIn = NO; //need to get from parse later
+    PFUser *currentUser = [PFUser currentUser];
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    if (self.isLoggedIn) {
+    if (currentUser) {
         UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
         self.window.rootViewController = tabBarVC;
     } else {

@@ -34,6 +34,11 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     NSUInteger count = [viewModel getInterestsCount];
     NSLog(@"IN INTEREST ARRAY: %lu", (unsigned long)count);
     NSLog(@"interests: %@", [viewModel getInterestsArray]);
+    
+    NSData* imageData = [viewModel getPicture];
+    
+    _profileImageView.image = [UIImage imageWithData:imageData];
+    
 }
 
 
