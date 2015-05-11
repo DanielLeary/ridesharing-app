@@ -35,7 +35,7 @@
         label = [[UILabel alloc] init];
     }
     label.textColor = [UIColor blackColor];
-    [label setFont:[UIFont fontWithName:@"Helvetica Neue" size:12]];
+    [label setFont:[UIFont fontWithName:@"Helvetica Neue" size:13]];
     label.textAlignment = NSTextAlignmentCenter;
     if (row < 3) {
         label.text = genderArray[row];

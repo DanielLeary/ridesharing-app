@@ -8,14 +8,18 @@
 
 #import "EditProfileViewController.h"
 
-static const int numOfRows = 6;
+static const int dobPickerRowHeight = 180;
+static const int genderPickerRowHeight = 140;
 
 @implementation EditProfileViewController {
     
     UserViewModel *viewModel;
+    NSArray *infoArray;
+    
     NSDateFormatter *dateFormatter;
     int pickerCellRowHeight;
     BOOL dobPickerIsShown;
+    BOOL genderPickerIsShown;
     BOOL pictureChanged;
     BOOL nameChanged;
     
@@ -26,13 +30,20 @@ static const int numOfRows = 6;
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
     self.profileImageView.image = [UIImage imageWithData:[viewModel getPicture]];
+    
+    infoArray = @[@"First Name:", @"Last Name:", @"Username:", @"Password:", @"Date of Birth:", @"Gender:"];
+
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    
     pickerCellRowHeight = 180;
     dobPickerIsShown = NO;
+    genderPickerIsShown = NO;
     pictureChanged = NO;
     nameChanged = NO;
+    
+    self.userInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
@@ -64,6 +75,173 @@ static const int numOfRows = 6;
         [viewModel setDob:sender.date];
         cell.detailTextLabel.text = [dateFormatter stringFromDate:sender.date];
     }
+}
+
+
+/* TABLE DELEGATE METHODS */
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (dobPickerIsShown && genderPickerIsShown) {
+        return [infoArray count] + 2;
+    } else if (dobPickerIsShown || genderPickerIsShown) {
+        return [infoArray count] + 1;
+    } else {
+        return [infoArray count];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row >= 0 && indexPath.row <= 3) {
+        InfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
+        return cell;
+    } else if (indexPath.row == 4) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+        cell.textLabel.text = @"Date of birth:";
+        cell.detailTextLabel.text = [dateFormatter stringFromDate:[viewModel getDob]];
+        return cell;
+    } else {
+        UITableViewCell *cell;
+        if (dobPickerIsShown && genderPickerIsShown) {
+            if (indexPath.row == 5) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
+            } else if (indexPath.row == 6) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+                cell.textLabel.text = @"Gender:";
+                cell.detailTextLabel.text = [viewModel getGender];
+            } else if (indexPath.row == 7) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
+            }
+        } else if (dobPickerIsShown) {
+            if (indexPath.row == 5) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
+            }
+        } else if (genderPickerIsShown) {
+            if (indexPath.row == 5) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+                cell.textLabel.text = @"Gender:";
+                cell.detailTextLabel.text = [viewModel getGender];
+            } else if (indexPath.row == 6) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
+                return cell;
+            }
+        } else {
+            if (indexPath.row == 5) {
+                GenderPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+                cell.textLabel.text = @"Gender:";
+                cell.detailTextLabel.text = [viewModel getGender];
+                return cell;
+            }
+        }
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(InfoCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row>=0 && indexPath.row<=3) {
+        cell.infoLabel.text = infoArray[indexPath.row];
+        switch (indexPath.row) {
+            case 0:
+                cell.infoField.text = [viewModel getFirstName];
+                break;
+            case 1:
+                cell.infoField.text = [viewModel getLastName];
+                break;
+            case 2:
+                cell.infoField.text = [viewModel getUsername];
+                break;
+            case 3:
+                cell.infoField.text = [viewModel getPassword];
+                break;
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView beginUpdates];
+    if (dobPickerIsShown && genderPickerIsShown) {
+        switch (indexPath.row) {
+            case 4:
+                [self hidePicker:tableView inRow:5];
+                dobPickerIsShown = NO;
+                break;
+            case 6:
+                [self hidePicker:tableView inRow:7];
+                genderPickerIsShown = NO;
+                break;
+        }
+    }
+    if (dobPickerIsShown) {
+        switch (indexPath.row) {
+            case 4:
+                [self hidePicker:tableView inRow:5];
+                dobPickerIsShown = NO;
+                break;
+            case 6:
+                [self showPicker:tableView inRow:7];
+                genderPickerIsShown = YES;
+                break;
+        }
+    } else if (genderPickerIsShown) {
+        switch (indexPath.row) {
+            case 4:
+                [self showPicker:tableView inRow:5];
+                dobPickerIsShown = YES;
+                break;
+            case 5:
+                [self hidePicker:tableView inRow:6];
+                genderPickerIsShown = NO;
+                break;
+        }
+    } else {
+        switch (indexPath.row) {
+            case 4:
+                [self showPicker:tableView inRow:5];
+                dobPickerIsShown = YES;
+                break;
+            case 5:
+                [self showPicker:tableView inRow:6];
+                genderPickerIsShown = YES;
+                break;
+        }
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView endUpdates];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHeight = tableView.rowHeight;
+    if (dobPickerIsShown && genderPickerIsShown) {
+        if (indexPath.row == 5) {
+            rowHeight = dobPickerRowHeight;
+        } else if (indexPath.row == 7) {
+            rowHeight = genderPickerRowHeight;
+        }
+    } else if (dobPickerIsShown && indexPath.row == 5) {
+        rowHeight = dobPickerRowHeight;
+    } else if (genderPickerIsShown && indexPath.row == 6) {
+        rowHeight = genderPickerRowHeight;
+    }
+    return rowHeight;
+}
+
+
+/* DELEGATE METHOD FOR PICKERS */
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    //[viewModel changeSex:genderArray[row]];
+}
+
+
+/* HELPER METHODS FOR PICKERS */
+
+- (void)showPicker:(UITableView *)tableView inRow:(int)row {
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:row inSection:0]];
+    [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
+}
+
+- (void)hidePicker:(UITableView *)tableView inRow:(int)row {
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:row inSection:0]];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -109,92 +287,6 @@ static const int numOfRows = 6;
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-/* TABLE DELEGATE METHODS */
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (dobPickerIsShown) {
-        return numOfRows + 1;
-    } else {
-        return numOfRows;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //create picker cell
-    if (dobPickerIsShown && indexPath.row == 5) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-        return cell;
-    //create normal info cell
-    } else {
-        if (indexPath.row == 4) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            cell.textLabel.text = @"Date of birth:";
-            cell.detailTextLabel.text = [dateFormatter stringFromDate:[viewModel getDob]];
-            return cell;
-        } else if (indexPath.row == 5) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            cell.textLabel.text = @"Gender:";
-            cell.detailTextLabel.text = [viewModel getGender];
-            return cell;
-        } else {
-            InfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
-            return cell;
-        }
-    }
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(InfoCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.row) {
-        case 0:
-            cell.infoLabel.text = @"First name:";
-            cell.infoField.text = [viewModel getFirstName];
-            break;
-        case 1:
-            cell.infoLabel.text = @"Last name:";
-            cell.infoField.text = [viewModel getLastName];
-            break;
-        case 2:
-            cell.infoLabel.text = @"Username:";
-            cell.infoField.text = [viewModel getUsername];
-            break;
-        case 3:
-            cell.infoLabel.text = @"Password:";
-            cell.infoField.text = [viewModel getPassword];
-            break;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView beginUpdates];
-    if (dobPickerIsShown) {
-        if (indexPath.row == 4) {
-            //hide picker
-            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:5 inSection:0]];
-            [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-            dobPickerIsShown = NO;
-        }
-    } else {
-        if (indexPath.row == 4) {
-            //show dob picker
-            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:5 inSection:0]];
-            [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
-            dobPickerIsShown = YES;
-        } else if (indexPath.row == 5) {
-        }
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-    [tableView endUpdates];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat rowHeight = tableView.rowHeight;
-    if (dobPickerIsShown && indexPath.row == 5) {
-        rowHeight = pickerCellRowHeight;
-    }
-    return rowHeight;
 }
 
 @end
