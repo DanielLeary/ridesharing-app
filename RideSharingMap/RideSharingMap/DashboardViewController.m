@@ -12,14 +12,14 @@
 
 @implementation DashboardViewController {
     
-    NSMutableArray *tableData;
+    NSArray *tableData;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    tableData = [NSMutableArray arrayWithObjects:@"Christina Hicks", @"Kevin Smith", nil];
+    //tableData = [NSMutableArray arrayWithObjects:@"Christina Hicks", @"Kevin Smith", nil];
     
     // Creates footer that hides empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -29,8 +29,8 @@
     // Try creating a journey object and sending it to parse
     //--------------------------------------------------------
     /*
-    CLLocationDegrees lat = 51.4922469;
-    CLLocationDegrees lon = -0.2060868;
+    CLLocationDegrees lat = 51.4922470;
+    CLLocationDegrees lon = -0.2060875;
     
     Journey *testJourney = [[Journey alloc] init];
     
@@ -47,15 +47,48 @@
     CLLocationCoordinate2D jpickup = {lat,lon};
     testJourney.pickupCoordinate = jpickup;
     
-    testJourney.driverEmail = @"danielleary@hotmail.co.uk";
+    testJourney.driverEmail = @"leon@gmail.com";
     
-    testJourney.passengerEmail = @"leon@gmail.com";
+    testJourney.passengerEmail = @"danielleary@hotmail.co.uk";
     
     testJourney.journeyDateTime = [NSDate date];
     
     [testJourney uploadToCloud];
     */
-     
+    
+    
+    //------------
+    // Test query
+    //------------
+    
+    PFQuery *query1 = [PFQuery queryWithClassName:@"Journeys"];
+    [query1 whereKey:@"passengerEmail" equalTo:@"leon@gmail.com"];
+    PFQuery *query2 = [PFQuery queryWithClassName:@"Journeys"];
+    [query2 whereKey:@"driverEmail" equalTo:@"leon@gmail.com"];    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1,query2]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Returned object count: %d .", objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"Id is %@", object.objectId);
+            }
+            
+            PFObject *item = objects[0];
+            NSString *driveremail = item[@"driverEmail"];
+            NSString *passengeremail = item[@"passengerEmail"];
+            
+            NSLog(@"Driver Email %@", driveremail);
+            NSLog(@"Passenger Email %@", passengeremail);
+            
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    
     
 }
 
@@ -72,6 +105,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     if (indexPath.row == 0) {
         GivingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"givingRideCell"];
         cell.nameLabel.text = @"Christina Hicks";
@@ -81,38 +116,6 @@
         cell.nameLabel.text = @"Kevin Smith";
         return cell;
     }
-    
-    
-    /*
-    NSString *cellid;
-    NSString *celltype = [_itemTypes objectAtIndex:indexPath.row];
-    int name_tag = 10;
-    
-    if ([celltype isEqualToString:@"getting"]) {
-        cellid = @"getting";
-        name_tag = 10;
-    }
-    else {
-        cellid = @"giving";
-        name_tag = 20;
-    }
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
-    }
-    
-    UILabel *name = (UILabel *)[cell viewWithTag:name_tag];
-    [name setText:[_tableData objectAtIndex:[indexPath row]]];
-    
-    UILabel *action = (UILabel *)[cell viewWithTag:21];
-    [action setText:@"Giving a ride to"];
-    
-    UIButton *btnName = (UIButton *)[cell viewWithTag:25];
-    [btnName setTitle:[_itemTypes objectAtIndex:[indexPath row]] forState:UIControlStateNormal];
-    
-    return cell;
-     */
 }
 
 // Used to pop off seagues
