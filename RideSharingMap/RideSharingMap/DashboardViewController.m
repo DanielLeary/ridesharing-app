@@ -97,7 +97,7 @@
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self->tableData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -124,6 +124,13 @@
             NSString *forename = person[@"Name"];
             NSString *surname = person[@"Surname"];
             cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
+            
+            PFFile *userImageFile = person[@"ProfilePicture"];
+            [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    cell.profilePicture.image = [UIImage imageWithData:imageData];
+                }
+            }];
         }
         
         
@@ -154,6 +161,15 @@
             NSString *forename = person[@"Name"];
             NSString *surname = person[@"Surname"];
             cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
+            
+            
+            PFFile *userImageFile = person[@"ProfilePicture"];
+            [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    cell.profilePicture.image = [UIImage imageWithData:imageData];
+                }
+            }];
+             
         }
 
         
