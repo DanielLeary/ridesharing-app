@@ -143,6 +143,10 @@
 }
 
 
+-(NSData*) getPicture{
+    return [user getPicture];
+}
+
 /* METHODS FOR LOGIN & SIGNUP */
 
 - (void)logOut {

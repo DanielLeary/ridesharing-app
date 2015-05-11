@@ -78,7 +78,9 @@
 
 - (void) updateInterests:(NSArray *)newInterestArray;
 
+-(NSData*) getPicture;
 
+-(void) setProfilePicture:(UIImage *)profilePicture;
 
 
 

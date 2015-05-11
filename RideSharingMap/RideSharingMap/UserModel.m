@@ -140,25 +140,21 @@
 
 /* methods for profile picture */
 
-/*
-- (void) setProfilePicture:(UIImage *)image {
-    self.profilePicture = image;
-    _profilePicture = image;
-    NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            if (succeeded) {
-                PFUser *user = [PFUser currentUser];
-                if (user != nil) {
-                    user[pictureString] = imageFile;
-                    [user saveInBackground];
-                }
-            }
-        } else {
-            // Handle error
-        }
-    }];
-}*/
+-(NSData*) getPicture{
+    PFFile* file = user[pictureString];
+    NSData *imageData = [file getData];
+    return imageData;
+}
+
+-(void) setProfilePicture:(UIImage *)profilePicture{
+    
+    NSData *imageData = UIImagePNGRepresentation(profilePicture);
+    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    
+    user[pictureString] = imageFile;
+    [user save];
+
+}
+
 
 @end

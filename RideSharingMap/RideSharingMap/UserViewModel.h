@@ -84,6 +84,9 @@
 
 - (void)setProfilePicture:(UIImage *)image;
 
+-(NSData*) getPicture;
+
+
 
 /* METHODS FOR LOGIN & SIGNUP */
 
