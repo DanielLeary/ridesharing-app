@@ -38,6 +38,8 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     NSData* imageData = [viewModel getPicture];
     
     _profileImageView.image = [UIImage imageWithData:imageData];
+    //NSString* descr2 = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
+    self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
     
 }
 
