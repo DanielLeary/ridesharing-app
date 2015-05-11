@@ -24,7 +24,7 @@
     //hardcoded a user so that user = [PFUser currentUser] returns someone in simulator
     //[PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
     
-    self.isLoggedIn = NO; //need to get from parse later
+    //self.isLoggedIn = NO; //need to get from parse later
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
    

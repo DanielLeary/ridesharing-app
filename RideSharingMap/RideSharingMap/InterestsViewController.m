@@ -26,6 +26,8 @@ static NSArray *allInterests;
         allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
         checkedInterests = [viewModel getInterestsArray];
     }
+    
+    checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
 }
 
 
