@@ -22,25 +22,18 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
     
-    if (user) {
-        self.firstNameLabel.text = [viewModel getFirstName];
-        self.lastNameLabel.text = [viewModel getLastName];
-        //self.profileImageView = [[UIImageView alloc] initWithImage:profileViewModel.profilePictureImage];
-    }
+    //resize fav places table
+    self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-//temp for testing
 - (void) viewDidAppear:(BOOL)animated {
-    NSUInteger count = [viewModel getInterestsCount];
-    NSLog(@"IN INTEREST ARRAY: %lu", (unsigned long)count);
-    NSLog(@"interests: %@", [viewModel getInterestsArray]);
+    self.firstNameLabel.text = [viewModel getFirstName];
+    self.lastNameLabel.text = [viewModel getLastName];
+    self.profileImageView.image = [UIImage imageWithData:[viewModel getPicture]];
+    self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@", "];
     
-    NSData* imageData = [viewModel getPicture];
-    
-    _profileImageView.image = [UIImage imageWithData:imageData];
-    //NSString* descr2 = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
-    self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
-    
+    //resize fav places table
+    self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
@@ -99,7 +92,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [viewModel getFavPlacesCount] + 1;
+    return [viewModel getFavPlacesCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,8 +103,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     }
     if (indexPath.row < [viewModel getFavPlacesCount]) {
         cell.textLabel.text = [[viewModel getPlaceAtIndex:indexPath.row] name];
-    } else {
-        cell.textLabel.text = @"+ Add new place";
     }
     return cell;
 }
@@ -151,6 +142,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 /* METHODS FOR EDITING THE TABLE */
 
+/*
 - (IBAction)editButtonPressed:(id)sender {
     if ([_editPlacesButton.currentTitle isEqualToString:@"Edit"]) {
         [self setEditing:YES animated:YES];
@@ -191,9 +183,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     [viewModel removePlaceAtIndex:[fromIndexPath row]];
     [viewModel insertPlace:mover atIndex:[toIndexPath row]];
 }
-
-/* FUNCTIONS FOR PROFILE PICTURE */
-
+ */
 
 
 

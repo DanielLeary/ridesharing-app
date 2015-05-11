@@ -38,7 +38,7 @@
 
 - (void) setLastName:(NSString *)lastName;
 
-- (NSString *)getEmail;
+- (NSString *)getUsername;
 
 - (NSString *)getPassword;
 
