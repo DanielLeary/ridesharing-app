@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "Ride.h"
 
-@interface OfferRideStartViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface OfferRideStartViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Ride *ride;
