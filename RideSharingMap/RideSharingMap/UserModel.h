@@ -36,6 +36,7 @@
 @property (strong, nonatomic) NSString *phoneNumber;
 
 
+
 // can specify accessor method using getter
 @property (readonly, getter=isLoggedIn) BOOL loggedIn;
 
@@ -61,11 +62,15 @@
 
 - (void) addPlace:(Place *)place;
 
+-(NSMutableArray*) getFavPlaces;
+
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath;
 
 - (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place;
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
+
+-(void) pullPlacesArray;
 
 
 /* METHODS FOR INTERESTS */

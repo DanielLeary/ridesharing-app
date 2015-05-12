@@ -9,16 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "Place.h"
+#import "UserViewModel.h"
 
 @class AddPlaceViewController;
 
-@protocol AddPlaceViewControllerDelegate <NSObject>
+/*@protocol AddPlaceViewControllerDelegate <NSObject>
 
-- (void) addNewPlace:(AddPlaceViewController *)vc place:(Place *)place;
+- (void) addNewPlace:(Place *)place;
 
 - (void) editPlace:(AddPlaceViewController *)vc atIndex:(NSUInteger)indexPath withPlace:(Place *)place;
 
-@end
+@end*/
 
 
 
@@ -39,6 +40,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *placeLocationField;
 
-@property (assign, nonatomic) id <AddPlaceViewControllerDelegate> delegate;
+//@property (assign, nonatomic) id <AddPlaceViewControllerDelegate> delegate;
 
 @end

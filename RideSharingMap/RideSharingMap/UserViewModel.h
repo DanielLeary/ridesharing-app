@@ -66,6 +66,8 @@
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
+-(void) pullPlacesArray;
+
 
 /* METHODS FOR INTERESTS */
 

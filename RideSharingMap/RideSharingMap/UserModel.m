@@ -8,6 +8,7 @@
 
 
 #import "UserModel.h"
+#import "Place.h"
 #define firstnameString @"Name"
 #define surnameString @"Surname"
 #define carString @"Car"
@@ -16,6 +17,8 @@
 #define genderString @"Gender"
 #define pictureString @"ProfilePicture"
 #define interestArray @"Interests"
+#define favPlaces @"FavPlaces"
+
 
 @implementation UserModel {
     
@@ -23,6 +26,7 @@
     PFUser *user;
     NSMutableArray *favPlacesArray;
     NSMutableArray *interestsArray;
+    NSMutableArray *fav_placesID;
     
     // AS PASSENGER
     NSMutableArray *gettingRideFromArray;
@@ -38,13 +42,17 @@
 -(id)init {
     self = [super init];
     if (self) {
+        
+        fav_placesID = [[NSMutableArray alloc] initWithCapacity:5];
         user = [PFUser currentUser];
         if (user) {
             Place *home = [[Place alloc] initWithName:@"Home"];
             Place *work = [[Place alloc] initWithName:@"Work"];
             
-            favPlacesArray = [[NSMutableArray alloc] initWithObjects:home, work, nil];
+            favPlacesArray = [[NSMutableArray alloc] initWithCapacity:5];
+            [self pullPlacesArray];
             interestsArray = [[NSMutableArray alloc] init];
+            
             
             self.firstName = user[firstnameString];
             self.lastName = user[surnameString];
@@ -52,6 +60,9 @@
             self.position = user[positionString];
             [interestsArray removeAllObjects];
             [interestsArray addObjectsFromArray:user[interestArray]];
+            
+            
+            
             
             
             //NSString *pathForBlankProfilePicture = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"png"];
@@ -100,13 +111,33 @@
 }
 
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
+    //[favPlacesArray removeAllObjects];
+    //[favPlacesArray addObjectsFromArray:user[favPlaces]];
     return [favPlacesArray objectAtIndex:indexPath];
 }
 
 - (void) addPlace:(Place *)place {
     [favPlacesArray addObject:place];
-    Place *place2 = [favPlacesArray objectAtIndex:2];
-    NSLog(@"array: %@, %f, %f", place2.name, place2.coordinates.latitude, place2.coordinates.longitude);
+    //Place *place2 = [favPlacesArray objectAtIndex:2];
+    //NSLog(@"array: %@, %f, %f", place2.name, place2.coordinates.latitude, place2.coordinates.longitude);
+    
+    double lat = (double)place.coordinates.latitude;
+    double lon = (double)place.coordinates.longitude;
+    
+    PFObject* fav_place = [PFObject objectWithClassName:@"FavLocations"];
+    fav_place[@"name"] = place.name;
+    fav_place[@"long"] = [NSNumber numberWithDouble:lon];
+    fav_place[@"lat"] = [NSNumber numberWithDouble:lat];
+    bool test = [fav_place save];
+    NSString* fav_id = [fav_place objectId];
+    [fav_placesID addObject:fav_id];
+    user[favPlaces] = fav_placesID;
+    [user save];
+
+}
+
+-(NSMutableArray*) getFavPlaces{
+    return user[favPlaces];
 }
 
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
@@ -121,6 +152,27 @@
     [favPlacesArray removeObjectAtIndex:indexPath];
 }
 
+
+-(void) pullPlacesArray{
+    [favPlacesArray removeAllObjects];
+    NSMutableArray* fav_ids = user[favPlaces];
+    for (NSString* string in fav_ids){
+        PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
+        PFObject* place = [query getObjectWithId:string];
+        
+        CLLocationCoordinate2D coord;
+        coord.longitude = (CLLocationDegrees)[place[@"long"] doubleValue];
+        coord.latitude = (CLLocationDegrees)[place[@"lat"] doubleValue];
+        
+        Place *fav = [[Place alloc] initWithName:place[@"name"] andCoordinates:coord];
+        
+        [favPlacesArray addObject:fav];
+        
+    }
+    [fav_placesID removeAllObjects];
+    [fav_placesID addObjectsFromArray:user[favPlaces]];
+    //[favPlacesArray addObjectsFromArray:user[favPlaces]];
+}
 
 /* METHODS FOR INTERESTS */
 

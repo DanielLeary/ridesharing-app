@@ -113,6 +113,11 @@
 }
 
 
+-(void) pullPlacesArray{
+    [user pullPlacesArray];
+}
+
+
 /* METHODS FOR INTERESTS */
 
 - (NSUInteger) getInterestsCount {

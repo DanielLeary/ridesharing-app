@@ -20,14 +20,21 @@
 
 
 
-@implementation AddPlaceViewController
+@implementation AddPlaceViewController{
+    UserViewModel *viewModel;
+    
+}
 
-@synthesize delegate;
+
+//@synthesize delegate;
 
 
 /* FUNCTIONS FOR VIEW CONFIGURATION */
 
 - (void)viewDidLoad {
+    
+    UserModel *user = [[UserModel alloc] init];
+    viewModel = [[UserViewModel alloc] initWithModel:user];
     [super viewDidLoad];
     // set textField delegates for keyboard functions
     self.placeNameField.delegate = self;
@@ -80,11 +87,11 @@
         Place *place = [[Place alloc] initWithName:placeName andCoordinates:placeCoords];
         //if place is being edited
         if (self.editing==YES) {
-            [self.delegate editPlace:self atIndex:self.placeIndexPath withPlace:place];
+            [viewModel replacePlaceAtIndex:self.placeIndexPath withPlace:place];
             [self.navigationController popViewControllerAnimated:YES];
         //if place is being added
         } else {
-            [self.delegate addNewPlace:self place:place];
+            [viewModel addPlace:place];
             [self.navigationController popViewControllerAnimated:YES];
         }
     } else {

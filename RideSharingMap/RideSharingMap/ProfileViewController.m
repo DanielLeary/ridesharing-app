@@ -41,6 +41,11 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     //NSString* descr2 = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
     self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
     
+    [viewModel pullPlacesArray];
+    
+    
+    [self.placesTableView reloadData];
+    
 }
 
 
@@ -56,12 +61,12 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     appDelegateTemp.window.rootViewController = loginVC;
 }
 
-- (IBAction)addNewPlaceButtonPressed:(id)sender {
+/*- (IBAction)addNewPlaceButtonPressed:(id)sender {
     //segue to AddPlaceViewController
     AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
     addPlaceVC.delegate = self;
     [self.navigationController pushViewController:addPlaceVC animated:YES];
-}
+}*/
 
 - (IBAction)editProfileButtonPressed:(UIBarButtonItem *)sender {
     EditProfileViewController *editProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
@@ -72,12 +77,12 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 /* ADDPLACEVC DELEGATE METHODS */
 
-- (void) addNewPlace:(AddPlaceViewController *)vc place:(Place *)place {
+- (void) addNewPlace:(Place *)place {
     [viewModel addPlace:place];
     [self.placesTableView reloadData];
 }
 
-- (void) editPlace:(AddPlaceViewController *)vc atIndex:(NSUInteger)indexPath withPlace:(Place *)place {
+- (void) editPlace:(NSUInteger)indexPath withPlace:(Place *)place {
     [viewModel replacePlaceAtIndex:indexPath withPlace:place];
     [self.placesTableView reloadData];
 }
@@ -109,6 +114,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if (indexPath.row < [viewModel getFavPlacesCount]) {
+    
         cell.textLabel.text = [[viewModel getPlaceAtIndex:indexPath.row] name];
     } else {
         cell.textLabel.text = @"+ Add new place";
@@ -118,10 +124,11 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 // upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row < [viewModel getFavPlacesCount]) {
         // set up editPlaceVC
         AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-        editPlaceVC.delegate = self;
+        //editPlaceVC.delegate = self;
         editPlaceVC.editing = YES;
         editPlaceVC.placeIndexPath = indexPath.row;
         // update editPlaceVC for selected place
@@ -142,7 +149,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         [self.navigationController pushViewController:editPlaceVC animated:YES];
     } else {
         AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-        addPlaceVC.delegate = self;
+        //addPlaceVC.delegate = self;
         addPlaceVC.editing = NO;
         [self.navigationController pushViewController:addPlaceVC animated:YES];
     }
