@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) NSString *lastName;
 
-@property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *username;
 
 @property (strong, nonatomic) NSString *password;
 
@@ -82,6 +82,8 @@
 - (bool) hasInterest:(NSString *)interest;
 
 - (void) updateInterests:(NSArray *)newInterestArray;
+
+/* METHODS FOR PROFILE PICTURE */
 
 -(NSData*) getPicture;
 

@@ -46,8 +46,8 @@
     [user setLastName:lastName];
 }
 
-- (NSString *)getEmail {
-    return [user email];
+- (NSString *)getUsername {
+    return [user username];
 }
 
 - (NSString *)getPassword {

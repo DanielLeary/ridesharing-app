@@ -15,7 +15,7 @@
 
 //@class ProfileViewController;
 
-@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate/*, AddPlaceViewControllerDelegate*/, EditProfileViewControllerDelegate>
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AddPlaceViewControllerDelegate, EditProfileViewControllerDelegate>
 
 
 // profile UI
@@ -33,15 +33,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *interestsButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *addNewPlaceButton;
 
-
-// table UI
-
-@property (weak, nonatomic) IBOutlet UIButton *editPlacesButton;
-
-//@property (weak, nonatomic) IBOutlet UIButton *addNewPlaceButton;
-
-
-- (IBAction)inputCar:(id)sender;
 
 @end

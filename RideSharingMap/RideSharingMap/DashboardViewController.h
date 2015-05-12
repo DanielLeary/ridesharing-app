@@ -10,6 +10,7 @@
 #import "GivingRideCell.h"
 #import "GettingRideCell.h"
 #import "Journey.h"
+#import "JourneyView.h"
 #import <Parse/Parse.h>
 
 @interface DashboardViewController : UIViewController

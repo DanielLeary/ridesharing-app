@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UserViewModel.h"
-#import "infoCell.h"
+#import "InfoCell.h"
+#import "GenderPickerCell.h"
 
 @class EditProfileViewController;
 

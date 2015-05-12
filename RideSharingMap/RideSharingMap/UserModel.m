@@ -19,6 +19,7 @@
 #define interestArray @"Interests"
 #define favPlaces @"FavPlaces"
 
+#define passwordString @"password"
 
 @implementation UserModel {
     
@@ -56,8 +57,13 @@
             
             self.firstName = user[firstnameString];
             self.lastName = user[surnameString];
+            self.username = user[usernameString];
+            self.password = user[passwordString];
+            
             self.car = user[carString];
             self.position = user[positionString];
+            
+            interestsArray = [[NSMutableArray alloc] init];
             [interestsArray removeAllObjects];
             [interestsArray addObjectsFromArray:user[interestArray]];
             
