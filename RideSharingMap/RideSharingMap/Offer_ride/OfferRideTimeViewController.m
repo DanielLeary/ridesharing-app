@@ -7,11 +7,13 @@
 //
 
 #import "OfferRideTimeViewController.h"
-#import "OfferRideDestinationViewController.h"
+#import "OfferRideStartViewController.h"
 #import "Ride.h"
 
 @interface OfferRideTimeViewController ()
-@property (strong)Ride* ride;
+@property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
+
+
 @end
 
 @implementation OfferRideTimeViewController
@@ -20,10 +22,15 @@
     [super viewDidLoad];
     // Do view setup here.
     
+    //If Offering a ride
+    if (self.ride.offerRide) {
+        self.NavTitle.title = @"Offer Ride";
+    } else {
+        self.NavTitle.title = @"Request Ride";
+    }
+    
     // set minimum date to today
-    NSDate * today = [NSDate date];
-    self.ride = [[Ride alloc] initWithDate:today];
-    [self.timeWheel setMinimumDate:today];
+    [self.timeWheel setMinimumDate:self.ride.dateTimeStart];
     
     // Everytime wheel changes (UIControlEventValueChanged) runs the method printChange
     [self.timeWheel addTarget:self action:@selector(printChange) forControlEvents:UIControlEventValueChanged];
@@ -38,8 +45,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"OfferRideDestinationSeague"]) {
-        OfferRideDestinationViewController *vc2 = (OfferRideDestinationViewController *)segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"OfferRideStartSeague"]) {
+        OfferRideStartViewController *vc2 = (OfferRideStartViewController *)segue.destinationViewController;
         vc2.ride = self.ride;
         NSLog(@"Prepared for Seague");
     }

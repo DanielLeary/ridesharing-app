@@ -14,17 +14,34 @@
 
 @implementation InboxViewController {
     
-     NSMutableArray *tableData;
+    NSArray *tableData; //array of request object IDs
+    BOOL emptyTable;
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    tableData = [NSMutableArray arrayWithObjects:@"Christina Hicks", @"Kevin Smith", nil];
-    
-    // Creates footer that hides empty cells
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tableData = [[NSArray alloc] init];
+    emptyTable = YES;
 
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    PFUser *user = [PFUser currentUser];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Requests"];
+    [query whereKey:@"offerer" equalTo:user.objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            tableData = objects;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    emptyTable = ([tableData count]==0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,44 +49,60 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return ([tableData count]==0) ? 1 : [tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        InboxAccepted *cell = [tableView dequeueReusableCellWithIdentifier:@"InboxAccepted"];
-        cell.name.text = @"Christina Hicks";
+    if (emptyTable) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
+        cell.textLabel.text = @"no messages (yet)";
         return cell;
     } else {
+        NSString *requester, *date, *time;
+        NSDate *dateTime;
+        PFObject *object = tableData[indexPath.row];
+        requester = object[@"requester"];
+        dateTime = object[@"dateTimeStart"];
+    
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"dd/MM/yy";
+        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+        timeFormatter.dateFormat = @"HH:mm";
+    
+        date = [dateFormatter stringFromDate:dateTime];
+        time = [timeFormatter stringFromDate:dateTime];
+    
         InboxRequest *cell = [tableView dequeueReusableCellWithIdentifier:@"InboxRequest"];
-        cell.name.text = @"Kevin Smith";
-       
+    
+        cell.name.text = requester;
+        cell.date.text = date;
+        cell.time.text = time;
+
         // set button tag to row so we can identify which row
         // tapped button
         cell.acceptbutton.tag = indexPath.row;
         cell.declinebutton.tag = indexPath.row;
-        
+    
         // dispatch button taps to the below accept/declineTapped methods, with tag set to indexpath row
         [cell.acceptbutton addTarget:self
-                              action:@selector(acceptTapped:)
-                    forControlEvents:UIControlEventTouchUpInside];
+                        action:@selector(acceptTapped:)
+                forControlEvents:UIControlEventTouchUpInside];
         [cell.declinebutton addTarget:self
-                               action:@selector(declineTapped:)
-                     forControlEvents:UIControlEventTouchUpInside];
-        
+                        action:@selector(declineTapped:)
+                forControlEvents:UIControlEventTouchUpInside];
+
         return cell;
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        return 70;
-    }
-    else {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (emptyTable) {
+        return 40;
+    } else {
         return 130;
     }
 }

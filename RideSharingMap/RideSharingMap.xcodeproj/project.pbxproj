@@ -12,6 +12,7 @@
 		1931C6061AA8A4E800B76E8B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6051AA8A4E800B76E8B /* Place.m */; };
 		1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6081AA8AAC900B76E8B /* UserViewModel.m */; };
 		1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C60B1AA8B84900B76E8B /* UserModel.m */; };
+		2717C1E11B02554800455CD4 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2717C1E01B02554800455CD4 /* location.png */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
 		27702BF11AAE152B00D20FFA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
@@ -32,11 +33,7 @@
 		6BA7259B1A9B71FA0039DCDC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7259A1A9B71FA0039DCDC /* SystemConfiguration.framework */; };
 		6BA7259D1A9B72000039DCDC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7259C1A9B72000039DCDC /* libz.dylib */; };
 		6BA7259F1A9B72080039DCDC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7259E1A9B72080039DCDC /* libsqlite3.dylib */; };
-		7E1D70071B00CC3F0087A5BB /* RequestRideTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D70061B00CC3F0087A5BB /* RequestRideTimeViewController.m */; };
-		7E1D70111B00E0940087A5BB /* RequestRideStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D70101B00E0940087A5BB /* RequestRideStartViewController.m */; };
-		7E1D70171B00EFC20087A5BB /* Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D70161B00EFC20087A5BB /* Requests.m */; };
 		7E4E14331B0102CD00F3652B /* RequestRideCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E14321B0102CD00F3652B /* RequestRideCompleteViewController.m */; };
-		7E4E14361B0102E300F3652B /* RequestRideDestinationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E14351B0102E300F3652B /* RequestRideDestinationViewController.m */; };
 		7EF361C31A87C4EC0004D0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C21A87C4EC0004D0FC /* main.m */; };
 		7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C51A87C4EC0004D0FC /* AppDelegate.m */; };
 		7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */; };
@@ -54,7 +51,6 @@
 		C5D9603C1ADEB631002DF274 /* Journey.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D9603B1ADEB631002DF274 /* Journey.m */; };
 		C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA054B1ADE77AE007F2FD5 /* InboxAccepted.m */; };
 		C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */; };
-		C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EB585B1AA78E6700A081C8 /* DashboardMV.m */; };
 		EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */; };
 		EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB08F8911AD4971A006C6AA5 /* InfoCell.m */; };
 		EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */; };
@@ -89,6 +85,7 @@
 		1931C6081AA8AAC900B76E8B /* UserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewModel.m; sourceTree = "<group>"; };
 		1931C60A1AA8B84900B76E8B /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		1931C60B1AA8B84900B76E8B /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		2717C1E01B02554800455CD4 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		274A2BBF1A9CD03400967E42 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		49CA704B1ABB0B2D009DAC79 /* LoginNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNewViewController.h; sourceTree = "<group>"; };
@@ -112,16 +109,8 @@
 		6BA7259A1A9B71FA0039DCDC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6BA7259C1A9B72000039DCDC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6BA7259E1A9B72080039DCDC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		7E1D70051B00CC3F0087A5BB /* RequestRideTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideTimeViewController.h; sourceTree = "<group>"; };
-		7E1D70061B00CC3F0087A5BB /* RequestRideTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideTimeViewController.m; sourceTree = "<group>"; };
-		7E1D700F1B00E0940087A5BB /* RequestRideStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideStartViewController.h; sourceTree = "<group>"; };
-		7E1D70101B00E0940087A5BB /* RequestRideStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideStartViewController.m; sourceTree = "<group>"; };
-		7E1D70151B00EFC20087A5BB /* Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Requests.h; sourceTree = "<group>"; };
-		7E1D70161B00EFC20087A5BB /* Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Requests.m; sourceTree = "<group>"; };
 		7E4E14311B0102CD00F3652B /* RequestRideCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideCompleteViewController.h; sourceTree = "<group>"; };
 		7E4E14321B0102CD00F3652B /* RequestRideCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideCompleteViewController.m; sourceTree = "<group>"; };
-		7E4E14341B0102E300F3652B /* RequestRideDestinationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideDestinationViewController.h; sourceTree = "<group>"; };
-		7E4E14351B0102E300F3652B /* RequestRideDestinationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideDestinationViewController.m; sourceTree = "<group>"; };
 		7EF361BD1A87C4EC0004D0FC /* RideSharingMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideSharingMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF361C11A87C4EC0004D0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EF361C21A87C4EC0004D0FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -152,8 +141,6 @@
 		C5EA054B1ADE77AE007F2FD5 /* InboxAccepted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxAccepted.m; sourceTree = "<group>"; };
 		C5EA054D1ADE77D1007F2FD5 /* InboxRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxRequest.h; sourceTree = "<group>"; };
 		C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxRequest.m; sourceTree = "<group>"; };
-		C5EB585A1AA78E6700A081C8 /* DashboardMV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardMV.h; sourceTree = "<group>"; };
-		C5EB585B1AA78E6700A081C8 /* DashboardMV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardMV.m; sourceTree = "<group>"; };
 		EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-profile-picture.png"; sourceTree = "<group>"; };
 		EB08F8901AD4971A006C6AA5 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoCell.h; sourceTree = "<group>"; };
 		EB08F8911AD4971A006C6AA5 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
@@ -229,6 +216,7 @@
 				EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */,
 				49CA70561ABB3554009DAC79 /* checkbox-checked.png */,
 				49CA70571ABB3554009DAC79 /* checkbox-pressed.png */,
+				2717C1E01B02554800455CD4 /* location.png */,
 				49CA70581ABB3554009DAC79 /* checkbox.png */,
 			);
 			name = Images;
@@ -258,12 +246,6 @@
 		7E1D70081B00CC4A0087A5BB /* Request_ride */ = {
 			isa = PBXGroup;
 			children = (
-				7E1D70051B00CC3F0087A5BB /* RequestRideTimeViewController.h */,
-				7E1D70061B00CC3F0087A5BB /* RequestRideTimeViewController.m */,
-				7E1D700F1B00E0940087A5BB /* RequestRideStartViewController.h */,
-				7E1D70101B00E0940087A5BB /* RequestRideStartViewController.m */,
-				7E4E14341B0102E300F3652B /* RequestRideDestinationViewController.h */,
-				7E4E14351B0102E300F3652B /* RequestRideDestinationViewController.m */,
 				7E4E14311B0102CD00F3652B /* RequestRideCompleteViewController.h */,
 				7E4E14321B0102CD00F3652B /* RequestRideCompleteViewController.m */,
 			);
@@ -311,8 +293,6 @@
 				C5A542391A9FB2DD004A4303 /* DashboardViewController.m */,
 				C560AB451B019AD40072E5E0 /* JourneyView.h */,
 				C560AB461B019AD40072E5E0 /* JourneyView.m */,
-				C5EB585A1AA78E6700A081C8 /* DashboardMV.h */,
-				C5EB585B1AA78E6700A081C8 /* DashboardMV.m */,
 				C5A542351A9FB2B3004A4303 /* InboxViewController.h */,
 				C5A542361A9FB2B3004A4303 /* InboxViewController.m */,
 				6B74423D1A9E08B9006ED680 /* InitialViewController.h */,
@@ -369,8 +349,6 @@
 				C5D9603B1ADEB631002DF274 /* Journey.m */,
 				EE525DB71ADDCE17009DA645 /* Ride.h */,
 				EE525DB81ADDCE17009DA645 /* Ride.m */,
-				7E1D70151B00EFC20087A5BB /* Requests.h */,
-				7E1D70161B00EFC20087A5BB /* Requests.m */,
 				1931C6041AA8A4E800B76E8B /* Place.h */,
 				1931C6051AA8A4E800B76E8B /* Place.m */,
 			);
@@ -509,6 +487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2717C1E11B02554800455CD4 /* location.png in Resources */,
 				7EF361CF1A87C4EC0004D0FC /* Main.storyboard in Resources */,
 				EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */,
 				7EF361D41A87C4EC0004D0FC /* LaunchScreen.xib in Resources */,
@@ -538,19 +517,15 @@
 				C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */,
 				C560AB471B019AD40072E5E0 /* JourneyView.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
-				7E1D70111B00E0940087A5BB /* RequestRideStartViewController.m in Sources */,
 				EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */,
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
-				C5EB585C1AA78E6700A081C8 /* DashboardMV.m in Sources */,
 				EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */,
 				EE525DC11ADDCE26009DA645 /* OfferRideDestinationViewController.m in Sources */,
 				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
 				EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */,
-				7E1D70071B00CC3F0087A5BB /* RequestRideTimeViewController.m in Sources */,
 				1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */,
-				7E1D70171B00EFC20087A5BB /* Requests.m in Sources */,
 				EE525DB91ADDCE17009DA645 /* Ride.m in Sources */,
 				EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */,
 				C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */,
@@ -564,7 +539,6 @@
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
-				7E4E14361B0102E300F3652B /* RequestRideDestinationViewController.m in Sources */,
 				C5A5423D1A9FB317004A4303 /* SettingsViewController.m in Sources */,
 				1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
