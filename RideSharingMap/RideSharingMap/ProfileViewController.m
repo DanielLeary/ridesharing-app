@@ -49,6 +49,9 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     appDelegateTemp.window.rootViewController = loginVC;
 }
 
+
+
+
 - (IBAction)addNewPlaceButtonPressed:(id)sender {
     //segue to AddPlaceViewController
     AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
@@ -103,6 +106,8 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     }
     if (indexPath.row < [viewModel getFavPlacesCount]) {
         cell.textLabel.text = [[viewModel getPlaceAtIndex:indexPath.row] name];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13];
+        [cell.textLabel setTextColor:[UIColor grayColor]];
     }
     return cell;
 }

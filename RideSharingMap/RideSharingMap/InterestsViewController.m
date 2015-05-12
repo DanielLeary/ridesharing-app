@@ -9,6 +9,7 @@
 #import "InterestsViewController.h"
 
 static NSArray *allInterests;
+static const int rowHeight = 40;
 
 @implementation InterestsViewController {
     
@@ -27,7 +28,7 @@ static NSArray *allInterests;
         checkedInterests = [viewModel getInterestsArray];
     }
     
-    checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
+    self.interestsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
@@ -35,9 +36,6 @@ static NSArray *allInterests;
 
 - (IBAction)savePressed:(UIBarButtonItem *)sender {
     [viewModel updateInterests:checkedInterests];
-    NSLog(@"in table");
-    NSLog(@"interests: %@", checkedInterests);
-    NSLog(@"count: %lu", (unsigned long)[viewModel getInterestsCount]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -54,6 +52,7 @@ static NSArray *allInterests;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13];
     cell.textLabel.text = [allInterests objectAtIndex:indexPath.row];
     // assign checkmarks to cells
     if ([viewModel hasInterest:cell.textLabel.text]) {
@@ -74,6 +73,10 @@ static NSArray *allInterests;
         cell.accessoryType = UITableViewCellAccessoryNone;
         [checkedInterests removeObject:cell.textLabel.text];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return rowHeight;
 }
 
 

@@ -33,10 +33,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *interestsButton;
 
-
-
-// table UI
-
 @property (weak, nonatomic) IBOutlet UIButton *addNewPlaceButton;
 
 
