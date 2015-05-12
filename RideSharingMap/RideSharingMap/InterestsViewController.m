@@ -34,11 +34,6 @@ static const int rowHeight = 40;
 
 /* METHODS FOR UI */
 
-- (IBAction)savePressed:(UIBarButtonItem *)sender {
-    [viewModel updateInterests:checkedInterests];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 /* TABLE DELEGATE METHODS */
 
@@ -69,9 +64,11 @@ static const int rowHeight = 40;
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [checkedInterests addObject:cell.textLabel.text];
+        [viewModel updateInterests:checkedInterests];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [checkedInterests removeObject:cell.textLabel.text];
+        [viewModel updateInterests:checkedInterests];
     }
 }
 
