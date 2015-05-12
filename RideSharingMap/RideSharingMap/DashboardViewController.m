@@ -65,12 +65,12 @@
     // Get journeys that user is involved in as either driver or passenger
     //---------------------------------------------------------------------
     
-    //note: replace hardcoding of "leon@gmail.com" with current user email
+    //note: replace hardcoding of "lhan" with current user email
     
     PFQuery *query1 = [PFQuery queryWithClassName:@"Journeys"];
-    [query1 whereKey:@"passengerEmail" equalTo:@"leon@gmail.com"];
+    [query1 whereKey:@"passengerusername" equalTo:@"lhan"];
     PFQuery *query2 = [PFQuery queryWithClassName:@"Journeys"];
-    [query2 whereKey:@"driverEmail" equalTo:@"leon@gmail.com"];    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1,query2]];
+    [query2 whereKey:@"driverusername" equalTo:@"lhan"];    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1,query2]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             
@@ -106,22 +106,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //replace hardcoding with call to PFUser object here
-    NSString *userEmail = @"leon@gmail.com";
+    NSString *user = @"lhan";
     
     PFObject *item = tableData[indexPath.row];
-    NSString *driveremail = item[@"driverEmail"];
-    NSString *passengeremail = item[@"passengerEmail"];
+    NSString *driverusername = item[@"driverusername"];
+    NSString *passengerusername = item[@"passengerusername"];
     NSDate *date = item[@"journeyDateTime"];
 
     // check if user is the driver
-    if ([userEmail isEqualToString:driveremail]) {
+    if ([user isEqualToString:driverusername]) {
         GivingRideCell *cell = [tableView
                                 dequeueReusableCellWithIdentifier:@"givingRideCell"];
         
         // query user table for name
-        if (passengeremail != NULL) {
+        if (passengerusername != NULL) {
             PFQuery *query = [PFUser query];
-            [query whereKey:@"email" equalTo:passengeremail];
+            [query whereKey:@"username" equalTo:passengerusername];
             NSArray *result = [query findObjects];
             PFUser *person = result[0];
             NSString *forename = person[@"Name"];
@@ -156,9 +156,9 @@
                                  dequeueReusableCellWithIdentifier:@"gettingRideCell"];
         
         // query user table for name
-        if (driveremail != NULL) {
+        if (driverusername != NULL) {
             PFQuery *query = [PFUser query];
-            [query whereKey:@"email" equalTo:driveremail];
+            [query whereKey:@"username" equalTo:driverusername];
             NSArray *result = [query findObjects];
             PFUser *person = result[0];
             NSString *forename = person[@"Name"];
@@ -198,12 +198,46 @@
     JourneyView *journey = [self.storyboard instantiateViewControllerWithIdentifier:@"JourneyView"];
     [journey view];
     
+    //replace hardcoding with call to PFUser object here
+    NSString *user = @"lhan";
+    PFObject *item = tableData[indexPath.row];
+    NSString *driverusername = item[@"driverusername"];
+    
+    // check if user is the driver
+    if ([user isEqualToString:driverusername]) {
+        GivingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        PFObject *item = tableData[indexPath.row];
+        journey.navigationItem.title = @"Journey";
+        journey.item = item;
+        journey.name.text = cell.nameLabel.text;
+        journey.date.text = cell.dateLabel.text;
+        journey.time.text = cell.timeLabel.text;
+        journey.image.image = cell.profilePicture.image;
+        journey.give_get.text = @"Giving a ride to";
+        [self.navigationController pushViewController:journey animated:YES];
+    }
+    else {
+        GettingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+       
+        PFObject *item = tableData[indexPath.row];
+        journey.navigationItem.title = @"Journey";
+        journey.item = item;
+        journey.name.text = cell.nameLabel.text;
+        journey.date.text = cell.dateLabel.text;
+        journey.time.text = cell.timeLabel.text;
+        journey.image.image = cell.profilePicture.image;
+        journey.give_get.text = @"Getting a ride from";
+        [self.navigationController pushViewController:journey animated:YES];
+    }
+    
+    /*
     PFObject *item = tableData[indexPath.row];
     journey.navigationItem.title = @"Journey";
     journey.item = item;
     
     [self.navigationController pushViewController:journey animated:YES];
-     
+     */
 }
 
 
