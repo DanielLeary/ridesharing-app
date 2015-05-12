@@ -7,13 +7,15 @@
 //
 
 #import "OfferRideDestinationViewController.h"
-#import "OfferRideStartViewController.h"
+#import "RequestRideCompleteViewController.h"
 
 
 @interface OfferRideDestinationViewController ()
 
 @property (strong, atomic) CLLocationManager* locationManager;
 @property (strong, atomic) MKPointAnnotation* pin;
+@property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
+
 
 @end
 MKPlacemark *the_placemark;
@@ -22,8 +24,14 @@ MKPlacemark *the_placemark;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Set Self as delegate for search box
-    //self.searchBar.delegate = self;
+    
+    // Set up UINavbar Item
+    if (self.ride.offerRide) {
+        self.NavTitle.title = @"Offer Ride";
+    } else {
+        self.NavTitle.title = @"Request Ride";
+    }
+    
     
     // Might have to check if authorized to get location first
     self.locationManager = [[CLLocationManager alloc] init];
@@ -90,9 +98,9 @@ MKPlacemark *the_placemark;
 // Send on Ride object to next seague
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"OfferRideStartSeague"]) {
+    if ([segue.identifier isEqualToString:@"RideCompleteSeague"]) {
         self.ride.endCordinate = self.pin.coordinate;
-        OfferRideStartViewController *vc2 = (OfferRideStartViewController *)segue.destinationViewController;
+        RequestRideCompleteViewController *vc2 = (RequestRideCompleteViewController *)segue.destinationViewController;
         vc2.ride = self.ride;
         NSLog(@"Prepared for Seague OfferRideEndSeague");
     }
@@ -124,6 +132,12 @@ MKPlacemark *the_placemark;
         [self.mapView addAnnotation:self.pin];
     }];
 
+}
+
+- (IBAction)locationButton:(UIButton *)sender {
+    CLLocation* usrLocation = _locationManager.location;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(usrLocation.coordinate, 500, 500);
+    [_mapView setRegion:region animated:YES];
 }
 
 

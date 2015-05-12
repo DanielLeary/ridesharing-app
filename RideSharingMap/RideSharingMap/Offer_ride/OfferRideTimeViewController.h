@@ -13,5 +13,6 @@
 @interface OfferRideTimeViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *timeWheel;
+@property (strong)Ride* ride;
 
 @end

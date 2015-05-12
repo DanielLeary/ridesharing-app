@@ -11,6 +11,8 @@
 @interface RequestRideCompleteViewController ()
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+@property (weak, nonatomic) IBOutlet UIButton *buttonLabel;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navTitle;
 
 
 @end
@@ -23,7 +25,15 @@ MKPolyline *routeOverlay = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"rde: %@", self.request);
+    if (self.ride.offerRide) {
+        [_buttonLabel setTitle:@"Finish" forState:normal];
+        _navTitle.title = @"Offer Ride";
+    } else {
+        [_buttonLabel setTitle:@"Next" forState:normal];
+        _navTitle.title = @"Request Ride";
+    }
+    
+    NSLog(@"rde: %@", self.ride);
     
     [UIActivityIndicatorView appearance];
     self.mapView.delegate = self;
@@ -50,9 +60,9 @@ MKPolyline *routeOverlay = nil;
 - (void)getARoute {
     MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
     
-    MKPlacemark *start = [[MKPlacemark alloc] initWithCoordinate:self.request.startCordinate addressDictionary:nil];
+    MKPlacemark *start = [[MKPlacemark alloc] initWithCoordinate:self.ride.startCordinate addressDictionary:nil];
     
-    MKPlacemark *end = [[MKPlacemark alloc] initWithCoordinate:self.request.endCordinate addressDictionary:nil];
+    MKPlacemark *end = [[MKPlacemark alloc] initWithCoordinate:self.ride.endCordinate addressDictionary:nil];
     [self.mapView addAnnotation:start];
     [self.mapView addAnnotation:end];
     
@@ -78,24 +88,24 @@ MKPolyline *routeOverlay = nil;
         
     }];
     CLLocationCoordinate2D regionCoord;
-    regionCoord.latitude = self.request.startCordinate.latitude + ((self.request.endCordinate.latitude                                            - self.request.startCordinate.latitude)/2);
+    regionCoord.latitude = self.ride.startCordinate.latitude + ((self.ride.endCordinate.latitude                                            - self.ride.startCordinate.latitude)/2);
     
-    regionCoord.longitude = self.request.startCordinate.longitude + ((self.request.endCordinate.longitude - self.request.startCordinate.longitude)/2);
+    regionCoord.longitude = self.ride.startCordinate.longitude + ((self.ride.endCordinate.longitude - self.ride.startCordinate.longitude)/2);
     
     
     MKPlacemark *regionPlace = [[MKPlacemark alloc] initWithCoordinate:regionCoord addressDictionary:nil];
     
     MKCoordinateRegion region;
     region.center = regionPlace.coordinate;
-    if (self.request.endCordinate.latitude > self.request.startCordinate.latitude) {
-        region.span.latitudeDelta = (self.request.endCordinate.latitude - self.request.startCordinate.latitude) * 1.2;
+    if (self.ride.endCordinate.latitude > self.ride.startCordinate.latitude) {
+        region.span.latitudeDelta = (self.ride.endCordinate.latitude - self.ride.startCordinate.latitude) * 1.2;
     } else {
-        region.span.latitudeDelta = (self.request.startCordinate.latitude - self.request.endCordinate.latitude) * 1.2;
+        region.span.latitudeDelta = (self.ride.startCordinate.latitude - self.ride.endCordinate.latitude) * 1.2;
     }
-    if (self.request.endCordinate.longitude > self.request.startCordinate.longitude) {
-        region.span.longitudeDelta = (self.request.endCordinate.longitude - self.request.startCordinate.longitude) * 1.2;
+    if (self.ride.endCordinate.longitude > self.ride.startCordinate.longitude) {
+        region.span.longitudeDelta = (self.ride.endCordinate.longitude - self.ride.startCordinate.longitude) * 1.2;
     } else {
-        region.span.longitudeDelta = (self.request.startCordinate.longitude -  self.request.endCordinate.longitude) * 1.2;
+        region.span.longitudeDelta = (self.ride.startCordinate.longitude -  self.ride.endCordinate.longitude) * 1.2;
     }
     
     [self.mapView setRegion:region animated:YES];
@@ -124,46 +134,103 @@ MKPolyline *routeOverlay = nil;
 }
 
 
-
-- (IBAction)finishButton {
+- (IBAction)finishButton{
+    
     //Start spinning and don't allow interaction
-    //[self.activityView startAnimating];
-    //[self.view setUserInteractionEnabled:NO];
+    [self.activityView startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+    
     //[self navigationController setUserInteractionEnabled:NO];
     
-    // This block runs after parse completes or fails upload to cloud
-    void(^displayInfoBlock)(BOOL, NSError*) = ^(BOOL succeded, NSError* error){
-        
-        // creat alert view controller to display upload information
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Offer Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
-        
-        if(!succeded) {
-            alert.message = @"Could not upload to server, please check your internet connection and try again";
-            
-            // stays on page
-            UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-            
-            // goes back to DashBoardViewController
-            UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                //[self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
-            }];
-            [alert addAction:retry];
-            [alert addAction:cancel];
-        } else {
-            UIAlertAction* OK = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@"OK Pressed");
-                //[self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
-            }];
-            [alert addAction:OK];
-        }
-        
-        // Stop spinning, enable interaction, show alert on screen
-        //[self.activityView stopAnimating];
-        //[self.view setUserInteractionEnabled:YES];
-        [self presentViewController:alert animated:YES completion:nil];
-        
-    };
+    //Set the start location to current pin location
+    //self.ride.startCordinate = self.pin.coordinate;
     
-    [self.request uploadToCloudWithBlock:displayInfoBlock];
+    // creat alert view controller to display upload information
+    
+    // stays on page
+    UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    
+    // goesback to dashboard view controller
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+    }];
+    
+    // Run if offering a ride
+    if (self.ride.offerRide) {
+        
+        // This block runs after parse completes or fails upload to cloud
+        void(^displayInfoBlock)(BOOL, NSError*) = ^(BOOL succeded, NSError* error){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Offer Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
+            
+            if(!succeded) {
+                alert.message = @"Could not upload to server, please check your internet connection and try again";
+                
+                // stays on page
+                //UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                
+                // goes back to DashBoardViewController
+                //UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                //        [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+                //    }];
+                [alert addAction:retry];
+                [alert addAction:cancel];
+            } else {
+                UIAlertAction* OK = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    NSLog(@"OK Pressed");
+                    [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+                }];
+                [alert addAction:OK];
+            }
+            
+            // Stop spinning, enable interaction, show alert on screen
+            [self.activityView stopAnimating];
+            [self.view setUserInteractionEnabled:YES];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        };
+        
+        [self.ride uploadToCloudWithBlock:displayInfoBlock];
+    } else {
+        // run if requesting ride
+        void(^retrieveObjBlock)(BOOL, NSError*) = ^(BOOL success, NSError* error) {
+            
+            
+            
+            if (success) {
+                
+                NSLog(@"Success in retrieving block");
+                NSLog(@"Size of results: %lu", (unsigned long)[self.ride.rideOffers count]);
+                for (PFObject* object in self.ride.rideOffers) {
+                    NSLog(@"found %@", object.objectId);
+                }
+                
+                // Run seague to relevant view controller
+                [self performSegueWithIdentifier:@"listOfRide" sender:self];
+            } else {
+                // Display alert that couldn't upload
+                NSString* string = @"Could not connect to server, please check your internet connection and try again";
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Request Ride" message:string preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:retry];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            [self.activityView stopAnimating];
+            [self.view setUserInteractionEnabled:YES];
+            
+            
+        };
+        [self.ride queryRidesWithBlock:retrieveObjBlock];
+        
+        
+    }
+    
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"listOfRide"]) {
+        // Initialise values for table view controller
+    }
+}
+
 @end

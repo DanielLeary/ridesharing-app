@@ -16,6 +16,6 @@
 @property (strong, nonatomic) Ride *ride;
 - (IBAction)SearchBox:(UITextField *)sender;
 
-- (IBAction)finishButton;
+//- (IBAction)finishButton;
 
 @end

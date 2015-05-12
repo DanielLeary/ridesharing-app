@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--What do you want to do?-->
@@ -519,7 +519,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="y67-LE-Pe5" kind="show" id="0V5-cb-GH9"/>
+                                    <segue destination="UuC-OD-0iq" kind="show" identifier="RequestRideSeague" id="Xua-63-tL7"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oOw-fI-l29">
@@ -624,7 +624,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UuC-OD-0iq" kind="show" identifier="unwindToDashBoard" id="xRb-Fd-0GJ"/>
+                                    <segue destination="UuC-OD-0iq" kind="show" identifier="OfferRideSeague" id="k4m-8E-gMZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -726,7 +726,7 @@
             </objects>
             <point key="canvasLocation" x="2857.5" y="1930.5"/>
         </scene>
-        <!--Offer Ride Time View Controller-->
+        <!--Title-->
         <scene sceneID="217-db-1B4">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="UuC-OD-0iq" customClass="OfferRideTimeViewController" sceneMemberID="viewController">
@@ -752,164 +752,22 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eyP-9Z-BqX" kind="show" identifier="OfferRideDestinationSeague" id="Xdp-Of-J8I"/>
+                                    <segue destination="GfA-De-cIW" kind="show" identifier="OfferRideStartSeague" id="fjQ-2e-jfp"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="4cy-be-Ztg"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="NavTitle" destination="4cy-be-Ztg" id="bN4-H9-wOI"/>
                         <outlet property="timeWheel" destination="Liy-4M-fV4" id="5g5-Ui-188"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAh-yJ-OcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2415.5" y="2883.5"/>
-        </scene>
-        <!--Request Ride Time View Controller-->
-        <scene sceneID="oC7-gj-Z1R">
-            <objects>
-                <viewController title="Request Ride Time View Controller" id="y67-LE-Pe5" customClass="RequestRideTimeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GjD-2i-zwI"/>
-                        <viewControllerLayoutGuide type="bottom" id="SaD-e6-SOx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eyc-wF-AUQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="BRc-ko-TDL">
-                                <rect key="frame" x="16" y="145" width="343" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="453037190.56806397">
-                                    <!--2015-05-11 11:39:50 +0000-->
-                                </date>
-                            </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tzp-ql-qEG">
-                                <rect key="frame" x="16" y="588" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="5Q5-v4-fwk" kind="show" identifier="RequestRideDestinationSeague" id="HjF-Ux-0Gl"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="timeWheel" destination="BRc-ko-TDL" id="Z0u-i7-Oj7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OMw-YK-jEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2415.5" y="3681.5"/>
-        </scene>
-        <!--Request Ride Destination View Controller-->
-        <scene sceneID="vpM-cN-Pwo">
-            <objects>
-                <viewController title="Request Ride Destination View Controller" id="5Q5-v4-fwk" customClass="RequestRideDestinationViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KnR-w3-PMe"/>
-                        <viewControllerLayoutGuide type="bottom" id="CPo-BB-rpn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Pdp-ul-9pi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vQ6-Sf-BHg">
-                                <rect key="frame" x="0.0" y="118" width="375" height="452"/>
-                            </mapView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2FX-b3-pHJ">
-                                <rect key="frame" x="16" y="72" width="343" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="SearchBox:" destination="5Q5-v4-fwk" eventType="editingDidEndOnExit" id="tjx-GI-liO"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyP-yb-D1E">
-                                <rect key="frame" x="16" y="588" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="a98-0R-ozG" kind="show" identifier="RequestRideStartSeague" id="syg-tS-U2l"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="mapView" destination="vQ6-Sf-BHg" id="f4c-YY-A6O"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTW-1V-J7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="d7I-8g-MkX">
-                    <connections>
-                        <outlet property="delegate" destination="vQ6-Sf-BHg" id="8Mq-jB-jmV"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="3095.5" y="3681.5"/>
-        </scene>
-        <!--Request Ride Start View Controller-->
-        <scene sceneID="BRL-XK-rTV">
-            <objects>
-                <viewController title="Request Ride Start View Controller" id="a98-0R-ozG" customClass="RequestRideStartViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="62o-11-yDA"/>
-                        <viewControllerLayoutGuide type="bottom" id="eUT-cp-ToE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="elw-LZ-ItE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfo-15-bT0">
-                                <rect key="frame" x="16" y="588" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="fNG-6h-oUe" kind="show" identifier="RequestRideCompleteSeague" id="x9g-qR-a0C"/>
-                                </connections>
-                            </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Eaq-s0-ej6">
-                                <rect key="frame" x="0.0" y="131" width="375" height="438"/>
-                            </mapView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UeA-nk-7kg">
-                                <rect key="frame" x="16" y="78" width="343" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="SearchBox:" destination="a98-0R-ozG" eventType="editingDidEndOnExit" id="CMB-hp-4IB"/>
-                                    <action selector="SearchBox:" destination="a98-0R-ozG" eventType="editingDidEnd" id="QFo-Le-8OY"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="mapView" destination="Eaq-s0-ej6" id="iuE-HD-X4G"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mNI-Fj-osh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ycR-eg-U4B">
-                    <connections>
-                        <outlet property="delegate" destination="Eaq-s0-ej6" id="SsM-nC-Wy8"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="3668.5" y="3681.5"/>
         </scene>
         <!--Destination-->
         <scene sceneID="5N9-ll-Wsa">
@@ -931,11 +789,11 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="GfA-De-cIW" kind="show" identifier="OfferRideStartSeague" id="dkI-4z-UsR"/>
+                                    <segue destination="fNG-6h-oUe" kind="show" identifier="RideCompleteSeague" id="w3Y-TJ-IWg"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-28-bGh">
-                                <rect key="frame" x="16" y="83" width="349" height="34"/>
+                                <rect key="frame" x="13" y="102" width="349" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -949,12 +807,32 @@
                                     <outletCollection property="gestureRecognizers" destination="GhO-Ya-xrS" appends="YES" id="sQP-cI-y3h"/>
                                 </connections>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a destination" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfq-MI-Ah3">
+                                <rect key="frame" x="13" y="80" width="163" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q16-yq-mDg">
+                                <rect key="frame" x="331" y="520" width="36" height="36"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                </accessibility>
+                                <state key="normal" title="Button" image="location.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButton:" destination="eyP-9Z-BqX" eventType="touchUpInside" id="Iaw-7r-4l3"/>
+                                    <action selector="locationButton:" destination="GfA-De-cIW" eventType="touchUpInside" id="b0I-ak-CEF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Destination" id="BI3-Km-nec"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="NavTitle" destination="BI3-Km-nec" id="EbL-MG-Frl"/>
                         <outlet property="mapView" destination="mPn-sH-zYX" id="MRo-oK-XnH"/>
                     </connections>
                 </viewController>
@@ -965,7 +843,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3095.5" y="2883.5"/>
+            <point key="canvasLocation" x="3433.5" y="2883.5"/>
         </scene>
         <!--Start-->
         <scene sceneID="yCZ-RS-T3y">
@@ -987,31 +865,46 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="finishButton" destination="GfA-De-cIW" eventType="touchUpInside" id="0YM-N5-0Xc"/>
+                                    <segue destination="eyP-9Z-BqX" kind="show" identifier="OfferRideDestinationSeague" id="POE-uq-f52"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="coh-UY-d54">
                                 <rect key="frame" x="0.0" y="144" width="375" height="420"/>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-uK-ec9">
-                                <rect key="frame" x="16" y="83" width="349" height="34"/>
+                                <rect key="frame" x="16" y="96" width="349" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="SearchBox:" destination="GfA-De-cIW" eventType="editingDidEndOnExit" id="GTg-OA-OMF"/>
                                 </connections>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-Jt-ZVJ">
-                                <rect key="frame" x="172" y="335" width="37" height="37"/>
-                                <color key="color" red="0.064936468087044619" green="0.13235576798950599" blue="0.38512305964052296" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYf-Wc-Jeh">
+                                <rect key="frame" x="329" y="521" width="36" height="36"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                </accessibility>
+                                <state key="normal" title="Button" image="location.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButton:" destination="GfA-De-cIW" eventType="touchUpInside" id="smd-Y4-lVR"/>
+                                </connections>
+                            </button>
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnU-1z-wNt">
+                                <rect key="frame" x="16" y="72" width="230" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Start" id="e6d-X2-W5e"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="activityView" destination="QkD-Jt-ZVJ" id="eO6-n8-ZOl"/>
+                        <outlet property="Descriptor" destination="WnU-1z-wNt" id="7N9-eA-gu1"/>
+                        <outlet property="NavTitle" destination="e6d-X2-W5e" id="RLu-YY-d2B"/>
                         <outlet property="mapView" destination="coh-UY-d54" id="IJy-ro-KTA"/>
                         <segue destination="Wrj-1R-NEV" kind="unwind" identifier="unwindToDashBoard" unwindAction="unWindFromOfferView:" id="vZM-s1-tJt"/>
                     </connections>
@@ -1024,7 +917,26 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3668.5" y="2876.5"/>
+            <point key="canvasLocation" x="2938.5" y="2883.5"/>
+        </scene>
+        <!--Request Ride Complete View Controller-->
+        <scene sceneID="o7Q-LI-TQ2">
+            <objects>
+                <viewController id="9Bo-yD-BRn" customClass="RequestRideCompleteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UXR-lq-lg4"/>
+                        <viewControllerLayoutGuide type="bottom" id="q1l-Rf-tDA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BEA-j9-56K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qIF-Yn-ecr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4608.5" y="2883.5"/>
         </scene>
         <!--Request Ride Complete View Controller-->
         <scene sceneID="XwW-c0-HcY">
@@ -1062,11 +974,14 @@
                     <connections>
                         <outlet property="activityView" destination="okT-cu-T1u" id="RUp-ps-6MV"/>
                         <outlet property="mapView" destination="AIw-JT-HhX" id="8CY-aH-yOO"/>
+                        <segue destination="fu3-2P-b8e" kind="unwind" identifier="unwindToDashBoard" unwindAction="unWindFromOfferView:" id="53J-T5-Ftb"/>
+                        <segue destination="9Bo-yD-BRn" kind="show" identifier="RequestRideCompleteSegue" id="KcV-4t-8ht"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeY-ay-BrS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fu3-2P-b8e" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4233.5" y="3681.5"/>
+            <point key="canvasLocation" x="3975.5" y="2883.5"/>
         </scene>
         <!--Inbox-->
         <scene sceneID="aM1-wl-Ndp">
@@ -1649,5 +1564,9 @@
     </scenes>
     <resources>
         <image name="blank-profile-picture.png" width="400" height="400"/>
+        <image name="location.png" width="562" height="567"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Xua-63-tL7"/>
+    </inferredMetricsTieBreakers>
 </document>

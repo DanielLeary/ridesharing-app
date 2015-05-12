@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "Requests.h"
+#import <Parse/Parse.h>
+#import "Ride.h"
 
 @interface RequestRideCompleteViewController : UIViewController <MKMapViewDelegate>
 
-@property (strong, nonatomic) Requests *request;
+@property (strong, nonatomic) Ride *ride;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 - (IBAction)finishButton;
