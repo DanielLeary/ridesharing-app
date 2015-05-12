@@ -45,12 +45,12 @@
     if (self) {
         
         fav_placesID = [[NSMutableArray alloc] initWithCapacity:5];
+        favPlacesArray = [[NSMutableArray alloc] initWithCapacity:5];
         user = [PFUser currentUser];
         if (user) {
             Place *home = [[Place alloc] initWithName:@"Home"];
             Place *work = [[Place alloc] initWithName:@"Work"];
             
-            favPlacesArray = [[NSMutableArray alloc] initWithCapacity:5];
             [self pullPlacesArray];
             interestsArray = [[NSMutableArray alloc] init];
             
@@ -152,16 +152,20 @@
 
 - (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
     [favPlacesArray replaceObjectAtIndex:indexPath withObject:place];
+
 }
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
     [favPlacesArray removeObjectAtIndex:indexPath];
+    [fav_placesID removeObjectAtIndex:indexPath];
+    user[favPlaces] = fav_placesID;
+    //[user save];
 }
 
 
 -(void) pullPlacesArray{
     [favPlacesArray removeAllObjects];
-    NSMutableArray* fav_ids = user[favPlaces];
+    NSMutableArray* fav_ids = [[NSMutableArray alloc] initWithArray:user[favPlaces]];
     for (NSString* string in fav_ids){
         PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
         PFObject* place = [query getObjectWithId:string];

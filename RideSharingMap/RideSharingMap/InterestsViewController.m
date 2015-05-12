@@ -20,24 +20,21 @@ static const int rowHeight = 40;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
     
     if (user) {
         allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
-        checkedInterests = [viewModel getInterestsArray];
+        if ([viewModel getInterestsArray] != nil ){
+            checkedInterests = [viewModel getInterestsArray];
+        }
     }
-    checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
     self.interestsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
 /* METHODS FOR UI */
-
-- (IBAction)savePressed:(UIBarButtonItem *)sender {
-    [viewModel updateInterests:checkedInterests];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 /* TABLE DELEGATE METHODS */
@@ -69,9 +66,11 @@ static const int rowHeight = 40;
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [checkedInterests addObject:cell.textLabel.text];
+        [viewModel updateInterests:checkedInterests];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [checkedInterests removeObject:cell.textLabel.text];
+        [viewModel updateInterests:checkedInterests];
     }
 }
 
