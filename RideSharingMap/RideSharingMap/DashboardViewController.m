@@ -188,6 +188,14 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    JourneyView *journey = [self.storyboard instantiateViewControllerWithIdentifier:@"JourneyView"];
+    journey.label.text = @"test";
+    [[self navigationController] pushViewController:journey animated:YES];
+}
+
 // Used to pop off seagues
 
 -(IBAction)unWindFromOfferView:(UIStoryboardSegue *)seage {

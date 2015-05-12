@@ -47,6 +47,7 @@
 		7EF361E01A87C4EC0004D0FC /* RideSharingMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361DF1A87C4EC0004D0FC /* RideSharingMapTests.m */; };
 		7EF361EE1A87CB910004D0FC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF361ED1A87CB910004D0FC /* MapKit.framework */; };
 		7EF361F01A87CB9F0004D0FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF361EF1A87CB9F0004D0FC /* CoreLocation.framework */; };
+		C560AB471B019AD40072E5E0 /* JourneyView.m in Sources */ = {isa = PBXBuildFile; fileRef = C560AB461B019AD40072E5E0 /* JourneyView.m */; };
 		C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542361A9FB2B3004A4303 /* InboxViewController.m */; };
 		C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542391A9FB2DD004A4303 /* DashboardViewController.m */; };
 		C5A5423D1A9FB317004A4303 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A5423C1A9FB317004A4303 /* SettingsViewController.m */; };
@@ -137,6 +138,8 @@
 		7EF361DF1A87C4EC0004D0FC /* RideSharingMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RideSharingMapTests.m; sourceTree = "<group>"; };
 		7EF361ED1A87CB910004D0FC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7EF361EF1A87CB9F0004D0FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C560AB451B019AD40072E5E0 /* JourneyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JourneyView.h; path = ../JourneyView.h; sourceTree = "<group>"; };
+		C560AB461B019AD40072E5E0 /* JourneyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JourneyView.m; path = ../JourneyView.m; sourceTree = "<group>"; };
 		C5A542351A9FB2B3004A4303 /* InboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxViewController.h; sourceTree = "<group>"; };
 		C5A542361A9FB2B3004A4303 /* InboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxViewController.m; sourceTree = "<group>"; };
 		C5A542381A9FB2DD004A4303 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				C5A5423C1A9FB317004A4303 /* SettingsViewController.m */,
 				C5A542381A9FB2DD004A4303 /* DashboardViewController.h */,
 				C5A542391A9FB2DD004A4303 /* DashboardViewController.m */,
+				C560AB451B019AD40072E5E0 /* JourneyView.h */,
+				C560AB461B019AD40072E5E0 /* JourneyView.m */,
 				C5EB585A1AA78E6700A081C8 /* DashboardMV.h */,
 				C5EB585B1AA78E6700A081C8 /* DashboardMV.m */,
 				C5A542351A9FB2B3004A4303 /* InboxViewController.h */,
@@ -531,6 +536,7 @@
 				EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */,
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */,
+				C560AB471B019AD40072E5E0 /* JourneyView.m in Sources */,
 				7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */,
 				7E1D70111B00E0940087A5BB /* RequestRideStartViewController.m in Sources */,
 				EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */,
