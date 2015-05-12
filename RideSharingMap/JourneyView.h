@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface JourneyView : UIViewController
+@property (weak, nonatomic) PFObject *item;
+@property (weak, nonatomic) IBOutlet UILabel *give_get;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *date;
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *pickupAddress;
+@property (weak, nonatomic) IBOutlet UILabel *destAddress;
 
-@property (weak, nonatomic) NSString *rowID;
-@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end

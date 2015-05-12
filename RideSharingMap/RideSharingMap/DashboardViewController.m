@@ -9,6 +9,7 @@
 #import "DashboardViewController.h"
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
+#import "JourneyView.h"
 
 @implementation DashboardViewController {
     
@@ -56,7 +57,10 @@
     [testJourney uploadToCloud];
     */
     
-    
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
     //---------------------------------------------------------------------
     // Get journeys that user is involved in as either driver or passenger
     //---------------------------------------------------------------------
@@ -83,10 +87,9 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
-    
-    
+
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -190,11 +193,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     JourneyView *journey = [self.storyboard instantiateViewControllerWithIdentifier:@"JourneyView"];
-    journey.label.text = @"test";
-    [[self navigationController] pushViewController:journey animated:YES];
+    [journey view];
+    
+    PFObject *item = tableData[indexPath.row];
+    journey.navigationItem.title = @"Journey";
+    journey.item = item;
+    
+    [self.navigationController pushViewController:journey animated:YES];
+     
 }
+
 
 // Used to pop off seagues
 
