@@ -640,7 +640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHw-iT-kgT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2357.5" y="1930.5"/>
+            <point key="canvasLocation" x="2293.5" y="1930.5"/>
         </scene>
         <!--Journey View-->
         <scene sceneID="Z6V-f6-8Au">
@@ -724,9 +724,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyh-1g-1Rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2857.5" y="1930.5"/>
+            <point key="canvasLocation" x="2748.5" y="1930.5"/>
         </scene>
-        <!--Title-->
+        <!--Date & Time-->
         <scene sceneID="217-db-1B4">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="UuC-OD-0iq" customClass="OfferRideTimeViewController" sceneMemberID="viewController">
@@ -735,18 +735,25 @@
                         <viewControllerLayoutGuide type="bottom" id="hVq-sm-Q5h"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hiV-9w-fwE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Liy-4M-fV4">
-                                <rect key="frame" x="21" y="147" width="338" height="162"/>
+                                <rect key="frame" x="16" y="49" width="343" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="450744112.07730103">
                                     <!--2015-04-14 22:41:52 +0000-->
                                 </date>
                             </datePicker>
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a date and time for your ride" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PL-vr-0uv">
+                                <rect key="frame" x="16" y="20" width="343" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9V-Lx-ROa">
-                                <rect key="frame" x="21" y="586" width="338" height="46"/>
+                                <rect key="frame" x="16" y="545" width="343" height="38"/>
                                 <color key="backgroundColor" red="0.064523633915780726" green="0.16209058679235955" blue="0.38422413472964945" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -758,7 +765,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="4cy-be-Ztg"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Date &amp; Time" id="4cy-be-Ztg"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="NavTitle" destination="4cy-be-Ztg" id="bN4-H9-wOI"/>
@@ -767,7 +776,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAh-yJ-OcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2415.5" y="2883.5"/>
+            <point key="canvasLocation" x="2293.5" y="2685.5"/>
         </scene>
         <!--Destination-->
         <scene sceneID="5N9-ll-Wsa">
@@ -778,12 +787,13 @@
                         <viewControllerLayoutGuide type="bottom" id="mJH-BT-68P"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="twk-fR-xGJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZc-l9-552">
-                                <rect key="frame" x="16" y="580" width="343" height="43"/>
+                                <rect key="frame" x="16" y="543" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -792,29 +802,29 @@
                                     <segue destination="fNG-6h-oUe" kind="show" identifier="RideCompleteSeague" id="w3Y-TJ-IWg"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-28-bGh">
-                                <rect key="frame" x="13" y="102" width="349" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-28-bGh">
+                                <rect key="frame" x="16" y="49" width="343" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="SearchBox:" destination="eyP-9Z-BqX" eventType="editingDidEndOnExit" id="erE-AK-q9L"/>
                                 </connections>
                             </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mPn-sH-zYX">
-                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="435"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="GhO-Ya-xrS" appends="YES" id="sQP-cI-y3h"/>
                                 </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a destination" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfq-MI-Ah3">
-                                <rect key="frame" x="13" y="80" width="163" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="20" width="163" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q16-yq-mDg">
-                                <rect key="frame" x="331" y="520" width="36" height="36"/>
+                                <rect key="frame" x="330" y="480" width="30" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
@@ -829,6 +839,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Destination" id="BI3-Km-nec"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -843,7 +854,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3433.5" y="2883.5"/>
+            <point key="canvasLocation" x="3207.5" y="2685.5"/>
         </scene>
         <!--Start-->
         <scene sceneID="yCZ-RS-T3y">
@@ -854,12 +865,13 @@
                         <viewControllerLayoutGuide type="bottom" id="2pr-QK-mKn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jYY-QX-kMu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-si-cdJ">
-                                <rect key="frame" x="16" y="580" width="343" height="43"/>
+                                <rect key="frame" x="16" y="543" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -869,18 +881,24 @@
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="coh-UY-d54">
-                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="435"/>
                             </mapView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-uK-ec9">
-                                <rect key="frame" x="16" y="96" width="349" height="40"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-uK-ec9">
+                                <rect key="frame" x="16" y="49" width="343" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="SearchBox:" destination="GfA-De-cIW" eventType="editingDidEndOnExit" id="GTg-OA-OMF"/>
                                 </connections>
                             </textField>
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a starting point" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnU-1z-wNt">
+                                <rect key="frame" x="16" y="20" width="343" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYf-Wc-Jeh">
-                                <rect key="frame" x="329" y="521" width="36" height="36"/>
+                                <rect key="frame" x="330" y="480" width="30" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
@@ -891,16 +909,12 @@
                                     <action selector="locationButton:" destination="GfA-De-cIW" eventType="touchUpInside" id="smd-Y4-lVR"/>
                                 </connections>
                             </button>
-                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnU-1z-wNt">
-                                <rect key="frame" x="16" y="72" width="230" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Start" id="e6d-X2-W5e"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="Descriptor" destination="WnU-1z-wNt" id="7N9-eA-gu1"/>
@@ -917,7 +931,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2938.5" y="2883.5"/>
+            <point key="canvasLocation" x="2748.5" y="2685.5"/>
         </scene>
         <!--Request Ride Complete View Controller-->
         <scene sceneID="o7Q-LI-TQ2">
@@ -936,7 +950,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIF-Yn-ecr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4608.5" y="2883.5"/>
+            <point key="canvasLocation" x="4110.5" y="2685.5"/>
         </scene>
         <!--Request Ride Complete View Controller-->
         <scene sceneID="XwW-c0-HcY">
@@ -947,15 +961,16 @@
                         <viewControllerLayoutGuide type="bottom" id="iLM-RW-of6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uVd-DG-uIz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AIw-JT-HhX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="503"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="525"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJU-su-wmD">
-                                <rect key="frame" x="16" y="588" width="343" height="30"/>
+                                <rect key="frame" x="16" y="543" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Finish">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -965,11 +980,12 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="okT-cu-T1u">
-                                <rect key="frame" x="177" y="306" width="20" height="20"/>
+                                <rect key="frame" x="177" y="253" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="activityView" destination="okT-cu-T1u" id="RUp-ps-6MV"/>
@@ -981,7 +997,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeY-ay-BrS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fu3-2P-b8e" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3975.5" y="2883.5"/>
+            <point key="canvasLocation" x="3663.5" y="2685.5"/>
         </scene>
         <!--Inbox-->
         <scene sceneID="aM1-wl-Ndp">
@@ -999,7 +1015,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InboxAccepted" rowHeight="88" id="whY-Tz-Dz2" customClass="InboxAccepted">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InboxAccepted" rowHeight="88" id="whY-Tz-Dz2" customClass="InboxAccepted">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="whY-Tz-Dz2" id="BAB-DJ-baC">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1040,7 +1056,7 @@
                                             <outlet property="time" destination="sav-pU-TyT" id="9XP-yt-nnQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InboxRequest" rowHeight="130" id="cE4-q3-pgV" customClass="InboxRequest">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InboxRequest" rowHeight="130" id="cE4-q3-pgV" customClass="InboxRequest">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cE4-q3-pgV" id="c2s-HB-3M5">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1054,14 +1070,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWK-FU-WhC">
-                                                    <rect key="frame" x="253" y="20" width="96" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                    <color key="textColor" red="0.67735224184782616" green="0.67735224184782616" blue="0.67735224184782616" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhd-fR-LUU">
-                                                    <rect key="frame" x="269" y="40" width="80" height="20"/>
+                                                    <rect key="frame" x="274" y="50" width="80" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1088,6 +1098,12 @@
                                                     <rect key="frame" x="85" y="50" width="96" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <color key="textColor" red="0.34313538937697452" green="0.60932762494894022" blue="0.93622622282608692" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWK-FU-WhC">
+                                                    <rect key="frame" x="258" y="20" width="96" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                    <color key="textColor" red="0.67735224184782616" green="0.67735224184782616" blue="0.67735224184782616" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1396,6 +1412,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="oR1-DA-K3u" id="QUw-lh-Ol8"/>
