@@ -9,7 +9,10 @@
 #import "DashboardViewController.h"
 #import <Parse/Parse.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Ride.h"
+#import "OfferRideTimeViewController.h"
 #import "JourneyView.h"
+
 
 @implementation DashboardViewController {
     

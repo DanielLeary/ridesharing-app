@@ -140,8 +140,6 @@ MKPolyline *routeOverlay = nil;
     [self.activityView startAnimating];
     [self.view setUserInteractionEnabled:NO];
     
-    //[self navigationController setUserInteractionEnabled:NO];
-    
     //Set the start location to current pin location
     //self.ride.startCordinate = self.pin.coordinate;
     
@@ -205,7 +203,7 @@ MKPolyline *routeOverlay = nil;
                 }
                 
                 // Run seague to relevant view controller
-                [self performSegueWithIdentifier:@"listOfRide" sender:self];
+                [self performSegueWithIdentifier:@"RequestRideCompleteSegue" sender:self];
             } else {
                 // Display alert that couldn't upload
                 NSString* string = @"Could not connect to server, please check your internet connection and try again";

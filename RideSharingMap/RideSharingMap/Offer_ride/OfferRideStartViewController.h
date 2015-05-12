@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Ride *ride;
 - (IBAction)SearchBox:(UITextField *)sender;
+- (IBAction)locationButton:(UIButton *)sender;
 
 //- (IBAction)finishButton;
 
