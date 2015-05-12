@@ -26,7 +26,9 @@ static const int rowHeight = 40;
     
     if (user) {
         allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
-        checkedInterests = [viewModel getInterestsArray];
+        if ([viewModel getInterestsArray] != nil ){
+            checkedInterests = [viewModel getInterestsArray];
+        }
     }
     self.interestsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
