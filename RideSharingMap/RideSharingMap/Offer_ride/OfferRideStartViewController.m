@@ -7,7 +7,7 @@
 //
 
 #import "OfferRideStartViewController.h"
-#import "OfferRideDestinationViewController.h"
+#import "RequestRideCompleteViewController.h"
 #import <Parse/Parse.h>
 
 
@@ -18,8 +18,6 @@
 @property (strong, atomic) MKPointAnnotation* pin;
 @property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
 @property (weak, nonatomic) IBOutlet UILabel *Descriptor;
-
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 @end
 
@@ -97,6 +95,8 @@
 // Update pin position everytime map position is changed
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     self.pin.coordinate = self.mapView.centerCoordinate;
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView addAnnotation:self.pin];
 }
 
 
@@ -125,6 +125,10 @@
 
 }
 
+// Update pin position everytime map position is changed
+
+
+/*
 - (IBAction)finishButton{
     
     //Start spinning and don't allow interaction
@@ -222,6 +226,18 @@
     if ([segue.identifier isEqualToString:@"listOfRides"]) {
         // Initialise values for table view controller
     }
+}
+*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"endRide"]) {
+        self.ride.startCordinate = self.pin.coordinate;
+        RequestRideCompleteViewController *vc2 = (RequestRideCompleteViewController *)segue.destinationViewController;
+        vc2.ride = self.ride;
+        NSLog(@"Prepared for Seague OfferRideEndSeague");
+    }
+    
 }
 
 - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer

@@ -801,9 +801,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="fNG-6h-oUe" kind="show" identifier="RequestRideCompleteSeague" id="x9g-qR-a0C"/>
-                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Eaq-s0-ej6">
                                 <rect key="frame" x="0.0" y="131" width="375" height="438"/>
@@ -846,17 +843,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZc-l9-552">
-                                <rect key="frame" x="16" y="580" width="343" height="43"/>
-                                <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="GfA-De-cIW" kind="show" identifier="OfferRideStartSeague" id="dkI-4z-UsR"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEy-28-bGh">
                                 <rect key="frame" x="13" y="102" width="349" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -866,7 +852,7 @@
                                 </connections>
                             </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mPn-sH-zYX">
-                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
+                                <rect key="frame" x="-3" y="144" width="380" height="418"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="GhO-Ya-xrS" appends="YES" id="sQP-cI-y3h"/>
@@ -878,6 +864,29 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53H-4P-kpT">
+                                <rect key="frame" x="325" y="511" width="42" height="42"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                </accessibility>
+                                <state key="normal" title="Button" image="location.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButton:" destination="eyP-9Z-BqX" eventType="touchUpInside" id="34b-X1-TQX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZc-l9-552">
+                                <rect key="frame" x="21" y="586" width="338" height="46"/>
+                                <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="GfA-De-cIW" kind="show" identifier="OfferRideStartSeague" id="dkI-4z-UsR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -895,7 +904,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3095.5" y="2883.5"/>
+            <point key="canvasLocation" x="3003.5" y="2883.5"/>
         </scene>
         <!--Title-->
         <scene sceneID="yCZ-RS-T3y">
@@ -910,19 +919,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-si-cdJ">
-                                <rect key="frame" x="16" y="580" width="343" height="43"/>
+                                <rect key="frame" x="21" y="580" width="343" height="43"/>
                                 <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="finishButton" destination="GfA-De-cIW" eventType="touchUpInside" id="0YM-N5-0Xc"/>
+                                    <segue destination="fNG-6h-oUe" kind="show" identifier="endRide" id="GZ4-ms-B55"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="coh-UY-d54">
-                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
-                            </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-uK-ec9">
                                 <rect key="frame" x="13" y="102" width="349" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -937,10 +943,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="QkD-Jt-ZVJ">
-                                <rect key="frame" x="169" y="335" width="37" height="37"/>
-                                <color key="color" red="0.064936468087044619" green="0.13235576798950599" blue="0.38512305964052296" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="coh-UY-d54">
+                                <rect key="frame" x="0.0" y="144" width="375" height="420"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -949,14 +954,10 @@
                     <connections>
                         <outlet property="Descriptor" destination="XAT-eZ-i3S" id="y2J-GQ-fww"/>
                         <outlet property="NavTitle" destination="It5-vx-MPq" id="u6C-BA-l8G"/>
-                        <outlet property="activityView" destination="QkD-Jt-ZVJ" id="eO6-n8-ZOl"/>
                         <outlet property="mapView" destination="coh-UY-d54" id="IJy-ro-KTA"/>
-                        <segue destination="Wrj-1R-NEV" kind="unwind" identifier="unwindToDashBoard" unwindAction="unWindFromOfferView:" id="vZM-s1-tJt"/>
-                        <segue destination="u3Y-8v-rT8" kind="show" identifier="listOfRides" id="SQ2-gR-tz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hh9-nr-twM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Wrj-1R-NEV" userLabel="Exit" sceneMemberID="exit"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="XDo-AE-k4a">
                     <connections>
                         <outlet property="delegate" destination="coh-UY-d54" id="rzb-se-Y7n"/>
@@ -982,12 +983,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yy2-aC-GjW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4233.5" y="2883.5"/>
+            <point key="canvasLocation" x="4580.5" y="2883.5"/>
         </scene>
-        <!--Request Ride Complete View Controller-->
+        <!--Title-->
         <scene sceneID="XwW-c0-HcY">
             <objects>
-                <viewController title="Request Ride Complete View Controller" id="fNG-6h-oUe" customClass="RequestRideCompleteViewController" sceneMemberID="viewController">
+                <viewController id="fNG-6h-oUe" customClass="RequestRideCompleteViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ddO-JE-nD6"/>
                         <viewControllerLayoutGuide type="bottom" id="iLM-RW-of6"/>
@@ -996,11 +997,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AIw-JT-HhX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="503"/>
-                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJU-su-wmD">
-                                <rect key="frame" x="16" y="588" width="343" height="30"/>
+                                <rect key="frame" x="16" y="581" width="343" height="48"/>
                                 <color key="backgroundColor" red="0.064523633920000004" green="0.16209058679999999" blue="0.3842241347" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Finish">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1010,21 +1008,36 @@
                                     <action selector="finishButton" destination="fNG-6h-oUe" eventType="touchUpInside" id="XPg-7b-S9y"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="okT-cu-T1u">
-                                <rect key="frame" x="177" y="306" width="20" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RtW-DP-OFb">
+                                <rect key="frame" x="26" y="591" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="okT-cu-T1u">
+                                <rect key="frame" x="180" y="315" width="37" height="37"/>
                             </activityIndicatorView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AIw-JT-HhX">
+                                <rect key="frame" x="0.0" y="64" width="380" height="509"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="HR2-ts-J5y"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="activityView" destination="okT-cu-T1u" id="RUp-ps-6MV"/>
+                        <outlet property="buttonLabel" destination="zJU-su-wmD" id="Bu0-Xf-N20"/>
                         <outlet property="mapView" destination="AIw-JT-HhX" id="8CY-aH-yOO"/>
+                        <outlet property="navTitle" destination="HR2-ts-J5y" id="PhP-ZO-dzc"/>
+                        <segue destination="u3Y-8v-rT8" kind="show" identifier="listOfRide" id="OKb-l8-0iM"/>
+                        <segue destination="7dC-BK-6uf" kind="unwind" identifier="unwindToDashBoard" unwindAction="unWindFromOfferView:" id="3nm-kN-f8R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeY-ay-BrS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7dC-BK-6uf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4233.5" y="3681.5"/>
+            <point key="canvasLocation" x="4132.5" y="2883.5"/>
         </scene>
         <!--Inbox-->
         <scene sceneID="aM1-wl-Ndp">
@@ -1613,6 +1626,7 @@
     </scenes>
     <resources>
         <image name="blank-profile-picture.png" width="400" height="400"/>
+        <image name="location.png" width="562" height="567"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lHz-4R-Yog"/>

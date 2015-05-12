@@ -16,6 +16,7 @@
 @property (strong, atomic) MKPointAnnotation* pin;
 @property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
 
+
 @end
 MKPlacemark *the_placemark;
 
@@ -30,6 +31,7 @@ MKPlacemark *the_placemark;
     } else {
         self.NavTitle.title = @"Request Ride";
     }
+    
     
     // Might have to check if authorized to get location first
     self.locationManager = [[CLLocationManager alloc] init];
@@ -130,6 +132,12 @@ MKPlacemark *the_placemark;
         [self.mapView addAnnotation:self.pin];
     }];
 
+}
+
+- (IBAction)locationButton:(UIButton *)sender {
+    CLLocation* usrLocation = _locationManager.location;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(usrLocation.coordinate, 500, 500);
+    [_mapView setRegion:region animated:YES];
 }
 
 

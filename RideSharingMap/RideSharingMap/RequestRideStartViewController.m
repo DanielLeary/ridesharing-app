@@ -131,15 +131,16 @@
         //[pa release];
     }
 }
-
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"RequestRideCompleteSeague"]) {
         self.request.startCordinate = self.pin.coordinate;
         RequestRideCompleteViewController *vc2 = (RequestRideCompleteViewController *)segue.destinationViewController;
-        vc2.request = self.request;
+        vc2.ride = self.ride;
         NSLog(@"Prepared for Seague RequestsRideEndSeague");
     }
     
 }
+ */
 @end
