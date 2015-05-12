@@ -24,13 +24,33 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     
     //resize fav places table
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    if (user) {
+        self.firstNameLabel.text = [viewModel getFirstName];
+        self.lastNameLabel.text = [viewModel getLastName];
+        //self.profileImageView = [[UIImageView alloc] initWithImage:profileViewModel.profilePictureImage];
+    }
 }
 
+//temp for testing
 - (void) viewDidAppear:(BOOL)animated {
     self.firstNameLabel.text = [viewModel getFirstName];
     self.lastNameLabel.text = [viewModel getLastName];
     self.profileImageView.image = [UIImage imageWithData:[viewModel getPicture]];
     self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@", "];
+    NSUInteger count = [viewModel getInterestsCount];
+    NSLog(@"IN INTEREST ARRAY: %lu", (unsigned long)count);
+    NSLog(@"interests: %@", [viewModel getInterestsArray]);
+    
+    NSData* imageData = [viewModel getPicture];
+    
+    _profileImageView.image = [UIImage imageWithData:imageData];
+    //NSString* descr2 = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
+    self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@" "];
+    
+    [viewModel pullPlacesArray];
+    
+    
+    [self.placesTableView reloadData];
     
     //resize fav places table
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -50,11 +70,11 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 }
 
 /*- (IBAction)addNewPlaceButtonPressed:(id)sender {
-    //segue to AddPlaceViewController
-    AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-    addPlaceVC.delegate = self;
-    [self.navigationController pushViewController:addPlaceVC animated:YES];
-}*/
+ //segue to AddPlaceViewController
+ AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+ addPlaceVC.delegate = self;
+ [self.navigationController pushViewController:addPlaceVC animated:YES];
+ }*/
 
 - (IBAction)editProfileButtonPressed:(UIBarButtonItem *)sender {
     EditProfileViewController *editProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
@@ -65,12 +85,12 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 /* ADDPLACEVC DELEGATE METHODS */
 
-- (void) addNewPlace:(AddPlaceViewController *)vc place:(Place *)place {
+- (void) addNewPlace:(Place *)place {
     [viewModel addPlace:place];
     [self.placesTableView reloadData];
 }
 
-- (void) editPlace:(AddPlaceViewController *)vc atIndex:(NSUInteger)indexPath withPlace:(Place *)place {
+- (void) editPlace:(NSUInteger)indexPath withPlace:(Place *)place {
     [viewModel replacePlaceAtIndex:indexPath withPlace:place];
     [self.placesTableView reloadData];
 }
@@ -92,7 +112,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [viewModel getFavPlacesCount];
+    return [viewModel getFavPlacesCount] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,19 +122,23 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if (indexPath.row < [viewModel getFavPlacesCount]) {
+        
         cell.textLabel.text = [[viewModel getPlaceAtIndex:indexPath.row] name];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13];
         [cell.textLabel setTextColor:[UIColor grayColor]];
+    } else {
+        cell.textLabel.text = @"+ Add new place";
     }
     return cell;
 }
 
 // upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row < [viewModel getFavPlacesCount]) {
         // set up editPlaceVC
         AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-        editPlaceVC.delegate = self;
+        //editPlaceVC.delegate = self;
         editPlaceVC.editing = YES;
         editPlaceVC.placeIndexPath = indexPath.row;
         // update editPlaceVC for selected place
@@ -135,7 +159,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         [self.navigationController pushViewController:editPlaceVC animated:YES];
     } else {
         AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-        addPlaceVC.delegate = self;
+        //addPlaceVC.delegate = self;
         addPlaceVC.editing = NO;
         [self.navigationController pushViewController:addPlaceVC animated:YES];
     }
@@ -144,7 +168,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 /* METHODS FOR EDITING THE TABLE */
 
-/*
 - (IBAction)editButtonPressed:(id)sender {
     if ([_editPlacesButton.currentTitle isEqualToString:@"Edit"]) {
         [self setEditing:YES animated:YES];
@@ -185,7 +208,9 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     [viewModel removePlaceAtIndex:[fromIndexPath row]];
     [viewModel insertPlace:mover atIndex:[toIndexPath row]];
 }
- */
+
+/* FUNCTIONS FOR PROFILE PICTURE */
+
 
 
 
@@ -203,7 +228,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
             }
         }];
     }
-
+    
 }
 
 
