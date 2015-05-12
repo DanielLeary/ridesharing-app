@@ -173,6 +173,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         [self setEditing:YES animated:YES];
     } else if ([_editPlacesButton.currentTitle isEqualToString:@"Done"]) {
         [self setEditing:NO animated: YES];
+        [self.placesTableView reloadData];
     }
 }
 

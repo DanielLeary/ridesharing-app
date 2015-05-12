@@ -20,6 +20,7 @@ static const int rowHeight = 40;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
     
@@ -27,7 +28,6 @@ static const int rowHeight = 40;
         allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
         checkedInterests = [viewModel getInterestsArray];
     }
-    checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
     self.interestsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
