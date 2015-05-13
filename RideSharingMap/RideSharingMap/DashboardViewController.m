@@ -263,6 +263,7 @@
 {
     NSDate * today = [NSDate date];
     Ride* ride = [[Ride alloc] initWithDate:today];
+    ride.user = [PFUser currentUser];
     
     if([segue.identifier  isEqual: @"OfferRideSeague"]) {
         ride.offerRide = TRUE;

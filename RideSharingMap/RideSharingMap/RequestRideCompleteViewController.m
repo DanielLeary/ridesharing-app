@@ -7,12 +7,14 @@
 //
 
 #import "RequestRideCompleteViewController.h"
+#import "SelectOfferViewController.h"
 
 @interface RequestRideCompleteViewController ()
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navTitle;
+
 
 
 @end
@@ -143,22 +145,26 @@ MKPolyline *routeOverlay = nil;
     //Set the start location to current pin location
     //self.ride.startCordinate = self.pin.coordinate;
     
-    // creat alert view controller to display upload information
     
-    // stays on page
-    UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
     
-    // goesback to dashboard view controller
-    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
-    }];
+    
     
     // Run if offering a ride
     if (self.ride.offerRide) {
         
         // This block runs after parse completes or fails upload to cloud
         void(^displayInfoBlock)(BOOL, NSError*) = ^(BOOL succeded, NSError* error){
+            
+            // creat alert view controller to display upload information
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Offer Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
+            
+            // stays on page
+            UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            
+            // goesback to dashboard view controller
+            UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+            }];
             
             if(!succeded) {
                 alert.message = @"Could not upload to server, please check your internet connection and try again";
@@ -189,45 +195,16 @@ MKPolyline *routeOverlay = nil;
         
         [self.ride uploadToCloudWithBlock:displayInfoBlock];
     } else {
-        // run if requesting ride
-        void(^retrieveObjBlock)(BOOL, NSError*) = ^(BOOL success, NSError* error) {
-            
-            
-            
-            if (success) {
-                
-                NSLog(@"Success in retrieving block");
-                NSLog(@"Size of results: %lu", (unsigned long)[self.ride.rideOffers count]);
-                for (PFObject* object in self.ride.rideOffers) {
-                    NSLog(@"found %@", object.objectId);
-                }
-                
-                // Run seague to relevant view controller
-                [self performSegueWithIdentifier:@"RequestRideCompleteSegue" sender:self];
-            } else {
-                // Display alert that couldn't upload
-                NSString* string = @"Could not connect to server, please check your internet connection and try again";
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Request Ride" message:string preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:retry];
-                [alert addAction:cancel];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-            [self.activityView stopAnimating];
-            [self.view setUserInteractionEnabled:YES];
-            
-            
-        };
-        [self.ride queryRidesWithBlock:retrieveObjBlock];
-        
-        
+        // Block of code to execute once query has returned from parse.
+        [self performSegueWithIdentifier:@"SelectOfferSegue" sender:self];
     }
-    
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"listOfRide"]) {
-        // Initialise values for table view controller
+    if ([segue.identifier isEqualToString:@"SelectOfferSegue"]) {
+        SelectOfferViewController* vc = (SelectOfferViewController*)segue.destinationViewController;
+        vc.ride = self.ride;
     }
 }
 
