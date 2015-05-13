@@ -8,13 +8,12 @@
 
 #import "EditProfileViewController.h"
 
-static const int dobPickerRowHeight = 180;
-static const int genderPickerRowHeight = 140;
+static const int dobPickerRowHeight     = 180;
+static const int genderPickerRowHeight  = 140;
 
 @implementation EditProfileViewController {
     
     User *user;
-    //UserViewModel *viewModel;
     NSArray *infoArray;
     
     NSDateFormatter *dateFormatter;
@@ -30,8 +29,8 @@ static const int genderPickerRowHeight = 140;
 - (void) viewDidLoad {
     
     [super viewDidLoad];
-    //UserModel *user = [[UserModel alloc] init];
-    //viewModel = [[UserViewModel alloc] initWithModel:user];
+    user = (User*)[PFUser currentUser];
+    
     self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
     
     infoArray = @[@"First Name:", @"Last Name:", @"Username:", @"Password:", @"Date of Birth:", @"Gender:"];

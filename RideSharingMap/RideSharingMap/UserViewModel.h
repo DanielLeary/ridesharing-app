@@ -19,14 +19,17 @@
 
 /* INIT METHOD */
 
-- (instancetype) initWithModel:(UserModel *)user;
+//- (instancetype) initWithModel:(UserModel *)user;
 
 
 /* METHODS FOR BASIC INFO */
+
 /* updates basic data for the user */
-- (void)updateParseUser;
+//- (void)updateParseUser;
 
 /* accessors for user data */
+
+/*
 - (NSString *)getFirstName;
 
 - (void) setFirstName:(NSString *)firstName;
@@ -48,11 +51,16 @@
 - (NSString *)getAge;
 
 - (NSString *)getGender;
+*/
 
 /* METHODS FOR FAV PLACES */
-/* These methods propagate calls from the View Controllers to the UserModel
- See method descriptions in UserModel.h */
 
+/* 
+ These methods propagate calls from the View Controllers to the UserModel
+ See method descriptions in UserModel.h 
+ */
+
+/*
 - (NSUInteger) getFavPlacesCount;
 
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath;
@@ -66,33 +74,39 @@
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
 - (void) pullPlacesArray;
-
+*/
 
 /* METHODS FOR INTERESTS */
-/* These methods propagate calls from the View Controllers to the UserModel
- See method descriptions in UserModel.h */
+/* 
+ These methods propagate calls from the View Controllers to the UserModel
+ See method descriptions in UserModel.h 
+ */
 
+/*
 - (NSMutableArray *)getInterestsArray;
 
 - (bool)hasInterest:(NSString *)interest;
 
 - (void)updateInterests:(NSArray *)newInterestsArray;
-
+*/
 
 /* METHODS FOR PROFILE PICTURE */
-/* These methods propagate calls from the View Controllers to the UserModel 
-   See method descriptions in UserModel.h */
-
+/* 
+ These methods propagate calls from the View Controllers to the UserModel
+   See method descriptions in UserModel.h 
+ */
+/*
 - (UIImage *)getProfilePicture;
 
 - (void)setProfilePicture:(UIImage *)image;
 
 - (NSData*) getPicture;
-
+*/
 
 /* METHODS FOR LOGIN & SIGNUP */
 
+/*
 - (int)signupWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName andLastName:(NSString *)lastName;
-
+*/
 
 @end

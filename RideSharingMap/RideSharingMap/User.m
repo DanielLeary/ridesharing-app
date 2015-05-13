@@ -111,6 +111,17 @@ static NSMutableArray *favPlacesArray;
     self[Pgender] = newGender;
 }
 
+- (NSString *) getPointsString {
+    return [self[Ppoints] stringValue];
+}
+
+- (void) addPoints:(NSUInteger)morePoints {
+    NSNumber *points = self[Ppoints];
+    NSUInteger p = points.intValue;
+    p += morePoints;
+    self[Ppoints] = [NSNumber numberWithInteger:p];
+}
+
 
 /* METHODS FOR FAV PLACES */
 

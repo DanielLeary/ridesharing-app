@@ -13,7 +13,7 @@
     UserModel *user;
 }
 
-
+/*
 - (instancetype) initWithModel:(UserModel *)currentUser {
     self = [super init];
     if (self) {
@@ -26,10 +26,11 @@
 - (void)updateParseUser {
     [user updateUser];
 }
-
+*/
 
 /* METHODS FOR USER INFO */
 
+/*
 - (NSString *)getFirstName {
     return [user firstName];
 }
@@ -95,82 +96,75 @@
 - (void)setGender:(NSString *)gender {
     [user setGender:gender];
 }
-
+*/
 
 /* METHODS FOR FAV PLACES */
 
+/*
 - (NSUInteger) getFavPlacesCount {
     return [user getFavPlacesCount];
 }
-
 
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
     return [user getPlaceAtIndex:indexPath];
 }
 
-
 - (void) addPlace:(Place *)place {
     [user addPlace:place];
 }
-
 
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
     [user insertPlace:place atIndex:indexPath];
 }
 
-
 - (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
     [user replacePlaceAtIndex:indexPath withPlace:place];
 }
-
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
     [user removePlaceAtIndex:indexPath];
 }
 
-
--(void) pullPlacesArray{
+- (void) pullPlacesArray{
     [user pullPlacesArray];
 }
-
+*/
 
 /* METHODS FOR INTERESTS */
 
+/*
 - (NSMutableArray *) getInterestsArray {
     return [user getInterestsArray];
 }
-
 
 - (bool) hasInterest:(NSString *)interest {
     return [user hasInterest:interest];
 }
 
-
 - (void) updateInterests:(NSArray *)newInterestsArray {
     [user updateInterests:newInterestsArray];
 }
-
+*/
 
 /* METHODS FOR PROFILE PICTURE */
 
+/*
 - (UIImage *) getProfilePicture {
     return [user profilePicture];
 }
-
 
 - (void) setProfilePicture:(UIImage *)image {
     [user setProfilePicture:image];
 }
 
-
 -(NSData*) getPicture{
     return [user getPicture];
 }
-
+*/
 
 /* METHODS FOR LOGIN & SIGNUP */
 
-
+/*
 - (int)signupWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName andLastName:(NSString *)lastName {
     //TODO deal with different types of errors while signing up
     if (firstName.length <2 ) {
@@ -199,6 +193,6 @@
     };
     return NO_ERROR;
 }
-
+*/
 
 @end
