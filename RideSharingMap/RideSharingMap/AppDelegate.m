@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -16,9 +17,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [User registerSubclass];
-    
     // Initialise parse application
     [Parse setApplicationId:@"0zdgGDC7qYvZQpbRjXPasx5DsW1jJn6CcJSwyZbP"
                   clientKey:@"QBDLxnKEkvCSJugxfHY3hr3kT9gn55JbVWMcpWU2"];
@@ -33,10 +31,9 @@
     //------------------------------------------------------
     //UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
     
-    User *currentUser = (User *)[PFUser currentUser];
+    PFUser *currentUser = [PFUser currentUser];
     
     if (currentUser) {
-        [User pullFavPlacesFromParse];
         UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
         self.window.rootViewController = tabBarVC;
     } else {

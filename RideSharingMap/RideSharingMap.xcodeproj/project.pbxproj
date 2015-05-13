@@ -50,7 +50,6 @@
 		C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */; };
 		EB08F88F1AD4970B006C6AA5 /* blank-profile-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */; };
 		EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB08F8911AD4971A006C6AA5 /* InfoCell.m */; };
-		EB0DD6681B02CDC2003A070F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0DD6671B02CDC2003A070F /* User.m */; };
 		EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */; };
 		EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB99313B1ADD52E500532271 /* GettingRideCell.m */; };
 		EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB99313E1ADD538100532271 /* GivingRideCell.m */; };
@@ -137,8 +136,6 @@
 		EB08F88E1AD4970B006C6AA5 /* blank-profile-picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-profile-picture.png"; sourceTree = "<group>"; };
 		EB08F8901AD4971A006C6AA5 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoCell.h; sourceTree = "<group>"; };
 		EB08F8911AD4971A006C6AA5 /* InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoCell.m; sourceTree = "<group>"; };
-		EB0DD6661B02CDC2003A070F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		EB0DD6671B02CDC2003A070F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		EB8F11131AAE1B92002C7EAB /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		EB8F11141AAE1B92002C7EAB /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		EB99313A1ADD52E500532271 /* GettingRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GettingRideCell.h; sourceTree = "<group>"; };
@@ -327,12 +324,7 @@
 				1931C6081AA8AAC900B76E8B /* UserViewModel.m */,
 				1931C60A1AA8B84900B76E8B /* UserModel.h */,
 				1931C60B1AA8B84900B76E8B /* UserModel.m */,
-<<<<<<< Updated upstream
 				49CFB9301B034AB6008CF25F /* userDefines.h */,
-=======
-				EB0DD6661B02CDC2003A070F /* User.h */,
-				EB0DD6671B02CDC2003A070F /* User.m */,
->>>>>>> Stashed changes
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -507,7 +499,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB0DD6681B02CDC2003A070F /* User.m in Sources */,
 				EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */,
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */,
