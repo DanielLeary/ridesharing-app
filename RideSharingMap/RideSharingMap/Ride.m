@@ -7,20 +7,39 @@
 //
 
 #import "Ride.h"
-#import <Parse/Parse.h>
 
+
+// Parse Collumn names
 #define JOURNEY @"Offers"
 #define STARTPOS @"start"
 #define ENDLAT @"endLat"
 #define ENDLONG @"endLong"
 #define TIME @"dateTimeStart"
+#define DRIVER @"driver"
+
+// Variance in time and distance for searches
 #define TIMEEPSILON 900
+#define DISTANCEEPSILON 0.004
+
 
 
 static const CLLocationDegrees empty = -1000;
 static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 
 @implementation Ride
+
++ (double)distanceBetweenCoordinates:(CLLocationCoordinate2D)one secondCordinate:(CLLocationCoordinate2D)two {
+    CLLocation* location1 = [[CLLocation alloc] initWithLatitude:one.latitude longitude:one.longitude];
+    CLLocation* location2 = [[CLLocation alloc] initWithLatitude:two.latitude longitude:two.longitude];
+    
+    // get distances in meters and convert to KM by multiplying by 1000
+    double distance = 1000 * [location1 distanceFromLocation:location2];
+    
+    // Convert distances into miles
+    distance *= 0.6213711;
+    
+    return distance;
+}
 
 -(id)init {
     return [self initWithDate:[NSDate date]];
@@ -45,13 +64,15 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
                                                longitude:self.startCordinate.longitude];
     ride[STARTPOS] = start;
     
-    // Convert end double cordintes into NSnumber objects and store in array
+    // Convert end double cordintes into NSnumber objects
     NSNumber* lat = [self formatTo4dp:self.endCordinate.latitude];
     NSNumber* lon = [self formatTo4dp:self.endCordinate.longitude];
-    //NSArray * end = [NSArray arrayWithObjects:lat, lon, nil];
+
     ride[ENDLAT] = lat;
     ride[ENDLONG] = lon;
     ride[TIME] = self.dateTimeStart;
+    ride[DRIVER] = self.user;
+    
     [ride saveInBackgroundWithBlock:block];
 }
 
@@ -61,10 +82,10 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     
     // Search for Offers that are within 0.2 Miles of Pickup point
     [query whereKey:@"start" nearGeoPoint:start withinMiles:2];
-    NSNumber* UPPERlat = [self formatTo4dp:(self.endCordinate.latitude + 0.004)];
-    NSNumber* LOWERlat = [self formatTo4dp:(self.endCordinate.latitude - 0.004)];
-    NSNumber* UPPERlon = [self formatTo4dp:(self.endCordinate.longitude + 0.004)];
-    NSNumber* LOWERlon = [self formatTo4dp:(self.endCordinate.longitude - 0.004)];
+    NSNumber* UPPERlat = [self formatTo4dp:(self.endCordinate.latitude + DISTANCEEPSILON)];
+    NSNumber* LOWERlat = [self formatTo4dp:(self.endCordinate.latitude - DISTANCEEPSILON)];
+    NSNumber* UPPERlon = [self formatTo4dp:(self.endCordinate.longitude + DISTANCEEPSILON)];
+    NSNumber* LOWERlon = [self formatTo4dp:(self.endCordinate.longitude - DISTANCEEPSILON)];
     NSLog(@"end UPPERlatitude: %@", UPPERlat);
     NSLog(@"end LOWERlatitude: %@", LOWERlat);
     NSLog(@"end UPPERlongitude: %@", UPPERlon);
@@ -85,6 +106,9 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     [query whereKey:TIME greaterThanOrEqualTo:LOWERdate];
     [query whereKey:TIME lessThanOrEqualTo:UPPERdate];
     
+    // also download user object info
+    [query includeKey:@"driver"];
+    
     // Limit results of query to 10
     query.limit = 10;
     
@@ -95,7 +119,10 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
             block(false, error);
         } else {
             // Assign returned array to ride offers
+            
+            NSLog(@"Memory address in block: %p", self.rideOffers);
             self.rideOffers = array;
+            //self.rideOffers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:oldArray]];
             block(true, nil);
         }
     }];
