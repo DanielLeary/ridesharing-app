@@ -167,33 +167,8 @@
     return [user getPicture];
 }
 
+
 /* METHODS FOR LOGIN & SIGNUP */
-
-- (void)logOut {
-    [user logOut];
-}
-
-
-- (BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password {
-    return ([PFUser logInWithUsername:email password:password] != NULL);
-}
-
-
-- (int)checkSignupErrorsForFirstName:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password {
-    if (firstName.length <2 ) {
-        return FIRSTNAME_ERROR;
-    }
-    if (lastName.length<2) {
-        return LASTNAME_ERROR;
-    }
-    
-    BOOL containsLetter = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
-    BOOL containsNumber = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
-    if (!containsLetter || !containsNumber || password.length < 6) {
-        return PASSWORD_ERROR;
-    }
-    return NO_ERROR;
-}
 
 
 - (int)signupWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName andLastName:(NSString *)lastName {
@@ -217,35 +192,12 @@
     pfUser.password = password;
     
     pfUser[@"Surname"] = lastName;
-    pfUser[@"Name"]    = firstName;
+    pfUser[@"Name"] = firstName;
     
     if (![pfUser signUp]){
         return EMAIL_ERROR;
     };
     return NO_ERROR;
-}
-
-
-/* METHODS FOR GEOCODING */
-
-+ (NSString *) getZipCodeFromPlacemark:(CLPlacemark *)placemark {
-    NSString *address = [NSString stringWithFormat:@"%@", placemark.postalCode];
-    return address;
-}
-
-
-+ (void) getPlacemarkFromCoordinates:(CLLocationCoordinate2D)coordinates {
-    CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    typeof(self) __weak weakSelf = self;
-    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        if (error) {
-            NSLog(@"Geocode failed with error: %@", error);
-        } else {
-            CLPlacemark *placemark = [placemarks firstObject];
-            [weakSelf getZipCodeFromPlacemark:placemark];
-        }
-    }];
 }
 
 

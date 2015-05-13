@@ -13,21 +13,22 @@ static const int genderPickerRowHeight = 140;
 
 @implementation Signup2ViewController {
     
-    UserViewModel *viewModel;
+    User *user;
+    //UserViewModel *viewModel;
     NSArray *infoArray;
     NSArray *genderArray;
     
     NSDateFormatter *dateFormatter;
     BOOL dobPickerIsShown;
     BOOL genderPickerIsShown;
-    
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    UserModel *model = [[UserModel alloc] init];
-    viewModel = [[UserViewModel alloc] initWithModel:model];
+    user = [User object];
+    //UserModel *model = [[UserModel alloc] init];
+    //viewModel = [[UserViewModel alloc] initWithModel:model];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -40,12 +41,25 @@ static const int genderPickerRowHeight = 140;
     genderPickerIsShown = NO;
 }
 
+
 /* METHODS FOR UI */
 
-
 - (IBAction)signUpPressed:(UIButton *)sender {
-    AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
-    appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+    //create new user
+    user.username = self.username;
+    user.password = self.password;
+    user[@"Surname"] = self.lastName;
+    user[@"Name"] = self.firstName;
+    if (![user signUp]) {
+        AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
+        appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+    } else {
+        self.errorLabel.text = @"There was a problem signing up";
+    }
+}
+
+- (void) signUp {
+    
 }
 
 
@@ -236,7 +250,7 @@ static const int genderPickerRowHeight = 140;
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    [viewModel setProfilePicture:chosenImage];
+    [user setProfilePicture:chosenImage];
     self.imageView.image = chosenImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

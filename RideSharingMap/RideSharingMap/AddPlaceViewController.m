@@ -20,7 +20,10 @@
 
 
 @implementation AddPlaceViewController{
-    UserViewModel *viewModel;
+    
+    User *user;
+    //UserViewModel *viewModel;
+
 }
 
 
@@ -28,8 +31,9 @@
 
 - (void)viewDidLoad {
     
-    UserModel *user = [[UserModel alloc] init];
-    viewModel = [[UserViewModel alloc] initWithModel:user];
+    user = (User *)[PFUser currentUser];
+    //UserModel *user = [[UserModel alloc] init];
+    //viewModel = [[UserViewModel alloc] initWithModel:user];
     [super viewDidLoad];
     
     // set textField delegates for keyboard functions
@@ -95,16 +99,18 @@
         
         //if place is being edited
         if (self.editing==YES) {
-            [viewModel replacePlaceAtIndex:self.placeIndexPath withPlace:place];
+            [User replacePlaceAtIndex:self.placeIndexPath withPlace:place];
             [self.navigationController popViewControllerAnimated:YES];
         //if place is being added
         } else {
-            [viewModel addPlace:place];
+            [User addPlace:place];
             [self.navigationController popViewControllerAnimated:YES];
         }
     } else {
         //set placeNameField red and return keyboard
-        [self.placeNameField setBackgroundColor:[UIColor redColor]];
+        self.placeNameField.layer.borderColor = [[UIColor redColor] CGColor];
+        self.placeNameField.layer.borderWidth = 1;
+        self.placeNameField.layer.cornerRadius = 5;
         [self.placeNameField becomeFirstResponder];
     }
 }

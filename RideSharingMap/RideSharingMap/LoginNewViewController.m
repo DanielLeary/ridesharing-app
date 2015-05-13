@@ -10,26 +10,33 @@
 
 
 @implementation LoginNewViewController {
-    UserViewModel *viewModel;
+    
+    //UserViewModel *viewModel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UserModel *model = [[UserModel alloc] init];
-    viewModel = [[UserViewModel alloc] initWithModel:model];
+    //UserModel *model = [[UserModel alloc] init];
+    //viewModel = [[UserViewModel alloc] initWithModel:model];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.emailField becomeFirstResponder];
+    [self.usernameField becomeFirstResponder];
 }
 
 - (IBAction)login:(id)sender {
-    if (![viewModel loginwithEmail:self.emailField.text andPassword:self.passwordField.text]){
-        self.error_label.text = @"Incorrect email or password";
+    User *user = (User *)[PFUser logInWithUsername:self.usernameField.text password:self.passwordField.text];
+    if (!user) {
+        self.errorLabel.text = @"incorrect email or password";
+        self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
+        self.usernameField.layer.borderWidth = 1;
+        self.usernameField.layer.cornerRadius = 5;
+        self.passwordField.layer.borderColor = [[UIColor redColor] CGColor];
+        self.passwordField.layer.borderWidth = 1;
+        self.passwordField.layer.cornerRadius = 5;
     } else {
-        self.error_label.text = @"Logged in successfully";
-        
+        [User pullFromParse];
+        self.errorLabel.text = @"logged in successfully";
         AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
         appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
     }
@@ -53,7 +60,6 @@
     [self.view endEditing:YES];
     [super touchesBegan:touches withEvent:event];
 }
-
 
 
 @end

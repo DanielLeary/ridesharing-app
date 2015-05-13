@@ -10,16 +10,17 @@
 
 
 @implementation SignupViewController {
-    BOOL signup_succ;
-    UserViewModel *viewModel;
+    
+    BOOL inputError;
+    //UserViewModel *viewModel;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UserModel *model = [[UserModel alloc] init];
-    viewModel = [[UserViewModel alloc] initWithModel:model];
-    signup_succ = false;
+    //UserModel *model = [[UserModel alloc] init];
+    //viewModel = [[UserViewModel alloc] initWithModel:model];
+    inputError = YES;
 }
 
 
@@ -32,44 +33,82 @@
 
 - (IBAction)nextPressed:(UIButton *)sender {
     NSString *errorText;
-    //check for errors
-    int error = [viewModel signupWithEmail:self.emailField.text password:self.passwordField.text firstName:self.firstNameField.text andLastName:self.lastNameField.text];
+    int error = [self checkSignupErrors];
 
     switch (error) {
         case NO_ERROR:
-            [viewModel setFirstName:self.firstNameField.text];
-            [viewModel setLastName:self.lastNameField.text];
+            //[user setFirstName:self.firstNameField.text];
+            //[user setLastName:self.lastNameField.text];
             errorText = @"Sign up was successful.";
-            signup_succ = true;
+            inputError = NO;
             break;
         case FIRSTNAME_ERROR:
-            signup_succ = false;
+            inputError = YES;
             errorText = @"First name must be more than 2 letters.";
+            self.firstNameField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.firstNameField.layer.borderWidth = 1;
+            self.firstNameField.layer.cornerRadius = 5;
             break;
         case LASTNAME_ERROR:
-            signup_succ = false;
+            inputError = YES;
             errorText = @"Last name must be more than 2 letters.";
+            self.lastNameField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.lastNameField.layer.borderWidth = 1;
+            self.lastNameField.layer.cornerRadius = 5;
             break;
-        case EMAIL_ERROR:
-            signup_succ = false;
+        case USERNAME_ERROR:
+            inputError = YES;
             errorText = @"Email already in use. Please choose another email.";
+            self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.usernameField.layer.borderWidth = 1;
+            self.usernameField.layer.cornerRadius = 5;
             break;
         case PASSWORD_ERROR:
-            signup_succ = false;
+            inputError = YES;
             errorText = @"Password must contain at least one letter and one number, and be at least 6 characters long.";
+            self.passwordField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.passwordField.layer.borderWidth = 1;
+            self.passwordField.layer.cornerRadius = 5;
             break;
         default:
-            signup_succ = false;
+            inputError = YES;
             break;
     }
     self.errorLabel.text = errorText;
 
-    
     //no errors so perform segue
-   if (signup_succ) {
+   if (!inputError) {
         Signup2ViewController *signup2VC = [self.storyboard instantiateViewControllerWithIdentifier:@"Signup2ViewController"];
+       signup2VC.firstName = self.firstNameField.text;
+       signup2VC.lastName = self.lastNameField.text;
+       signup2VC.username = self.usernameField.text;
+       signup2VC.password = self.passwordField.text;
         [self.navigationController pushViewController:signup2VC animated:YES];
     }
+}
+
+
+- (int) checkSignupErrors {
+    //check name error
+    if (self.firstNameField.text.length <2 ) {
+        return FIRSTNAME_ERROR;
+    }
+    if (self.lastNameField.text.length<2) {
+        return LASTNAME_ERROR;
+    }
+    
+    //check password error
+    BOOL containsLetter = NSNotFound != [self.passwordField.text rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
+    BOOL containsNumber = NSNotFound != [self.passwordField.text rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
+    if (self.passwordField.text.length < 6 ||
+        !containsLetter ||
+        !containsNumber) {
+        return PASSWORD_ERROR;
+    }
+    
+    //check username error
+    
+    return NO_ERROR;
 }
 
 

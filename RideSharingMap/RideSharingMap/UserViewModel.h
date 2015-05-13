@@ -92,18 +92,7 @@
 
 /* METHODS FOR LOGIN & SIGNUP */
 
-- (void)logOut;
-
-- (BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password;
-
-- (int)checkSignupErrorsForFirstName:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password;
-
 - (int)signupWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName andLastName:(NSString *)lastName;
-
-
-/* METHODS FOR GEOCODING */
-
-+ (NSString *)getZipCodeFromPlacemark:(CLPlacemark *)placemark;
 
 
 @end
