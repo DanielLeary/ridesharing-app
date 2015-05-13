@@ -166,11 +166,24 @@
 }
 
 - (IBAction)complete:(id)sender {
-    PFUser *user = [PFUser currentUser];
-    [user incrementKey:@"points" byAmount:[NSNumber numberWithInt:1]];
-    [user saveInBackground];
-    [_item deleteInBackground];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSDate *today = [[NSDate alloc] init];
+    NSDate *jdate = _item[@"journeyDateTime"];
+    //If todays date is before journey date
+    if ([today compare:jdate] == NSOrderedAscending)
+    {
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Nope" message:@"This journey hasn't happened yet" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        PFUser *user = [PFUser currentUser];
+        [user incrementKey:@"points" byAmount:[NSNumber numberWithInt:1]];
+        [user saveInBackground];
+        [_item deleteInBackground];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)delete:(id)sender {
