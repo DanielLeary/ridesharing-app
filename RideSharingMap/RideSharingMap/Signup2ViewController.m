@@ -7,7 +7,6 @@
 //
 
 #import "Signup2ViewController.h"
-#import "UserModel.h"
 
 static const int dobPickerRowHeight = 180;
 static const int genderPickerRowHeight = 140;
@@ -25,6 +24,7 @@ static const int genderPickerRowHeight = 140;
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     UserModel *model = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:model];
@@ -40,20 +40,10 @@ static const int genderPickerRowHeight = 140;
     genderPickerIsShown = NO;
 }
 
-/*
-- (IBAction)position:(id)sender {
-    if (position.text.length > 3) {
-        [viewModel changePosition:position.text];
-    }
-}*/
-
-
 /* METHODS FOR UI */
 
 
 - (IBAction)signUpPressed:(UIButton *)sender {
-    //need to check info
-    //....
     AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
     appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
 }
@@ -71,7 +61,9 @@ static const int genderPickerRowHeight = 140;
     }
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell;
     if (indexPath.row == 0) {
         cell.textLabel.text = infoArray[0];
@@ -114,7 +106,9 @@ static const int genderPickerRowHeight = 140;
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView beginUpdates];
     if (dobPickerIsShown && genderPickerIsShown) {
         if (indexPath.row == 0) {
@@ -160,6 +154,7 @@ static const int genderPickerRowHeight = 140;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [tableView endUpdates];
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = tableView.rowHeight;
@@ -214,6 +209,7 @@ static const int genderPickerRowHeight = 140;
     [actionSheet showInView:self.view];
 }
 
+
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     //take picture
     if (buttonIndex == 0) {
@@ -236,6 +232,7 @@ static const int genderPickerRowHeight = 140;
         [self presentViewController:picker animated:YES completion:nil];
     }
 }
+
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];

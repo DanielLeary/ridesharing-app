@@ -19,14 +19,9 @@
 @end
 
 
-
 @implementation AddPlaceViewController{
     UserViewModel *viewModel;
-    
 }
-
-
-//@synthesize delegate;
 
 
 /* FUNCTIONS FOR VIEW CONFIGURATION */
@@ -36,9 +31,11 @@
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
     [super viewDidLoad];
+    
     // set textField delegates for keyboard functions
     self.placeNameField.delegate = self;
     self.placeLocationField.delegate = self;
+    
     // set up locationManager
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -49,15 +46,25 @@
     // set up mapView
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
-    // set up annotation pin
-    self.pin = [[MKPointAnnotation alloc] init];
-    //zoom to current location
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
-    MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
-    [self.mapView setRegion:adjustRegion animated:YES];
-    // add pin to center of map
-    self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
-    [self.mapView addAnnotation:self.pin];
+    if (self.locationManager.location == nil) {
+        NSLog(@"region!!: %@", nil);
+        CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(start_place, 1000000, 1000000);
+        [self.mapView setRegion:region animated:true];
+        self.pin = [[MKPointAnnotation alloc] init];
+        self.pin.coordinate = CLLocationCoordinate2DMake(54.1108, -3.2261);
+        [self.mapView addAnnotation:self.pin];
+    } else {
+        // set up annotation pin
+        self.pin = [[MKPointAnnotation alloc] init];
+        //zoom to current location
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
+        MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
+        [self.mapView setRegion:adjustRegion animated:YES];
+        // add pin to center of map
+        self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
+        [self.mapView addAnnotation:self.pin];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -80,11 +87,12 @@
 
 - (IBAction)saveButtonPressed:(id)sender {
     if (self.placeNameField.text.length!=0) {
-        NSString *placeName = self.placeNameField.text;
-        CLLocationDegrees latitude = self.pin.coordinate.latitude;
+        NSString *placeName         = self.placeNameField.text;
+        CLLocationDegrees latitude  = self.pin.coordinate.latitude;
         CLLocationDegrees longitude = self.pin.coordinate.longitude;
         CLLocationCoordinate2D placeCoords = CLLocationCoordinate2DMake(latitude, longitude);
         Place *place = [[Place alloc] initWithName:placeName andCoordinates:placeCoords];
+        
         //if place is being edited
         if (self.editing==YES) {
             [viewModel replacePlaceAtIndex:self.placeIndexPath withPlace:place];

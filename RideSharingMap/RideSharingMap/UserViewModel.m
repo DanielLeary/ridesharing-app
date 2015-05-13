@@ -10,10 +10,9 @@
 
 
 @implementation UserViewModel {
-    
     UserModel *user;
-    
 }
+
 
 - (instancetype) initWithModel:(UserModel *)currentUser {
     self = [super init];
@@ -22,6 +21,7 @@
     }
     return self;
 }
+
 
 - (void)updateParseUser {
     [user updateUser];
@@ -34,33 +34,41 @@
     return [user firstName];
 }
 
+
 - (void) setFirstName:(NSString *)firstName {
     [user setFirstName:firstName];
 }
+
 
 - (NSString *)getLastName {
     return [user lastName];
 }
 
+
 - (void) setLastName:(NSString *)lastName {
     [user setLastName:lastName];
 }
+
 
 - (NSString *)getUsername {
     return [user username];
 }
 
+
 - (NSString *)getPassword {
     return [user password];
 }
+
 
 - (NSDate *)getDob {
     return [user dob];
 }
 
+
 - (void) setDob:(NSDate *)dob {
     [user setDob:dob];
 }
+
 
 - (NSString *)getDobString {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -68,6 +76,7 @@
     NSString *dobString = [df stringFromDate:[user dob]];
     return dobString;
 }
+
 
 - (NSString *) getAge {
     NSDate *dob = [user dob];
@@ -77,9 +86,11 @@
     return age;
 }
 
+
 - (NSString *) getGender {
     return [user gender];
 }
+
 
 - (void)setGender:(NSString *)gender {
     [user setGender:gender];
@@ -92,21 +103,26 @@
     return [user getFavPlacesCount];
 }
 
+
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
     return [user getPlaceAtIndex:indexPath];
 }
+
 
 - (void) addPlace:(Place *)place {
     [user addPlace:place];
 }
 
+
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
     [user insertPlace:place atIndex:indexPath];
 }
 
+
 - (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
     [user replacePlaceAtIndex:indexPath withPlace:place];
 }
+
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
     [user removePlaceAtIndex:indexPath];
@@ -120,17 +136,15 @@
 
 /* METHODS FOR INTERESTS */
 
-- (NSUInteger) getInterestsCount {
-    return [user getInterestsCount];
-}
-
 - (NSMutableArray *) getInterestsArray {
     return [user getInterestsArray];
 }
 
+
 - (bool) hasInterest:(NSString *)interest {
     return [user hasInterest:interest];
 }
+
 
 - (void) updateInterests:(NSArray *)newInterestsArray {
     [user updateInterests:newInterestsArray];
@@ -142,6 +156,7 @@
 - (UIImage *) getProfilePicture {
     return [user profilePicture];
 }
+
 
 - (void) setProfilePicture:(UIImage *)image {
     [user setProfilePicture:image];
@@ -158,9 +173,11 @@
     [user logOut];
 }
 
+
 - (BOOL)loginwithEmail:(NSString*)email andPassword:(NSString *)password {
     return ([PFUser logInWithUsername:email password:password] != NULL);
 }
+
 
 - (int)checkSignupErrorsForFirstName:(NSString *)firstName andLastName:(NSString *)lastName andPassword:(NSString *)password {
     if (firstName.length <2 ) {
@@ -169,7 +186,7 @@
     if (lastName.length<2) {
         return LASTNAME_ERROR;
     }
-    //check password
+    
     BOOL containsLetter = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
     BOOL containsNumber = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
     if (!containsLetter || !containsNumber || password.length < 6) {
@@ -177,6 +194,7 @@
     }
     return NO_ERROR;
 }
+
 
 - (int)signupWithEmail:(NSString *)email password:(NSString *)password firstName:(NSString *)firstName andLastName:(NSString *)lastName {
     //TODO deal with different types of errors while signing up
@@ -189,16 +207,17 @@
     
     BOOL containsLetter = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
     BOOL containsNumber = NSNotFound != [password rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
+    
     if (!containsLetter || !containsNumber || password.length < 6) {
         return PASSWORD_ERROR;
     }
     
-    PFUser *pfUser = [PFUser user];
+    PFUser *pfUser  = [PFUser user];
     pfUser.username = email;
     pfUser.password = password;
     
     pfUser[@"Surname"] = lastName;
-    pfUser[@"Name"] = firstName;
+    pfUser[@"Name"]    = firstName;
     
     if (![pfUser signUp]){
         return EMAIL_ERROR;
@@ -213,6 +232,7 @@
     NSString *address = [NSString stringWithFormat:@"%@", placemark.postalCode];
     return address;
 }
+
 
 + (void) getPlacemarkFromCoordinates:(CLLocationCoordinate2D)coordinates {
     CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];

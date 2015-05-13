@@ -22,7 +22,6 @@
 		49CA70591ABB3554009DAC79 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70561ABB3554009DAC79 /* checkbox-checked.png */; };
 		49CA705A1ABB3554009DAC79 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70571ABB3554009DAC79 /* checkbox-pressed.png */; };
 		49CA705B1ABB3554009DAC79 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA70581ABB3554009DAC79 /* checkbox.png */; };
-		6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74423E1A9E08B9006ED680 /* InitialViewController.m */; };
 		6BA7258D1A9B71C60039DCDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */; };
 		6BA7258F1A9B71CF0039DCDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */; };
 		6BA725911A9B71D60039DCDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA725901A9B71D60039DCDC /* CoreGraphics.framework */; };
@@ -37,7 +36,6 @@
 		7EF361C31A87C4EC0004D0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C21A87C4EC0004D0FC /* main.m */; };
 		7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C51A87C4EC0004D0FC /* AppDelegate.m */; };
 		7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */; };
-		7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361CB1A87C4EC0004D0FC /* ViewController.m */; };
 		7EF361CF1A87C4EC0004D0FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361CD1A87C4EC0004D0FC /* Main.storyboard */; };
 		7EF361D11A87C4EC0004D0FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361D01A87C4EC0004D0FC /* Images.xcassets */; };
 		7EF361D41A87C4EC0004D0FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */; };
@@ -47,7 +45,6 @@
 		C560AB471B019AD40072E5E0 /* JourneyView.m in Sources */ = {isa = PBXBuildFile; fileRef = C560AB461B019AD40072E5E0 /* JourneyView.m */; };
 		C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542361A9FB2B3004A4303 /* InboxViewController.m */; };
 		C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A542391A9FB2DD004A4303 /* DashboardViewController.m */; };
-		C5A5423D1A9FB317004A4303 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A5423C1A9FB317004A4303 /* SettingsViewController.m */; };
 		C5D9603C1ADEB631002DF274 /* Journey.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D9603B1ADEB631002DF274 /* Journey.m */; };
 		C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA054B1ADE77AE007F2FD5 /* InboxAccepted.m */; };
 		C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */; };
@@ -97,8 +94,7 @@
 		49CA70561ABB3554009DAC79 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
 		49CA70571ABB3554009DAC79 /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
 		49CA70581ABB3554009DAC79 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
-		6B74423D1A9E08B9006ED680 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
-		6B74423E1A9E08B9006ED680 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		49CFB9301B034AB6008CF25F /* userDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userDefines.h; sourceTree = "<group>"; };
 		6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6BA7258E1A9B71CF0039DCDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6BA725901A9B71D60039DCDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,8 +113,6 @@
 		7EF361C41A87C4EC0004D0FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7EF361C51A87C4EC0004D0FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7EF361C81A87C4EC0004D0FC /* RideSharingMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RideSharingMap.xcdatamodel; sourceTree = "<group>"; };
-		7EF361CA1A87C4EC0004D0FC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7EF361CB1A87C4EC0004D0FC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7EF361CE1A87C4EC0004D0FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7EF361D01A87C4EC0004D0FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7EF361D31A87C4EC0004D0FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -133,8 +127,6 @@
 		C5A542361A9FB2B3004A4303 /* InboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxViewController.m; sourceTree = "<group>"; };
 		C5A542381A9FB2DD004A4303 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		C5A542391A9FB2DD004A4303 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
-		C5A5423B1A9FB317004A4303 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		C5A5423C1A9FB317004A4303 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C5D9603A1ADEB631002DF274 /* Journey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journey.h; sourceTree = "<group>"; };
 		C5D9603B1ADEB631002DF274 /* Journey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Journey.m; sourceTree = "<group>"; };
 		C5EA054A1ADE77AE007F2FD5 /* InboxAccepted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxAccepted.h; sourceTree = "<group>"; };
@@ -278,8 +270,6 @@
 				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
 				7EF361C41A87C4EC0004D0FC /* AppDelegate.h */,
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
-				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
-				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
 				7E1D70081B00CC4A0087A5BB /* Request_ride */,
 				EE525DBA1ADDCE26009DA645 /* Offer_ride */,
 				49CA704A1ABB0B14009DAC79 /* Login/Signup */,
@@ -287,16 +277,12 @@
 				EB2536F91ADD4AE800B6A23F /* User */,
 				EB2536FA1ADD4B0800B6A23F /* Classes */,
 				EB9ECE011ADC746D002A954E /* Cells */,
-				C5A5423B1A9FB317004A4303 /* SettingsViewController.h */,
-				C5A5423C1A9FB317004A4303 /* SettingsViewController.m */,
 				C5A542381A9FB2DD004A4303 /* DashboardViewController.h */,
 				C5A542391A9FB2DD004A4303 /* DashboardViewController.m */,
 				C560AB451B019AD40072E5E0 /* JourneyView.h */,
 				C560AB461B019AD40072E5E0 /* JourneyView.m */,
 				C5A542351A9FB2B3004A4303 /* InboxViewController.h */,
 				C5A542361A9FB2B3004A4303 /* InboxViewController.m */,
-				6B74423D1A9E08B9006ED680 /* InitialViewController.h */,
-				6B74423E1A9E08B9006ED680 /* InitialViewController.m */,
 				7EF361D01A87C4EC0004D0FC /* Images.xcassets */,
 				7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */,
 				7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */,
@@ -338,6 +324,7 @@
 				1931C6081AA8AAC900B76E8B /* UserViewModel.m */,
 				1931C60A1AA8B84900B76E8B /* UserModel.h */,
 				1931C60B1AA8B84900B76E8B /* UserModel.m */,
+				49CFB9301B034AB6008CF25F /* userDefines.h */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -521,7 +508,6 @@
 				7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */,
 				EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */,
 				EE525DC11ADDCE26009DA645 /* OfferRideDestinationViewController.m in Sources */,
-				6B74423F1A9E08B9006ED680 /* InitialViewController.m in Sources */,
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
 				EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */,
@@ -530,7 +516,6 @@
 				EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */,
 				C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
-				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
 				49CA70531ABB321D009DAC79 /* Signup2ViewController.m in Sources */,
 				49CA70501ABB1027009DAC79 /* SignupViewController.m in Sources */,
 				EE525DC21ADDCE26009DA645 /* OfferRideStartViewController.m in Sources */,
@@ -539,7 +524,6 @@
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
-				C5A5423D1A9FB317004A4303 /* SettingsViewController.m in Sources */,
 				1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
 				191899191A9A68B200C73208 /* ProfileViewController.m in Sources */,

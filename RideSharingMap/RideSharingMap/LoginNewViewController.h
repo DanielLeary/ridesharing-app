@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "UserViewModel.h"
 #import "AppDelegate.h"
 
@@ -17,8 +16,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-@property (weak, nonatomic) IBOutlet UILabel *error_label;
+@property (weak, nonatomic) IBOutlet UILabel     *error_label;
 
+//logs the user in if all data was correct, if not displays an error message
 - (IBAction)login:(id)sender;
 
 @end

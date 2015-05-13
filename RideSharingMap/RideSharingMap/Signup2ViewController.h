@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "UserViewModel.h"
 #import "InfoCell.h"
@@ -18,12 +17,19 @@
 
 @interface Signup2ViewController : UIViewController <GenderPickerCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic)   IBOutlet UIImageView  *imageView;
 
-@property (strong, nonatomic) IBOutlet UIButton *addProfilePictureButton;
+@property (strong, nonatomic) IBOutlet UIButton     *addProfilePictureButton;
 
-@property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
+@property (strong, nonatomic) IBOutlet UITableView  *userInfoTableView;
 
-@property (weak, nonatomic) IBOutlet UIButton *signUpbutton;
+@property (weak, nonatomic)   IBOutlet UIButton     *signUpbutton;
+
+
+//move user to the signup scene
+- (IBAction)signUpPressed:(UIButton *)sender;
+
+//provides picture choosing scenes
+- (IBAction)addProfilePicturePressed:(UIButton *)sender;
 
 @end

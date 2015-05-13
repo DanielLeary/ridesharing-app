@@ -7,15 +7,11 @@
 //
 
 #import "LoginNewViewController.h"
-#import "UserModel.h"
 
 
 @implementation LoginNewViewController {
-    
     UserViewModel *viewModel;
-    
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
