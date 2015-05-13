@@ -165,6 +165,12 @@
     }];
 }
 
-
-
+- (IBAction)complete:(id)sender {
+    NSLog(@"test");
+    PFUser *user = [PFUser currentUser];
+    [user incrementKey:@"points" byAmount:[NSNumber numberWithInt:1]];
+    [user saveInBackground];
+    [_item deleteInBackground];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

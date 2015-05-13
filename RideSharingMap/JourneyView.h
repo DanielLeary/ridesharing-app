@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *pickupAddress;
 @property (weak, nonatomic) IBOutlet UILabel *destAddress;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
+- (IBAction)complete:(id)sender;
 
 @end

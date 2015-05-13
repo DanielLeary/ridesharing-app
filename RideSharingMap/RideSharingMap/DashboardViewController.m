@@ -69,11 +69,15 @@
     //---------------------------------------------------------------------
     
     //note: replace hardcoding of "lhan" with current user email
+    PFUser *loggedinuser = [PFUser currentUser];
+    NSString *user = loggedinuser[@"username"];
+    NSLog(@"%@", user);
+
     
     PFQuery *query1 = [PFQuery queryWithClassName:@"Journeys"];
-    [query1 whereKey:@"passengerusername" equalTo:@"lhan"];
+    [query1 whereKey:@"passengerusername" equalTo:user];
     PFQuery *query2 = [PFQuery queryWithClassName:@"Journeys"];
-    [query2 whereKey:@"driverusername" equalTo:@"lhan"];    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1,query2]];
+    [query2 whereKey:@"driverusername" equalTo:user];    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1,query2]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             
@@ -109,7 +113,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //replace hardcoding with call to PFUser object here
-    NSString *user = @"lhan";
+    PFUser *loggedinuser = [PFUser currentUser];
+    NSString *user = loggedinuser[@"username"];
+    NSLog(@"%@", user);
+
+    //NSString *user = @"lhan";
     
     PFObject *item = _tableData[indexPath.row];
     NSString *driverusername = item[@"driverusername"];
@@ -204,7 +212,10 @@
     [journey view];
     
     //replace hardcoding with call to PFUser object here
-    NSString *user = @"lhan";
+    PFUser *loggedinuser = [PFUser currentUser];
+    NSString *user = loggedinuser[@"username"];
+    NSLog(@"%@", user);
+    //NSString *user = @"lhan";
     NSString *driverusername = item[@"driverusername"];
     
     
@@ -258,5 +269,7 @@
         vc.ride = ride;
     }
 }
+
+
 
 @end
