@@ -25,10 +25,10 @@
 
 @interface User : PFUser <PFSubclassing>
 
-//+ (User *)user;
++ (User *)user;
 + (User *)currentUser;
 
-//+ (NSString *)parseClassName;
++ (void) pullFromParse;
 
 
 /* METHODS FOR USER INFO */

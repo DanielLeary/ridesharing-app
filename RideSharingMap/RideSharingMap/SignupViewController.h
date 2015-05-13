@@ -6,8 +6,15 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import "UserViewModel.h"
+//#import "UserViewModel.h"
 #import "Signup2ViewController.h"
+#import "User.h"
+
+#define NO_ERROR 0
+#define FIRSTNAME_ERROR 1
+#define LASTNAME_ERROR 2
+#define EMAIL_ERROR 3
+#define PASSWORD_ERROR 4
 
 
 @interface SignupViewController : UIViewController
@@ -16,11 +23,11 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
 
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-@property (weak, nonatomic) IBOutlet UILabel     *errorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 //transfers user to the next signup view
 - (IBAction)nextPressed:(UIButton *)sender;

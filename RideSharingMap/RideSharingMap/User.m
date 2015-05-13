@@ -36,12 +36,12 @@
 //@dynamic interestsArray;
 
 static NSMutableArray *favPlacesArray;
-static NSMutableArray *interestsArray;
+//static NSMutableArray *interestsArray;
 
-/*
+
 + (User *)user {
     return (User *)[PFUser user];
-}*/
+}
 
 + (User *)currentUser {
     User *user = (User *)[PFUser currentUser];
@@ -49,10 +49,9 @@ static NSMutableArray *interestsArray;
     return user;
 }
 
-/*
-+ (NSString *)parseClassName {
-    return @"User";
-}*/
++ (void) pullFromParse {
+    [self pullFavPlacesFromParse];
+}
 
 
 /* METHODS FOR USER INFO */
@@ -203,7 +202,7 @@ static NSMutableArray *interestsArray;
     favPlacesArray = [[NSMutableArray alloc] init];
     NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
     
-    for (NSString *placeId in favPlacesId){
+    for (NSString *placeId in favPlacesId) {
         PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
         PFObject *object = [query getObjectWithId:placeId];
         
@@ -236,8 +235,7 @@ static NSMutableArray *interestsArray;
 - (void) updateInterests:(NSArray *)newInterestArray {
     //[interestsArray removeAllObjects];
     //[interestsArray addObjectsFromArray:newInterestArray];
-    self[Pinterests] = newInterestArray;
-    [self save];
+    self[Pinterests] = (NSMutableArray *)newInterestArray;
 }
 
 

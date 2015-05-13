@@ -54,6 +54,7 @@
 		EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB99313B1ADD52E500532271 /* GettingRideCell.m */; };
 		EB99313F1ADD538100532271 /* GivingRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB99313E1ADD538100532271 /* GivingRideCell.m */; };
 		EB9ECE001ADC5739002A954E /* GenderPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */; };
+		EB9FE8B71B0396C4005AABD8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9FE8B61B0396C4005AABD8 /* User.m */; };
 		EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */; };
 		EE525DB91ADDCE17009DA645 /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = EE525DB81ADDCE17009DA645 /* Ride.m */; };
 		EE525DC11ADDCE26009DA645 /* OfferRideDestinationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE525DBC1ADDCE26009DA645 /* OfferRideDestinationViewController.m */; };
@@ -144,6 +145,8 @@
 		EB99313E1ADD538100532271 /* GivingRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GivingRideCell.m; sourceTree = "<group>"; };
 		EB9ECDFE1ADC5739002A954E /* GenderPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderPickerCell.h; sourceTree = "<group>"; };
 		EB9ECDFF1ADC5739002A954E /* GenderPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderPickerCell.m; sourceTree = "<group>"; };
+		EB9FE8B51B0396C4005AABD8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		EB9FE8B61B0396C4005AABD8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		EBBEE6B21ACD98A300E76C4E /* InterestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestsViewController.h; sourceTree = "<group>"; };
 		EBBEE6B31ACD98A300E76C4E /* InterestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestsViewController.m; sourceTree = "<group>"; };
 		EE525DB71ADDCE17009DA645 /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				1931C6081AA8AAC900B76E8B /* UserViewModel.m */,
 				1931C60A1AA8B84900B76E8B /* UserModel.h */,
 				1931C60B1AA8B84900B76E8B /* UserModel.m */,
+				EB9FE8B51B0396C4005AABD8 /* User.h */,
+				EB9FE8B61B0396C4005AABD8 /* User.m */,
 				49CFB9301B034AB6008CF25F /* userDefines.h */,
 			);
 			name = User;
@@ -523,6 +528,7 @@
 				7E4E14331B0102CD00F3652B /* RequestRideCompleteViewController.m in Sources */,
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,
+				EB9FE8B71B0396C4005AABD8 /* User.m in Sources */,
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
 				1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,

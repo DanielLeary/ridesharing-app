@@ -17,6 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [User registerSubclass];
+    
     // Initialise parse application
     [Parse setApplicationId:@"0zdgGDC7qYvZQpbRjXPasx5DsW1jJn6CcJSwyZbP"
                   clientKey:@"QBDLxnKEkvCSJugxfHY3hr3kT9gn55JbVWMcpWU2"];
@@ -31,9 +34,10 @@
     //------------------------------------------------------
     //UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
     
-    PFUser *currentUser = [PFUser currentUser];
+    User *currentUser = (User *)[PFUser currentUser];
     
     if (currentUser) {
+        [User pullFromParse];
         UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
         self.window.rootViewController = tabBarVC;
     } else {

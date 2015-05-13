@@ -12,26 +12,28 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 @implementation ProfileViewController {
     
-    UserViewModel *viewModel;
+    //UserViewModel *viewModel;
+    User *user;
     
 }
 
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    UserModel *user = [[UserModel alloc] init];
-    viewModel = [[UserViewModel alloc] initWithModel:user];
+    user = (User *)[PFUser currentUser];
+    //[User pullPlacesArray];
+    //UserModel *user = [[UserModel alloc] init];
+    //viewModel = [[UserViewModel alloc] initWithModel:user];
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [viewModel pullPlacesArray];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    self.firstNameLabel.text = [viewModel getFirstName];
-    self.lastNameLabel.text = [viewModel getLastName];
-    self.profileImageView.image = [UIImage imageWithData:[viewModel getPicture]];
-    self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@", "];
+    self.firstNameLabel.text = [user getFirstName];
+    self.lastNameLabel.text = [user getLastName];
+    self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
+    self.interestsLabel.text = [[user getInterestsArray] componentsJoinedByString:@", "];
+    
     [self.placesTableView reloadData];
-
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -40,7 +42,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 - (IBAction)logoutBarButtonPressed:(UIBarButtonItem *)sender {
     //need to clear user info?
-    [viewModel logOut];
+    [User logOut];
     AppDelegate *appDelegateTemp = [[UIApplication sharedApplication] delegate];
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
@@ -65,12 +67,12 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* ADDPLACEVC DELEGATE METHODS */
 
 - (void) addNewPlace:(Place *)place {
-    [viewModel addPlace:place];
+    [User addPlace:place];
     [self.placesTableView reloadData];
 }
 
 - (void) editPlace:(NSUInteger)indexPath withPlace:(Place *)place {
-    [viewModel replacePlaceAtIndex:indexPath withPlace:place];
+    [User replacePlaceAtIndex:indexPath withPlace:place];
     [self.placesTableView reloadData];
 }
 
@@ -91,7 +93,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [viewModel getFavPlacesCount];
+    return [User getFavPlacesCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,9 +102,9 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    int test =[viewModel getFavPlacesCount];
-    if (indexPath.row < [viewModel getFavPlacesCount]) {
-        cell.textLabel.text = [[viewModel getPlaceAtIndex:indexPath.row] name];
+    //int test =[User getFavPlacesCount];
+    if (indexPath.row < [User getFavPlacesCount]) {
+        cell.textLabel.text = [[User getPlaceAtIndex:indexPath.row] name];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13];
         [cell.textLabel setTextColor:[UIColor grayColor]];
     }
@@ -111,14 +113,14 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 // upon row selection, go to editPlaceVC for selected Place
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < [viewModel getFavPlacesCount]) {
+    if (indexPath.row < [User getFavPlacesCount]) {
         // set up editPlaceVC
         AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
         //editPlaceVC.delegate = self;
         editPlaceVC.editing = YES;
         editPlaceVC.placeIndexPath = indexPath.row;
         // update editPlaceVC for selected place
-        Place *place = [viewModel getPlaceAtIndex:indexPath.row];
+        Place *place = [User getPlaceAtIndex:indexPath.row];
         [editPlaceVC view];
         editPlaceVC.placeNameField.text = place.name;
         editPlaceVC.placeLocationField.text = place.zipcode;
@@ -178,7 +180,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 - (void)tableView: (UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath: (NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // delete the row from data source
-        [viewModel removePlaceAtIndex:[indexPath row]];
+        [User removePlaceAtIndex:[indexPath row]];
         // delete row from table
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }

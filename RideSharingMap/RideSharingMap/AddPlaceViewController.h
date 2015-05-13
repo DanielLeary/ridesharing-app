@@ -7,7 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "UserViewModel.h"
+#import "User.h"
 
 @class AddPlaceViewController;
 

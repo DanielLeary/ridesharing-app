@@ -13,7 +13,8 @@ static const int genderPickerRowHeight = 140;
 
 @implementation EditProfileViewController {
     
-    UserViewModel *viewModel;
+    User *user;
+    //UserViewModel *viewModel;
     NSArray *infoArray;
     
     NSDateFormatter *dateFormatter;
@@ -29,9 +30,9 @@ static const int genderPickerRowHeight = 140;
 - (void) viewDidLoad {
     
     [super viewDidLoad];
-    UserModel *user = [[UserModel alloc] init];
-    viewModel = [[UserViewModel alloc] initWithModel:user];
-    self.profileImageView.image = [UIImage imageWithData:[viewModel getPicture]];
+    //UserModel *user = [[UserModel alloc] init];
+    //viewModel = [[UserViewModel alloc] initWithModel:user];
+    self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
     
     infoArray = @[@"First Name:", @"Last Name:", @"Username:", @"Password:", @"Date of Birth:", @"Gender:"];
 
@@ -55,7 +56,7 @@ static const int genderPickerRowHeight = 140;
 - (IBAction)saveBarButtonPressed:(id)sender {
     if (pictureChanged) {
         UIImage *newProfilePicture = self.profileImageView.image;
-        [viewModel setProfilePicture:newProfilePicture];
+        [user setProfilePicture:newProfilePicture];
         [self.delegate updateProfileImage:self image:newProfilePicture];
     }
     if (nameChanged) {
@@ -63,8 +64,8 @@ static const int genderPickerRowHeight = 140;
         NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:1 inSection:0];
         NSString *newFirstName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath0] textLabel] text];
         NSString *newLastName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath1] textLabel] text];
-        [viewModel setFirstName:newFirstName];
-        [viewModel setLastName:newLastName];
+        [user setFirstName:newFirstName];
+        [user setLastName:newLastName];
         [self.delegate updateProfileName:self firstName:newFirstName lastName:newLastName];
     }
     [self.navigationController popViewControllerAnimated:YES];
@@ -74,7 +75,7 @@ static const int genderPickerRowHeight = 140;
     if (dobPickerIsShown) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:5 inSection:0];
         UITableViewCell *cell  = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
-        [viewModel setDob:sender.date];
+        [user setDob:sender.date];
         cell.detailTextLabel.text = [dateFormatter stringFromDate:sender.date];
     }
 }
@@ -99,7 +100,7 @@ static const int genderPickerRowHeight = 140;
     } else if (indexPath.row == 4) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
         cell.textLabel.text = @"Date of birth:";
-        cell.detailTextLabel.text = [dateFormatter stringFromDate:[viewModel getDob]];
+        cell.detailTextLabel.text = [dateFormatter stringFromDate:[user getDob]];
         return cell;
     } else {
         UITableViewCell *cell;
@@ -109,7 +110,7 @@ static const int genderPickerRowHeight = 140;
             } else if (indexPath.row == 6) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
                 cell.textLabel.text = @"Gender:";
-                cell.detailTextLabel.text = [viewModel getGender];
+                cell.detailTextLabel.text = [user getGender];
             } else if (indexPath.row == 7) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
             }
@@ -121,7 +122,7 @@ static const int genderPickerRowHeight = 140;
             if (indexPath.row == 5) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
                 cell.textLabel.text = @"Gender:";
-                cell.detailTextLabel.text = [viewModel getGender];
+                cell.detailTextLabel.text = [user getGender];
             } else if (indexPath.row == 6) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
                 return cell;
@@ -130,7 +131,7 @@ static const int genderPickerRowHeight = 140;
             if (indexPath.row == 5) {
                 GenderPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
                 cell.textLabel.text = @"Gender:";
-                cell.detailTextLabel.text = [viewModel getGender];
+                cell.detailTextLabel.text = [user getGender];
                 return cell;
             }
         }
@@ -143,16 +144,16 @@ static const int genderPickerRowHeight = 140;
         cell.infoLabel.text = infoArray[indexPath.row];
         switch (indexPath.row) {
             case 0:
-                cell.infoField.text = [viewModel getFirstName];
+                cell.infoField.text = [user getFirstName];
                 break;
             case 1:
-                cell.infoField.text = [viewModel getLastName];
+                cell.infoField.text = [user getLastName];
                 break;
             case 2:
-                cell.infoField.text = [viewModel getUsername];
+                cell.infoField.text = [user getUsername];
                 break;
             case 3:
-                cell.infoField.text = [viewModel getPassword];
+                cell.infoField.text = [user getPassword];
                 break;
         }
     }
