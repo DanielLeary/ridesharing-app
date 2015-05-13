@@ -116,7 +116,7 @@
     PFQuery *query = [PFUser query];
     [query whereKey:@"username" equalTo:self.usernameField.text];
     NSArray *results = [query findObjects];
-    if (results) {
+    if ([results count] != 0) {
         return USERNAME2_ERROR;
     }
     
