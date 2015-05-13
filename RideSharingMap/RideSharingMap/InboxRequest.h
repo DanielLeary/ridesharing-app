@@ -9,11 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface InboxRequest : UITableViewCell
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *pic;
+
 @property (weak, nonatomic) IBOutlet UILabel *name;
+
 @property (weak, nonatomic) IBOutlet UILabel *date;
+
 @property (weak, nonatomic) IBOutlet UILabel *time;
-@property (weak, nonatomic) IBOutlet UIButton *acceptbutton;
-@property (weak, nonatomic) IBOutlet UIButton *declinebutton;
+
+@property (weak, nonatomic) IBOutlet UIButton *acceptButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *declineButton;
+
 
 @end
