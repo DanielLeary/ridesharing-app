@@ -21,11 +21,13 @@
 
 @end
 
-@implementation OfferRideStartViewController
+@implementation OfferRideStartViewController{
+    User *user;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    user = (User*)[PFUser currentUser];
     // Set up UINavbar Item
     if (self.ride.offerRide) {
         self.NavTitle.title = @"Offer Ride";
@@ -131,6 +133,38 @@
     [_mapView setRegion:region animated:YES];
 }
 
+- (IBAction)favouritesActionSheet:(id)sender {
+    int maxP = (int)[User getFavPlacesCount];
+    int max = maxP < 4 ? maxP : 4;
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick a location:"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    for (int i = 0; i < max; i++) {
+        NSString* name = [[User getPlaceAtIndex:i] name];
+        [actionSheet addButtonWithTitle:name];
+    }
+    
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) { return; }
+    
+    
+    
+    Place* place = [User getPlaceAtIndex:(buttonIndex -1)];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(place.coordinates, 500, 500);
+    [self.mapView setRegion:region animated:true];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    MKPlacemark* newplace = [[MKPlacemark alloc] initWithCoordinate:place.coordinates addressDictionary:nil ];
+    [self.mapView addAnnotation:newplace];
+
+    
+
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

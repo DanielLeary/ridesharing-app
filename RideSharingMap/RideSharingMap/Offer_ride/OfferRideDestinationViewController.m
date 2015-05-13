@@ -20,11 +20,14 @@
 @end
 MKPlacemark *the_placemark;
 
-@implementation OfferRideDestinationViewController
+@implementation OfferRideDestinationViewController{
+    User* user;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    user = (User*)[PFUser currentUser];
     // Set up UINavbar Item
     if (self.ride.offerRide) {
         self.NavTitle.title = @"Offer Ride";
@@ -107,6 +110,39 @@ MKPlacemark *the_placemark;
     
 }
 
+- (IBAction)favouritesActionSheet:(id)sender {
+    int maxP = (int)[User getFavPlacesCount];
+    int max = maxP < 4 ? maxP : 4;
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick a location:"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    for (int i = 0; i < max; i++) {
+        NSString* name = [[User getPlaceAtIndex:i] name];
+        [actionSheet addButtonWithTitle:name];
+    }
+    
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) { return; }
+    
+    
+    
+    Place* place = [User getPlaceAtIndex:(buttonIndex -1)];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(place.coordinates, 500, 500);
+    [self.mapView setRegion:region animated:true];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    MKPlacemark* newplace = [[MKPlacemark alloc] initWithCoordinate:place.coordinates addressDictionary:nil ];
+    [self.mapView addAnnotation:newplace];
+    
+    
+    
+}
+
 
 // Used for finding areas in vicinity
 - (IBAction)SearchBox:(UITextField *)sender {
@@ -138,6 +174,9 @@ MKPlacemark *the_placemark;
     CLLocation* usrLocation = _locationManager.location;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(usrLocation.coordinate, 500, 500);
     [_mapView setRegion:region animated:YES];
+}
+
+- (IBAction)selecFav:(id)sender {
 }
 
 

@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "Ride.h"
+#import "User.h"
 
-@interface OfferRideStartViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate>
+@interface OfferRideStartViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Ride *ride;
 - (IBAction)SearchBox:(UITextField *)sender;
 - (IBAction)locationButton:(UIButton *)sender;
+- (IBAction)favouritesActionSheet:(id)sender;
 
 //- (IBAction)finishButton;
 

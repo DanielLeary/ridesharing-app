@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "Ride.h"
+#import "User.h"
 
-@interface OfferRideDestinationViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate>
+@interface OfferRideDestinationViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Ride *ride;
@@ -18,4 +19,5 @@
 - (IBAction)locationButton:(UIButton *)sender;
 
 
+- (IBAction)favouritesActionSheet:(id)sender;
 @end
