@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "UserViewModel.h"
 #import "Signup2ViewController.h"
 
@@ -21,6 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *errorLabel;
+
+//transfers user to the next signup view
+- (IBAction)nextPressed:(UIButton *)sender;
 
 @end
