@@ -8,20 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "userDefines.h"
 #import "Place.h"
-
-#define Pfirstname @"Name"
-#define Plastname @"Surname"
-#define Pcar @"Car"
-#define Pposition @"Position"
-#define Pusername @"username"
-#define Pdob @"dob"
-#define Pgender @"Gender"
-#define Ppicture @"ProfilePicture"
-#define Pinterests @"Interests"
-#define Pfavplaces @"FavPlaces"
-#define Ppassword @"password"
-
 
 @interface User : PFUser <PFSubclassing>
 
@@ -56,6 +44,10 @@
 - (NSString *)getGender;
 
 - (void) setGender:(NSString *)newGender;
+
+- (NSString *) getPointsString;
+
+- (void) addPoints:(NSUInteger)morePoints;
 
 
 /* METHODS FOR FAV PLACES */

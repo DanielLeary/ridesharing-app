@@ -20,17 +20,9 @@
     NSMutableArray *interestsArray;
     NSMutableArray *fav_placesID;
     
-    // AS PASSENGER
-    NSMutableArray *gettingRideFromArray;
-    NSMutableArray *requestsSentArray;
-    
-    // AS DRIVER
-    NSMutableArray *givingRideToArray;
-    NSMutableArray *requestsReceivedArray;
-    
 }
 
-
+/*
 -(id)init {
     self = [super init];
     if (self) {
@@ -45,16 +37,16 @@
             [self pullPlacesArray];
             interestsArray = [[NSMutableArray alloc] init];
             
-            self.firstName = user[firstnameString];
-            self.lastName = user[surnameString];
-            self.username = user[usernameString];
-            self.password = user[passwordString];
+            self.firstName = user[Pfirstname];
+            self.lastName = user[Plastname];
+            self.username = user[Pusername];
+            self.password = user[Ppassword];
             
-            self.car = user[carString];
-            self.position = user[positionString];
+            self.car = user[Pcar];
+            self.position = user[Pposition];
             
             [interestsArray removeAllObjects];
-            [interestsArray addObjectsFromArray:user[interestArray]];
+            [interestsArray addObjectsFromArray:user[Pinterests]];
             
             //TODO setting profile pic
             //NSString *pathForBlankProfilePicture = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"png"];
@@ -73,19 +65,19 @@
 -(BOOL)updateUser {
     
     if (self.lastName != nil) {
-        user[surnameString] = self.lastName;
+        user[Plastname] = self.lastName;
     }
     if (self.firstName != nil) {
-        user[firstnameString] = self.firstName;
+        user[Pfirstname] = self.firstName;
     }
     if (self.car != nil) {
-        user[carString] = self.car;
+        user[Pcar] = self.car;
     }
     if (self.position != nil) {
-        user[positionString] = self.position;
+        user[Pposition] = self.position;
     }
     if (self.gender != nil) {
-        user[genderString] = self.gender;
+        user[Pgender] = self.gender;
     }
     
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -97,11 +89,11 @@
     }];
     return true;
 }
-
+*/
 
 /* METHODS FOR FAV PLACES */
 
-
+/*
 - (NSUInteger) getFavPlacesCount {
     return [favPlacesArray count];
 }
@@ -126,13 +118,13 @@
     bool test = [fav_place save]; //TODO remove
     NSString* fav_id = [fav_place objectId];
     [fav_placesID addObject:fav_id];
-    user[favPlaces] = fav_placesID;
+    user[Pfavplaces] = fav_placesID;
     [user save];
 }
 
 
 -(NSMutableArray*) getFavPlaces{
-    return user[favPlaces];
+    return user[Pfavplaces];
 }
 
 
@@ -150,15 +142,14 @@
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
     [favPlacesArray removeObjectAtIndex:indexPath];
     [fav_placesID removeObjectAtIndex:indexPath];
-    user[favPlaces] = fav_placesID;
+    user[Pfavplaces] = fav_placesID;
     //[user save]; //TODO sort this out
 }
 
 
--(void) pullPlacesArray{
-    
+- (void) pullPlacesArray {
     [favPlacesArray removeAllObjects];
-    NSMutableArray* fav_ids = [[NSMutableArray alloc] initWithArray:user[favPlaces]];
+    NSMutableArray* fav_ids = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
     
     for (NSString* string in fav_ids){
         PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
@@ -174,43 +165,42 @@
     }
     
     [fav_placesID removeAllObjects];
-    [fav_placesID addObjectsFromArray:user[favPlaces]];
+    [fav_placesID addObjectsFromArray:user[Pfavplaces]];
 }
+ */
 
 /* METHODS FOR INTERESTS */
 
-
+/*
 - (NSMutableArray *) getInterestsArray {
-    return user[interestArray];
+    return user[Pinterests];
 }
-
 
 - (bool) hasInterest:(NSString *)interest {
-    return [user[interestArray] containsObject:interest];
+    return [user[Pinterests] containsObject:interest];
 }
-
 
 - (void) updateInterests:(NSArray *)newInterestArray {
-    user[interestArray] = newInterestArray;
+    user[Pinterests] = newInterestArray;
     [user save];
 }
+*/
 
+/* METHODS FOR PROFILE PICTURE */
 
-/* methods for profile picture */
-
--(NSData*) getPicture{
-    PFFile* file = user[pictureString];
+/*
+- (NSData*) getPicture{
+    PFFile* file = user[Ppicture];
     NSData *imageData = [file getData];
     return imageData;
 }
 
-
--(void) setProfilePicture:(UIImage *)profilePicture{
+- (void) setProfilePicture:(UIImage *)profilePicture{
     NSData *imageData = UIImagePNGRepresentation(profilePicture);
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-    
-    user[pictureString] = imageFile;
+    user[Ppicture] = imageFile;
     [user save];
 }
+*/
 
 @end

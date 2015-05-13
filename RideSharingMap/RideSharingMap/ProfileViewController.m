@@ -12,7 +12,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 @implementation ProfileViewController {
     
-    //UserViewModel *viewModel;
     User *user;
     
 }
@@ -22,8 +21,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     [super viewDidLoad];
     user = (User *)[PFUser currentUser];
     //[User pullPlacesArray];
-    //UserModel *user = [[UserModel alloc] init];
-    //viewModel = [[UserViewModel alloc] initWithModel:user];
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -31,6 +28,8 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     self.firstNameLabel.text = [user getFirstName];
     self.lastNameLabel.text = [user getLastName];
     self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
+    self.pointsLabel.text = [user getPointsString];
+    NSLog(@"points: %@", [user getPointsString]);
     self.interestsLabel.text = [[user getInterestsArray] componentsJoinedByString:@", "];
     
     [self.placesTableView reloadData];
@@ -41,7 +40,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* METHODS FOR UI RESPONSES */
 
 - (IBAction)logoutBarButtonPressed:(UIBarButtonItem *)sender {
-    //need to clear user info?
     [User logOut];
     AppDelegate *appDelegateTemp = [[UIApplication sharedApplication] delegate];
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -146,32 +144,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 
 /* METHODS FOR EDITING THE TABLE */
 
-/*
-- (IBAction)editButtonPressed:(id)sender {
-    if ([_editPlacesButton.currentTitle isEqualToString:@"Edit"]) {
-        [self setEditing:YES animated:YES];
-    } else if ([_editPlacesButton.currentTitle isEqualToString:@"Done"]) {
-        [self setEditing:NO animated: YES];
-        [self.placesTableView reloadData];
-    }
-}
-
-// function to initiate editing mode in placesTableView
--(void) setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    [self.placesTableView setEditing:editing animated:animated];
-    if (editing == YES) {
-        [_editPlacesButton setTitle:@"Done" forState:UIControlStateNormal];
-    } else {
-        [_editPlacesButton setTitle:@"Edit" forState:UIControlStateNormal];
-    }
-}
-
-// function to mark editing style as delete
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}*/
-
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
@@ -185,34 +157,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
-/*
-// function to drag move rows in placesTableView
-- (void)tableView: (UITableView *)tableView moveRowAtIndexPath: (NSIndexPath *)fromIndexPath toIndexPath: (NSIndexPath *)toIndexPath {
-    Place *mover = [viewModel getPlaceAtIndex:[fromIndexPath row]];
-    [viewModel removePlaceAtIndex:[fromIndexPath row]];
-    [viewModel insertPlace:mover atIndex:[toIndexPath row]];
-}
- */
-
-
-- (IBAction)inputCar:(id)sender {
-    NSLog(@"edited Car");
-    PFUser *currentUser = [PFUser currentUser];
-    // If user is currently signed in
-    if(currentUser) {
-        NSLog(currentUser.username);
-        [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
-            }
-        }];
-    }
-    
-}
-
 
 
 @end

@@ -14,7 +14,7 @@
 
 @interface UserModel : NSObject
 
-
+/*
 
 @property (strong, nonatomic) NSString *firstName;
 
@@ -53,6 +53,7 @@
 /* METHODS FOR FAV PLACES */
 
 //returns the number of saved favourite places
+/*
 - (NSUInteger) getFavPlacesCount;
 
 //returns a favourite place at indexPath from the fav locations array
@@ -75,11 +76,12 @@
 
 //pulls fav locations from Parse
 - (void) pullPlacesArray;
-
+*/
 
 /* METHODS FOR INTERESTS */
 
 //returns saved interests
+/*
 - (NSMutableArray *) getInterestsArray;
 
 //returns true if interest exists in the interests array
@@ -87,15 +89,18 @@
 
 //updates user's interests and saves them to Parse
 - (void) updateInterests:(NSArray *)newInterestArray;
-
+*/
+ 
 /* METHODS FOR PROFILE PICTURE */
 
+
 //returns the data of the profile picture
+/*
 -(NSData*) getPicture;
 
 //sets the profile picture and saves the data (file) to Parse
 -(void) setProfilePicture:(UIImage *)profilePicture;
-
+*/
 
 @end
 

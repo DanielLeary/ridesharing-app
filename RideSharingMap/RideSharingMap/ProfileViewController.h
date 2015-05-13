@@ -26,13 +26,11 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *placesTableView;
 
-@property (weak, nonatomic) IBOutlet UILabel *numRidesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *interestsButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *addPlacesButton;
 
-
-- (IBAction)inputCar:(id)sender;
 
 @end
