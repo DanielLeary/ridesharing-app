@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "UserModel.h"
-#import "Place.h"
 
 #define NO_ERROR 0
 #define FIRSTNAME_ERROR 1
@@ -28,7 +26,7 @@
 /* updates basic data for the user */
 - (void)updateParseUser;
 
-/* accessors for suer data */
+/* accessors for user data */
 - (NSString *)getFirstName;
 
 - (void) setFirstName:(NSString *)firstName;

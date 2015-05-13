@@ -6,37 +6,32 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "AddPlaceViewController.h"
 #import "EditProfileViewController.h"
 #import "InterestsViewController.h"
 #import "UserViewModel.h"
 
-//@class ProfileViewController;
 
-@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate/*, AddPlaceViewControllerDelegate*/, EditProfileViewControllerDelegate>
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, EditProfileViewControllerDelegate>
 
 
 // profile UI
-@property (weak, nonatomic) IBOutlet UILabel *interestsLabel;
+@property (weak, nonatomic)   IBOutlet UILabel     *interestsLabel;
 
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
+@property (weak, nonatomic)   IBOutlet UILabel     *firstNameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
+@property (weak, nonatomic)   IBOutlet UILabel     *lastNameLabel;
 
-@property (weak, nonatomic) IBOutlet UITableView *placesTableView;
+@property (weak, nonatomic)   IBOutlet UITableView *placesTableView;
 
-@property (weak, nonatomic) IBOutlet UILabel *numRidesLabel;
+@property (weak, nonatomic)   IBOutlet UILabel     *numRidesLabel;
 
-@property (strong, nonatomic) IBOutlet UIButton *interestsButton;
+@property (strong, nonatomic) IBOutlet UIButton    *interestsButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *addPlacesButton;
-
-
-//@property (weak, nonatomic) IBOutlet UIButton *addNewPlaceButton;
+@property (weak, nonatomic)   IBOutlet UIButton    *addPlacesButton;
 
 
 - (IBAction)inputCar:(id)sender;

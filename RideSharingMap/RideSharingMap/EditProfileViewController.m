@@ -18,6 +18,7 @@ static const int genderPickerRowHeight = 140;
     
     NSDateFormatter *dateFormatter;
     int pickerCellRowHeight;
+    
     BOOL dobPickerIsShown;
     BOOL genderPickerIsShown;
     BOOL pictureChanged;
@@ -26,6 +27,7 @@ static const int genderPickerRowHeight = 140;
 }
 
 - (void) viewDidLoad {
+    
     [super viewDidLoad];
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
@@ -71,7 +73,7 @@ static const int genderPickerRowHeight = 140;
 - (IBAction)dobChanged:(UIDatePicker *)sender {
     if (dobPickerIsShown) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:5 inSection:0];
-        UITableViewCell *cell = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
+        UITableViewCell *cell  = [self.userInfoTableView cellForRowAtIndexPath:indexPath];
         [viewModel setDob:sender.date];
         cell.detailTextLabel.text = [dateFormatter stringFromDate:sender.date];
     }

@@ -12,10 +12,8 @@ static NSArray *allInterests;
 static const int rowHeight = 40;
 
 @implementation InterestsViewController {
-    
     UserViewModel *viewModel;
     NSMutableArray *checkedInterests;
-    
 }
 
 - (void) viewDidLoad {
@@ -44,6 +42,7 @@ static const int rowHeight = 40;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *CellIdentifier = @"InterestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
