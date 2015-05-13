@@ -16,7 +16,7 @@
 
 @implementation DashboardViewController {
     
-    NSArray *tableData;
+    //NSArray *tableData;
     
 }
 
@@ -81,7 +81,7 @@
             for (PFObject *object in objects) {
                 NSLog(@"Id is %@", object.objectId);
             }
-            tableData = objects;
+            _tableData = objects;
             // reloads tableview after async call complete
             [self.tableView reloadData];
             
@@ -103,7 +103,7 @@
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self->tableData.count;
+    return self->_tableData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -111,7 +111,7 @@
     //replace hardcoding with call to PFUser object here
     NSString *user = @"lhan";
     
-    PFObject *item = tableData[indexPath.row];
+    PFObject *item = _tableData[indexPath.row];
     NSString *driverusername = item[@"driverusername"];
     NSString *passengerusername = item[@"passengerusername"];
     NSDate *date = item[@"journeyDateTime"];
@@ -177,7 +177,6 @@
             }];
              
         }
-
         
         // date formatting stuff
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -199,11 +198,12 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     JourneyView *journey = [self.storyboard instantiateViewControllerWithIdentifier:@"JourneyView"];
+    PFObject *item = _tableData[indexPath.row];
+    journey.item = item;
     [journey view];
     
     //replace hardcoding with call to PFUser object here
     NSString *user = @"lhan";
-    PFObject *item = tableData[indexPath.row];
     NSString *driverusername = item[@"driverusername"];
     
     NSArray *startc = item[@"start"];
@@ -215,23 +215,8 @@
     if ([user isEqualToString:driverusername]) {
         GivingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
-        PFObject *item = tableData[indexPath.row];
-        
-        /*
-        CLLocationDegrees lat = [startc[0] doubleValue];
-        CLLocationDegrees lon = [startc[1] doubleValue];
-        CLLocationCoordinate2D jstart = {lat,lon};
-        journey.startCoord = jstart;
-        
-        NSArray *endc = item[@"end"];
-        lat = [endc[0] doubleValue];
-        lon = [endc[1] doubleValue];
-        CLLocationCoordinate2D jend = {lat,lon};
-        journey.endCoord = jend;
-         */
-        
+        PFObject *item = _tableData[indexPath.row];
         journey.navigationItem.title = @"Journey";
-        journey.item = item;
         journey.name.text = cell.nameLabel.text;
         journey.date.text = cell.dateLabel.text;
         journey.time.text = cell.timeLabel.text;
@@ -242,9 +227,8 @@
     else {
         GettingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
-        PFObject *item = tableData[indexPath.row];
+        PFObject *item = _tableData[indexPath.row];
         journey.navigationItem.title = @"Journey";
-        journey.item = item;
         journey.name.text = cell.nameLabel.text;
         journey.date.text = cell.dateLabel.text;
         journey.time.text = cell.timeLabel.text;

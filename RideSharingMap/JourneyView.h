@@ -21,9 +21,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *destAddress;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 
-@property (nonatomic) CLLocationCoordinate2D startCoord;
-@property (nonatomic) CLLocationCoordinate2D endCoord;
-
-
-
 @end

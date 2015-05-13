@@ -16,5 +16,6 @@
 @interface DashboardViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSArray *tableData;
 
 @end

@@ -20,6 +20,9 @@
     self.map.delegate = self;
     [self getARoute];
 
+    NSArray *startc = _item[@"start"];
+    double num = [startc[0] doubleValue];
+    NSLog(@"lat2 %f", num);
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -30,14 +33,16 @@
     MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
     
     
-    CLLocationCoordinate2D startCoord; //= self.startCoord;
-    startCoord.latitude = 51.492247;
-    startCoord.longitude = -0.2060875;
+    NSArray *startc = _item[@"pickup"];
+    CLLocationCoordinate2D startCoord;
+    startCoord.latitude = [startc[0] doubleValue];
+    startCoord.longitude = [startc[1] doubleValue];
     MKPlacemark *start = [[MKPlacemark alloc] initWithCoordinate:startCoord addressDictionary:nil];
     
-    CLLocationCoordinate2D endCoord; //= self.endCoord;
-    endCoord.latitude = 51.498727;
-    endCoord.longitude = -0.179115;
+    NSArray *endc = _item[@"end"];
+    CLLocationCoordinate2D endCoord;
+    endCoord.latitude = [endc[0] doubleValue];
+    endCoord.longitude =  [endc[1] doubleValue];
     MKPlacemark *end = [[MKPlacemark alloc] initWithCoordinate:endCoord addressDictionary:nil];
     
     [self.map addAnnotation:start];
