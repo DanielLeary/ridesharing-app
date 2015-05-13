@@ -7,22 +7,38 @@
 //
 
 #import "JourneyView.h"
+#import <AddressBookUI/AddressBookUI.h>
+
 
 @implementation JourneyView {
 
     MKPolyline *routeOverlay;
-
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.map.delegate = self;
+    
+    NSArray *startc = _item[@"pickup"];
+    CLLocationCoordinate2D startCoord;
+    startCoord.latitude = [startc[0] doubleValue];
+    startCoord.longitude = [startc[1] doubleValue];
+    [self getPickUpAddressFromCoordinates:startCoord];
+    
+    NSArray *endc = _item[@"end"];
+    CLLocationCoordinate2D endCoord;
+    endCoord.latitude = [endc[0] doubleValue];
+    endCoord.longitude = [endc[1] doubleValue];
+    [self getDestAddressFromCoordinates:endCoord];
+    
+    
     [self getARoute];
-
-    NSArray *startc = _item[@"start"];
-    double num = [startc[0] doubleValue];
-    NSLog(@"lat2 %f", num);
+    
+    // Draw a line divider
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15.0, 140.0, 345.0, 1)];
+    lineView.backgroundColor = [UIColor colorWithWhite: 0.90 alpha:1];
+    [self.view addSubview:lineView];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -74,7 +90,7 @@
     CLLocationCoordinate2D regionCoord;
     regionCoord.latitude = startCoord.latitude + ((endCoord.latitude                                            - startCoord.latitude)/2);
     
-    regionCoord.longitude = endCoord.longitude + ((endCoord.longitude - startCoord.longitude)/2);
+    regionCoord.longitude = startCoord.longitude + ((endCoord.longitude - startCoord.longitude)/2);
     
     
     MKPlacemark *regionPlace = [[MKPlacemark alloc] initWithCoordinate:regionCoord addressDictionary:nil];
@@ -115,6 +131,38 @@
     
     [self.map addOverlay:routeOverlay];
     
+}
+
+/* METHODS FOR GEOCODING */
+
+- (void) getPickUpAddressFromCoordinates:(CLLocationCoordinate2D)coordinates {
+    CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error || placemarks.count==0) {
+            NSLog(@"Geocode failed with error: %@", error);
+        } else {
+            CLPlacemark *placemark = [placemarks firstObject];
+            //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
+            self.pickupAddress.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+            NSLog(@"%@", placemark.postalCode);
+        }
+    }];
+}
+
+- (void) getDestAddressFromCoordinates:(CLLocationCoordinate2D)coordinates {
+    CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error || placemarks.count==0) {
+            NSLog(@"Geocode failed with error: %@", error);
+        } else {
+            CLPlacemark *placemark = [placemarks firstObject];
+            //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
+            self.destAddress.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+            NSLog(@"%@", placemark.postalCode);
+        }
+    }];
 }
 
 

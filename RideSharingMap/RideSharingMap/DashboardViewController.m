@@ -79,7 +79,7 @@
             
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"Id is %@", object.objectId);
+                //NSLog(@"Id is %@", object.objectId);
             }
             _tableData = objects;
             // reloads tableview after async call complete
@@ -125,18 +125,20 @@
         if (passengerusername != NULL) {
             PFQuery *query = [PFUser query];
             [query whereKey:@"username" equalTo:passengerusername];
-            NSArray *result = [query findObjects];
-            PFUser *person = result[0];
-            NSString *forename = person[@"Name"];
-            NSString *surname = person[@"Surname"];
-            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
-            
-            PFFile *userImageFile = person[@"ProfilePicture"];
-            [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                if (!error) {
-                    cell.profilePicture.image = [UIImage imageWithData:imageData];
-                }
+            [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+                PFUser *person = result[0];
+                NSString *forename = person[@"Name"];
+                NSString *surname = person[@"Surname"];
+                cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
+                
+                PFFile *userImageFile = person[@"ProfilePicture"];
+                [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                    if (!error) {
+                        cell.profilePicture.image = [UIImage imageWithData:imageData];
+                    }
+                }];
             }];
+            
         }
         
         
@@ -162,20 +164,19 @@
         if (driverusername != NULL) {
             PFQuery *query = [PFUser query];
             [query whereKey:@"username" equalTo:driverusername];
-            NSArray *result = [query findObjects];
-            PFUser *person = result[0];
-            NSString *forename = person[@"Name"];
-            NSString *surname = person[@"Surname"];
-            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+                PFUser *person = result[0];
+                NSString *forename = person[@"Name"];
+                NSString *surname = person[@"Surname"];
+                cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
             
-            
-            PFFile *userImageFile = person[@"ProfilePicture"];
-            [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                if (!error) {
-                    cell.profilePicture.image = [UIImage imageWithData:imageData];
-                }
+                PFFile *userImageFile = person[@"ProfilePicture"];
+                [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                    if (!error) {
+                        cell.profilePicture.image = [UIImage imageWithData:imageData];
+                    }
+                }];
             }];
-             
         }
         
         // date formatting stuff
@@ -206,16 +207,11 @@
     NSString *user = @"lhan";
     NSString *driverusername = item[@"driverusername"];
     
-    NSArray *startc = item[@"start"];
-    double num = [startc[0] doubleValue];
-    NSLog(@"lat %f", num);    
-    
     
     // check if user is the driver
     if ([user isEqualToString:driverusername]) {
         GivingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
-        PFObject *item = _tableData[indexPath.row];
         journey.navigationItem.title = @"Journey";
         journey.name.text = cell.nameLabel.text;
         journey.date.text = cell.dateLabel.text;
@@ -227,7 +223,6 @@
     else {
         GettingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
-        PFObject *item = _tableData[indexPath.row];
         journey.navigationItem.title = @"Journey";
         journey.name.text = cell.nameLabel.text;
         journey.date.text = cell.dateLabel.text;
