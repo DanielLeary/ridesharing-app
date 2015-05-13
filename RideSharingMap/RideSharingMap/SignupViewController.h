@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-//#import "UserViewModel.h"
 #import "Signup2ViewController.h"
 #import "User.h"
 
 #define NO_ERROR 0
 #define FIRSTNAME_ERROR 1
 #define LASTNAME_ERROR 2
-#define USERNAME_ERROR 3
-#define PASSWORD_ERROR 4
+#define USERNAME1_ERROR 3
+#define USERNAME2_ERROR 4
+#define PASSWORD_ERROR 5
 
 
 @interface SignupViewController : UIViewController

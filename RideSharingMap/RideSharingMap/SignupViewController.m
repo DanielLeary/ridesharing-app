@@ -12,17 +12,14 @@
 @implementation SignupViewController {
     
     BOOL inputError;
-    //UserViewModel *viewModel;
+
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //UserModel *model = [[UserModel alloc] init];
-    //viewModel = [[UserViewModel alloc] initWithModel:model];
     inputError = YES;
 }
-
 
 - (void)viewDidAppear:(BOOL)animated {
     [self.firstNameField becomeFirstResponder];
@@ -32,13 +29,12 @@
 /* METHODS FOR UI */
 
 - (IBAction)nextPressed:(UIButton *)sender {
+    [self resetTextFields];
     NSString *errorText;
     int error = [self checkSignupErrors];
 
     switch (error) {
         case NO_ERROR:
-            //[user setFirstName:self.firstNameField.text];
-            //[user setLastName:self.lastNameField.text];
             errorText = @"Sign up was successful.";
             inputError = NO;
             break;
@@ -56,16 +52,23 @@
             self.lastNameField.layer.borderWidth = 1;
             self.lastNameField.layer.cornerRadius = 5;
             break;
-        case USERNAME_ERROR:
+        case USERNAME1_ERROR:
             inputError = YES;
-            errorText = @"Email already in use. Please choose another email.";
+            errorText = @"Username must be at least 2 letters.";
+            self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.usernameField.layer.borderWidth = 1;
+            self.usernameField.layer.cornerRadius = 5;
+            break;
+        case USERNAME2_ERROR:
+            inputError = YES;
+            errorText = @"Username already in use. Please choose another.";
             self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
             self.usernameField.layer.borderWidth = 1;
             self.usernameField.layer.cornerRadius = 5;
             break;
         case PASSWORD_ERROR:
             inputError = YES;
-            errorText = @"Password must contain at least one letter and one number, and be at least 6 characters long.";
+            errorText = @"Password must contain at least 1 letter and 1 number, and be at least 6 characters.";
             self.passwordField.layer.borderColor = [[UIColor redColor] CGColor];
             self.passwordField.layer.borderWidth = 1;
             self.passwordField.layer.cornerRadius = 5;
@@ -107,8 +110,24 @@
     }
     
     //check username error
+    if (self.usernameField.text.length < 2) {
+        return USERNAME1_ERROR;
+    }
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:self.usernameField.text];
+    NSArray *results = [query findObjects];
+    if (results) {
+        return USERNAME2_ERROR;
+    }
     
     return NO_ERROR;
+}
+
+- (void) resetTextFields {
+    self.firstNameField.layer.borderWidth = 0;
+    self.lastNameField.layer.borderWidth = 0;
+    self.usernameField.layer.borderWidth = 0;
+    self.passwordField.layer.borderWidth = 0;
 }
 
 
