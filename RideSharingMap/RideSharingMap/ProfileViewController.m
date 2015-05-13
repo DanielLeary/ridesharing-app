@@ -29,7 +29,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     self.lastNameLabel.text = [user getLastName];
     self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
     self.pointsLabel.text = [user getPointsString];
-    NSLog(@"points: %@", [user getPointsString]);
     self.interestsLabel.text = [[user getInterestsArray] componentsJoinedByString:@", "];
     
     [self.placesTableView reloadData];

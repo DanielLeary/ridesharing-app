@@ -112,7 +112,6 @@ static NSMutableArray *favPlacesArray;
 }
 
 - (NSString *) getPointsString {
-    NSLog(@"points count: %@", self[Ppoints]);
     return [self[Ppoints] stringValue];
 }
 

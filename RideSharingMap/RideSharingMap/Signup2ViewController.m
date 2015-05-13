@@ -45,8 +45,9 @@ static const int genderPickerRowHeight = 140;
     //create new user
     user.username = self.username;
     user.password = self.password;
-    user[@"Surname"] = self.lastName;
-    user[@"Name"] = self.firstName;
+    user[Plastname] = self.lastName;
+    user[Pfirstname] = self.firstName;
+    user[Ppoints] = 0;
     if (![user signUp]) {
         AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
         appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
