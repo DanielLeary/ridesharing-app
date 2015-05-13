@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-//#import "UserViewModel.h"
 #import "AppDelegate.h"
 #import "User.h"
 

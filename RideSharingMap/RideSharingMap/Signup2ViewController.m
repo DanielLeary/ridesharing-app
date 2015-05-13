@@ -14,7 +14,7 @@ static const int genderPickerRowHeight = 140;
 @implementation Signup2ViewController {
     
     User *user;
-    //UserViewModel *viewModel;
+
     NSArray *infoArray;
     NSArray *genderArray;
     
@@ -24,11 +24,8 @@ static const int genderPickerRowHeight = 140;
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     user = [User object];
-    //UserModel *model = [[UserModel alloc] init];
-    //viewModel = [[UserViewModel alloc] initWithModel:model];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -54,7 +51,7 @@ static const int genderPickerRowHeight = 140;
         AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
         appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
     } else {
-        self.errorLabel.text = @"There was a problem signing up";
+        self.errorLabel.text = @"There was a problem signing up.";
     }
 }
 
@@ -234,7 +231,7 @@ static const int genderPickerRowHeight = 140;
             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:picker animated:YES completion:nil];
         } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Device has no camera." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }
     //upload picture

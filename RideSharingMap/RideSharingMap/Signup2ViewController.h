@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-//#import "UserViewModel.h"
 #import "User.h"
 #import "InfoCell.h"
 #import "GenderPickerCell.h"

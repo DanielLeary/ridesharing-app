@@ -999,7 +999,7 @@
                                             <outlet property="time" destination="fhd-fR-LUU" id="6vI-xr-hfl"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="yCb-ND-BVC" rowHeight="40" style="IBUITableViewCellStyleDefault" id="vSp-tS-shZ" customClass="InboxRequest">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="yCb-ND-BVC" rowHeight="40" style="IBUITableViewCellStyleDefault" id="vSp-tS-shZ">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vSp-tS-shZ" id="ZMt-CJ-2Gq">
                                             <autoresizingMask key="autoresizingMask"/>
