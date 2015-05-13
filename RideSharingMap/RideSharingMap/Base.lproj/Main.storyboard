@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iZa-0j-Ajd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--What do you want to do?-->
@@ -701,6 +701,9 @@
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Eqf-1n-cdC">
                                 <rect key="frame" x="0.0" y="351" width="375" height="316"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dzM-cM-TMH" id="nYI-ee-zrQ"/>
+                                </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOl-M3-pIu">
                                 <rect key="frame" x="195" y="114" width="102" height="21"/>
@@ -717,6 +720,7 @@
                         <outlet property="destAddress" destination="fdc-mz-Mys" id="8cj-CG-t8L"/>
                         <outlet property="give_get" destination="m1u-52-Vkr" id="3rT-oN-VKL"/>
                         <outlet property="image" destination="xmo-35-lbM" id="sFr-D1-OBl"/>
+                        <outlet property="map" destination="Eqf-1n-cdC" id="QM2-mb-D71"/>
                         <outlet property="name" destination="oi6-bN-HkT" id="AwG-S8-ZVr"/>
                         <outlet property="pickupAddress" destination="Iaf-2k-b9m" id="vWS-pX-07T"/>
                         <outlet property="time" destination="H1U-Ac-1NF" id="22J-f7-BSJ"/>

@@ -51,9 +51,9 @@
     CLLocationCoordinate2D jpickup = {lat,lon};
     testJourney.pickupCoordinate = jpickup;
     
-    testJourney.driverEmail = @"leon@gmail.com";
+    testJourney.driverusername = @"lhan";
     
-    testJourney.passengerEmail = @"danielleary@hotmail.co.uk";
+    testJourney.passengerusername = @"danleary";
     
     testJourney.journeyDateTime = [NSDate date];
     
@@ -206,11 +206,30 @@
     PFObject *item = tableData[indexPath.row];
     NSString *driverusername = item[@"driverusername"];
     
+    NSArray *startc = item[@"start"];
+    double num = [startc[0] doubleValue];
+    NSLog(@"lat %f", num);    
+    
+    
     // check if user is the driver
     if ([user isEqualToString:driverusername]) {
         GivingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         PFObject *item = tableData[indexPath.row];
+        
+        /*
+        CLLocationDegrees lat = [startc[0] doubleValue];
+        CLLocationDegrees lon = [startc[1] doubleValue];
+        CLLocationCoordinate2D jstart = {lat,lon};
+        journey.startCoord = jstart;
+        
+        NSArray *endc = item[@"end"];
+        lat = [endc[0] doubleValue];
+        lon = [endc[1] doubleValue];
+        CLLocationCoordinate2D jend = {lat,lon};
+        journey.endCoord = jend;
+         */
+        
         journey.navigationItem.title = @"Journey";
         journey.item = item;
         journey.name.text = cell.nameLabel.text;
@@ -234,13 +253,6 @@
         [self.navigationController pushViewController:journey animated:YES];
     }
     
-    /*
-    PFObject *item = tableData[indexPath.row];
-    journey.navigationItem.title = @"Journey";
-    journey.item = item;
-    
-    [self.navigationController pushViewController:journey animated:YES];
-     */
 }
 
 

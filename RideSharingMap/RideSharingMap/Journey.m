@@ -42,9 +42,9 @@
     
     journey[@"journeyDateTime"] = self.journeyDateTime;
     
-    journey[@"driverEmail"] = self.driverEmail;
+    journey[@"driverusername"] = self.driverusername;
     
-    journey[@"passengerEmail"] = self.passengerEmail;
+    journey[@"passengerusername"] = self.passengerusername;
     
     
     [journey saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

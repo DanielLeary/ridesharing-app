@@ -16,8 +16,8 @@
 @property CLLocationCoordinate2D endCoordinate;
 @property CLLocationCoordinate2D pickupCoordinate;
 @property (strong) NSDate * journeyDateTime;
-@property (nonatomic) NSString * driverEmail;
-@property (nonatomic) NSString * passengerEmail;
+@property (nonatomic) NSString * driverusername;
+@property (nonatomic) NSString * passengerusername;
 
 - (BOOL)uploadToCloud;
 
