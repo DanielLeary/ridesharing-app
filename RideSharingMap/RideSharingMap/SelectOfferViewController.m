@@ -8,7 +8,7 @@
 
 #import "SelectOfferViewController.h"
 #import "RequestRideCell.h"
-#import "TableViewCell.h"
+//#import "TableViewCell.h"
 
 @interface SelectOfferViewController ()
 
@@ -100,9 +100,9 @@
     
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    /*
+    
     if ([self.ride.rideOffers count] == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
         cell.textLabel.text = @"No rides available :(";
@@ -129,14 +129,14 @@
         cell.distanceFromUser.text = [NSString stringWithFormat:@"%fl miles", distMiles];
         return cell;
     }
-     */
+     
 
-    TableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCell"];
+    RequestRideCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCell"];
     PFObject* object = self.ride.rideOffers[indexPath.row];
     PFUser* driver = [object objectForKey:@"driver"];
     cell.label.text = [NSString stringWithFormat:@"%@ %@", driver[@"name"], driver[@"surname"]];
     return cell;
-}
+} */
 
 
 @end
