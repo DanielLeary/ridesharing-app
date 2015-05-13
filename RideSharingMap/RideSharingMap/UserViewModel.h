@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import <Parse/Parse.h>
 #import "UserModel.h"
 #import "Place.h"
 
@@ -20,16 +19,16 @@
 
 @interface UserViewModel : NSObject
 
-
 /* INIT METHOD */
 
 - (instancetype) initWithModel:(UserModel *)user;
 
 
 /* METHODS FOR BASIC INFO */
-
+/* updates basic data for the user */
 - (void)updateParseUser;
 
+/* accessors for suer data */
 - (NSString *)getFirstName;
 
 - (void) setFirstName:(NSString *)firstName;
@@ -53,6 +52,8 @@
 - (NSString *)getGender;
 
 /* METHODS FOR FAV PLACES */
+/* These methods propagate calls from the View Controllers to the UserModel
+ See method descriptions in UserModel.h */
 
 - (NSUInteger) getFavPlacesCount;
 
@@ -66,12 +67,12 @@
 
 - (void) removePlaceAtIndex:(NSUInteger)indexPath;
 
--(void) pullPlacesArray;
+- (void) pullPlacesArray;
 
 
 /* METHODS FOR INTERESTS */
-
-- (NSUInteger)getInterestsCount;
+/* These methods propagate calls from the View Controllers to the UserModel
+ See method descriptions in UserModel.h */
 
 - (NSMutableArray *)getInterestsArray;
 
@@ -81,13 +82,14 @@
 
 
 /* METHODS FOR PROFILE PICTURE */
+/* These methods propagate calls from the View Controllers to the UserModel 
+   See method descriptions in UserModel.h */
 
 - (UIImage *)getProfilePicture;
 
 - (void)setProfilePicture:(UIImage *)image;
 
--(NSData*) getPicture;
-
+- (NSData*) getPicture;
 
 
 /* METHODS FOR LOGIN & SIGNUP */
