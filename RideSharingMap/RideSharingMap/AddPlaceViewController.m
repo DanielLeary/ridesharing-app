@@ -43,28 +43,43 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingLocation];
-    
     // set up mapView
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
-    
-    // set up annotation pin
-    self.pin = [[MKPointAnnotation alloc] init];
-    
-    //zoom to current location
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
-    MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
-    [self.mapView setRegion:adjustRegion animated:YES];
-    
-    // add pin to center of map
-    self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
-    [self.mapView addAnnotation:self.pin];
+    if (self.locationManager.location == nil) {
+        NSLog(@"region!!: %@", nil);
+        CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(start_place, 1000000, 1000000);
+        [self.mapView setRegion:region animated:true];
+        self.pin = [[MKPointAnnotation alloc] init];
+        self.pin.coordinate = CLLocationCoordinate2DMake(54.1108, -3.2261);
+        [self.mapView addAnnotation:self.pin];
+    } else {
+        // set up annotation pin
+        self.pin = [[MKPointAnnotation alloc] init];
+        //zoom to current location
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
+        MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
+        [self.mapView setRegion:adjustRegion animated:YES];
+        // add pin to center of map
+        self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
+        [self.mapView addAnnotation:self.pin];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     // show keyboard
     [self.placeNameField becomeFirstResponder];
-    // TODO move the pic and location setting into this method
+    // zoom to current location ------ what if not allowed?
+    /*
+    MKUserLocation *userLocation = self.mapView.userLocation;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
+    MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
+    [self.mapView setRegion:adjustRegion animated:YES];
+    // add pin to center of map
+    self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
+    [self.mapView addAnnotation:self.pin];
+     */
 }
 
 

@@ -22,6 +22,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     UserModel *user = [[UserModel alloc] init];
     viewModel = [[UserViewModel alloc] initWithModel:user];
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [viewModel pullPlacesArray];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -29,8 +30,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     self.lastNameLabel.text = [viewModel getLastName];
     self.profileImageView.image = [UIImage imageWithData:[viewModel getPicture]];
     self.interestsLabel.text = [[viewModel getInterestsArray] componentsJoinedByString:@", "];
-    
-    [viewModel pullPlacesArray];
     [self.placesTableView reloadData];
 
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -101,6 +100,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    int test =[viewModel getFavPlacesCount];
     if (indexPath.row < [viewModel getFavPlacesCount]) {
         cell.textLabel.text = [[viewModel getPlaceAtIndex:indexPath.row] name];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13];
