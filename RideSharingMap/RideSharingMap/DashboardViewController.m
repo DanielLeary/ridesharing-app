@@ -17,6 +17,7 @@
 @implementation DashboardViewController {
     
     //NSArray *tableData;
+    BOOL emptyTable;
     
 }
 
@@ -27,7 +28,7 @@
     
     // Creates footer that hides empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+    emptyTable = YES;
     
     //--------------------------------------------------------
     // Test creating a journey object and sending it to parse
@@ -88,6 +89,7 @@
             _tableData = objects;
             // reloads tableview after async call complete
             [self.tableView reloadData];
+            emptyTable = ([_tableData count]==0);
             
         } else {
             // Log details of the failure
@@ -107,10 +109,16 @@
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self->_tableData.count;
+    return ([self->_tableData count]==0) ? 1 : [self->_tableData count]; //self->_tableData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (emptyTable) {
+        NSLog(@"testing empty");
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
+        cell.textLabel.text = @"No journeys (yet)";
+        return cell;
+    }
     
     //replace hardcoding with call to PFUser object here
     PFUser *loggedinuser = [PFUser currentUser];
@@ -118,12 +126,11 @@
     NSLog(@"%@", user);
 
     //NSString *user = @"lhan";
-    
     PFObject *item = _tableData[indexPath.row];
     NSString *driverusername = item[@"driverusername"];
     NSString *passengerusername = item[@"passengerusername"];
     NSDate *date = item[@"journeyDateTime"];
-
+    
     // check if user is the driver
     if ([user isEqualToString:driverusername]) {
         GivingRideCell *cell = [tableView
