@@ -37,7 +37,6 @@
 		7EF361C31A87C4EC0004D0FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C21A87C4EC0004D0FC /* main.m */; };
 		7EF361C61A87C4EC0004D0FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C51A87C4EC0004D0FC /* AppDelegate.m */; };
 		7EF361C91A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */; };
-		7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF361CB1A87C4EC0004D0FC /* ViewController.m */; };
 		7EF361CF1A87C4EC0004D0FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361CD1A87C4EC0004D0FC /* Main.storyboard */; };
 		7EF361D11A87C4EC0004D0FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361D01A87C4EC0004D0FC /* Images.xcassets */; };
 		7EF361D41A87C4EC0004D0FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */; };
@@ -118,8 +117,6 @@
 		7EF361C41A87C4EC0004D0FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7EF361C51A87C4EC0004D0FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7EF361C81A87C4EC0004D0FC /* RideSharingMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RideSharingMap.xcdatamodel; sourceTree = "<group>"; };
-		7EF361CA1A87C4EC0004D0FC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7EF361CB1A87C4EC0004D0FC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7EF361CE1A87C4EC0004D0FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7EF361D01A87C4EC0004D0FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7EF361D31A87C4EC0004D0FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -279,8 +276,6 @@
 				7EF361CD1A87C4EC0004D0FC /* Main.storyboard */,
 				7EF361C41A87C4EC0004D0FC /* AppDelegate.h */,
 				7EF361C51A87C4EC0004D0FC /* AppDelegate.m */,
-				7EF361CA1A87C4EC0004D0FC /* ViewController.h */,
-				7EF361CB1A87C4EC0004D0FC /* ViewController.m */,
 				7E1D70081B00CC4A0087A5BB /* Request_ride */,
 				EE525DBA1ADDCE26009DA645 /* Offer_ride */,
 				49CA704A1ABB0B14009DAC79 /* Login/Signup */,
@@ -532,7 +527,6 @@
 				EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */,
 				C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */,
 				1931C6061AA8A4E800B76E8B /* Place.m in Sources */,
-				7EF361CC1A87C4EC0004D0FC /* ViewController.m in Sources */,
 				49CA70531ABB321D009DAC79 /* Signup2ViewController.m in Sources */,
 				49CA70501ABB1027009DAC79 /* SignupViewController.m in Sources */,
 				EE525DC21ADDCE26009DA645 /* OfferRideStartViewController.m in Sources */,
