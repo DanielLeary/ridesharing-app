@@ -23,7 +23,6 @@
     [super viewDidLoad];
     tableData = [[NSArray alloc] init];
     emptyTable = YES;
-
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -33,15 +32,16 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Requests"];
     [query whereKey:@"offerer" equalTo:user.objectId];
     
+    //asynchronous query
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             tableData = objects;
             [self.tableView reloadData];
+            emptyTable = ([tableData count]==0);
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    emptyTable = ([tableData count]==0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,31 +57,48 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (emptyTable) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
         cell.textLabel.text = @"no messages (yet)";
         return cell;
+        
     } else {
-        NSString *requester, *date, *time;
-        NSDate *dateTime;
+        // get info of requester from parse
         PFObject *object = tableData[indexPath.row];
-        requester = object[@"requester"];
-        dateTime = object[@"dateTimeStart"];
+        
+        PFQuery *query = [PFUser query];
+        [query whereKey:@"objectId" equalTo:object[@"requester"]];
+        NSArray *result = [query findObjects];
+        
+        if (result) {
+            InboxRequest *cell = [tableView dequeueReusableCellWithIdentifier:@"InboxRequest"];
+            
+            PFUser *requesterUser = result[0];
+        
+            // set name
+            cell.name.text = [NSString stringWithFormat:@"%@ %@", requesterUser[@"Name"], requesterUser[@"Surname"]];
+            
+            // set picture
+            PFFile *userProfilePicture = requesterUser[@"ProfilePicture"];
+            [userProfilePicture getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    cell.pic.image = [UIImage imageWithData:imageData];
+                } else {
+                    cell.pic.image = [UIImage imageNamed:@"blank-profile-picture.png"];
+                }
+            }];
     
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"dd/MM/yy";
-        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-        timeFormatter.dateFormat = @"HH:mm";
+            // set date and time
+            NSDate *dateTime = object[@"dateTimeStart"];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"dd/MM/yy";
+            NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+            timeFormatter.dateFormat = @"HH:mm";
     
-        date = [dateFormatter stringFromDate:dateTime];
-        time = [timeFormatter stringFromDate:dateTime];
-    
-        InboxRequest *cell = [tableView dequeueReusableCellWithIdentifier:@"InboxRequest"];
-    
-        cell.name.text = requester;
-        cell.date.text = date;
-        cell.time.text = time;
-
+            cell.date.text = [dateFormatter stringFromDate:dateTime];
+            cell.time.text = [timeFormatter stringFromDate:dateTime];
+            
         // set button tag to row so we can identify which row
         // tapped button
         cell.acceptbutton.tag = indexPath.row;
@@ -94,8 +111,11 @@
         [cell.declinebutton addTarget:self
                         action:@selector(declineTapped:)
                 forControlEvents:UIControlEventTouchUpInside];
-
-        return cell;
+            return cell;
+        } else {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
+            return cell;
+        }
     }
 }
 

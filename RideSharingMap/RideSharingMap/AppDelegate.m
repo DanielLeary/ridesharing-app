@@ -23,17 +23,17 @@
     
     //hardcoded a user so that user = [PFUser currentUser] returns someone in simulator
     //[PFUser logInWithUsername:@"danleary" password:@"ridesharing"];
-    
-    //self.isLoggedIn = NO; //need to get from parse later
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
    
     //------------------------------------------------------
     // Temporarily set root view to dashbaord while testing
     //------------------------------------------------------
-    UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
-    /*
-    if (self.isLoggedIn) {
+    //UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    
+    if (currentUser) {
         UIViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
         self.window.rootViewController = tabBarVC;
     } else {
@@ -41,7 +41,7 @@
         //UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:loginVC];
         self.window.rootViewController = loginVC;
     }
-    */
+
     // Override point for customization after application launch.
     return YES;
 }
