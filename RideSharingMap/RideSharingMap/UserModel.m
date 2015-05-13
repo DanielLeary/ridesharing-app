@@ -9,17 +9,8 @@
 
 #import "UserModel.h"
 #import "Place.h"
-#define firstnameString @"Name"
-#define surnameString @"Surname"
-#define carString @"Car"
-#define positionString @"Position"
-#define usernameString @"username"
-#define genderString @"Gender"
-#define pictureString @"ProfilePicture"
-#define interestArray @"Interests"
-#define favPlaces @"FavPlaces"
+#import "userDefines.h"
 
-#define passwordString @"password"
 
 @implementation UserModel {
     
@@ -46,14 +37,13 @@
         
         fav_placesID = [[NSMutableArray alloc] initWithCapacity:5];
         favPlacesArray = [[NSMutableArray alloc] initWithCapacity:5];
+        interestsArray = [[NSMutableArray alloc] init];
+        
         user = [PFUser currentUser];
         if (user) {
-            Place *home = [[Place alloc] initWithName:@"Home"];
-            Place *work = [[Place alloc] initWithName:@"Work"];
             
             [self pullPlacesArray];
             interestsArray = [[NSMutableArray alloc] init];
-            
             
             self.firstName = user[firstnameString];
             self.lastName = user[surnameString];
@@ -63,14 +53,10 @@
             self.car = user[carString];
             self.position = user[positionString];
             
-            interestsArray = [[NSMutableArray alloc] init];
             [interestsArray removeAllObjects];
             [interestsArray addObjectsFromArray:user[interestArray]];
             
-            
-            
-            
-            
+            //TODO setting profile pic
             //NSString *pathForBlankProfilePicture = [[NSBundle mainBundle] pathForResource:@"checkmark" ofType:@"png"];
             //self.profilePicture = [[UIImage alloc] initWithContentsOfFile:pathForBlankProfilePicture];
         }
@@ -78,11 +64,14 @@
     return self;
 }
 
+
 - (void)logOut {
     [PFUser logOut];
 }
 
+
 -(BOOL)updateUser {
+    
     if (self.lastName != nil) {
         user[surnameString] = self.lastName;
     }
@@ -101,9 +90,9 @@
     
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
-            NSLog(@"updated user");
+            NSLog(@"updated user"); //TODO remove
         } else {
-            NSLog(@"updated user FAIL");
+            NSLog(@"updated user FAIL"); //TODO remove
         }
     }];
     return true;
@@ -112,20 +101,20 @@
 
 /* METHODS FOR FAV PLACES */
 
+
 - (NSUInteger) getFavPlacesCount {
     return [favPlacesArray count];
 }
 
+
 - (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
-    //[favPlacesArray removeAllObjects];
-    //[favPlacesArray addObjectsFromArray:user[favPlaces]];
     return [favPlacesArray objectAtIndex:indexPath];
 }
 
+
 - (void) addPlace:(Place *)place {
+    
     [favPlacesArray addObject:place];
-    //Place *place2 = [favPlacesArray objectAtIndex:2];
-    //NSLog(@"array: %@, %f, %f", place2.name, place2.coordinates.latitude, place2.coordinates.longitude);
     
     double lat = (double)place.coordinates.latitude;
     double lon = (double)place.coordinates.longitude;
@@ -134,38 +123,43 @@
     fav_place[@"name"] = place.name;
     fav_place[@"long"] = [NSNumber numberWithDouble:lon];
     fav_place[@"lat"] = [NSNumber numberWithDouble:lat];
-    bool test = [fav_place save];
+    bool test = [fav_place save]; //TODO remove
     NSString* fav_id = [fav_place objectId];
     [fav_placesID addObject:fav_id];
     user[favPlaces] = fav_placesID;
     [user save];
-
 }
+
 
 -(NSMutableArray*) getFavPlaces{
     return user[favPlaces];
 }
 
+
 - (void) insertPlace:(Place *)place atIndex:(NSUInteger)indexPath {
     [favPlacesArray insertObject:place atIndex:indexPath];
 }
+
 
 - (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
     [favPlacesArray replaceObjectAtIndex:indexPath withObject:place];
 
 }
 
+
 - (void) removePlaceAtIndex:(NSUInteger)indexPath {
     [favPlacesArray removeObjectAtIndex:indexPath];
     [fav_placesID removeObjectAtIndex:indexPath];
     user[favPlaces] = fav_placesID;
-    //[user save];
+    //[user save]; //TODO sort this out
 }
 
 
 -(void) pullPlacesArray{
+    
     [favPlacesArray removeAllObjects];
     NSMutableArray* fav_ids = [[NSMutableArray alloc] initWithArray:user[favPlaces]];
+    
     for (NSString* string in fav_ids){
         PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
         PFObject* place = [query getObjectWithId:string];
@@ -177,34 +171,28 @@
         Place *fav = [[Place alloc] initWithName:place[@"name"] andCoordinates:coord];
         
         [favPlacesArray addObject:fav];
-        
     }
+    
     [fav_placesID removeAllObjects];
     [fav_placesID addObjectsFromArray:user[favPlaces]];
-    //[favPlacesArray addObjectsFromArray:user[favPlaces]];
 }
 
 /* METHODS FOR INTERESTS */
 
-- (NSUInteger) getInterestsCount {
-    return [user[interestArray] count];
-}
 
 - (NSMutableArray *) getInterestsArray {
     return user[interestArray];
 }
 
+
 - (bool) hasInterest:(NSString *)interest {
-    //interestsArray = user[interestArray];
     return [user[interestArray] containsObject:interest];
 }
 
+
 - (void) updateInterests:(NSArray *)newInterestArray {
-    //[interestsArray removeAllObjects];
-    //[interestsArray addObjectsFromArray:newInterestArray];
     user[interestArray] = newInterestArray;
     [user save];
-    
 }
 
 
@@ -216,14 +204,13 @@
     return imageData;
 }
 
+
 -(void) setProfilePicture:(UIImage *)profilePicture{
     NSData *imageData = UIImagePNGRepresentation(profilePicture);
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
     
     user[pictureString] = imageFile;
     [user save];
-
 }
-
 
 @end

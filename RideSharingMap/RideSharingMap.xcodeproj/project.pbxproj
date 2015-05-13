@@ -97,6 +97,7 @@
 		49CA70561ABB3554009DAC79 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
 		49CA70571ABB3554009DAC79 /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
 		49CA70581ABB3554009DAC79 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
+		49CFB9301B034AB6008CF25F /* userDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userDefines.h; sourceTree = "<group>"; };
 		6B74423D1A9E08B9006ED680 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		6B74423E1A9E08B9006ED680 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		6BA7258C1A9B71C60039DCDC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -338,6 +339,7 @@
 				1931C6081AA8AAC900B76E8B /* UserViewModel.m */,
 				1931C60A1AA8B84900B76E8B /* UserModel.h */,
 				1931C60B1AA8B84900B76E8B /* UserModel.m */,
+				49CFB9301B034AB6008CF25F /* userDefines.h */,
 			);
 			name = User;
 			sourceTree = "<group>";
