@@ -590,7 +590,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rH9-TM-ubq">
-                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="627" width="187" height="40"/>
                                 <color key="backgroundColor" red="0.39215689897537231" green="0.81568634510040283" blue="0.43529415130615234" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Complete">
@@ -599,6 +599,19 @@
                                 </state>
                                 <connections>
                                     <action selector="complete:" destination="dzM-cM-TMH" eventType="touchUpInside" id="qWf-x1-UeA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQ5-0G-qH0">
+                                <rect key="frame" x="187" y="627" width="188" height="40"/>
+                                <color key="backgroundColor" red="0.96739130434782605" green="0.43391013464782763" blue="0.37754936774137193" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="complete:" destination="dzM-cM-TMH" eventType="touchUpInside" id="NxG-jK-fwx"/>
+                                    <action selector="delete:" destination="dzM-cM-TMH" eventType="touchUpInside" id="F0v-7q-OIo"/>
                                 </connections>
                             </button>
                         </subviews>
