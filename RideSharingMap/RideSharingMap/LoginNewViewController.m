@@ -28,6 +28,12 @@
     User *user = (User *)[PFUser logInWithUsername:self.usernameField.text password:self.passwordField.text];
     if (!user) {
         self.errorLabel.text = @"incorrect email or password";
+        self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
+        self.usernameField.layer.borderWidth = 1;
+        self.usernameField.layer.cornerRadius = 5;
+        self.passwordField.layer.borderColor = [[UIColor redColor] CGColor];
+        self.passwordField.layer.borderWidth = 1;
+        self.passwordField.layer.cornerRadius = 5;
     } else {
         [User pullFromParse];
         self.errorLabel.text = @"logged in successfully";

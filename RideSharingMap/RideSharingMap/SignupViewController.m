@@ -45,18 +45,30 @@
         case FIRSTNAME_ERROR:
             inputError = YES;
             errorText = @"First name must be more than 2 letters.";
+            self.firstNameField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.firstNameField.layer.borderWidth = 1;
+            self.firstNameField.layer.cornerRadius = 5;
             break;
         case LASTNAME_ERROR:
             inputError = YES;
             errorText = @"Last name must be more than 2 letters.";
+            self.lastNameField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.lastNameField.layer.borderWidth = 1;
+            self.lastNameField.layer.cornerRadius = 5;
             break;
-        case EMAIL_ERROR:
+        case USERNAME_ERROR:
             inputError = YES;
             errorText = @"Email already in use. Please choose another email.";
+            self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.usernameField.layer.borderWidth = 1;
+            self.usernameField.layer.cornerRadius = 5;
             break;
         case PASSWORD_ERROR:
             inputError = YES;
             errorText = @"Password must contain at least one letter and one number, and be at least 6 characters long.";
+            self.passwordField.layer.borderColor = [[UIColor redColor] CGColor];
+            self.passwordField.layer.borderWidth = 1;
+            self.passwordField.layer.cornerRadius = 5;
             break;
         default:
             inputError = YES;

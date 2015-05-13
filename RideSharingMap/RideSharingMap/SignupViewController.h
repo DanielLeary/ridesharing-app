@@ -13,7 +13,7 @@
 #define NO_ERROR 0
 #define FIRSTNAME_ERROR 1
 #define LASTNAME_ERROR 2
-#define EMAIL_ERROR 3
+#define USERNAME_ERROR 3
 #define PASSWORD_ERROR 4
 
 

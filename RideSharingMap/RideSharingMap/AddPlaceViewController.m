@@ -108,7 +108,9 @@
         }
     } else {
         //set placeNameField red and return keyboard
-        [self.placeNameField setBackgroundColor:[UIColor redColor]];
+        self.placeNameField.layer.borderColor = [[UIColor redColor] CGColor];
+        self.placeNameField.layer.borderWidth = 1;
+        self.placeNameField.layer.cornerRadius = 5;
         [self.placeNameField becomeFirstResponder];
     }
 }
