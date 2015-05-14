@@ -77,6 +77,7 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     offer[R_END] = [NSArray arrayWithObjects:endLat, endLong, nil];
     offer[R_PASSENGER] = self.user;
     offer[R_DRIVER] = self.drivers[self.rowNumber];
+    offer[R_OFFER] = self.rideOffers[self.rowNumber];
     
     [offer saveInBackgroundWithBlock:block];
 }
