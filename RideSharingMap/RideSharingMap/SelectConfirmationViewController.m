@@ -13,6 +13,7 @@
 @interface SelectConfirmationViewController () {
     MKPolyline *routeOverlay;
 }
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 @end
 
@@ -179,5 +180,40 @@
 
 
 - (IBAction)submitRequest:(UIButton *)sender {
+    [self.activityView startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+    
+    [self.ride offerRideToCloudWithBlock:^(BOOL success, NSError * error) {
+                
+        // creat alert view controller to display upload information
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Request Ride" message:@"Success" preferredStyle:UIAlertControllerStyleAlert];
+        
+        // stays on page
+        UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        
+        // goesback to dashboard view controller
+        UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+        }];
+        
+        if(!success) {
+            alert.message = @"Could not upload to server, please check your internet connection and try again";
+            
+            [alert addAction:retry];
+            [alert addAction:cancel];
+        } else {
+            UIAlertAction* OK = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                NSLog(@"OK Pressed");
+                [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+            }];
+            [alert addAction:OK];
+        }
+        
+        // Stop spinning, enable interaction, show alert on screen
+        [self.activityView stopAnimating];
+        [self.view setUserInteractionEnabled:YES];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }];
 }
 @end

@@ -47,9 +47,11 @@
 
 // Request class Collumn names
 #define REQUEST @"Requests"
-#define R_PICKUPTIME @"passengerPickUpTime"
+#define R_PICKUPTIME @"passengerPickupTime"
 #define R_START @"start"
 #define R_END @"end"
+#define R_PASSENGER @"passenger"
+#define R_DRIVER @"driver"
 
 
 // Variance in time and distance for searches

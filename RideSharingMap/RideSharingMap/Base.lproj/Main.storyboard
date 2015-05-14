@@ -973,8 +973,8 @@
                                     <action selector="finishButton" destination="fNG-6h-oUe" eventType="touchUpInside" id="XPg-7b-S9y"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="okT-cu-T1u">
-                                <rect key="frame" x="177" y="253" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="okT-cu-T1u">
+                                <rect key="frame" x="177" y="253" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -983,7 +983,7 @@
                     <navigationItem key="navigationItem" title="Title" id="qVB-Go-DhI"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="activityView" destination="okT-cu-T1u" id="RUp-ps-6MV"/>
+                        <outlet property="activityView" destination="okT-cu-T1u" id="5xG-En-EAS"/>
                         <outlet property="buttonLabel" destination="zJU-su-wmD" id="ae4-5C-u8f"/>
                         <outlet property="mapView" destination="AIw-JT-HhX" id="8CY-aH-yOO"/>
                         <outlet property="navTitle" destination="qVB-Go-DhI" id="yHY-lj-gKp"/>
@@ -1624,12 +1624,6 @@
                                 <color key="textColor" white="0.57182459679999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-K4-NNy">
-                                <rect key="frame" x="0.0" y="228" width="375" height="375"/>
-                                <connections>
-                                    <outlet property="delegate" destination="gwP-tB-43R" id="ZED-GW-W2Q"/>
-                                </connections>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Travelling to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUQ-QB-xzh">
                                 <rect key="frame" x="195" y="144" width="152" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
@@ -1670,12 +1664,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mYZ-wd-oOi">
+                                <rect key="frame" x="167" y="324" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-K4-NNy">
+                                <rect key="frame" x="0.0" y="228" width="375" height="375"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gwP-tB-43R" id="ZED-GW-W2Q"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Offer Ride" id="VaC-As-fsW"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityView" destination="mYZ-wd-oOi" id="bZ4-cs-m7d"/>
                         <outlet property="date" destination="qhT-o6-pKF" id="Pj5-pI-J6L"/>
                         <outlet property="destinationLocation" destination="xAI-le-dIz" id="Se2-r6-bPO"/>
                         <outlet property="driverName" destination="Nqp-EI-X5y" id="vXs-Da-jkJ"/>
@@ -1683,9 +1687,11 @@
                         <outlet property="pickupLocation" destination="foA-bU-dtl" id="J3U-3j-AjS"/>
                         <outlet property="profileImage" destination="H8V-Qx-xjz" id="h34-6a-hg3"/>
                         <outlet property="time" destination="S7g-J0-7eB" id="ysV-Nh-Nxo"/>
+                        <segue destination="Ljc-pm-JFQ" kind="unwind" identifier="unwindToDashBoard" unwindAction="unWindFromOfferView:" id="Vsd-wk-WFl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0oV-bu-TUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ljc-pm-JFQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4116.5" y="1883.5"/>
         </scene>

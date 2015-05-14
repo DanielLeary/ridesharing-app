@@ -68,13 +68,17 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 
 -(void)offerRideToCloudWithBlock:(void (^) (BOOL, NSError*))block {
     PFObject *offer = [PFObject objectWithClassName:REQUEST];
+    NSLog(@"date time : %@", self.dateTimeStart);
     offer[R_PICKUPTIME] = self.dateTimeStart;
     offer[R_START] = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
     NSNumber* endLat = [NSNumber numberWithDouble:self.endCordinate.latitude];
+    NSNumber* endLong = [NSNumber numberWithDouble:self.endCordinate.longitude];
     
-    //offer[R_END] = [NSArray arrayWithObject:[NS]]
+    offer[R_END] = [NSArray arrayWithObjects:endLat, endLong, nil];
+    offer[R_PASSENGER] = self.user;
+    offer[R_DRIVER] = self.drivers[self.rowNumber];
     
-    
+    [offer saveInBackgroundWithBlock:block];
 }
 
 
