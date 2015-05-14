@@ -67,6 +67,14 @@
     driverCoordinate.longitude = driverStart.longitude;
     cell.distance.text = [NSString stringWithFormat:@"%0.1f Miles", [Ride distanceBetweenCoordinates:self.ride.startCordinate secondCordinate:driverCoordinate]];
     
+    PFFile *userImageFile = driver[@"ProfilePicture"];
+    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+        if (!error) {
+            cell.profile.image = [UIImage imageWithData:imageData];
+        }
+    }];
+
+    
     return cell;
 }
 
