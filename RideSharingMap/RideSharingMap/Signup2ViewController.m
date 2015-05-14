@@ -9,7 +9,7 @@
 #import "Signup2ViewController.h"
 
 static const int dobPickerRowHeight = 180;
-static const int genderPickerRowHeight = 140;
+//static const int genderPickerRowHeight = 140;
 
 @implementation Signup2ViewController {
     
@@ -31,11 +31,14 @@ static const int genderPickerRowHeight = 140;
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
-    infoArray = @[@"Date of Birth:", @"Gender:", @"Interests:"];
+    infoArray = @[@"Date of Birth:"/*, @"Gender:"*/, @"Interests:"];
     genderArray = @[@"Female", @"Male", @"Other"];
     
     dobPickerIsShown = NO;
     genderPickerIsShown = NO;
+    
+    
+    self.userInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
@@ -64,9 +67,11 @@ static const int genderPickerRowHeight = 140;
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (dobPickerIsShown && genderPickerIsShown) {
+    NSInteger* test = section;
+    NSInteger* test2 = [infoArray count];
+    /*if (dobPickerIsShown && genderPickerIsShown) {
         return [infoArray count] + 2;
-    } else if (dobPickerIsShown || genderPickerIsShown) {
+    } else */if (dobPickerIsShown/* || genderPickerIsShown*/) {
         return [infoArray count] + 1;
     } else {
         return [infoArray count];
@@ -75,19 +80,19 @@ static const int genderPickerRowHeight = 140;
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSInteger* test = indexPath.row;
     UITableViewCell *cell;
     if (indexPath.row == 0) {
         cell.textLabel.text = infoArray[0];
     }
-    if (dobPickerIsShown && genderPickerIsShown) {
+    if (dobPickerIsShown /*&& genderPickerIsShown*/) {
         if (indexPath.row == 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-        } else if (indexPath.row == 3) {
+        }/* else if (indexPath.row == 3) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
-        } else {
+        }*/ else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            if (indexPath.row == 2 || indexPath.row == 4) {
+            if (indexPath.row == 2/* || indexPath.row == 4*/) {
                 cell.textLabel.text = infoArray[indexPath.row / 2];
             }
         }
@@ -100,7 +105,7 @@ static const int genderPickerRowHeight = 140;
                 cell.textLabel.text = infoArray[indexPath.row - 1];
             }
         }
-    } else if (genderPickerIsShown) {
+    }/* else if (genderPickerIsShown) {
         if (indexPath.row == 2) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
         } else {
@@ -111,7 +116,7 @@ static const int genderPickerRowHeight = 140;
                 cell.textLabel.text = infoArray[2];
             }
         }
-    } else {
+    }*/ else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
         cell.textLabel.text = infoArray[indexPath.row];
     }
@@ -122,27 +127,27 @@ static const int genderPickerRowHeight = 140;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView beginUpdates];
-    if (dobPickerIsShown && genderPickerIsShown) {
+    if (dobPickerIsShown/* && genderPickerIsShown*/) {
         if (indexPath.row == 0) {
             [self hidePicker:tableView inRow:1];
             dobPickerIsShown = NO;
-        } else if (indexPath.row == 2) {
+        } /*else if (indexPath.row == 2) {
             [self hidePicker:tableView inRow:3];
             genderPickerIsShown = NO;
-        } else if (indexPath.row == 4) {
+        } */else if (indexPath.row == 3) {
             [self showInterestsVC];
         }
     } else if (dobPickerIsShown) {
         if (indexPath.row == 0) {
             [self hidePicker:tableView inRow:1];
             dobPickerIsShown = NO;
-        } else if (indexPath.row ==2) {
+        }/* else if (indexPath.row ==2) {
             [self showPicker:tableView inRow:3];
             genderPickerIsShown = YES;
-        } else if (indexPath.row == 3) {
+        }*/ else if (indexPath.row == 2) {
             [self showInterestsVC];
         }
-    } else if (genderPickerIsShown) {
+    } /*else if (genderPickerIsShown) {
         if (indexPath.row ==0) {
             [self showPicker:tableView inRow:1];
             dobPickerIsShown = YES;
@@ -152,14 +157,14 @@ static const int genderPickerRowHeight = 140;
         } else if (indexPath.row == 3) {
             [self showInterestsVC];
         }
-    } else {
+    } */else {
         if (indexPath.row == 0) {
             [self showPicker:tableView inRow:1];
             dobPickerIsShown = YES;
-        } else if (indexPath.row == 1) {
+        }/* else if (indexPath.row == 1) {
             [self showPicker:tableView inRow:2];
             genderPickerIsShown = YES;
-        } else if (indexPath.row == 2) {
+        }*/ else if (indexPath.row == 1) {
             [self showInterestsVC];
         }
     }
@@ -170,17 +175,17 @@ static const int genderPickerRowHeight = 140;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = tableView.rowHeight;
-    if (dobPickerIsShown && genderPickerIsShown) {
+    if (dobPickerIsShown/* && genderPickerIsShown*/) {
         if (indexPath.row == 1) {
             rowHeight = dobPickerRowHeight;
-        } else if (indexPath.row == 3) {
+        }/* else if (indexPath.row == 3) {
             rowHeight = genderPickerRowHeight;
-        }
+        }*/
     } else if (dobPickerIsShown && indexPath.row == 1) {
         rowHeight = dobPickerRowHeight;
-    } else if (genderPickerIsShown && indexPath.row == 2) {
+    }/* else if (genderPickerIsShown && indexPath.row == 2) {
         rowHeight = genderPickerRowHeight;
-    }
+    }*/
     return rowHeight;
 }
 
