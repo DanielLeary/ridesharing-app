@@ -35,4 +35,7 @@
 // Function automatically updates rideOffers and drivers based on query
 - (void)queryRidesWithBlock:(void (^)(bool, NSError*))block;
 
+-(void)offerRideToCloudWithBlock:(void (^) (BOOL, NSError*))block;
+
+
 @end

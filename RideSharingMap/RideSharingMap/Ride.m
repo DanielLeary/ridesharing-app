@@ -7,20 +7,7 @@
 //
 
 #import "Ride.h"
-
-
-// Parse Collumn names
-#define JOURNEY @"Offers"
-#define STARTPOS @"start"
-#define ENDLAT @"endLat"
-#define ENDLONG @"endLong"
-#define TIME @"dateTimeStart"
-#define DRIVER @"driver"
-
-// Variance in time and distance for searches
-#define TIMEEPSILON 900
-#define DISTANCEEPSILON 0.004
-
+#import "userDefines.h"
 
 
 static const CLLocationDegrees empty = -1000;
@@ -59,30 +46,36 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 }
 
 -(void)uploadToCloudWithBlock:(void (^) (bool, NSError*))block {
-    PFObject *ride = [PFObject objectWithClassName:JOURNEY];
+    PFObject *ride = [PFObject objectWithClassName:OFFER];
     
     // Creates PF geopoint for the start location, this can be querried
     PFGeoPoint *start = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude
                                                longitude:self.startCordinate.longitude];
-    ride[STARTPOS] = start;
+    ride[O_STARTPOS] = start;
     
     // Convert end double cordintes into NSnumber objects
     NSNumber* lat = [self formatTo4dp:self.endCordinate.latitude];
     NSNumber* lon = [self formatTo4dp:self.endCordinate.longitude];
 
-    ride[ENDLAT] = lat;
-    ride[ENDLONG] = lon;
-    ride[TIME] = self.dateTimeStart;
-    ride[DRIVER] = self.user;
+    ride[O_ENDLAT] = lat;
+    ride[O_ENDLONG] = lon;
+    ride[O_TIME] = self.dateTimeStart;
+    ride[O_DRIVER] = self.user;
     
     [ride saveInBackgroundWithBlock:block];
+}
+
+
+-(void)offerRideToCloudWithBlock:(void (^) (BOOL, NSError*))block {
+    PFObject *offer = [PFObject objectWithClassName:REQUEST];
+    
 }
 
 
 // Queries Offers that match start and end coordinates within a 15 minute time frame
 - (void)queryRidesWithBlock:(void (^)(bool, NSError*))block {
     PFGeoPoint* start = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
-    PFQuery* query = [PFQuery queryWithClassName:JOURNEY];
+    PFQuery* query = [PFQuery queryWithClassName:OFFER];
     
     // Search for Offers that are within 0.2 Miles of Pickup point
     [query whereKey:@"start" nearGeoPoint:start withinMiles:2];
@@ -100,15 +93,15 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     
     // Query where locations are within a 0.0005 2d cordinate of destination in both
     // Latitude and longitude
-    [query whereKey:ENDLAT greaterThanOrEqualTo:LOWERlat];
-    [query whereKey:ENDLAT lessThanOrEqualTo:UPPERlat];
+    [query whereKey:O_ENDLAT greaterThanOrEqualTo:LOWERlat];
+    [query whereKey:O_ENDLAT lessThanOrEqualTo:UPPERlat];
     
-    [query whereKey:ENDLONG greaterThanOrEqualTo:LOWERlon];
-    [query whereKey:ENDLONG lessThanOrEqualTo:UPPERlon];
+    [query whereKey:O_ENDLONG greaterThanOrEqualTo:LOWERlon];
+    [query whereKey:O_ENDLONG lessThanOrEqualTo:UPPERlon];
     
     // Need to find adequate times
-    [query whereKey:TIME greaterThanOrEqualTo:LOWERdate];
-    [query whereKey:TIME lessThanOrEqualTo:UPPERdate];
+    [query whereKey:O_TIME greaterThanOrEqualTo:LOWERdate];
+    [query whereKey:O_TIME lessThanOrEqualTo:UPPERdate];
     
     // also download user object info
     [query includeKey:@"driver"];
