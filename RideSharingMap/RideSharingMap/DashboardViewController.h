@@ -10,10 +10,11 @@
 #import "GettingRideCell.h"
 #import "Journey.h"
 #import "JourneyView.h"
+#import "userDefines.h"
+#import "User.h"
 
 @interface DashboardViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSArray *tableData;
 
 @end

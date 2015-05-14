@@ -8,256 +8,168 @@
 
 #import "DashboardViewController.h"
 #import <CoreLocation/CoreLocation.h>
-#import "Ride.h"
 #import "OfferRideTimeViewController.h"
+#import "Ride.h"
+
 
 @implementation DashboardViewController {
     
-    //NSArray *tableData;
+    User *user;
+    NSArray *journeysTableData;
+    //NSArray *journeysAsDriver;
+    //NSArray *journeysAsPassenger;
     BOOL emptyTable;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //tableData = [NSMutableArray arrayWithObjects:@"Christina Hicks", @"Kevin Smith", nil];
-    
-    // Creates footer that hides empty cells
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    user = (User *)[PFUser currentUser];
     emptyTable = YES;
-    
-    //--------------------------------------------------------
-    // Test creating a journey object and sending it to parse
-    //--------------------------------------------------------
-    /*
-    CLLocationDegrees lat = 51.4922470;
-    CLLocationDegrees lon = -0.2060875;
-    
-    Journey *testJourney = [[Journey alloc] init];
-    
-    CLLocationCoordinate2D jstart = {lat,lon};
-    testJourney.startCoordinate = jstart;
-    
-    lat = 51.498727;
-    lon = -0.179115;
-    CLLocationCoordinate2D jend = {lat,lon};
-    testJourney.endCoordinate = jend;
-    
-    lat = 51.4945581;
-    lon = -0.19848;
-    CLLocationCoordinate2D jpickup = {lat,lon};
-    testJourney.pickupCoordinate = jpickup;
-    
-    testJourney.driverusername = @"lhan";
-    
-    testJourney.passengerusername = @"danleary";
-    
-    testJourney.journeyDateTime = [NSDate date];
-    
-    [testJourney uploadToCloud];
-    */
-    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-
 - (void)viewDidAppear:(BOOL)animated {
-    //---------------------------------------------------------------------
     // Get journeys that user is involved in as either driver or passenger
-    //---------------------------------------------------------------------
+    PFQuery *query1 = [PFQuery queryWithClassName:JOURNEY];
+    [query1 whereKey:J_PASSENGER equalTo:user];
+    PFQuery *query2 = [PFQuery queryWithClassName:JOURNEY];
+    [query2 whereKey:J_DRIVER equalTo:user];
     
-    //note: replace hardcoding of "lhan" with current user email
-    PFUser *loggedinuser = [PFUser currentUser];
-    NSString *user = loggedinuser[@"username"];
-    NSLog(@"%@", user);
-
-    
-    PFQuery *query1 = [PFQuery queryWithClassName:@"Journeys"];
-    [query1 whereKey:@"passengerusername" equalTo:user];
-    PFQuery *query2 = [PFQuery queryWithClassName:@"Journeys"];
-    [query2 whereKey:@"driverusername" equalTo:user];    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1,query2]];
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
+    [query includeKey:J_DRIVER];
+    [query includeKey:J_PASSENGER];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            
-            // Do something with the found objects
-            for (PFObject *object in objects) {
-                //NSLog(@"Id is %@", object.objectId);
-            }
-            _tableData = objects;
-            // reloads tableview after async call complete
+            journeysTableData = objects;
+            //reloads tableview after asynchronous call complete
+            emptyTable = ([journeysTableData count]==0);
             [self.tableView reloadData];
-            emptyTable = ([_tableData count]==0);
-            
         } else {
-            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ([self->_tableData count]==0) ? 1 : [self->_tableData count]; //self->_tableData.count;
+    return ([journeysTableData count]==0) ? 1 : [journeysTableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (emptyTable) {
-        NSLog(@"testing empty");
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
         cell.textLabel.text = @"No journeys (yet)";
         return cell;
-    }
-    
-    //replace hardcoding with call to PFUser object here
-    PFUser *loggedinuser = [PFUser currentUser];
-    NSString *user = loggedinuser[@"username"];
-    NSLog(@"%@", user);
-
-    //NSString *user = @"lhan";
-    PFObject *item = _tableData[indexPath.row];
-    NSString *driverusername = item[@"driverusername"];
-    NSString *passengerusername = item[@"passengerusername"];
-    NSDate *date = item[@"journeyDateTime"];
-    
-    // check if user is the driver
-    if ([user isEqualToString:driverusername]) {
-        GivingRideCell *cell = [tableView
-                                dequeueReusableCellWithIdentifier:@"givingRideCell"];
         
-        // query user table for name
-        if (passengerusername != NULL) {
-            PFQuery *query = [PFUser query];
-            [query whereKey:@"username" equalTo:passengerusername];
-            [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
-                PFUser *person = result[0];
-                NSString *forename = person[@"Name"];
-                NSString *surname = person[@"Surname"];
-                cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
-                
-                PFFile *userImageFile = person[@"ProfilePicture"];
-                [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                    if (!error) {
-                        cell.profilePicture.image = [UIImage imageWithData:imageData];
-                    }
-                }];
-            }];
-            
-        }
-        
-        
-        // date formatting stuff
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEE, d MMM"];
-        cell.dateLabel.text = [dateFormatter stringFromDate:date];
-        
-        // time formatting stuff
-        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-        [timeFormatter setDateFormat:@"HH:MM"];
-        cell.timeLabel.text = [timeFormatter stringFromDate:date];
-        
-        
-        return cell;
-    
-    // else user is getting a ride from driver
     } else {
-        GettingRideCell *cell = [tableView
-                                 dequeueReusableCellWithIdentifier:@"gettingRideCell"];
+        PFObject *journeyObject = journeysTableData[indexPath.row];
         
-        // query user table for name
-        if (driverusername != NULL) {
-            PFQuery *query = [PFUser query];
-            [query whereKey:@"username" equalTo:driverusername];
-            [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
-                PFUser *person = result[0];
-                NSString *forename = person[@"Name"];
-                NSString *surname = person[@"Surname"];
-                cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", forename, surname];
-            
-                PFFile *userImageFile = person[@"ProfilePicture"];
-                [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                    if (!error) {
-                        cell.profilePicture.image = [UIImage imageWithData:imageData];
-                    }
-                }];
+        PFUser *driver = [journeyObject objectForKey:R_DRIVER];
+        PFUser *passenger = [journeyObject objectForKey:R_PASSENGER];
+        
+        NSDate *date = journeyObject[J_TIME];
+    
+        // check if user is the driver
+        if ([user.objectId isEqualToString:driver.objectId]) {
+            GivingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"givingRideCell"];
+            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", passenger[Pfirstname], passenger[Plastname]];
+            PFFile *imageFile = passenger[Ppicture];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    cell.profilePicture.image = [UIImage imageWithData:imageData];
+                } else {
+                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:@"blank-profile-picture.png"];
+                }
             }];
+        
+            // date formatting stuff
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, d MMM"];
+            cell.dateLabel.text = [dateFormatter stringFromDate:date];
+    
+            // time formatting stuff
+            NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+            [timeFormatter setDateFormat:@"HH:MM"];
+            cell.timeLabel.text = [timeFormatter stringFromDate:date];
+
+            return cell;
+    
+        // user is getting a ride from driver
+        } else if ([user.objectId isEqualToString:passenger.objectId]) {
+            GettingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gettingRideCell"];
+            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", driver[Pfirstname], driver[Plastname]];
+            PFFile *imageFile = driver[Ppicture];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    cell.profilePicture.image = [UIImage imageWithData:imageData];
+                } else {
+                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:@"blank-profile-picture.png"];
+                }
+            }];
+        
+            // date formatting stuff
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, d MMM"];
+            cell.dateLabel.text = [dateFormatter stringFromDate:date];
+    
+            // time formatting stuff
+            NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+            [timeFormatter setDateFormat:@"HH:MM"];
+            cell.timeLabel.text = [timeFormatter stringFromDate:date];
+
+            return cell;
+        } else {
+            return [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
         }
-        
-        // date formatting stuff
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEE, d MMM"];
-        cell.dateLabel.text = [dateFormatter stringFromDate:date];
-        
-        // time formatting stuff
-        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-        [timeFormatter setDateFormat:@"HH:MM"];
-        cell.timeLabel.text = [timeFormatter stringFromDate:date];
-
-        
-        return cell;
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    JourneyView *journey = [self.storyboard instantiateViewControllerWithIdentifier:@"JourneyView"];
-    PFObject *item = _tableData[indexPath.row];
-    journey.item = item;
-    [journey view];
+    JourneyView *journeyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JourneyView"];
+    PFObject *journey = journeysTableData[indexPath.row];
+    journeyVC.item = journey;
+    [journeyVC view];
+
+    PFUser *driver = journey[J_DRIVER];
+    PFUser *passenger = journey[J_PASSENGER];
     
-    //replace hardcoding with call to PFUser object here
-    PFUser *loggedinuser = [PFUser currentUser];
-    NSString *user = loggedinuser[@"username"];
-    NSLog(@"%@", user);
-    //NSString *user = @"lhan";
-    NSString *driverusername = item[@"driverusername"];
+    //user is the driver
+    if ([user.objectId isEqualToString:driver.objectId]) {
+        GivingRideCell *cell = (GivingRideCell *)[tableView cellForRowAtIndexPath:indexPath];
+        //set info for next viewController
+        journeyVC.navigationItem.title = @"Journey";
+        journeyVC.name.text = cell.nameLabel.text;
+        journeyVC.date.text = cell.dateLabel.text;
+        journeyVC.time.text = cell.timeLabel.text;
+        journeyVC.image.image = cell.profilePicture.image;
+        journeyVC.give_get.text = @"Giving a ride to";
+        [self.navigationController pushViewController:journeyVC animated:YES];
     
-    
-    // check if user is the driver
-    if ([user isEqualToString:driverusername]) {
-        GivingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        journey.navigationItem.title = @"Journey";
-        journey.name.text = cell.nameLabel.text;
-        journey.date.text = cell.dateLabel.text;
-        journey.time.text = cell.timeLabel.text;
-        journey.image.image = cell.profilePicture.image;
-        journey.give_get.text = @"Giving a ride to";
-        [self.navigationController pushViewController:journey animated:YES];
+    //user is the passenger
+    } else if ([user.objectId isEqualToString:passenger.objectId]) {
+        GettingRideCell *cell = (GettingRideCell *)[tableView cellForRowAtIndexPath:indexPath];
+        //set info for next viewController
+        journeyVC.navigationItem.title = @"Journey";
+        journeyVC.name.text = cell.nameLabel.text;
+        journeyVC.date.text = cell.dateLabel.text;
+        journeyVC.time.text = cell.timeLabel.text;
+        journeyVC.image.image = cell.profilePicture.image;
+        journeyVC.give_get.text = @"Getting a ride from";
+        [self.navigationController pushViewController:journeyVC animated:YES];
     }
-    else {
-        GettingRideCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-       
-        journey.navigationItem.title = @"Journey";
-        journey.name.text = cell.nameLabel.text;
-        journey.date.text = cell.dateLabel.text;
-        journey.time.text = cell.timeLabel.text;
-        journey.image.image = cell.profilePicture.image;
-        journey.give_get.text = @"Getting a ride from";
-        [self.navigationController pushViewController:journey animated:YES];
-    }
-    
 }
 
 
-// Used to pop off seagues
+/* METHODS TO POP SEQUES */
 
--(IBAction)unWindFromOfferView:(UIStoryboardSegue *)seage {
-    //do nothing, FOR NOWWWWW TAN TAN TAAAAAN
+- (IBAction)unWindFromOfferView:(UIStoryboardSegue *)segue {
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSDate * today = [NSDate date];
     Ride* ride = [[Ride alloc] initWithDate:today];
     ride.user = [PFUser currentUser];
