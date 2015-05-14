@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
+#import "userDefines.h"
 
 @interface Ride : NSObject
 

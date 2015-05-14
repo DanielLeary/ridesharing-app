@@ -138,28 +138,28 @@
     NSLog(@"requestObject: %@", requestObject);
     
     //get info from requests table
-    driver = [requestObject objectForKey:@"offerer"];
-    passenger = [requestObject objectForKey:@"requester"];
-    dateTime = [requestObject objectForKey:@"dateTimeStart"];
-    pickup = [requestObject objectForKey:@"start"];
-    end = [requestObject objectForKey:@"end"];
+    driver = [requestObject objectForKey:R_DRIVER];
+    passenger = [requestObject objectForKey:R_PASSENGER];
+    dateTime = [requestObject objectForKey:R_PICKUPTIME];
+    pickup = [requestObject objectForKey:R_START];
+    end = [requestObject objectForKey:R_END];
             
     //get start location from offers table
-    PFQuery *offerQuery = [PFQuery queryWithClassName:@"Offers"];
-    [offerQuery whereKey:@"objectId" equalTo:[requestObject objectForKey:@"offerObjectId"]];
+    PFQuery *offerQuery = [PFQuery queryWithClassName:OFFER];
+    [offerQuery whereKey:OBJECTID equalTo:[requestObject objectForKey:R_DRIVER]];
     NSArray *offerResults = [offerQuery findObjects];
     PFObject *offerObject = offerResults[0];
-    start = [offerObject objectForKey:@"start"];
+    start = [offerObject objectForKey:O_STARTPOS];
             
     NSLog(@"inserting new journey");
     //insert new journey into journeys table
-    PFObject *journey = [PFObject objectWithClassName:@"Journeys"];
-    journey[@"driverusername"] = driver;
-    journey[@"passengerusername"] = passenger;
-    journey[@"journeyDateTime"] = dateTime;
-    journey[@"start"] = start;
-    journey[@"pickup"] = pickup;
-    journey[@"end"] = end;
+    PFObject *journey = [PFObject objectWithClassName:JOURNEY];
+    journey[J_DRIVER] = driver;
+    journey[J_PASSENGER] = passenger;
+    journey[J_TIME] = dateTime;
+    journey[J_STARTPOS] = start;
+    journey[J_PICKUP] = pickup;
+    journey[J_END] = end;
     [journey saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             //delete from request table
@@ -174,11 +174,7 @@
 - (void)declineTapped:(UIButton *)sender {
     NSLog(@"decline pressed for row: %ld", (long)sender.tag);
     //get objectId for request of selected cell
-    NSString *requestObjectId = requestsTableData[sender.tag];
-    
-    //query to find info for new journey
-    PFQuery *requestQuery = [PFQuery queryWithClassName:@"Requests"];
-    PFObject *requestObject = [requestQuery getObjectWithId:requestObjectId];
+    PFObject *requestObject = requestsTableData[sender.tag];
     
     //delete from request table
     [requestObject deleteInBackground];

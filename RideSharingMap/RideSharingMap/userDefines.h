@@ -9,19 +9,9 @@
 #ifndef RideSharingMap_userDefines_h
 #define RideSharingMap_userDefines_h
 
-/*
-#define firstnameString @"Name"
-#define surnameString @"Surname"
-#define usernameString @"username"
-#define passwordString @"password"
-#define genderString @"Gender"
-#define carString @"Car"
-#define positionString @"Position"
-#define pictureString @"ProfilePicture"
-#define interestArray @"Interests"
-#define favPlaces @"FavPlaces"
- */
+#define OBJECTID @"objectId"
 
+// User table column names
 #define Pfirstname @"Name"
 #define Plastname @"Surname"
 #define Pcar @"Car"
@@ -35,8 +25,7 @@
 #define Pfavplaces @"FavPlaces"
 #define Ppoints @"points"
 
-
-// Offer Class Collumn names
+// Offer table column names
 #define OFFER @"Offers"
 #define O_STARTPOS @"start"
 #define O_ENDLAT @"endLat"
@@ -44,18 +33,27 @@
 #define O_TIME @"dateTimeStart"
 #define O_DRIVER @"driver"
 
-
-// Request class Collumn names
+// Request table column names
 #define REQUEST @"Requests"
-#define R_PICKUPTIME @"passengerPickupTime"
+#define R_DRIVER @"driver"
+#define R_PASSENGER @"passenger"
+#define R_PICKUPTIME @"passengerPickUpTime"
 #define R_START @"start"
 #define R_END @"end"
-#define R_PASSENGER @"passenger"
-#define R_DRIVER @"driver"
+
+// Journey table column names
+#define JOURNEY @"Journeys"
+#define J_DRIVER @"driver"
+#define J_PASSENGER @"passenger"
+#define J_TIME @"journeyDateTime"
+#define J_STARTPOS @"start"
+#define J_PICKUP @"pickup"
+#define J_END @"end"
 
 
 // Variance in time and distance for searches
 #define TIMEEPSILON 900
 #define DISTANCEEPSILON 0.004
+
 
 #endif
