@@ -45,8 +45,9 @@ static NSMutableArray *favPlacesArray;
     [self pullFavPlacesFromParse];
 }
 
-+ (void) clearInfo {
++ (void) logOutUser {
     [favPlacesArray removeAllObjects];
+    [User logOut];
 }
 
 

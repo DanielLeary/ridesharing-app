@@ -18,6 +18,8 @@
 + (void) pullFromParse;
 + (void) clearInfo;
 
++ (void) logOutUser;
+
 
 /* METHODS FOR USER INFO */
 /* variable accessors */

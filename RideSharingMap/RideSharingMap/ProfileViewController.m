@@ -39,8 +39,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* METHODS FOR UI RESPONSES */
 
 - (IBAction)logoutBarButtonPressed:(UIBarButtonItem *)sender {
-    [User clearInfo];
-    [User logOut];
+    [User logOutUser];
     AppDelegate *appDelegateTemp = [[UIApplication sharedApplication] delegate];
     //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
