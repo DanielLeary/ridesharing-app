@@ -1418,6 +1418,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MvV-7w-Upe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="sEj-Sd-Wdg">
+                    <connections>
+                        <outlet property="delegate" destination="oR1-DA-K3u" id="IzL-99-5dX"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2748.5" y="388.5"/>
         </scene>
