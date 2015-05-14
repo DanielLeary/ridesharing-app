@@ -8,7 +8,8 @@
 
 #import "SelectOfferViewController.h"
 #import "RequestRideCell.h"
-//#import "TableViewCell.h"
+#import "SelectConfirmationViewController.h"
+
 
 @interface SelectOfferViewController ()
 
@@ -47,6 +48,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 // TABLE METHODS
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -59,14 +62,20 @@
     RequestRideCell* cell = [tableView dequeueReusableCellWithIdentifier:@"RequestRideCell"];
     PFObject* offer = self.ride.rideOffers[indexPath.row];
     PFUser* driver = self.ride.drivers[indexPath.row];
+    
+    // Display drivers username
     NSLog(@"Driver: %@ %@", driver[@"Name"], driver[@"Surname"]);
     cell.driver.text = [NSString stringWithFormat:@"%@ %@", driver[@"Name"], driver[@"Surname"]];
+    
+    // Display distance to driver start location
     PFGeoPoint* driverStart = offer[@"start"];
     CLLocationCoordinate2D driverCoordinate;
     driverCoordinate.latitude = driverStart.latitude;
     driverCoordinate.longitude = driverStart.longitude;
     cell.distance.text = [NSString stringWithFormat:@"%0.1f Miles", [Ride distanceBetweenCoordinates:self.ride.startCordinate secondCordinate:driverCoordinate]];
     
+    
+    // Display profile picture to screen
     PFFile *userImageFile = driver[@"ProfilePicture"];
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
@@ -77,6 +86,24 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    self.ride.rowNumber = (int)indexPath.row;
+    [self performSegueWithIdentifier:@"SelectConfirmationSegue" sender:self];
+    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"SelectConfirmationSegue"]) {
+        SelectConfirmationViewController *vc = (SelectConfirmationViewController*)segue.destinationViewController;
+        vc.ride = self.ride;
+    }    
+}
+
+
 
 
 @end

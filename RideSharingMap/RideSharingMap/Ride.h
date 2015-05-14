@@ -20,6 +20,7 @@
 @property NSArray* rideOffers;
 @property NSMutableArray* drivers;
 @property PFUser* user;
+@property int rowNumber;
 
 
 // Takes two CLLocationCoordinates and returns value of distance between them in miles

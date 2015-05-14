@@ -13,6 +13,7 @@
 		2717C1E11B02554800455CD4 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2717C1E01B02554800455CD4 /* location.png */; };
 		274983E01B04DF580043E092 /* RequestRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 274983DF1B04DF580043E092 /* RequestRideCell.m */; };
 		274983E31B04DF630043E092 /* SelectOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274983E21B04DF630043E092 /* SelectOfferViewController.m */; };
+		274983E61B04EC160043E092 /* SelectConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274983E51B04EC160043E092 /* SelectConfirmationViewController.m */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
 		27702BF11AAE152B00D20FFA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
@@ -84,6 +85,8 @@
 		274983DF1B04DF580043E092 /* RequestRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideCell.m; sourceTree = "<group>"; };
 		274983E11B04DF630043E092 /* SelectOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectOfferViewController.h; sourceTree = "<group>"; };
 		274983E21B04DF630043E092 /* SelectOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectOfferViewController.m; sourceTree = "<group>"; };
+		274983E41B04EC160043E092 /* SelectConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectConfirmationViewController.h; sourceTree = "<group>"; };
+		274983E51B04EC160043E092 /* SelectConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectConfirmationViewController.m; sourceTree = "<group>"; };
 		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		274A2BBF1A9CD03400967E42 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		49CA704B1ABB0B2D009DAC79 /* LoginNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNewViewController.h; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 		7E1D70081B00CC4A0087A5BB /* Request_ride */ = {
 			isa = PBXGroup;
 			children = (
+				274983E41B04EC160043E092 /* SelectConfirmationViewController.h */,
+				274983E51B04EC160043E092 /* SelectConfirmationViewController.m */,
 				274983E11B04DF630043E092 /* SelectOfferViewController.h */,
 				274983E21B04DF630043E092 /* SelectOfferViewController.m */,
 				7E4E14311B0102CD00F3652B /* RequestRideCompleteViewController.h */,
@@ -533,6 +538,7 @@
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
 				191899191A9A68B200C73208 /* ProfileViewController.m in Sources */,
+				274983E61B04EC160043E092 /* SelectConfirmationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
