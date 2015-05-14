@@ -10,8 +10,6 @@
 		191899191A9A68B200C73208 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191899181A9A68B200C73208 /* ProfileViewController.m */; };
 		1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918991B1A9A711D00C73208 /* AddPlaceViewController.m */; };
 		1931C6061AA8A4E800B76E8B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6051AA8A4E800B76E8B /* Place.m */; };
-		1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6081AA8AAC900B76E8B /* UserViewModel.m */; };
-		1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C60B1AA8B84900B76E8B /* UserModel.m */; };
 		2717C1E11B02554800455CD4 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2717C1E01B02554800455CD4 /* location.png */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
@@ -79,10 +77,6 @@
 		1918991B1A9A711D00C73208 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaceViewController.m; sourceTree = "<group>"; };
 		1931C6041AA8A4E800B76E8B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		1931C6051AA8A4E800B76E8B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		1931C6071AA8AAC900B76E8B /* UserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewModel.h; sourceTree = "<group>"; };
-		1931C6081AA8AAC900B76E8B /* UserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewModel.m; sourceTree = "<group>"; };
-		1931C60A1AA8B84900B76E8B /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
-		1931C60B1AA8B84900B76E8B /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		2717C1E01B02554800455CD4 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		274A2BBF1A9CD03400967E42 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -323,10 +317,6 @@
 		EB2536F91ADD4AE800B6A23F /* User */ = {
 			isa = PBXGroup;
 			children = (
-				1931C6071AA8AAC900B76E8B /* UserViewModel.h */,
-				1931C6081AA8AAC900B76E8B /* UserViewModel.m */,
-				1931C60A1AA8B84900B76E8B /* UserModel.h */,
-				1931C60B1AA8B84900B76E8B /* UserModel.m */,
 				EB9FE8B51B0396C4005AABD8 /* User.h */,
 				EB9FE8B61B0396C4005AABD8 /* User.m */,
 				49CFB9301B034AB6008CF25F /* userDefines.h */,
@@ -516,7 +506,6 @@
 				EB8F11151AAE1B92002C7EAB /* EditProfileViewController.m in Sources */,
 				EB08F8921AD4971A006C6AA5 /* InfoCell.m in Sources */,
 				EB99313C1ADD52E500532271 /* GettingRideCell.m in Sources */,
-				1931C6091AA8AAC900B76E8B /* UserViewModel.m in Sources */,
 				EE525DB91ADDCE17009DA645 /* Ride.m in Sources */,
 				EE525DC31ADDCE26009DA645 /* OfferRideTimeViewController.m in Sources */,
 				C5EA054C1ADE77AE007F2FD5 /* InboxAccepted.m in Sources */,
@@ -530,7 +519,6 @@
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,
 				EB9FE8B71B0396C4005AABD8 /* User.m in Sources */,
 				C5A542371A9FB2B3004A4303 /* InboxViewController.m in Sources */,
-				1931C60C1AA8B84900B76E8B /* UserModel.m in Sources */,
 				7EF361C31A87C4EC0004D0FC /* main.m in Sources */,
 				191899191A9A68B200C73208 /* ProfileViewController.m in Sources */,
 			);

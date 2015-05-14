@@ -14,7 +14,6 @@ static const int rowHeight = 40;
 @implementation InterestsViewController {
     
     User *user;
-    //UserViewModel *viewModel;
     NSMutableArray *checkedInterests;
     
 }
@@ -24,8 +23,6 @@ static const int rowHeight = 40;
     
     user = (User *)[PFUser currentUser];
     checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
-    //UserModel *user = [[UserModel alloc] init];
-    //viewModel = [[UserViewModel alloc] initWithModel:user];
     
     if (user) {
         allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];

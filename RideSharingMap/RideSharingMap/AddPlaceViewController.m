@@ -22,7 +22,6 @@
 @implementation AddPlaceViewController{
     
     User *user;
-    //UserViewModel *viewModel;
 
 }
 
@@ -32,8 +31,6 @@
 - (void)viewDidLoad {
     
     user = (User *)[PFUser currentUser];
-    //UserModel *user = [[UserModel alloc] init];
-    //viewModel = [[UserViewModel alloc] initWithModel:user];
     [super viewDidLoad];
     
     // set textField delegates for keyboard functions
