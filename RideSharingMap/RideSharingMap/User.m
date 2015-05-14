@@ -20,23 +20,11 @@
 
 @interface User ()
 
-//@property NSMutableArray *favPlacesArray; //stores names only?
-//@property NSMutableArray *interestsArray;
-
 @end
 
-
-@implementation User {
-    
-    //PFUser *user;
-    
-}
-
-//@dynamic favPlacesArray;
-//@dynamic interestsArray;
+@implementation User
 
 static NSMutableArray *favPlacesArray;
-//static NSMutableArray *interestsArray;
 
 
 + (User *)user {
@@ -45,7 +33,6 @@ static NSMutableArray *favPlacesArray;
 
 + (User *)currentUser {
     User *user = (User *)[PFUser currentUser];
-    //[User pullFavPlacesFromParse];
     return user;
 }
 
@@ -126,27 +113,10 @@ static NSMutableArray *favPlacesArray;
 /* METHODS FOR FAV PLACES */
 
 + (NSUInteger) getFavPlacesCount {
-    //return [self[favplaces] count];
     return [favPlacesArray count];
 }
 
 + (Place *) getPlaceAtIndex:(NSUInteger)indexPath {
-    /*
-    PFUser *user = [PFUser currentUser];
-    NSArray *favPlaces = user[favplaces];
-    NSString *placeId = [favPlaces objectAtIndex:indexPath];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
-    PFObject *object = [query getObjectWithId:placeId];
-    
-    NSString *name = object[@"name"];
-    CLLocationCoordinate2D coordinate;
-    coordinate.longitude = (CLLocationDegrees)[object[@"long"] doubleValue];
-    coordinate.latitude = (CLLocationDegrees)[object[@"lat"] doubleValue];
-    
-    Place *place = [[Place alloc] initWithName:name andCoordinates:coordinate];
-    return place;
-     */
     return [favPlacesArray objectAtIndex:indexPath];
 }
 
@@ -163,7 +133,7 @@ static NSMutableArray *favPlacesArray;
     [favPlace save];
     
     NSString *placeId = [favPlace objectId];
-    NSMutableArray *favPlacesId = user[Pfavplaces];
+    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
     [favPlacesId addObject:placeId];
     user[Pfavplaces] = favPlacesId;
     
@@ -171,11 +141,6 @@ static NSMutableArray *favPlacesArray;
 }
 
 + (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
-    /*
-    PFUser *user = [PFUser currentUser];
-    [self removePlaceAtIndex:indexPath];
-    [self addPlace:place];
-     */
     [favPlacesArray replaceObjectAtIndex:indexPath withObject:place];
 }
 
@@ -184,43 +149,31 @@ static NSMutableArray *favPlacesArray;
     
     [favPlacesArray removeObjectAtIndex:indexPath];
     
-    NSMutableArray *favPlacesId = user[Pfavplaces];
+    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
     NSString *placeId = favPlacesId[indexPath];
     [favPlacesId removeObjectAtIndex:indexPath];
     user[Pfavplaces] = favPlacesId;
     
-    // !!!!!!!!!!!!!!!!
     // remove from favLocations table
     PFObject *placeObject = [PFObject objectWithoutDataWithClassName:@"FavLocations" objectId:placeId];
     [placeObject deleteInBackground];
-    
-    /*
-     PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
-     [query whereKey:@"objectId" equalTo:placeId];
-     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-     for (int i=0; i<objects.count; i++) {
-     PFObject *object = [objects objectAtIndexi];
-     [object removeObjectForKey:<#(NSString *)#>]
-     }
-     }*/
     
     [user save];
 }
 
 + (void) pullFavPlacesFromParse {
     PFUser *user = [PFUser currentUser];
-    //[self.favPlacesArray removeAllObjects];
     favPlacesArray = [[NSMutableArray alloc] init];
     NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
     
     for (NSString *placeId in favPlacesId) {
-        PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
+        PFQuery *query   = [PFQuery queryWithClassName:@"FavLocations"];
         PFObject *object = [query getObjectWithId:placeId];
         
         NSString *name = object[@"name"];
         CLLocationCoordinate2D coordinate;
         coordinate.longitude = (CLLocationDegrees)[object[@"long"] doubleValue];
-        coordinate.latitude = (CLLocationDegrees)[object[@"lat"] doubleValue];
+        coordinate.latitude  = (CLLocationDegrees)[object[@"lat"]  doubleValue];
         
         Place *place = [[Place alloc] initWithName:name andCoordinates:coordinate];
         [favPlacesArray addObject:place];
@@ -239,13 +192,10 @@ static NSMutableArray *favPlacesArray;
 }
 
 - (bool) hasInterest:(NSString *)interest {
-    //interestsArray = user[interestArray];
     return [self[Pinterests] containsObject:interest];
 }
 
 - (void) updateInterests:(NSArray *)newInterestArray {
-    //[interestsArray removeAllObjects];
-    //[interestsArray addObjectsFromArray:newInterestArray];
     self[Pinterests] = (NSMutableArray *)newInterestArray;
 }
 
@@ -261,7 +211,7 @@ static NSMutableArray *favPlacesArray;
 - (void) setProfilePicture:(UIImage *)profilePicture {
     NSData *imageData = UIImagePNGRepresentation(profilePicture);
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-    self[Ppicture] = imageFile;
+    self[Ppicture]    = imageFile;
     [self save];
 }
 

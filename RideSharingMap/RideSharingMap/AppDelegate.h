@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import <Parse/Parse.h>
 #import "User.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
