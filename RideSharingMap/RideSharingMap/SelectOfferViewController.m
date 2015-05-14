@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     // Creates footer that hides empty cells
-    //self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     NSLog(@"Ride object memory address: %p", self.ride);
     // Print out object id
@@ -50,45 +50,17 @@
 // TABLE METHODS
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ([self.ride.rideOffers count]==0) ? 1 : [self.ride.rideOffers count];
-    //return 0;
+    return [self.ride.rideOffers count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    /*
-    if ([self.ride.rideOffers count] == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
-        cell.textLabel.text = @"No rides available :(";
-        return cell;
-        
-    } else {
-        // Populate Table view with data
-        RequestRideCell* cell = [tableView dequeueReusableCellWithIdentifier:@"RequestRideCell"];
-        PFObject* object = self.ride.rideOffers[indexPath.row];
-        PFUser* driver = [object objectForKey:@"driver"];
-        cell.name.text = [NSString stringWithFormat:@"%@ %@", driver[@"name"], driver[@"surname"]];
-        PFFile* userImage = driver[@"ProfilePicture"];
-        [userImage getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            if (!error) {
-                cell.profileImage.image = [UIImage imageWithData:imageData];
-            }
-        }];
-        PFGeoPoint* driverLoc = object[@"start"];
-        CLLocationCoordinate2D driverLocation;
-        driverLocation.latitude = driverLoc.latitude;
-        driverLocation.longitude = driverLoc.longitude;
-
-        double distMiles = [Ride distanceBetweenCoordinates:driverLocation secondCordinate:self.ride.startCordinate];
-        cell.distanceFromUser.text = [NSString stringWithFormat:@"%fl miles", distMiles];
-        return cell;
-    }
-     */
-
-    RequestRideCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCell"];
+    
+    RequestRideCell* cell = [tableView dequeueReusableCellWithIdentifier:@"RequestRideCell"];
     PFObject* object = self.ride.rideOffers[indexPath.row];
-    PFUser* driver = [object objectForKey:@"driver"];
-    cell.label.text = [NSString stringWithFormat:@"%@ %@", driver[@"name"], driver[@"surname"]];
+    PFUser* driver = self.ride.drivers[indexPath.row];
+    NSLog(@"Driver: %@ %@", driver[@"Name"], driver[@"Surname"]);
+    cell.driver.text = [NSString stringWithFormat:@"%@ %@", driver[@"Name"], driver[@"Surname"]];
     return cell;
 }
 

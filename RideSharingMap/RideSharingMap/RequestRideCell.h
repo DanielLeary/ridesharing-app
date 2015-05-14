@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RequestRideCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *driver;
 
 @end

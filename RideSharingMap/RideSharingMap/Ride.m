@@ -132,9 +132,6 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
         
         block(TRUE, error);
     }];
-    
-    // Run query
-    //[query findObjectsInBackgroundWithBlock:block];
 }
 
 // Converts double to NSNumber with 4dp precision
