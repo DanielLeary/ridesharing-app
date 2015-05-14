@@ -37,5 +37,9 @@
 
 //provides picture choosing scenes
 - (IBAction)addProfilePicturePressed:(UIButton *)sender;
+- (IBAction)fCheck:(id)sender;
+- (IBAction)mCheck:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *mCheckBox;
+@property (weak, nonatomic) IBOutlet UIButton *fCheckBox;
 
 @end

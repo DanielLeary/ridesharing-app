@@ -7,9 +7,12 @@
 //
 
 #import "Signup2ViewController.h"
+#define f @"female"
+#define m @"male"
+#define unchecked @"checkbox.png"
+#define checked @"checkbox-checked.png"
 
 static const int dobPickerRowHeight = 180;
-//static const int genderPickerRowHeight = 140;
 
 @implementation Signup2ViewController {
     
@@ -21,6 +24,9 @@ static const int dobPickerRowHeight = 180;
     NSDateFormatter *dateFormatter;
     BOOL dobPickerIsShown;
     BOOL genderPickerIsShown;
+    
+    BOOL fChecked;
+    BOOL mChecked;
 }
 
 - (void)viewDidLoad {
@@ -31,11 +37,30 @@ static const int dobPickerRowHeight = 180;
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
-    infoArray = @[@"Date of Birth:"/*, @"Gender:"*/, @"Interests:"];
+    infoArray = @[@"Date of Birth:", @"Interests:"];
     genderArray = @[@"Female", @"Male", @"Other"];
     
     dobPickerIsShown = NO;
     genderPickerIsShown = NO;
+    
+    if ([user getUsername] != nil) {
+        fChecked = [[user getGender]  isEqual: f] ? YES : NO;
+        mChecked = [[user getGender]  isEqual: m] ? YES : NO;
+    }
+    else{
+        fChecked = NO;
+        mChecked = NO;
+    }
+    
+    if (fChecked && !mChecked) {
+        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+    }
+    else if (mChecked && !fChecked){
+        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+    }
+
     
     
     self.userInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -67,11 +92,7 @@ static const int dobPickerRowHeight = 180;
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger* test = section;
-    NSInteger* test2 = [infoArray count];
-    /*if (dobPickerIsShown && genderPickerIsShown) {
-        return [infoArray count] + 2;
-    } else */if (dobPickerIsShown/* || genderPickerIsShown*/) {
+    if (dobPickerIsShown) {
         return [infoArray count] + 1;
     } else {
         return [infoArray count];
@@ -80,19 +101,17 @@ static const int dobPickerRowHeight = 180;
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger* test = indexPath.row;
+  
     UITableViewCell *cell;
     if (indexPath.row == 0) {
         cell.textLabel.text = infoArray[0];
     }
-    if (dobPickerIsShown /*&& genderPickerIsShown*/) {
+    if (dobPickerIsShown ) {
         if (indexPath.row == 1) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-        }/* else if (indexPath.row == 3) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
-        }*/ else {
+        } else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            if (indexPath.row == 2/* || indexPath.row == 4*/) {
+            if (indexPath.row == 2) {
                 cell.textLabel.text = infoArray[indexPath.row / 2];
             }
         }
@@ -105,18 +124,7 @@ static const int dobPickerRowHeight = 180;
                 cell.textLabel.text = infoArray[indexPath.row - 1];
             }
         }
-    }/* else if (genderPickerIsShown) {
-        if (indexPath.row == 2) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
-        } else {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            if (indexPath.row == 1) {
-                cell.textLabel.text = infoArray[1];
-            } else if (indexPath.row == 3) {
-                cell.textLabel.text = infoArray[2];
-            }
-        }
-    }*/ else {
+    } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
         cell.textLabel.text = infoArray[indexPath.row];
     }
@@ -127,44 +135,25 @@ static const int dobPickerRowHeight = 180;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView beginUpdates];
-    if (dobPickerIsShown/* && genderPickerIsShown*/) {
+    if (dobPickerIsShown) {
         if (indexPath.row == 0) {
             [self hidePicker:tableView inRow:1];
             dobPickerIsShown = NO;
-        } /*else if (indexPath.row == 2) {
-            [self hidePicker:tableView inRow:3];
-            genderPickerIsShown = NO;
-        } */else if (indexPath.row == 3) {
+        } else if (indexPath.row == 3) {
             [self showInterestsVC];
         }
     } else if (dobPickerIsShown) {
         if (indexPath.row == 0) {
             [self hidePicker:tableView inRow:1];
             dobPickerIsShown = NO;
-        }/* else if (indexPath.row ==2) {
-            [self showPicker:tableView inRow:3];
-            genderPickerIsShown = YES;
-        }*/ else if (indexPath.row == 2) {
+        } else if (indexPath.row == 2) {
             [self showInterestsVC];
         }
-    } /*else if (genderPickerIsShown) {
-        if (indexPath.row ==0) {
-            [self showPicker:tableView inRow:1];
-            dobPickerIsShown = YES;
-        } else if (indexPath.row == 1) {
-            [self hidePicker:tableView inRow:2];
-            genderPickerIsShown = NO;
-        } else if (indexPath.row == 3) {
-            [self showInterestsVC];
-        }
-    } */else {
+    } else {
         if (indexPath.row == 0) {
             [self showPicker:tableView inRow:1];
             dobPickerIsShown = YES;
-        }/* else if (indexPath.row == 1) {
-            [self showPicker:tableView inRow:2];
-            genderPickerIsShown = YES;
-        }*/ else if (indexPath.row == 1) {
+        } else if (indexPath.row == 1) {
             [self showInterestsVC];
         }
     }
@@ -175,17 +164,13 @@ static const int dobPickerRowHeight = 180;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = tableView.rowHeight;
-    if (dobPickerIsShown/* && genderPickerIsShown*/) {
+    if (dobPickerIsShown) {
         if (indexPath.row == 1) {
             rowHeight = dobPickerRowHeight;
-        }/* else if (indexPath.row == 3) {
-            rowHeight = genderPickerRowHeight;
-        }*/
+        }
     } else if (dobPickerIsShown && indexPath.row == 1) {
         rowHeight = dobPickerRowHeight;
-    }/* else if (genderPickerIsShown && indexPath.row == 2) {
-        rowHeight = genderPickerRowHeight;
-    }*/
+    }
     return rowHeight;
 }
 
@@ -224,6 +209,44 @@ static const int dobPickerRowHeight = 180;
         destructiveButtonTitle:nil
         otherButtonTitles:@"Take picture", @"Upload picture", nil];
     [actionSheet showInView:self.view];
+}
+
+- (IBAction)fCheck:(id)sender {
+    if (!fChecked) {
+        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        fChecked = YES;
+        mChecked = NO;
+        
+        [user setGender:f];
+        //set gender to female
+    }
+    else{
+        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        fChecked = NO;
+        mChecked = YES;
+        
+        [user setGender:m];
+    }
+
+}
+
+- (IBAction)mCheck:(id)sender {
+    if (!mChecked) {
+        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        mChecked = YES;
+        fChecked = NO;
+        [user setGender:m];
+    }
+    else {
+        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        mChecked = NO;
+        fChecked = YES;
+        [user setGender:f];
+    }
 }
 
 
