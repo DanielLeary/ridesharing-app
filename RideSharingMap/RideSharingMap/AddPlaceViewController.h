@@ -11,7 +11,7 @@
 
 @class AddPlaceViewController;
 
-@interface AddPlaceViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate>
+@interface AddPlaceViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
 
 // if editing an existing place
 
@@ -26,5 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *placeNameField;
 
 @property (weak, nonatomic) IBOutlet UITextField *placeLocationField;
+
+- (IBAction)locationButton:(UIButton *)sender;
 
 @end

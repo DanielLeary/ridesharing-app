@@ -47,25 +47,30 @@
     // set up mapView
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
+    
+    // set up annotation pin
+    self.pin = [[MKPointAnnotation alloc] init];
+    
     if (self.locationManager.location == nil) {
         NSLog(@"region!!: %@", nil);
         CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(start_place, 1000000, 1000000);
         [self.mapView setRegion:region animated:true];
-        self.pin = [[MKPointAnnotation alloc] init];
-        self.pin.coordinate = CLLocationCoordinate2DMake(54.1108, -3.2261);
-        [self.mapView addAnnotation:self.pin];
+        
+        
     } else {
-        // set up annotation pin
-        self.pin = [[MKPointAnnotation alloc] init];
         //zoom to current location
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 500, 500);
-        MKCoordinateRegion adjustRegion = [self.mapView regionThatFits:region];
-        [self.mapView setRegion:adjustRegion animated:YES];
-        // add pin to center of map
-        self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
-        [self.mapView addAnnotation:self.pin];
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, 500, 500);
+        [self.mapView setRegion:region animated:YES];
+        
     }
+    
+    UILongPressGestureRecognizer *lpgr
+    = [[UILongPressGestureRecognizer alloc]
+       initWithTarget:self action:@selector(handleGesture:)];
+    lpgr.minimumPressDuration = .5; //seconds
+    lpgr.delegate = self;
+    [self.mapView addGestureRecognizer:lpgr];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -82,6 +87,8 @@
     [self.mapView addAnnotation:self.pin];
      */
 }
+
+
 
 
 /* METHODS FOR UI RESPONSES */
@@ -138,9 +145,10 @@
 
 // always set pin to map center
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    self.pin.coordinate = CLLocationCoordinate2DMake(self.mapView.centerCoordinate.latitude, self.mapView.centerCoordinate.longitude);
+    self.pin.coordinate = self.mapView.centerCoordinate;
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView addAnnotation:self.pin];
 }
-
 
 /* KEYBOARD FUNCTIONS */
 
@@ -161,4 +169,28 @@
 }
 
 
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+        CLLocationCoordinate2D touchMapCoordinate =
+        [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        
+        MKPointAnnotation *pa = [[MKPointAnnotation alloc] init];
+        pa.coordinate = touchMapCoordinate;
+        pa.title = @"Hello";
+        [self.mapView addAnnotation:pa];
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (pa.coordinate, 500, 500);
+        [self.mapView setRegion:region animated:YES];
+        
+        //[pa release];
+    }
+}
+
+- (IBAction)locationButton:(UIButton *)sender {
+    CLLocation* usrLocation = _locationManager.location;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(usrLocation.coordinate, 500, 500);
+    [_mapView setRegion:region animated:YES];
+}
 @end

@@ -44,24 +44,25 @@ MKPlacemark *the_placemark;
     }
     [self.locationManager startUpdatingLocation];
     self.mapView.delegate = self;
+    
+    self.mapView.showsUserLocation = YES;
+    
+    self.pin = [[MKPointAnnotation alloc] init];
+    
+    
     if (self.locationManager.location == nil) {
         NSLog(@"region!!: %@", nil);
         CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(start_place, 1000000, 1000000);
         [self.mapView setRegion:region animated:true];
-        self.pin = [[MKPointAnnotation alloc] init];
-        self.pin.coordinate = CLLocationCoordinate2DMake(54.1108, -3.2261);
-        [self.mapView addAnnotation:self.pin];
+        
+        
     } else {
         NSLog(@"region??: %@", self.locationManager.location);
     // Create Coordinate region that is 500 meter square around current location
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, 500, 500);
         [self.mapView setRegion:region animated:true];
-        self.pin = [[MKPointAnnotation alloc] init];
-        self.pin.coordinate = self.locationManager.location.coordinate;
         
-        // Display the pin on map
-        [self.mapView addAnnotation:self.pin];
         
     }
     // Set up the map view

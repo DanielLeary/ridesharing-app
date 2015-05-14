@@ -50,16 +50,18 @@
     }
     [self.locationManager startUpdatingLocation];
     // Set up the map view
-    //self.mapView.showsUserLocation = true;
+    self.mapView.showsUserLocation = YES;
+    
     self.mapView.delegate = self;
+    
+    self.pin = [[MKPointAnnotation alloc] init];
+    
     if (self.locationManager.location == nil) {
         NSLog(@"region!!: %@", nil);
         CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(start_place, 1000000, 1000000);
         [self.mapView setRegion:region animated:true];
-        self.pin = [[MKPointAnnotation alloc] init];
-        self.pin.coordinate = CLLocationCoordinate2DMake(54.1108, -3.2261);
-        [self.mapView addAnnotation:self.pin];
+       
     } else {
         
     
@@ -67,12 +69,7 @@
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, 500, 500);
         [self.mapView setRegion:region animated:true];
     
-        // Set up pin for current location
-        self.pin = [[MKPointAnnotation alloc] init];
-        self.pin.coordinate = self.locationManager.location.coordinate;
-    
-        // Display the pin on map
-        [self.mapView addAnnotation:self.pin];
+        
     }
     UILongPressGestureRecognizer *lpgr
     = [[UILongPressGestureRecognizer alloc]
