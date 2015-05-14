@@ -10,8 +10,16 @@
 
 @implementation InboxRequest
 
-
-
+/*
+- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super init];
+    //self.contentView.userInteractionEnabled = NO;
+    [self.contentView addSubview:self.acceptButton];
+    [self.contentView addSubview:self.declineButton];
+    [self bringSubviewToFront:self.acceptButton];
+    [self bringSubviewToFront:self.declineButton];
+    return self;
+}*/
 
 
 

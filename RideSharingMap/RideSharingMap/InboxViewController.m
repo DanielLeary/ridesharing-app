@@ -14,31 +14,40 @@
 
 @implementation InboxViewController {
     
-    //array of request object IDs
-    NSArray *requestsTableData;
+    User *user;
+    NSArray *requestsTableData; //array of request PFObjects
+    NSArray *requesterTableData; //array of PFUsers
     BOOL emptyTable;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    user = (User *)[PFUser currentUser];
     requestsTableData = [[NSArray alloc] init];
     emptyTable = YES;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    PFUser *user = [PFUser currentUser];
-    
+- (void)viewDidAppear:(BOOL)animated {
+    //get all requests for current user
     PFQuery *query = [PFQuery queryWithClassName:@"Requests"];
     [query whereKey:@"offerer" equalTo:user.objectId];
     
-    //asynchronous query
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             requestsTableData = objects;
             [self.tableView reloadData];
             emptyTable = ([requestsTableData count]==0);
+            
+            if (!emptyTable) {
+                //pull info of requesters for tableView
+                for (PFObject *request in requestsTableData) {
+                    PFQuery *query = [PFUser query];
+                    [query whereKey:@"objectId" equalTo:request[@"requester"]];
+                    requesterTableData = [query findObjects];
+                }
+            }
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
@@ -63,17 +72,11 @@
         cell.textLabel.text = @"no messages (yet)";
         return cell;
     } else {
-        // get info of requester from parse
-        PFObject *object = requestsTableData[indexPath.row];
+        PFObject *requestObject = requestsTableData[indexPath.row];
         
-        PFQuery *query = [PFUser query];
-        [query whereKey:@"objectId" equalTo:object[@"requester"]];
-        NSArray *result = [query findObjects];
-        
-        if (result) {
             InboxRequest *cell = [tableView dequeueReusableCellWithIdentifier:@"InboxRequest"];
             
-            PFUser *requesterUser = result[0];
+            PFUser *requesterUser = requesterTableData[indexPath.row];
         
             // set name
             cell.name.text = [NSString stringWithFormat:@"%@ %@", requesterUser[@"Name"], requesterUser[@"Surname"]];
@@ -89,7 +92,7 @@
             }];
     
             // set date and time
-            NSDate *dateTime = object[@"dateTimeStart"];
+            NSDate *dateTime = requestObject[@"dateTimeStart"];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.dateFormat = @"dd/MM/yy";
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
@@ -98,23 +101,18 @@
             cell.date.text = [dateFormatter stringFromDate:dateTime];
             cell.time.text = [timeFormatter stringFromDate:dateTime];
             
-        // set button tag to row so we can identify which row
-        // tapped button
-        cell.acceptButton.tag = indexPath.row;
-        cell.declineButton.tag = indexPath.row;
+            // set button tag to row so we can identify which row
+            cell.acceptButton.tag = indexPath.row;
+            cell.declineButton.tag = indexPath.row;
     
-        // dispatch button taps to the below accept/declineTapped methods, with tag set to indexpath row
-        [cell.acceptButton addTarget:self
+            // dispatch button taps to the below accept/declineTapped methods, with tag set to indexpath row
+            [cell.acceptButton addTarget:self
                         action:@selector(acceptTapped:)
                 forControlEvents:UIControlEventTouchUpInside];
-        [cell.declineButton addTarget:self
+            [cell.declineButton addTarget:self
                         action:@selector(declineTapped:)
                 forControlEvents:UIControlEventTouchUpInside];
             return cell;
-        } else {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
-            return cell;
-        }
     }
 }
 
@@ -126,17 +124,18 @@
     }
 }
 
-- (void) acceptTapped:(UIButton *)sender {
+
+/* METHODS FOR BUTTONS IN CELL */
+
+- (void)acceptTapped:(UIButton *)sender {
     NSString *driver, *passenger;
     NSDate *dateTime;
     NSArray *start, *pickup, *end;
     
     //get objectId for request of selected cell
-    NSString *requestObjectId = requestsTableData[sender.tag];
+    PFObject *requestObject = requestsTableData[sender.tag];
     
-    //query to find info for new journey
-    PFQuery *requestQuery = [PFQuery queryWithClassName:@"Requests"];
-    PFObject *requestObject = [requestQuery getObjectWithId:requestObjectId];
+    NSLog(@"requestObject: %@", requestObject);
     
     //get info from requests table
     driver = [requestObject objectForKey:@"offerer"];
@@ -144,11 +143,15 @@
     dateTime = [requestObject objectForKey:@"dateTimeStart"];
     pickup = [requestObject objectForKey:@"start"];
     end = [requestObject objectForKey:@"end"];
-    
+            
     //get start location from offers table
-    PFObject *offerObject = [requestObject objectForKey:@"offerObjectId"];
+    PFQuery *offerQuery = [PFQuery queryWithClassName:@"Offers"];
+    [offerQuery whereKey:@"objectId" equalTo:[requestObject objectForKey:@"offerObjectId"]];
+    NSArray *offerResults = [offerQuery findObjects];
+    PFObject *offerObject = offerResults[0];
     start = [offerObject objectForKey:@"start"];
-    
+            
+    NSLog(@"inserting new journey");
     //insert new journey into journeys table
     PFObject *journey = [PFObject objectWithClassName:@"Journeys"];
     journey[@"driverusername"] = driver;
@@ -161,14 +164,15 @@
         if (succeeded) {
             //delete from request table
             [requestObject deleteInBackground];
-            //delete from offers table if more than 3 passengers?
             [self.tableView reloadData];
-        } else {
+            //delete from offers table if more than 3 passengers?
+            NSLog(@"DONE");
         }
     }];
 }
 
-- (void) declineTapped:(UIButton *)sender {
+- (void)declineTapped:(UIButton *)sender {
+    NSLog(@"decline pressed for row: %ld", (long)sender.tag);
     //get objectId for request of selected cell
     NSString *requestObjectId = requestsTableData[sender.tag];
     

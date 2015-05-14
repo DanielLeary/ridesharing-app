@@ -487,7 +487,7 @@
                                             <outlet property="timeLabel" destination="RO5-rD-hyo" id="VLz-1Y-Q5D"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" textLabel="tjg-uZ-8yH" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Al0-WI-7w8">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" textLabel="tjg-uZ-8yH" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Al0-WI-7w8">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Al0-WI-7w8" id="8Y3-l1-w5K">
@@ -1053,7 +1053,7 @@
                                             <outlet property="time" destination="sav-pU-TyT" id="9XP-yt-nnQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InboxRequest" rowHeight="110" id="cE4-q3-pgV" customClass="InboxRequest">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InboxRequest" rowHeight="110" id="cE4-q3-pgV" customClass="InboxRequest">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cE4-q3-pgV" id="c2s-HB-3M5">
                                             <autoresizingMask key="autoresizingMask"/>
