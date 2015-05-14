@@ -66,9 +66,11 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 }
 
 
+
+
 -(void)offerRideToCloudWithBlock:(void (^) (BOOL, NSError*))block {
     PFObject *offer = [PFObject objectWithClassName:REQUEST];
-    NSLog(@"date time : %@", self.dateTimeStart);
+
     offer[R_PICKUPTIME] = self.dateTimeStart;
     offer[R_START] = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
     NSNumber* endLat = [NSNumber numberWithDouble:self.endCordinate.latitude];
@@ -85,19 +87,23 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 
 // Queries Offers that match start and end coordinates within a 15 minute time frame
 - (void)queryRidesWithBlock:(void (^)(bool, NSError*))block {
+    
+    //Query for users who have start location within 2 miles of user set pickup location
+    //Query ordered in ascending order (from furthest away to closest)
+    
     PFGeoPoint* start = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
     PFQuery* query = [PFQuery queryWithClassName:OFFER];
+    [query whereKey:O_STARTPOS nearGeoPoint:start withinMiles:2];
+    [query orderByAscending:O_STARTPOS];
     
-    // Search for Offers that are within 0.2 Miles of Pickup point
-    [query whereKey:@"start" nearGeoPoint:start withinMiles:2];
+    // Does not match for queries where user is also the driver
+    [query whereKey:R_DRIVER notEqualTo:self.user];
+    
+    
     NSNumber* UPPERlat = [self formatTo4dp:(self.endCordinate.latitude + DISTANCEEPSILON)];
     NSNumber* LOWERlat = [self formatTo4dp:(self.endCordinate.latitude - DISTANCEEPSILON)];
     NSNumber* UPPERlon = [self formatTo4dp:(self.endCordinate.longitude + DISTANCEEPSILON)];
     NSNumber* LOWERlon = [self formatTo4dp:(self.endCordinate.longitude - DISTANCEEPSILON)];
-    NSLog(@"end UPPERlatitude: %@", UPPERlat);
-    NSLog(@"end LOWERlatitude: %@", LOWERlat);
-    NSLog(@"end UPPERlongitude: %@", UPPERlon);
-    NSLog(@"end LOWERlongitude: %@", LOWERlon);
     
     NSDate* UPPERdate = [[NSDate alloc] initWithTimeInterval:TIMEEPSILON sinceDate:self.dateTimeStart];
     NSDate* LOWERdate = [[NSDate alloc] initWithTimeInterval:-TIMEEPSILON sinceDate:self.dateTimeStart];
@@ -110,7 +116,7 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     [query whereKey:O_ENDLONG greaterThanOrEqualTo:LOWERlon];
     [query whereKey:O_ENDLONG lessThanOrEqualTo:UPPERlon];
     
-    // Need to find adequate times
+    // Queries within a 15 minute period before and after Offer timeStart
     [query whereKey:O_TIME greaterThanOrEqualTo:LOWERdate];
     [query whereKey:O_TIME lessThanOrEqualTo:UPPERdate];
     

@@ -26,16 +26,22 @@
 
 // Takes two CLLocationCoordinates and returns value of distance between them in miles
 + (double)distanceBetweenCoordinates:(CLLocationCoordinate2D)one secondCordinate:(CLLocationCoordinate2D)two;
+
+// Initializer with date
 - (id)initWithDate:(NSDate*) date;
+
+// Initialises ride object with Current date and time as date value
+-(id)init;
 
 // Submites an offer to the cloud from the user
 - (void)uploadToCloudWithBlock:(void (^) (bool, NSError*))block;
 
 // Querys Rides which will be leaving at the same time (plus or minus 15 mins)
 // From same location (distance of 2 miles) to the same destination (distance of ~2 miles)
-// Function automatically updates rideOffers and drivers based on query
+// Function automatically updates rideOffers and drivers arrays based on query for use in view controllers
 - (void)queryRidesWithBlock:(void (^)(bool, NSError*))block;
 
+// Uploads an offer of a ride into cloud
 -(void)offerRideToCloudWithBlock:(void (^) (BOOL, NSError*))block;
 
 

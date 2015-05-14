@@ -26,7 +26,6 @@
     user = (User *)[PFUser currentUser];
     requestsTableData = [[NSMutableArray alloc] init];
     requesterTableData = [[NSMutableArray alloc] init];
-    emptyTable = YES;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -40,7 +39,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             requestsTableData = [[NSMutableArray alloc] initWithArray:objects];
-            emptyTable = ([requestsTableData count]==0);
             [self.tableView reloadData];
             
             if (!emptyTable) {
@@ -65,7 +63,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (emptyTable) {
+    if ([requesterTableData count] == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell"];
         cell.textLabel.text = @"No messages (yet)";
         return cell;
@@ -115,7 +113,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (emptyTable) {
+    if ([requesterTableData count] == 0) {
         return 50;
     } else {
         return 110;
@@ -156,10 +154,14 @@
     [journey saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             //delete from request table
-            [requestObject deleteInBackground];
-            [requestsTableData removeObjectAtIndex:sender.tag];
-            [requesterTableData removeObjectAtIndex:sender.tag];
-            [self.tableView reloadData];
+            [requestObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(succeeded) {
+                    [requestsTableData removeObjectAtIndex:sender.tag];
+                    [requesterTableData removeObjectAtIndex:sender.tag];
+                    [self.tableView reloadData];
+                }
+            }];
+            
             NSLog(@"DONE");
         }
     }];
