@@ -11,6 +11,8 @@
 		1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918991B1A9A711D00C73208 /* AddPlaceViewController.m */; };
 		1931C6061AA8A4E800B76E8B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 1931C6051AA8A4E800B76E8B /* Place.m */; };
 		2717C1E11B02554800455CD4 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2717C1E01B02554800455CD4 /* location.png */; };
+		274983E01B04DF580043E092 /* RequestRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 274983DF1B04DF580043E092 /* RequestRideCell.m */; };
+		274983E31B04DF630043E092 /* SelectOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274983E21B04DF630043E092 /* SelectOfferViewController.m */; };
 		274A2BBE1A9CD02E00967E42 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBD1A9CD02E00967E42 /* Bolts.framework */; };
 		274A2BC01A9CD03400967E42 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
 		27702BF11AAE152B00D20FFA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A2BBF1A9CD03400967E42 /* Parse.framework */; };
@@ -78,6 +80,10 @@
 		1931C6041AA8A4E800B76E8B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		1931C6051AA8A4E800B76E8B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		2717C1E01B02554800455CD4 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		274983DE1B04DF580043E092 /* RequestRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestRideCell.h; sourceTree = "<group>"; };
+		274983DF1B04DF580043E092 /* RequestRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestRideCell.m; sourceTree = "<group>"; };
+		274983E11B04DF630043E092 /* SelectOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectOfferViewController.h; sourceTree = "<group>"; };
+		274983E21B04DF630043E092 /* SelectOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectOfferViewController.m; sourceTree = "<group>"; };
 		274A2BBD1A9CD02E00967E42 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		274A2BBF1A9CD03400967E42 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		49CA704B1ABB0B2D009DAC79 /* LoginNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginNewViewController.h; sourceTree = "<group>"; };
@@ -235,6 +241,8 @@
 		7E1D70081B00CC4A0087A5BB /* Request_ride */ = {
 			isa = PBXGroup;
 			children = (
+				274983E11B04DF630043E092 /* SelectOfferViewController.h */,
+				274983E21B04DF630043E092 /* SelectOfferViewController.m */,
 				7E4E14311B0102CD00F3652B /* RequestRideCompleteViewController.h */,
 				7E4E14321B0102CD00F3652B /* RequestRideCompleteViewController.m */,
 			);
@@ -352,6 +360,8 @@
 				C5EA054B1ADE77AE007F2FD5 /* InboxAccepted.m */,
 				C5EA054D1ADE77D1007F2FD5 /* InboxRequest.h */,
 				C5EA054E1ADE77D1007F2FD5 /* InboxRequest.m */,
+				274983DE1B04DF580043E092 /* RequestRideCell.h */,
+				274983DF1B04DF580043E092 /* RequestRideCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -495,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBBEE6B41ACD98A300E76C4E /* InterestsViewController.m in Sources */,
+				274983E31B04DF630043E092 /* SelectOfferViewController.m in Sources */,
 				1918991C1A9A711D00C73208 /* AddPlaceViewController.m in Sources */,
 				C5EA054F1ADE77D1007F2FD5 /* InboxRequest.m in Sources */,
 				C560AB471B019AD40072E5E0 /* JourneyView.m in Sources */,
@@ -515,6 +526,7 @@
 				EE525DC21ADDCE26009DA645 /* OfferRideStartViewController.m in Sources */,
 				C5D9603C1ADEB631002DF274 /* Journey.m in Sources */,
 				7E4E14331B0102CD00F3652B /* RequestRideCompleteViewController.m in Sources */,
+				274983E01B04DF580043E092 /* RequestRideCell.m in Sources */,
 				C5A5423A1A9FB2DD004A4303 /* DashboardViewController.m in Sources */,
 				49CA704D1ABB0B2D009DAC79 /* LoginNewViewController.m in Sources */,
 				EB9FE8B71B0396C4005AABD8 /* User.m in Sources */,

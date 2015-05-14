@@ -32,8 +32,10 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     CLLocation* location1 = [[CLLocation alloc] initWithLatitude:one.latitude longitude:one.longitude];
     CLLocation* location2 = [[CLLocation alloc] initWithLatitude:two.latitude longitude:two.longitude];
     
-    // get distances in meters and convert to KM by multiplying by 1000
-    double distance = 1000 * [location1 distanceFromLocation:location2];
+    
+    
+    // get distances in meters and convert to KM by dividing by 1000
+    double distance = [location1 distanceFromLocation:location2]/1000;
     
     // Convert distances into miles
     distance *= 0.6213711;
