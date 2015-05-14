@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import <Parse/Parse.h>
 #import "Ride.h"
 
 @interface RequestRideCompleteViewController : UIViewController <MKMapViewDelegate>

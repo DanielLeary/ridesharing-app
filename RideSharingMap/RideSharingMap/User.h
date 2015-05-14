@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "userDefines.h"
 #import "Place.h"
