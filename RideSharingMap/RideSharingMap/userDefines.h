@@ -36,8 +36,24 @@
 #define Ppoints @"points"
 
 
+// Offer Class Collumn names
+#define OFFER @"Offers"
+#define O_STARTPOS @"start"
+#define O_ENDLAT @"endLat"
+#define O_ENDLONG @"endLong"
+#define O_TIME @"dateTimeStart"
+#define O_DRIVER @"driver"
 
 
+// Request class Collumn names
+#define REQUEST @"Requests"
+#define R_PICKUPTIME @"passengerPickUpTime"
+#define R_START @"start"
+#define R_END @"end"
 
+
+// Variance in time and distance for searches
+#define TIMEEPSILON 900
+#define DISTANCEEPSILON 0.004
 
 #endif

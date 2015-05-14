@@ -68,6 +68,12 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
 
 -(void)offerRideToCloudWithBlock:(void (^) (BOOL, NSError*))block {
     PFObject *offer = [PFObject objectWithClassName:REQUEST];
+    offer[R_PICKUPTIME] = self.dateTimeStart;
+    offer[R_START] = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
+    NSNumber* endLat = [NSNumber numberWithDouble:self.endCordinate.latitude];
+    
+    //offer[R_END] = [NSArray arrayWithObject:[NS]]
+    
     
 }
 
