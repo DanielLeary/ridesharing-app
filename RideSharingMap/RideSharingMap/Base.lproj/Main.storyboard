@@ -1388,6 +1388,15 @@
                                     <outlet property="delegate" destination="7XB-UC-3ia" id="NKg-1i-skT"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVZ-0F-SgI">
+                                <rect key="frame" x="323" y="508" width="36" height="36"/>
+                                <state key="normal" image="location.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButton:" destination="7XB-UC-3ia" eventType="touchUpInside" id="m3y-Z5-plG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
