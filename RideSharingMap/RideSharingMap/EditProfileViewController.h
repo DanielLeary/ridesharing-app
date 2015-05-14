@@ -42,6 +42,10 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
 
+- (IBAction)maleCheck:(id)sender;
+- (IBAction)femaleCheck:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *fCheckBox;
+@property (weak, nonatomic) IBOutlet UIButton *mCheckBox;
 
 
 @end

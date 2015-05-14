@@ -24,6 +24,9 @@ static const int genderPickerRowHeight  = 140;
     BOOL pictureChanged;
     BOOL nameChanged;
     
+    BOOL fChecked;
+    BOOL mChecked;
+    
 }
 
 - (void) viewDidLoad {
@@ -44,6 +47,8 @@ static const int genderPickerRowHeight  = 140;
     genderPickerIsShown = NO;
     pictureChanged = NO;
     nameChanged = NO;
+    fChecked = NO;
+    mChecked = NO;
     
     self.userInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -298,4 +303,35 @@ static const int genderPickerRowHeight  = 140;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)maleCheck:(id)sender {
+    if (!mChecked) {
+        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        mChecked = YES;
+        fChecked = NO;
+    }
+    else {
+        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
+        mChecked = NO;
+        fChecked = YES;
+    }
+}
+
+- (IBAction)femaleCheck:(id)sender {
+    if (!fChecked) {
+        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        fChecked = YES;
+        mChecked = NO;
+        //set gender to female
+    }
+    else{
+        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
+        fChecked = NO;
+        mChecked = YES;
+    }
+    
+}
 @end
