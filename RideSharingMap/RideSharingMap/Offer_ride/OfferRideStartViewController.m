@@ -56,6 +56,7 @@
     
     self.pin = [[MKPointAnnotation alloc] init];
     
+    // If user location isn't available, set to default view, view of England
     if (self.locationManager.location == nil) {
         NSLog(@"region!!: %@", nil);
         CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
@@ -74,7 +75,7 @@
     UILongPressGestureRecognizer *lpgr
     = [[UILongPressGestureRecognizer alloc]
        initWithTarget:self action:@selector(handleGesture:)];
-    lpgr.minimumPressDuration = .5; //seconds
+    lpgr.minimumPressDuration = 0.5; //seconds
     lpgr.delegate = self;
     [self.mapView addGestureRecognizer:lpgr];
     
@@ -98,9 +99,10 @@
     [self.mapView addAnnotation:self.pin];
 }
 
-
+// Used to find a location. Both postcode and POI search
 - (IBAction)SearchBox:(UITextField *)sender {
     
+    // create local search request
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     
     request.naturalLanguageQuery = sender.text;
@@ -110,26 +112,33 @@
         if (error) {
             NSLog(@"%@", error);
         } else {
+            
+            // Get the first result and break
             for (MKMapItem *item in response.mapItems) {
                 self.pin.coordinate = item.placemark.coordinate;
                 break;
             }
             
         }
+        
+        // Change region view with this point in the center
         MKCoordinateRegion region =MKCoordinateRegionMakeWithDistance (self.pin.coordinate, 500, 500);
         [self.mapView setRegion:region animated:YES];
-        [self.mapView removeAnnotations:self.mapView.annotations];
-        [self.mapView addAnnotation:self.pin];
+        
     }];
 
 }
 
 - (IBAction)locationButton:(UIButton *)sender {
+    
+    // If location isn't available, then do nothing
     if (self.locationManager.location == nil) {
         return;
     }
-    CLLocation* usrLocation = _locationManager.location;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(usrLocation.coordinate, 500, 500);
+    
+    // Change region view with user location in the center
+    CLLocation* userLocation = _locationManager.location;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500, 500);
     [_mapView setRegion:region animated:YES];
 }
 
@@ -181,18 +190,22 @@
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         
+        // Get location from the viewpoint
         CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+        
+        // Convert to coordinates
         CLLocationCoordinate2D touchMapCoordinate =
         [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
         
-        MKPointAnnotation *pa = [[MKPointAnnotation alloc] init];
-        pa.coordinate = touchMapCoordinate;
-        pa.title = @"Hello";
-        [self.mapView addAnnotation:pa];
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (pa.coordinate, 500, 500);
+        // Setting up the annotation
+        MKPointAnnotation *pressed = [[MKPointAnnotation alloc] init];
+        pressed.coordinate = touchMapCoordinate;
+        
+        // changing the region with this point in the center
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (pressed.coordinate, 500, 500);
         [self.mapView setRegion:region animated:YES];
         
-        //[pa release];
+
     }
 }
 
