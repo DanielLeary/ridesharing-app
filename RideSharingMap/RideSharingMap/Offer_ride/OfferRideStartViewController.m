@@ -125,6 +125,9 @@
 }
 
 - (IBAction)locationButton:(UIButton *)sender {
+    if (self.locationManager.location == nil) {
+        return;
+    }
     CLLocation* usrLocation = _locationManager.location;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(usrLocation.coordinate, 500, 500);
     [_mapView setRegion:region animated:YES];
