@@ -21,7 +21,7 @@
     PFUser *driver = self.ride.drivers[self.ride.rowNumber];
     PFObject* offer = self.ride.rideOffers[self.ride.rowNumber];
     
-    NSString *driverName = driver[@"Name"];
+    NSString *driverName = [NSString stringWithFormat:@"%@ %@", driver[@"Name"], driver[@"Surname"]];
     NSLog(@"%@", driverName);
     NSDate* date = offer[@"dateTimeStart"];
     
