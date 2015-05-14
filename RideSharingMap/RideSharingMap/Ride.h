@@ -18,6 +18,7 @@
 @property NSDate * dateTimeStart;
 @property BOOL offerRide;
 @property NSArray* rideOffers;
+@property NSMutableArray* drivers;
 @property PFUser* user;
 
 
@@ -26,10 +27,11 @@
 - (id)initWithDate:(NSDate*) date;
 
 // Submites an offer to the cloud from the user
-- (void)uploadToCloudWithBlock:(void (^) (BOOL, NSError*))block;
+- (void)uploadToCloudWithBlock:(void (^) (bool, NSError*))block;
 
 // Querys Rides which will be leaving at the same time (plus or minus 15 mins)
 // From same location (distance of 2 miles) to the same destination (distance of ~2 miles)
-- (void)queryRidesWithBlock:(void (^)(BOOL, NSError*))block;
+// Function automatically updates rideOffers and drivers based on query
+- (void)queryRidesWithBlock:(void (^)(bool, NSError*))block;
 
 @end

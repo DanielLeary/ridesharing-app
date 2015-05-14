@@ -51,12 +51,12 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
         self.dateTimeStart = date;
         self.startCordinate = emptyCoordinates;
         self.endCordinate = emptyCoordinates;
-        self.offerRide = false    ;
+        self.offerRide = false;
     }
     return self;
 }
 
--(void)uploadToCloudWithBlock:(void (^) (BOOL, NSError*))block {
+-(void)uploadToCloudWithBlock:(void (^) (bool, NSError*))block {
     PFObject *ride = [PFObject objectWithClassName:JOURNEY];
     
     // Creates PF geopoint for the start location, this can be querried
@@ -76,6 +76,8 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     [ride saveInBackgroundWithBlock:block];
 }
 
+
+// Queries Offers that match start and end coordinates within a 15 minute time frame
 - (void)queryRidesWithBlock:(void (^)(bool, NSError*))block {
     PFGeoPoint* start = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
     PFQuery* query = [PFQuery queryWithClassName:JOURNEY];
@@ -112,20 +114,27 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     // Limit results of query to 10
     query.limit = 10;
     
-    // Run query
-    [query findObjectsInBackgroundWithBlock:^(NSArray* array, NSError* error) {
-        // issues with saving to background, should be delt with here
-        if (error) {
-            block(false, error);
-        } else {
-            // Assign returned array to ride offers
-            
-            NSLog(@"Memory address in block: %p", self.rideOffers);
-            self.rideOffers = array;
-            //self.rideOffers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:oldArray]];
-            block(true, nil);
+    [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError *error) {
+        
+        //If query returns no results then display to user
+        NSLog(@"Number of returned values: %lu", [objects count]);
+        if([objects count] == 0) {
+            block(FALSE, error);
         }
+        
+        // Initialize arrays to hold drivers and rideOffers
+        self.drivers = [[NSMutableArray alloc] init];
+        self.rideOffers = [[NSArray alloc] initWithArray:objects];
+        
+        for (PFObject* object in objects) {
+            [self.drivers addObject:[object objectForKey:@"driver"]];
+        }
+        
+        block(TRUE, error);
     }];
+    
+    // Run query
+    //[query findObjectsInBackgroundWithBlock:block];
 }
 
 // Converts double to NSNumber with 4dp precision

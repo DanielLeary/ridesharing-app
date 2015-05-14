@@ -49,16 +49,6 @@ MKPolyline *routeOverlay = nil;
     // Dispose of any resources that can be recreated.
     }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)getARoute {
     MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
     
@@ -142,13 +132,6 @@ MKPolyline *routeOverlay = nil;
     [self.activityView startAnimating];
     [self.view setUserInteractionEnabled:NO];
     
-    //Set the start location to current pin location
-    //self.ride.startCordinate = self.pin.coordinate;
-    
-    
-    
-    
-    
     // Run if offering a ride
     if (self.ride.offerRide) {
         
@@ -169,13 +152,6 @@ MKPolyline *routeOverlay = nil;
             if(!succeded) {
                 alert.message = @"Could not upload to server, please check your internet connection and try again";
                 
-                // stays on page
-                //UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-                
-                // goes back to DashBoardViewController
-                //UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                //        [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
-                //    }];
                 [alert addAction:retry];
                 [alert addAction:cancel];
             } else {
@@ -195,8 +171,36 @@ MKPolyline *routeOverlay = nil;
         
         [self.ride uploadToCloudWithBlock:displayInfoBlock];
     } else {
+        // Run if not offering ride
+        
         // Block of code to execute once query has returned from parse.
-        [self performSegueWithIdentifier:@"SelectOfferSegue" sender:self];
+        [self.ride queryRidesWithBlock:^(BOOL success, NSError * error) {
+            if(success) {
+                [self performSegueWithIdentifier:@"SelectOfferSegue" sender:self];
+            }
+            else {
+                
+                // Display alert to user that query was not successful
+                NSString* string = @"Unable to match with any rides";
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Request Ride" message:string preferredStyle:UIAlertControllerStyleAlert];
+                // stays on page
+                UIAlertAction* retry = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+                
+                // goesback to dashboard view controller
+                UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Dashboard" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
+                                         {
+                                             [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
+                                         }];
+                
+                [alert addAction:retry];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            
+            // Stop spinning, enable interaction
+            [self.activityView stopAnimating];
+            [self.view setUserInteractionEnabled:YES];
+        }];
     }
 }
 
