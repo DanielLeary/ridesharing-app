@@ -51,6 +51,7 @@
     // set up annotation pin
     self.pin = [[MKPointAnnotation alloc] init];
     
+    // If user location isn't available, set to default view, view of England
     if (self.locationManager.location == nil) {
         NSLog(@"region!!: %@", nil);
         CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
@@ -65,10 +66,13 @@
         
     }
     
+    // Set up long press gesture
     UILongPressGestureRecognizer *lpgr
     = [[UILongPressGestureRecognizer alloc]
        initWithTarget:self action:@selector(handleGesture:)];
-    lpgr.minimumPressDuration = .5; //seconds
+    
+    // Duration is 0.5 seconds
+    lpgr.minimumPressDuration = 0.5; //seconds
     lpgr.delegate = self;
     [self.mapView addGestureRecognizer:lpgr];
 }
@@ -124,16 +128,21 @@
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
     request.naturalLanguageQuery = sender.text;
     request.region = _mapView.region;
+    
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+    
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        
         if (error) {
             NSLog(@"%@", error);
         } else {
+            // Get First Result
             for (MKMapItem *item in response.mapItems) {
                 self.pin.coordinate = item.placemark.coordinate;
                 break;
             }
         }
+        // Change region with this point in the center
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (self.pin.coordinate, 500, 500);
         [self.mapView setRegion:region animated:YES];
     }];
@@ -173,27 +182,34 @@
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         
+        // Get location from the viewpoint
         CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+        
+        // Convert to coordinates
         CLLocationCoordinate2D touchMapCoordinate =
         [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
         
-        MKPointAnnotation *pa = [[MKPointAnnotation alloc] init];
-        pa.coordinate = touchMapCoordinate;
-        pa.title = @"Hello";
-        [self.mapView addAnnotation:pa];
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (pa.coordinate, 500, 500);
+        // Setting up the annotation
+        MKPointAnnotation *pressed = [[MKPointAnnotation alloc] init];
+        pressed.coordinate = touchMapCoordinate;
+        
+        // changing the region with this point in the center
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (pressed.coordinate, 500, 500);
         [self.mapView setRegion:region animated:YES];
         
-        //[pa release];
     }
 }
 
 - (IBAction)locationButton:(UIButton *)sender {
+    
+    // If location isn't available, then do nothing
     if (self.locationManager.location == nil) {
         return;
     }
-    CLLocation* usrLocation = _locationManager.location;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(usrLocation.coordinate, 500, 500);
+    
+    // Change the region, with the users location in the center
+    CLLocation* userLocation = _locationManager.location;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500, 500);
     [_mapView setRegion:region animated:YES];
 }
 @end
