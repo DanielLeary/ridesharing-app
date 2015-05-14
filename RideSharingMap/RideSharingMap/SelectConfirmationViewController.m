@@ -7,6 +7,8 @@
 //
 
 #import "SelectConfirmationViewController.h"
+#import <AddressBookUI/AddressBookUI.h>
+
 
 @interface SelectConfirmationViewController ()
 
@@ -46,25 +48,52 @@
             self.profileImage.image = [UIImage imageWithData:imageData];
         }
     }];
-
     
-
+    [self getPickUpAddressFromCoordinates:self.ride.startCordinate];
+    [self getDestAddressFromCoordinates:self.ride.endCordinate];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+/* METHODS FOR getting Address */
+    
+- (void) getPickUpAddressFromCoordinates:(CLLocationCoordinate2D)coordinates {
+    CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error || placemarks.count==0) {
+            NSLog(@"Geocode failed with error: %@", error);
+        } else {
+            CLPlacemark *placemark = [placemarks firstObject];
+            //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
+            self.pickupLocation.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+            NSLog(@"%@", placemark.postalCode);
+        }
+    }];
 }
-*/
+
+
+- (void) getDestAddressFromCoordinates:(CLLocationCoordinate2D)coordinates {
+    CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error || placemarks.count==0) {
+            NSLog(@"Geocode failed with error: %@", error);
+        } else {
+            CLPlacemark *placemark = [placemarks firstObject];
+            //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
+            self.destinationLocation.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+            NSLog(@"%@", placemark.postalCode);
+        }
+    }];
+}
+
 
 - (IBAction)submitRequest:(UIButton *)sender {
 }
