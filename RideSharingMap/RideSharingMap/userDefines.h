@@ -35,6 +35,7 @@
 
 // Request table column names
 #define REQUEST @"Requests"
+#define R_OFFER @"offer"
 #define R_DRIVER @"driver"
 #define R_PASSENGER @"passenger"
 #define R_PICKUPTIME @"passengerPickupTime"
