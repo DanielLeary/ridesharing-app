@@ -30,15 +30,18 @@
     NSLog(@"%@", driverName);
     NSDate* date = offer[@"dateTimeStart"];
     
+    NSLog(@"date for request: %@", date );
+    
     // date formatting stuff
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, d MMM"];
     NSString* dateString = [dateFormatter stringFromDate:date];
     
     // time formatting stuff
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"HH:MM"];
-    NSString* timeString = [timeFormatter stringFromDate:date];
+    //NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:MM"];
+    NSString* timeString = [dateFormatter stringFromDate:date];
+    NSLog(timeString);
     
     
     self.driverName.text = driverName;

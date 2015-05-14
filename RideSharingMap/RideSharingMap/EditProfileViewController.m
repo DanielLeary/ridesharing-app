@@ -58,14 +58,21 @@ static const int genderPickerRowHeight  = 140;
         [user setProfilePicture:newProfilePicture];
         [self.delegate updateProfileImage:self image:newProfilePicture];
     }
-    if (nameChanged) {
-        NSIndexPath *indexPath0 = [NSIndexPath indexPathForRow:0 inSection:0];
-        NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:1 inSection:0];
-        NSString *newFirstName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath0] textLabel] text];
-        NSString *newLastName = [[[self.userInfoTableView cellForRowAtIndexPath:indexPath1] textLabel] text];
+    
+    NSIndexPath *indexPath0 = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:1 inSection:0];
+    
+    InfoCell* firstNameCell = (InfoCell*)[self.userInfoTableView cellForRowAtIndexPath:indexPath0];
+    InfoCell* lastNameCell = (InfoCell*)[self.userInfoTableView cellForRowAtIndexPath:indexPath1];
+    NSString *newFirstName = firstNameCell.infoField.text;
+    NSString *newLastName = lastNameCell.infoField.text;
+    if (!([newFirstName isEqualToString:user.getFirstName]||[newFirstName isEqualToString:user.getLastName])) {
         [user setFirstName:newFirstName];
         [user setLastName:newLastName];
-        [self.delegate updateProfileName:self firstName:newFirstName lastName:newLastName];
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self.delegate updateProfileName:self firstName:newFirstName lastName:newLastName];
+        }];
+        
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
