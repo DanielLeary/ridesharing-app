@@ -10,5 +10,6 @@
 
 @interface RequestRideCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *driver;
+@property (weak, nonatomic) IBOutlet UILabel *distance;
 
 @end

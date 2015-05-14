@@ -57,10 +57,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     RequestRideCell* cell = [tableView dequeueReusableCellWithIdentifier:@"RequestRideCell"];
-    PFObject* object = self.ride.rideOffers[indexPath.row];
+    PFObject* offer = self.ride.rideOffers[indexPath.row];
     PFUser* driver = self.ride.drivers[indexPath.row];
     NSLog(@"Driver: %@ %@", driver[@"Name"], driver[@"Surname"]);
     cell.driver.text = [NSString stringWithFormat:@"%@ %@", driver[@"Name"], driver[@"Surname"]];
+    PFGeoPoint* driverStart = offer[@"start"];
+    CLLocationCoordinate2D driverCoordinate;
+    driverCoordinate.latitude = driverStart.latitude;
+    driverCoordinate.longitude = driverStart.longitude;
+    cell.distance.text = [NSString stringWithFormat:@"%0.1f Miles", [Ride distanceBetweenCoordinates:self.ride.startCordinate secondCordinate:driverCoordinate]];
+    
     return cell;
 }
 

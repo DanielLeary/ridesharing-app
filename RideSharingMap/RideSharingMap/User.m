@@ -34,6 +34,7 @@ static NSMutableArray *favPlacesArray;
 + (User *)currentUser {
     User *user = (User *)[PFUser currentUser];
     return user;
+    
 }
 
 + (void) pullFromParse {
