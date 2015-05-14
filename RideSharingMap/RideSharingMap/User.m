@@ -18,9 +18,8 @@
 #import "User.h"
 #import <Parse/PFObject+Subclass.h>
 
-@interface User ()
+static const NSUInteger initialArrayCap = 5;
 
-@end
 
 @implementation User
 
@@ -37,8 +36,17 @@ static NSMutableArray *favPlacesArray;
     
 }
 
+//static class constructor for static variables
++ (void) initialize {
+    favPlacesArray = [[NSMutableArray alloc] initWithCapacity:initialArrayCap];
+}
+
 + (void) pullFromParse {
     [self pullFavPlacesFromParse];
+}
+
++ (void) clearInfo {
+    [favPlacesArray removeAllObjects];
 }
 
 
@@ -143,6 +151,19 @@ static NSMutableArray *favPlacesArray;
 
 + (void) replacePlaceAtIndex:(NSUInteger)indexPath withPlace:(Place *)place {
     [favPlacesArray replaceObjectAtIndex:indexPath withObject:place];
+    
+    PFUser *user = [PFUser currentUser];
+    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
+    NSString *placeId = favPlacesId[indexPath];
+    
+    // update in favLocations table
+    PFQuery *query = [PFQuery queryWithClassName:@"FavLocations"];
+    [query getObjectInBackgroundWithId:placeId block:^(PFObject *placeObject, NSError *error) {
+        placeObject[@"name"] = place.name;
+        placeObject[@"lat"] = [NSNumber numberWithDouble:(double)place.coordinates.latitude];
+        placeObject[@"long"] = [NSNumber numberWithDouble:(double)place.coordinates.longitude];
+        [placeObject saveInBackground];
+    }];
 }
 
 + (void) removePlaceAtIndex:(NSUInteger)indexPath {
@@ -164,7 +185,8 @@ static NSMutableArray *favPlacesArray;
 
 + (void) pullFavPlacesFromParse {
     PFUser *user = [PFUser currentUser];
-    favPlacesArray = [[NSMutableArray alloc] init];
+    //favPlacesArray = [[NSMutableArray alloc] init];
+    [favPlacesArray removeAllObjects];
     NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
     
     for (NSString *placeId in favPlacesId) {

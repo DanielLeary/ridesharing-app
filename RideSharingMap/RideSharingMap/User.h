@@ -16,6 +16,7 @@
 + (User *)currentUser;
 
 + (void) pullFromParse;
++ (void) clearInfo;
 
 
 /* METHODS FOR USER INFO */
