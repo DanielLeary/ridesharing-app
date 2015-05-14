@@ -7,9 +7,14 @@
 //
 
 #import "EditProfileViewController.h"
+#define f @"female"
+#define m @"male"
+#define unchecked @"checkbox.png"
+#define checked @"checkbox-checked.png"
+
+
 
 static const int dobPickerRowHeight     = 180;
-static const int genderPickerRowHeight  = 140;
 
 @implementation EditProfileViewController {
     
@@ -20,7 +25,7 @@ static const int genderPickerRowHeight  = 140;
     int pickerCellRowHeight;
     
     BOOL dobPickerIsShown;
-    BOOL genderPickerIsShown;
+    //BOOL genderPickerIsShown;
     BOOL pictureChanged;
     BOOL nameChanged;
     
@@ -36,7 +41,7 @@ static const int genderPickerRowHeight  = 140;
     
     self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
     
-    infoArray = @[@"First Name:", @"Last Name:", @"Username:", @"Password:", @"Date of Birth:", @"Gender:"];
+    infoArray = @[@"First Name:", @"Last Name:", @"Username:", @"Password:", @"Date of Birth:"];
 
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -44,11 +49,25 @@ static const int genderPickerRowHeight  = 140;
     
     pickerCellRowHeight = 180;
     dobPickerIsShown = NO;
-    genderPickerIsShown = NO;
     pictureChanged = NO;
     nameChanged = NO;
-    fChecked = NO;
-    mChecked = NO;
+    if ([user getUsername] != nil) {
+        fChecked = [[user getGender]  isEqual: f] ? YES : NO;
+        mChecked = [[user getGender]  isEqual: m] ? YES : NO;
+    }
+    else{
+        fChecked = NO;
+        mChecked = NO;
+    }
+    
+    if (fChecked && !mChecked) {
+        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+    }
+    else if (mChecked && !fChecked){
+        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+    }
     
     self.userInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -95,9 +114,7 @@ static const int genderPickerRowHeight  = 140;
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (dobPickerIsShown && genderPickerIsShown) {
-        return [infoArray count] + 2;
-    } else if (dobPickerIsShown || genderPickerIsShown) {
+    if (dobPickerIsShown ) {
         return [infoArray count] + 1;
     } else {
         return [infoArray count];
@@ -115,35 +132,13 @@ static const int genderPickerRowHeight  = 140;
         return cell;
     } else {
         UITableViewCell *cell;
-        if (dobPickerIsShown && genderPickerIsShown) {
+        if (dobPickerIsShown ) {
             if (indexPath.row == 5) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-            } else if (indexPath.row == 6) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-                cell.textLabel.text = @"Gender:";
-                cell.detailTextLabel.text = [user getGender];
-            } else if (indexPath.row == 7) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
             }
         } else if (dobPickerIsShown) {
             if (indexPath.row == 5) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-            }
-        } else if (genderPickerIsShown) {
-            if (indexPath.row == 5) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-                cell.textLabel.text = @"Gender:";
-                cell.detailTextLabel.text = [user getGender];
-            } else if (indexPath.row == 6) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"genderPickerCell"];
-                return cell;
-            }
-        } else {
-            if (indexPath.row == 5) {
-                GenderPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-                cell.textLabel.text = @"Gender:";
-                cell.detailTextLabel.text = [user getGender];
-                return cell;
             }
         }
         return cell;
@@ -172,51 +167,22 @@ static const int genderPickerRowHeight  = 140;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView beginUpdates];
-    if (dobPickerIsShown && genderPickerIsShown) {
-        switch (indexPath.row) {
-            case 4:
-                [self hidePicker:tableView inRow:5];
-                dobPickerIsShown = NO;
-                break;
-            case 6:
-                [self hidePicker:tableView inRow:7];
-                genderPickerIsShown = NO;
-                break;
-        }
-    }
+    
     if (dobPickerIsShown) {
         switch (indexPath.row) {
             case 4:
                 [self hidePicker:tableView inRow:5];
                 dobPickerIsShown = NO;
                 break;
-            case 6:
-                [self showPicker:tableView inRow:7];
-                genderPickerIsShown = YES;
-                break;
+            
         }
-    } else if (genderPickerIsShown) {
+    }else {
         switch (indexPath.row) {
             case 4:
                 [self showPicker:tableView inRow:5];
                 dobPickerIsShown = YES;
                 break;
-            case 5:
-                [self hidePicker:tableView inRow:6];
-                genderPickerIsShown = NO;
-                break;
-        }
-    } else {
-        switch (indexPath.row) {
-            case 4:
-                [self showPicker:tableView inRow:5];
-                dobPickerIsShown = YES;
-                break;
-            case 5:
-                [self showPicker:tableView inRow:6];
-                genderPickerIsShown = YES;
-                break;
-        }
+                    }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [tableView endUpdates];
@@ -224,16 +190,11 @@ static const int genderPickerRowHeight  = 140;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = tableView.rowHeight;
-    if (dobPickerIsShown && genderPickerIsShown) {
+    if (dobPickerIsShown ) {
         if (indexPath.row == 5) {
             rowHeight = dobPickerRowHeight;
-        } else if (indexPath.row == 7) {
-            rowHeight = genderPickerRowHeight;
-        }
-    } else if (dobPickerIsShown && indexPath.row == 5) {
+        }    } else if (dobPickerIsShown && indexPath.row == 5) {
         rowHeight = dobPickerRowHeight;
-    } else if (genderPickerIsShown && indexPath.row == 6) {
-        rowHeight = genderPickerRowHeight;
     }
     return rowHeight;
 }
@@ -305,32 +266,38 @@ static const int genderPickerRowHeight  = 140;
 
 - (IBAction)maleCheck:(id)sender {
     if (!mChecked) {
-        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
         mChecked = YES;
         fChecked = NO;
+        [user setGender:m];
     }
     else {
-        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
         mChecked = NO;
         fChecked = YES;
+        [user setGender:f];
     }
 }
 
 - (IBAction)femaleCheck:(id)sender {
     if (!fChecked) {
-        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
         fChecked = YES;
         mChecked = NO;
+        
+        [user setGender:f];
         //set gender to female
     }
     else{
-        [_fCheckBox setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
         fChecked = NO;
         mChecked = YES;
+        
+        [user setGender:m];
     }
     
 }
