@@ -27,7 +27,13 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 - (void) viewDidAppear:(BOOL)animated {
     self.firstNameLabel.text = [user getFirstName];
     self.lastNameLabel.text = [user getLastName];
-    self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
+    if ([UIImage imageWithData:[user getProfilePicture]] == nil) {
+        self.profileImageView.image = [UIImage imageNamed:@"blank-profile-picture.png"];
+    }
+    else{
+        self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
+        
+    }
     self.pointsLabel.text = [user getPointsString];
     self.interestsLabel.text = [[user getInterestsArray] componentsJoinedByString:@", "];
     

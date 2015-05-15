@@ -39,7 +39,13 @@ static const int dobPickerRowHeight     = 180;
     [super viewDidLoad];
     user = (User*)[PFUser currentUser];
     
-    self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
+    if ([UIImage imageWithData:[user getProfilePicture]] == nil) {
+        self.profileImageView.image = [UIImage imageNamed:@"blank-profile-picture.png"];
+    }
+    else{
+        self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
+
+    }
     
     infoArray = @[@"First Name:", @"Last Name:", @"Username:", @"Password:", @"Date of Birth:"];
 
