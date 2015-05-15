@@ -2089,13 +2089,22 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rjl-pA-zAH" id="A1Z-Oc-xoA">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="RJB-zh-jDy">
+                                                <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="RJB-zh-jDy">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="160"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="GwG-0L-Nf4"/>
+                                                    </constraints>
                                                     <date key="date" timeIntervalSinceReferenceDate="450644786.50309902">
                                                         <!--2015-04-13 19:06:26 +0000-->
                                                     </date>
                                                 </datePicker>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="RJB-zh-jDy" secondAttribute="trailing" id="4z0-wd-UEW"/>
+                                                <constraint firstAttribute="bottom" secondItem="RJB-zh-jDy" secondAttribute="bottom" constant="-1" id="Ef1-nE-WT2"/>
+                                                <constraint firstItem="RJB-zh-jDy" firstAttribute="leading" secondItem="A1Z-Oc-xoA" secondAttribute="leading" id="c49-Aw-QA6"/>
+                                                <constraint firstItem="RJB-zh-jDy" firstAttribute="top" secondItem="A1Z-Oc-xoA" secondAttribute="top" id="eyv-eO-lvc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -2242,9 +2251,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7g-J0-7eB">
-                                <rect key="frame" x="309" y="104" width="42" height="21"/>
+                                <rect key="frame" x="293" y="104" width="58" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="JpE-xr-f9Z"/>
+                                    <constraint firstAttribute="width" constant="58" id="JpE-xr-f9Z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
