@@ -40,8 +40,8 @@ static const int dobPickerRowHeight = 180;
     genderPickerIsShown = NO;
     
     if ([user getUsername] != nil) {
-        fChecked = [[user getGender]  isEqual: f] ? YES : NO;
-        mChecked = [[user getGender]  isEqual: m] ? YES : NO;
+        fChecked = [[user getGender]  isEqual: F] ? YES : NO;
+        mChecked = [[user getGender]  isEqual: M] ? YES : NO;
     }
     else{
         fChecked = NO;
@@ -49,12 +49,12 @@ static const int dobPickerRowHeight = 180;
     }
     
     if (fChecked && !mChecked) {
-        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
     }
     else if (mChecked && !fChecked){
-        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
     }
 
     
@@ -69,9 +69,9 @@ static const int dobPickerRowHeight = 180;
     //create new user
     user.username   = self.username;
     user.password   = self.password;
-    user[Plastname] = self.lastName;
-    user[Pfirstname] = self.firstName;
-    user[Ppoints] = [[NSNumber alloc] initWithInt:0];
+    user[P_LASTNAME] = self.lastName;
+    user[P_FIRSTNAME] = self.firstName;
+    user[P_POINTS] = [[NSNumber alloc] initWithInt:0];
     if ([user signUp]) {
         AppDelegate *appDelegeteTemp = [[UIApplication sharedApplication] delegate];
         appDelegeteTemp.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
@@ -208,39 +208,39 @@ static const int dobPickerRowHeight = 180;
 
 - (IBAction)fCheck:(id)sender {
     if (!fChecked) {
-        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
         fChecked = YES;
         mChecked = NO;
         
-        [user setGender:f];
+        [user setGender:F];
         //set gender to female
     }
     else{
-        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
         fChecked = NO;
         mChecked = YES;
         
-        [user setGender:m];
+        [user setGender:M];
     }
 
 }
 
 - (IBAction)mCheck:(id)sender {
     if (!mChecked) {
-        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
         mChecked = YES;
         fChecked = NO;
-        [user setGender:m];
+        [user setGender:M];
     }
     else {
-        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
         mChecked = NO;
         fChecked = YES;
-        [user setGender:f];
+        [user setGender:F];
     }
 }
 

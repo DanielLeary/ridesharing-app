@@ -27,7 +27,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     self.firstNameLabel.text = [user getFirstName];
     self.lastNameLabel.text = [user getLastName];
     if ([UIImage imageWithData:[user getProfilePicture]] == nil) {
-        self.profileImageView.image = [UIImage imageNamed:blankProfIm];
+        self.profileImageView.image = [UIImage imageNamed:BLANK_PROF];
     }
     else{
         self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];

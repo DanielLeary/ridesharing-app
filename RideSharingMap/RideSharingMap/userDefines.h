@@ -12,18 +12,16 @@
 #define OBJECTID @"objectId"
 
 // User table column names
-#define Pfirstname @"Name"
-#define Plastname @"Surname"
-#define Pcar @"Car"
-#define Pposition @"Position"
-#define Pusername @"username"
-#define Ppassword @"password"
-#define Pdob @"dob"
-#define Pgender @"Gender"
-#define Ppicture @"ProfilePicture"
-#define Pinterests @"Interests"
-#define Pfavplaces @"FavPlaces"
-#define Ppoints @"points"
+#define P_FIRSTNAME @"Name"
+#define P_LASTNAME @"Surname"
+#define P_USERNAME @"username"
+#define P_PASSWROD @"password"
+#define P_DOB @"dob"
+#define P_GENDER @"Gender"
+#define P_PICTURE @"ProfilePicture"
+#define P_INTERESTS @"Interests"
+#define P_FAVPLACES @"FavPlaces"
+#define P_POINTS @"points"
 
 // Offer table column names
 #define OFFER @"Offers"
@@ -62,12 +60,12 @@
 #define MIN_PASS_LEN 6
 
 //Gender
-#define f @"female"
-#define m @"male"
-#define unchecked @"checked.png"
-#define checked @"unchecked.png"
+#define F @"female"
+#define M @"male"
+#define CHECKED @"checked.png"
+#define UNCHECKED @"unchecked.png"
 
-#define blankProfIm @"blank-profile-picture.png"
+#define BLANK_PROF @"blank-profile-picture.png"
 
 
 #endif

@@ -55,46 +55,46 @@ static NSMutableArray *favPlacesArray;
 /* METHODS FOR USER INFO */
 
 - (NSString *)getFirstName {
-    return self[Pfirstname];
+    return self[P_FIRSTNAME];
 }
 
 - (void) setFirstName:(NSString *)firstName {
-    self[Pfirstname] = firstName;
+    self[P_FIRSTNAME] = firstName;
 }
 
 - (NSString *)getLastName {
-    return self[Plastname];
+    return self[P_LASTNAME];
 }
 
 - (void) setLastName:(NSString *)lastName {
-    self[Plastname] = lastName;
+    self[P_LASTNAME] = lastName;
 }
 
 - (NSString *)getUsername {
-    return self[Pusername];
+    return self[P_USERNAME];
 }
 
 - (NSString *)getPassword {
-    return self[Ppassword];
+    return self[P_PASSWROD];
 }
 
 - (NSDate *)getDob {
-    return self[Pdob];
+    return self[P_DOB];
 }
 
 - (void) setDob:(NSDate *)newDob {
-    self[Pdob] = newDob;
+    self[P_DOB] = newDob;
 }
 
 - (NSString *)getDobString {
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"yyyy"];
-    NSString *dobString = [dateformatter stringFromDate:self[Pdob]];
+    NSString *dobString = [dateformatter stringFromDate:self[P_DOB]];
     return dobString;
 }
 
 - (NSString *) getAge {
-    NSDate *dateOfBirth = self[Pdob];
+    NSDate *dateOfBirth = self[P_DOB];
     NSDate *now = [NSDate date];
     NSDateComponents *ageComps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:dateOfBirth toDate:now options:0];
     NSString *age = [NSString stringWithFormat:@"%ld", (long)ageComps.year];
@@ -102,22 +102,22 @@ static NSMutableArray *favPlacesArray;
 }
 
 - (NSString *) getGender {
-    return self[Pgender];
+    return self[P_GENDER];
 }
 
 - (void)setGender:(NSString *)newGender {
-    self[Pgender] = newGender;
+    self[P_GENDER] = newGender;
 }
 
 - (NSString *) getPointsString {
-    return [self[Ppoints] stringValue];
+    return [self[P_POINTS] stringValue];
 }
 
 - (void) addPoints:(NSUInteger)morePoints {
-    NSNumber *points = self[Ppoints];
+    NSNumber *points = self[P_POINTS];
     NSUInteger p = points.intValue;
     p += morePoints;
-    self[Ppoints] = [NSNumber numberWithInteger:p];
+    self[P_POINTS] = [NSNumber numberWithInteger:p];
 }
 
 
@@ -144,9 +144,9 @@ static NSMutableArray *favPlacesArray;
     [favPlace save];
     
     NSString *placeId = [favPlace objectId];
-    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
+    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[P_FAVPLACES]];
     [favPlacesId addObject:placeId];
-    user[Pfavplaces] = favPlacesId;
+    user[P_FAVPLACES] = favPlacesId;
     
     [user save];
 }
@@ -155,7 +155,7 @@ static NSMutableArray *favPlacesArray;
     [favPlacesArray replaceObjectAtIndex:indexPath withObject:place];
     
     PFUser *user = [PFUser currentUser];
-    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
+    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[P_FAVPLACES]];
     NSString *placeId = favPlacesId[indexPath];
     
     // update in favLocations table
@@ -173,10 +173,10 @@ static NSMutableArray *favPlacesArray;
     
     [favPlacesArray removeObjectAtIndex:indexPath];
     
-    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
+    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[P_FAVPLACES]];
     NSString *placeId = favPlacesId[indexPath];
     [favPlacesId removeObjectAtIndex:indexPath];
-    user[Pfavplaces] = favPlacesId;
+    user[P_FAVPLACES] = favPlacesId;
     
     // remove from favLocations table
     PFObject *placeObject = [PFObject objectWithoutDataWithClassName:@"FavLocations" objectId:placeId];
@@ -189,7 +189,7 @@ static NSMutableArray *favPlacesArray;
     PFUser *user = [PFUser currentUser];
     //favPlacesArray = [[NSMutableArray alloc] init];
     [favPlacesArray removeAllObjects];
-    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[Pfavplaces]];
+    NSMutableArray *favPlacesId = [[NSMutableArray alloc] initWithArray:user[P_FAVPLACES]];
     
     for (NSString *placeId in favPlacesId) {
         PFQuery *query   = [PFQuery queryWithClassName:@"FavLocations"];
@@ -209,26 +209,26 @@ static NSMutableArray *favPlacesArray;
 /* METHODS FOR INTERESTS */
 
 - (NSUInteger) getInterestsCount {
-    return [self[Pinterests] count];
+    return [self[P_INTERESTS] count];
 }
 
 - (NSMutableArray *) getInterestsArray {
-    return self[Pinterests];
+    return self[P_INTERESTS];
 }
 
 - (bool) hasInterest:(NSString *)interest {
-    return [self[Pinterests] containsObject:interest];
+    return [self[P_INTERESTS] containsObject:interest];
 }
 
 - (void) updateInterests:(NSArray *)newInterestArray {
-    self[Pinterests] = (NSMutableArray *)newInterestArray;
+    self[P_INTERESTS] = (NSMutableArray *)newInterestArray;
 }
 
 
 /* METHODS FOR PROFILE PICTURE */
 
 - (NSData *) getProfilePicture {
-    PFFile* file = self[Ppicture];
+    PFFile* file = self[P_PICTURE];
     NSData *imageData = [file getData];
     return imageData;
 }
@@ -236,7 +236,7 @@ static NSMutableArray *favPlacesArray;
 - (void) setProfilePicture:(UIImage *)profilePicture {
     NSData *imageData = UIImagePNGRepresentation(profilePicture);
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-    self[Ppicture]    = imageFile;
+    self[P_PICTURE]    = imageFile;
     [self save];
 }
 

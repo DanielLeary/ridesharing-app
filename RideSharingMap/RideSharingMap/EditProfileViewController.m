@@ -35,7 +35,7 @@ static const int dobPickerRowHeight     = 180;
     user = (User*)[PFUser currentUser];
     
     if ([UIImage imageWithData:[user getProfilePicture]] == nil) {
-        self.profileImageView.image = [UIImage imageNamed:blankProfIm];
+        self.profileImageView.image = [UIImage imageNamed:BLANK_PROF];
     }
     else{
         self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
@@ -53,8 +53,8 @@ static const int dobPickerRowHeight     = 180;
     pictureChanged = NO;
     nameChanged = NO;
     if ([user getUsername] != nil) {
-        fChecked = [[user getGender]  isEqual: f] ? YES : NO;
-        mChecked = [[user getGender]  isEqual: m] ? YES : NO;
+        fChecked = [[user getGender]  isEqual: F] ? YES : NO;
+        mChecked = [[user getGender]  isEqual: M] ? YES : NO;
     }
     else{
         fChecked = NO;
@@ -62,12 +62,12 @@ static const int dobPickerRowHeight     = 180;
     }
     
     if (fChecked && !mChecked) {
-        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
     }
     else if (mChecked && !fChecked){
-        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
     }
     
     self.userInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -267,38 +267,38 @@ static const int dobPickerRowHeight     = 180;
 
 - (IBAction)maleCheck:(id)sender {
     if (!mChecked) {
-        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
         mChecked = YES;
         fChecked = NO;
-        [user setGender:m];
+        [user setGender:M];
     }
     else {
-        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
-        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
         mChecked = NO;
         fChecked = YES;
-        [user setGender:f];
+        [user setGender:F];
     }
 }
 
 - (IBAction)femaleCheck:(id)sender {
     if (!fChecked) {
-        [_fCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
         fChecked = YES;
         mChecked = NO;
         
-        [user setGender:f];
+        [user setGender:F];
         //set gender to female
     }
     else{
-        [_fCheckBox setImage:[UIImage imageNamed:unchecked] forState:UIControlStateNormal];
-        [_mCheckBox setImage:[UIImage imageNamed:checked] forState:UIControlStateNormal];
+        [_fCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
+        [_mCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
         fChecked = NO;
         mChecked = YES;
         
-        [user setGender:m];
+        [user setGender:M];
     }
     
 }

@@ -72,13 +72,13 @@
         // check if user is the driver
         if ([user.objectId isEqualToString:driver.objectId]) {
             GivingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"givingRideCell"];
-            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", passenger[Pfirstname], passenger[Plastname]];
-            PFFile *imageFile = passenger[Ppicture];
+            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", passenger[P_FIRSTNAME], passenger[P_LASTNAME]];
+            PFFile *imageFile = passenger[P_PICTURE];
             [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
                 if (!error) {
                     cell.profilePicture.image = [UIImage imageWithData:imageData];
                 } else {
-                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:blankProfIm];
+                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:BLANK_PROF];
                 }
             }];
         
@@ -97,13 +97,13 @@
         // user is getting a ride from driver
         } else if ([user.objectId isEqualToString:passenger.objectId]) {
             GettingRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"gettingRideCell"];
-            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", driver[Pfirstname], driver[Plastname]];
-            PFFile *imageFile = driver[Ppicture];
+            cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", driver[P_FIRSTNAME], driver[P_LASTNAME]];
+            PFFile *imageFile = driver[P_PICTURE];
             [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
                 if (!error) {
                     cell.profilePicture.image = [UIImage imageWithData:imageData];
                 } else {
-                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:blankProfIm];
+                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:BLANK_PROF];
                 }
             }];
         
