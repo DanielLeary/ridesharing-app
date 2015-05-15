@@ -17,6 +17,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self.usernameField becomeFirstResponder];
+    _passwordField.secureTextEntry = YES;
 }
 
 - (IBAction)login:(id)sender {

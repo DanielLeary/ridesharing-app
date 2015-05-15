@@ -23,6 +23,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self.firstNameField becomeFirstResponder];
+    _passwordField.secureTextEntry = YES;
 }
 
 
