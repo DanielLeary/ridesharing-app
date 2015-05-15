@@ -237,7 +237,6 @@ static NSMutableArray *favPlacesArray;
     NSData *imageData = UIImagePNGRepresentation(profilePicture);
     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
     self[P_PICTURE]    = imageFile;
-    [self save];
 }
 
 
