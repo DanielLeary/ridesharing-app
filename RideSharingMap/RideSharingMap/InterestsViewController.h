@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
 
+@property User *user;
+@property BOOL fromSingup;
 @end

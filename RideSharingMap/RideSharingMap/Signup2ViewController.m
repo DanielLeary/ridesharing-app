@@ -84,11 +84,6 @@ static const int dobPickerRowHeight = 180;
     }
 }
 
-- (void) signUp {
-    
-}
-
-
 /* TABLE DELEGATE METHODS */
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -196,6 +191,12 @@ static const int dobPickerRowHeight = 180;
 
 - (void)showInterestsVC {
     InterestsViewController *interestsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InterestsViewController"];
+    
+    interestsVC.user = user;
+    interestsVC.fromSingup = YES;
+    
+    NSLog(@"Prepared for Seague OfferRideEndSeague");
+    NSLog(@"user obj %@", user);
     [self.navigationController pushViewController:interestsVC animated:YES];
 }
 

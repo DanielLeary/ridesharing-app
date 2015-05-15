@@ -13,21 +13,27 @@ static const int rowHeight = 40;
 
 @implementation InterestsViewController {
     
-    User *user;
     NSMutableArray *checkedInterests;
-    
 }
 
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    user = (User *)[PFUser currentUser];
-    checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
     
-    if (user) {
-        allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
-        if ([user getInterestsArray] != nil ){
-            checkedInterests = [user getInterestsArray];
+    NSLog(@"user obj interests %@", _user);
+    
+    allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
+    
+    if (!_fromSingup) {
+        _user = (User *)[PFUser currentUser];
+        checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
+    }
+    if (_user) {
+        if ([_user getInterestsArray] != nil ){
+            checkedInterests = [_user getInterestsArray];
+        }
+        else{
+            checkedInterests = [[NSMutableArray alloc] initWithCapacity:5];
         }
     }
     self.interestsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -53,7 +59,7 @@ static const int rowHeight = 40;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13];
     cell.textLabel.text = [allInterests objectAtIndex:indexPath.row];
     // assign checkmarks to cells
-    if ([user hasInterest:cell.textLabel.text]) {
+    if ([_user hasInterest:cell.textLabel.text]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -67,11 +73,11 @@ static const int rowHeight = 40;
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [checkedInterests addObject:cell.textLabel.text];
-        [user updateInterests:checkedInterests];
+        [_user updateInterests:checkedInterests];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [checkedInterests removeObject:cell.textLabel.text];
-        [user updateInterests:checkedInterests];
+        [_user updateInterests:checkedInterests];
     }
 }
 
