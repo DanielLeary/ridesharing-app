@@ -36,7 +36,6 @@
 
     switch (error) {
         case NO_ERROR:
-            errorText = @"Sign up was successful.";
             inputError = NO;
             break;
         case FIRSTNAME_ERROR:

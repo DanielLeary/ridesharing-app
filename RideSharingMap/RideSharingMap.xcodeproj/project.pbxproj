@@ -205,6 +205,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491290F51B0625790010ACC5 /* Dashboard/Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				C5A542381A9FB2DD004A4303 /* DashboardViewController.h */,
+				C5A542391A9FB2DD004A4303 /* DashboardViewController.m */,
+				C560AB451B019AD40072E5E0 /* JourneyView.h */,
+				C560AB461B019AD40072E5E0 /* JourneyView.m */,
+				C5A542351A9FB2B3004A4303 /* InboxViewController.h */,
+				C5A542361A9FB2B3004A4303 /* InboxViewController.m */,
+			);
+			name = Dashboard/Inbox;
+			sourceTree = "<group>";
+		};
 		49CA704A1ABB0B14009DAC79 /* Login/Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,12 +315,7 @@
 				EB2536F91ADD4AE800B6A23F /* User */,
 				EB2536FA1ADD4B0800B6A23F /* Classes */,
 				EB9ECE011ADC746D002A954E /* Cells */,
-				C5A542381A9FB2DD004A4303 /* DashboardViewController.h */,
-				C5A542391A9FB2DD004A4303 /* DashboardViewController.m */,
-				C560AB451B019AD40072E5E0 /* JourneyView.h */,
-				C560AB461B019AD40072E5E0 /* JourneyView.m */,
-				C5A542351A9FB2B3004A4303 /* InboxViewController.h */,
-				C5A542361A9FB2B3004A4303 /* InboxViewController.m */,
+				491290F51B0625790010ACC5 /* Dashboard/Inbox */,
 				7EF361D01A87C4EC0004D0FC /* Images.xcassets */,
 				7EF361D21A87C4EC0004D0FC /* LaunchScreen.xib */,
 				7EF361C71A87C4EC0004D0FC /* RideSharingMap.xcdatamodeld */,
