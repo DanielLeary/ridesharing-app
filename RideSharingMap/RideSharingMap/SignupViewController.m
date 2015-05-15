@@ -42,36 +42,36 @@
         case FIRSTNAME_ERROR:
             inputError = YES;
             errorText = @"First name must be more than 2 letters.";
-            self.firstNameField.layer.borderColor = [[UIColor redColor] CGColor];
-            self.firstNameField.layer.borderWidth = 1;
+            self.firstNameField.layer.borderColor  = [[UIColor redColor] CGColor];
+            self.firstNameField.layer.borderWidth  = 1;
             self.firstNameField.layer.cornerRadius = 5;
             break;
         case LASTNAME_ERROR:
             inputError = YES;
             errorText = @"Last name must be more than 2 letters.";
-            self.lastNameField.layer.borderColor = [[UIColor redColor] CGColor];
-            self.lastNameField.layer.borderWidth = 1;
+            self.lastNameField.layer.borderColor  = [[UIColor redColor] CGColor];
+            self.lastNameField.layer.borderWidth  = 1;
             self.lastNameField.layer.cornerRadius = 5;
             break;
         case USERNAME1_ERROR:
             inputError = YES;
             errorText = @"Username must be at least 2 letters.";
-            self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
-            self.usernameField.layer.borderWidth = 1;
+            self.usernameField.layer.borderColor  = [[UIColor redColor] CGColor];
+            self.usernameField.layer.borderWidth  = 1;
             self.usernameField.layer.cornerRadius = 5;
             break;
         case USERNAME2_ERROR:
             inputError = YES;
             errorText = @"Username already in use. Please choose another.";
-            self.usernameField.layer.borderColor = [[UIColor redColor] CGColor];
-            self.usernameField.layer.borderWidth = 1;
+            self.usernameField.layer.borderColor  = [[UIColor redColor] CGColor];
+            self.usernameField.layer.borderWidth  = 1;
             self.usernameField.layer.cornerRadius = 5;
             break;
         case PASSWORD_ERROR:
             inputError = YES;
             errorText = @"Password must contain at least 1 letter and 1 number, and be at least 6 characters.";
-            self.passwordField.layer.borderColor = [[UIColor redColor] CGColor];
-            self.passwordField.layer.borderWidth = 1;
+            self.passwordField.layer.borderColor  = [[UIColor redColor] CGColor];
+            self.passwordField.layer.borderWidth  = 1;
             self.passwordField.layer.cornerRadius = 5;
             break;
         default:
@@ -84,9 +84,9 @@
    if (!inputError) {
         Signup2ViewController *signup2VC = [self.storyboard instantiateViewControllerWithIdentifier:@"Signup2ViewController"];
        signup2VC.firstName = self.firstNameField.text;
-       signup2VC.lastName = self.lastNameField.text;
-       signup2VC.username = self.usernameField.text;
-       signup2VC.password = self.passwordField.text;
+       signup2VC.lastName  = self.lastNameField.text;
+       signup2VC.username  = self.usernameField.text;
+       signup2VC.password  = self.passwordField.text;
         [self.navigationController pushViewController:signup2VC animated:YES];
     }
 }
@@ -94,24 +94,24 @@
 
 - (int) checkSignupErrors {
     //check name error
-    if (self.firstNameField.text.length <2 ) {
+    if (self.firstNameField.text.length <MIN_NAME_LEN ) {
         return FIRSTNAME_ERROR;
     }
-    if (self.lastNameField.text.length<2) {
+    if (self.lastNameField.text.length<MIN_NAME_LEN) {
         return LASTNAME_ERROR;
     }
     
     //check password error
     BOOL containsLetter = NSNotFound != [self.passwordField.text rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location;
     BOOL containsNumber = NSNotFound != [self.passwordField.text rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location;
-    if (self.passwordField.text.length < 6 ||
+    if (self.passwordField.text.length < MIN_PASS_LEN ||
         !containsLetter ||
         !containsNumber) {
         return PASSWORD_ERROR;
     }
     
     //check username error
-    if (self.usernameField.text.length < 2) {
+    if (self.usernameField.text.length < MIN_NAME_LEN) {
         return USERNAME1_ERROR;
     }
     PFQuery *query = [PFUser query];
@@ -126,9 +126,9 @@
 
 - (void) resetTextFields {
     self.firstNameField.layer.borderWidth = 0;
-    self.lastNameField.layer.borderWidth = 0;
-    self.usernameField.layer.borderWidth = 0;
-    self.passwordField.layer.borderWidth = 0;
+    self.lastNameField.layer.borderWidth  = 0;
+    self.usernameField.layer.borderWidth  = 0;
+    self.passwordField.layer.borderWidth  = 0;
 }
 
 

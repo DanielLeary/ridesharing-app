@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "User.h"
 #import "InfoCell.h"
 #import "GenderPickerCell.h"
 #import "InterestsViewController.h"
@@ -17,15 +16,15 @@
 
 @interface Signup2ViewController : UIViewController <GenderPickerCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic)   IBOutlet UIImageView  *imageView;
 
-@property (strong, nonatomic) IBOutlet UIButton *addProfilePictureButton;
+@property (strong, nonatomic) IBOutlet UIButton     *addProfilePictureButton;
 
-@property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
+@property (strong, nonatomic) IBOutlet UITableView  *userInfoTableView;
 
-@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+@property (weak, nonatomic)   IBOutlet UILabel      *errorLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *signUpbutton;
+@property (weak, nonatomic)   IBOutlet UIButton     *signUpbutton;
 
 @property NSString *firstName;
 @property NSString *lastName;
@@ -37,8 +36,13 @@
 
 //provides picture choosing scenes
 - (IBAction)addProfilePicturePressed:(UIButton *)sender;
+
+//female gender checkbox checked
 - (IBAction)fCheck:(id)sender;
+
+//male gender checkbox checked
 - (IBAction)mCheck:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *mCheckBox;
 @property (weak, nonatomic) IBOutlet UIButton *fCheckBox;
 

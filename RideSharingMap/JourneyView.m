@@ -143,7 +143,6 @@
             NSLog(@"Geocode failed with error: %@", error);
         } else {
             CLPlacemark *placemark = [placemarks firstObject];
-            //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
             self.pickupAddress.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
         }
     }];
@@ -156,9 +155,7 @@
         if (error || placemarks.count==0) {
             NSLog(@"Geocode failed with error: %@", error);
         } else {
-            CLPlacemark *placemark = [placemarks firstObject];
-            //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
-            self.destAddress.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+            CLPlacemark *placemark = [placemarks firstObject];            self.destAddress.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
         }
     }];
 }

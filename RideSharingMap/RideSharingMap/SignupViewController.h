@@ -9,12 +9,12 @@
 #import "Signup2ViewController.h"
 #import "User.h"
 
-#define NO_ERROR 0
+#define NO_ERROR        0
 #define FIRSTNAME_ERROR 1
-#define LASTNAME_ERROR 2
+#define LASTNAME_ERROR  2
 #define USERNAME1_ERROR 3
 #define USERNAME2_ERROR 4
-#define PASSWORD_ERROR 5
+#define PASSWORD_ERROR  5
 
 
 @interface SignupViewController : UIViewController

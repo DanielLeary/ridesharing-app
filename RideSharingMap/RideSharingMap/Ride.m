@@ -57,10 +57,10 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     NSNumber* lat = [self formatTo4dp:self.endCordinate.latitude];
     NSNumber* lon = [self formatTo4dp:self.endCordinate.longitude];
 
-    ride[O_ENDLAT] = lat;
+    ride[O_ENDLAT]  = lat;
     ride[O_ENDLONG] = lon;
-    ride[O_TIME] = self.dateTimeStart;
-    ride[O_DRIVER] = self.user;
+    ride[O_TIME]    = self.dateTimeStart;
+    ride[O_DRIVER]  = self.user;
     
     [ride saveInBackgroundWithBlock:block];
 }
@@ -72,7 +72,7 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     PFObject *offer = [PFObject objectWithClassName:REQUEST];
 
     offer[R_PICKUPTIME] = self.dateTimeStart;
-    offer[R_START] = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
+    offer[R_START]   = [PFGeoPoint geoPointWithLatitude:self.startCordinate.latitude longitude:self.startCordinate.longitude];
     NSNumber* endLat = [NSNumber numberWithDouble:self.endCordinate.latitude];
     NSNumber* endLong = [NSNumber numberWithDouble:self.endCordinate.longitude];
     
@@ -100,8 +100,8 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     [query whereKey:R_DRIVER notEqualTo:self.user];
     
     
-    NSNumber* UPPERlat = [self formatTo4dp:(self.endCordinate.latitude + DISTANCEEPSILON)];
-    NSNumber* LOWERlat = [self formatTo4dp:(self.endCordinate.latitude - DISTANCEEPSILON)];
+    NSNumber* UPPERlat = [self formatTo4dp:(self.endCordinate.latitude  + DISTANCEEPSILON)];
+    NSNumber* LOWERlat = [self formatTo4dp:(self.endCordinate.latitude  - DISTANCEEPSILON)];
     NSNumber* UPPERlon = [self formatTo4dp:(self.endCordinate.longitude + DISTANCEEPSILON)];
     NSNumber* LOWERlon = [self formatTo4dp:(self.endCordinate.longitude - DISTANCEEPSILON)];
     

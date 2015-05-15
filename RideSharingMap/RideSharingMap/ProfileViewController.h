@@ -10,27 +10,26 @@
 #import "AddPlaceViewController.h"
 #import "EditProfileViewController.h"
 #import "InterestsViewController.h"
-#import "User.h"
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, EditProfileViewControllerDelegate>
 
 
 // profile UI
-@property (weak, nonatomic) IBOutlet UILabel *interestsLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *interestsLabel;
 
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *firstNameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *lastNameLabel;
 
-@property (weak, nonatomic) IBOutlet UITableView *placesTableView;
+@property (weak, nonatomic)   IBOutlet UITableView *placesTableView;
 
-@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *pointsLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *interestsButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *addPlacesButton;
+@property (weak, nonatomic)   IBOutlet UIButton *addPlacesButton;
 
 
 @end

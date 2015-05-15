@@ -44,14 +44,12 @@ static const CLLocationCoordinate2D emptyCoords = {emptyCoord, emptyCoord};
 - (void) getPlacemarkFromCoordinates:(CLLocationCoordinate2D)coordinates {
     CLLocation *location = [[CLLocation alloc] initWithLatitude: coordinates.latitude longitude:coordinates.longitude];
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    //typeof(self) __weak weakSelf = self;
+    
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error || placemarks.count==0) {
             NSLog(@"Geocode failed with error: %@", error);
         } else {
             CLPlacemark *placemark = [placemarks firstObject];
-            //weakSelf.placemark = placemark;
-            //[weakSelf setPlacemark:placemark];
             self.zipcode = [NSString stringWithFormat:@"%@", placemark.postalCode];
         }
     }];

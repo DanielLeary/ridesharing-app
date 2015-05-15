@@ -18,7 +18,7 @@
         CLLocationCoordinate2D emptyCoordinates = {empty, empty};
         self.journeyDateTime = [NSDate date];
         self.startCoordinate = emptyCoordinates;
-        self.endCoordinate = emptyCoordinates;
+        self.endCoordinate   = emptyCoordinates;
         self.pickupCoordinate = emptyCoordinates;
     }
     return self;

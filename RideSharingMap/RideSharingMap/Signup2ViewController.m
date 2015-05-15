@@ -7,10 +7,6 @@
 //
 
 #import "Signup2ViewController.h"
-#define f @"female"
-#define m @"male"
-#define unchecked @"checked.png"
-#define checked @"unchecked.png"
 
 static const int dobPickerRowHeight = 180;
 
@@ -71,8 +67,8 @@ static const int dobPickerRowHeight = 180;
 
 - (IBAction)signUpPressed:(UIButton *)sender {
     //create new user
-    user.username = self.username;
-    user.password = self.password;
+    user.username   = self.username;
+    user.password   = self.password;
     user[Plastname] = self.lastName;
     user[Pfirstname] = self.firstName;
     user[Ppoints] = [[NSNumber alloc] initWithInt:0];

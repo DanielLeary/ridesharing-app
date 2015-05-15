@@ -7,7 +7,6 @@
 //
 
 #import "DashboardViewController.h"
-#import <CoreLocation/CoreLocation.h>
 #import "OfferRideTimeViewController.h"
 #import "Ride.h"
 
@@ -16,8 +15,6 @@
     
     User *user;
     NSArray *journeysTableData;
-    //NSArray *journeysAsDriver;
-    //NSArray *journeysAsPassenger;
     BOOL emptyTable;
     
 }
@@ -81,7 +78,7 @@
                 if (!error) {
                     cell.profilePicture.image = [UIImage imageWithData:imageData];
                 } else {
-                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:@"blank-profile-picture.png"];
+                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:blankProfIm];
                 }
             }];
         
@@ -106,7 +103,7 @@
                 if (!error) {
                     cell.profilePicture.image = [UIImage imageWithData:imageData];
                 } else {
-                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:@"blank-profile-picture.png"];
+                    cell.profilePicture.image = [UIImage imageWithContentsOfFile:blankProfIm];
                 }
             }];
         

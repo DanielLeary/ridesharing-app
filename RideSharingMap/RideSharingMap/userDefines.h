@@ -57,5 +57,17 @@
 #define TIMEEPSILON 900
 #define DISTANCEEPSILON 0.004
 
+//length check for names/passwords
+#define MIN_NAME_LEN 2
+#define MIN_PASS_LEN 6
+
+//Gender
+#define f @"female"
+#define m @"male"
+#define unchecked @"checked.png"
+#define checked @"unchecked.png"
+
+#define blankProfIm @"blank-profile-picture.png"
+
 
 #endif

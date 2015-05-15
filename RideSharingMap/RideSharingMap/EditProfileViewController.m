@@ -7,10 +7,6 @@
 //
 
 #import "EditProfileViewController.h"
-#define f @"female"
-#define m @"male"
-#define unchecked @"checked.png"
-#define checked @"unchecked.png"
 
 
 
@@ -25,7 +21,6 @@ static const int dobPickerRowHeight     = 180;
     int pickerCellRowHeight;
     
     BOOL dobPickerIsShown;
-    //BOOL genderPickerIsShown;
     BOOL pictureChanged;
     BOOL nameChanged;
     
@@ -40,7 +35,7 @@ static const int dobPickerRowHeight     = 180;
     user = (User*)[PFUser currentUser];
     
     if ([UIImage imageWithData:[user getProfilePicture]] == nil) {
-        self.profileImageView.image = [UIImage imageNamed:@"blank-profile-picture.png"];
+        self.profileImageView.image = [UIImage imageNamed:blankProfIm];
     }
     else{
         self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];

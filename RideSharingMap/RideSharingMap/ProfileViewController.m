@@ -20,7 +20,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 - (void) viewDidLoad {
     [super viewDidLoad];
     user = (User *)[PFUser currentUser];
-    //[User pullPlacesArray];
     self.placesTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -28,7 +27,7 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     self.firstNameLabel.text = [user getFirstName];
     self.lastNameLabel.text = [user getLastName];
     if ([UIImage imageWithData:[user getProfilePicture]] == nil) {
-        self.profileImageView.image = [UIImage imageNamed:@"blank-profile-picture.png"];
+        self.profileImageView.image = [UIImage imageNamed:blankProfIm];
     }
     else{
         self.profileImageView.image = [UIImage imageWithData:[user getProfilePicture]];
@@ -47,18 +46,9 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 - (IBAction)logoutBarButtonPressed:(UIBarButtonItem *)sender {
     [User logOutUser];
     AppDelegate *appDelegateTemp = [[UIApplication sharedApplication] delegate];
-    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
-    //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
     appDelegateTemp.window.rootViewController = loginVC;
 }
-
-/*- (IBAction)addNewPlaceButtonPressed:(id)sender {
- //segue to AddPlaceViewController
- AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
- addPlaceVC.delegate = self;
- [self.navigationController pushViewController:addPlaceVC animated:YES];
- }*/
 
 - (IBAction)editProfileButtonPressed:(UIBarButtonItem *)sender {
     EditProfileViewController *editProfileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
@@ -83,7 +73,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
 /* EDITPROFILEVC DELEGATE METHODS */
 
 - (void) updateProfileImage:(EditProfileViewController *)vc image:(UIImage *)image {
-    //[profileViewModel setProfilePicture:image];
     [self.profileImageView reloadInputViews];
 }
 
@@ -105,7 +94,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    //int test =[User getFavPlacesCount];
     if (indexPath.row < [User getFavPlacesCount]) {
         cell.textLabel.text = [[User getPlaceAtIndex:indexPath.row] name];
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:13];
@@ -119,9 +107,11 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
     if (indexPath.row < [User getFavPlacesCount]) {
         // set up editPlaceVC
         AddPlaceViewController *editPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+        
         //editPlaceVC.delegate = self;
         editPlaceVC.editing = YES;
         editPlaceVC.placeIndexPath = indexPath.row;
+        
         // update editPlaceVC for selected place
         Place *place = [User getPlaceAtIndex:indexPath.row];
         [editPlaceVC view];
@@ -139,7 +129,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
         [self.navigationController pushViewController:editPlaceVC animated:YES];
     } else {
         AddPlaceViewController *addPlaceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
-        //addPlaceVC.delegate = self;
         addPlaceVC.editing = NO;
         [self.navigationController pushViewController:addPlaceVC animated:YES];
     }

@@ -20,16 +20,13 @@
 
 @end
 
-
 @interface EditProfileViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (assign, nonatomic) id <EditProfileViewControllerDelegate> delegate;
 
-
 // NAV BAR UI
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
-
 
 // VIEW UI
 
@@ -37,13 +34,16 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *addImageButton;
 
-
 // TABLE UI
 
 @property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
 
+//male checkbox checked
 - (IBAction)maleCheck:(id)sender;
+
+//female checkbox checked
 - (IBAction)femaleCheck:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *fCheckBox;
 @property (weak, nonatomic) IBOutlet UIButton *mCheckBox;
 

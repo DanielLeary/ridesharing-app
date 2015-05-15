@@ -11,7 +11,6 @@
 #import "InboxRequest.h"
 #import "Journey.h"
 #import "User.h"
-#import "userDefines.h"
 
 
 @interface InboxViewController : UIViewController

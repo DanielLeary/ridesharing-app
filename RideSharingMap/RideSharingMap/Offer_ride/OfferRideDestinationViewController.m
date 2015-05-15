@@ -8,12 +8,13 @@
 
 #import "OfferRideDestinationViewController.h"
 #import "RequestRideCompleteViewController.h"
+#define MAX_FAV 4
 
 
 @interface OfferRideDestinationViewController ()
 
-@property (strong, atomic) CLLocationManager* locationManager;
-@property (strong, atomic) MKPointAnnotation* pin;
+@property (strong, atomic)  CLLocationManager* locationManager;
+@property (strong, atomic)  MKPointAnnotation* pin;
 @property (weak, nonatomic) IBOutlet UINavigationItem *NavTitle;
 
 
@@ -28,13 +29,13 @@ MKPlacemark *the_placemark;
     [super viewDidLoad];
     
     user = (User*)[PFUser currentUser];
+    
     // Set up UINavbar Item
     if (self.ride.offerRide) {
         self.NavTitle.title = @"Offer Ride";
     } else {
         self.NavTitle.title = @"Request Ride";
     }
-    
     
     // Might have to check if authorized to get location first
     self.locationManager = [[CLLocationManager alloc] init];
@@ -100,7 +101,7 @@ MKPlacemark *the_placemark;
 
 - (IBAction)favouritesActionSheet:(id)sender {
     int maxP = (int)[User getFavPlacesCount];
-    int max = maxP < 4 ? maxP : 4;
+    int max = maxP < MAX_FAV ? maxP : MAX_FAV;
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick a location:"
                                                              delegate:self

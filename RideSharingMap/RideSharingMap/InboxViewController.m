@@ -83,7 +83,7 @@
             if (!error) {
                 cell.pic.image = [UIImage imageWithData:imageData];
             } else {
-                cell.pic.image = [UIImage imageNamed:@"blank-profile-picture.png"];
+                cell.pic.image = [UIImage imageNamed:blankProfIm];
             }
         }];
     
