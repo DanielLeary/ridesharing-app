@@ -37,7 +37,7 @@
     [dateFormatter setDateFormat:@"EEE, d MMM"];
     NSString* dateString = [dateFormatter stringFromDate:date];
     
-    [dateFormatter setDateFormat:@"HH:MM"];
+    [dateFormatter setDateFormat:@"HH:mm"];
     NSString* timeString = [dateFormatter stringFromDate:date];
     NSLog(timeString);
     

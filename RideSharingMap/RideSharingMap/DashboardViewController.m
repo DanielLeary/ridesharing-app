@@ -92,7 +92,7 @@
     
             // time formatting stuff
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-            [timeFormatter setDateFormat:@"HH:MM"];
+            [timeFormatter setDateFormat:@"HH:mm"];
             cell.timeLabel.text = [timeFormatter stringFromDate:date];
 
             return cell;
@@ -117,7 +117,7 @@
     
             // time formatting stuff
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-            [timeFormatter setDateFormat:@"HH:MM"];
+            [timeFormatter setDateFormat:@"HH:mm"];
             cell.timeLabel.text = [timeFormatter stringFromDate:date];
 
             return cell;
