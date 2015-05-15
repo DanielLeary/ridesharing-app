@@ -2028,10 +2028,14 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank-profile-picture.png" translatesAutoresizingMaskIntoConstraints="NO" id="qDH-Ak-CkN">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture.png" translatesAutoresizingMaskIntoConstraints="NO" id="qDH-Ak-CkN">
                                 <rect key="frame" x="16" y="28" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="FFZ-8G-gR9"/>
+                                    <constraint firstAttribute="height" constant="100" id="lic-hm-KPS"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoS-WV-SdC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoS-WV-SdC">
                                 <rect key="frame" x="135" y="28" width="224" height="40"/>
                                 <color key="backgroundColor" red="0.35091376120000001" green="0.84476642219999998" blue="0.4899011291" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
@@ -2043,7 +2047,77 @@
                                     <action selector="changeProfilePicturePressed:" destination="Z7k-C0-ypT" eventType="touchUpInside" id="1BL-YV-Adk"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yng-mI-NSs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bir-BB-bUI">
+                                <rect key="frame" x="16" y="550" width="343" height="40"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k84-XL-nV3">
+                                <rect key="frame" x="16" y="550" width="343" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                <state key="normal" title="Sign up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="2vN-ZI-FFN" eventType="touchUpInside" id="2KA-6J-zuB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCQ-cU-Z4A">
+                                <rect key="frame" x="185" y="386" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="5Lt-p9-oC1"/>
+                                    <constraint firstAttribute="width" constant="22" id="JRL-TU-rM6"/>
+                                </constraints>
+                                <state key="normal" image="unchecked.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fCheck:" destination="2vN-ZI-FFN" eventType="touchUpInside" id="egW-dn-DxA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFq-ZR-MzW">
+                                <rect key="frame" x="245" y="386" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="jw7-Vd-NSm"/>
+                                    <constraint firstAttribute="width" constant="22" id="wlK-rd-tFa"/>
+                                </constraints>
+                                <state key="normal" image="unchecked.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mCheck:" destination="2vN-ZI-FFN" eventType="touchUpInside" id="bAJ-kz-iIE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHI-Ku-l5T">
+                                <rect key="frame" x="102" y="389" width="57" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Gender">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="12" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="12" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="M" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dya-tF-M03">
+                                <rect key="frame" x="249" y="412" width="15" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAs-sC-JJS">
+                                <rect key="frame" x="191" y="412" width="10" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yng-mI-NSs">
                                 <rect key="frame" x="16" y="148" width="343" height="230"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2086,73 +2160,35 @@
                                     <outlet property="delegate" destination="2vN-ZI-FFN" id="gak-1f-2TT"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bir-BB-bUI">
-                                <rect key="frame" x="16" y="550" width="343" height="40"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k84-XL-nV3">
-                                <rect key="frame" x="16" y="550" width="343" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
-                                <state key="normal" title="Sign up">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signUpPressed:" destination="2vN-ZI-FFN" eventType="touchUpInside" id="2KA-6J-zuB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCQ-cU-Z4A">
-                                <rect key="frame" x="185" y="386" width="22" height="22"/>
-                                <state key="normal" image="unchecked.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="fCheck:" destination="2vN-ZI-FFN" eventType="touchUpInside" id="egW-dn-DxA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFq-ZR-MzW">
-                                <rect key="frame" x="245" y="386" width="22" height="22"/>
-                                <state key="normal" image="unchecked.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="mCheck:" destination="2vN-ZI-FFN" eventType="touchUpInside" id="bAJ-kz-iIE"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHI-Ku-l5T">
-                                <rect key="frame" x="102" y="389" width="57" height="21"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Gender">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name="HelveticaNeue-Bold"/>
-                                            <font key="NSOriginalFont" size="12" name="HelveticaNeue-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="M" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dya-tF-M03">
-                                <rect key="frame" x="249" y="412" width="15" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAs-sC-JJS">
-                                <rect key="frame" x="191" y="412" width="10" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" label="">
                             <accessibilityTraits key="traits" none="YES"/>
                         </accessibility>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yng-mI-NSs" secondAttribute="trailing" constant="16" id="156-bN-bKI"/>
+                            <constraint firstItem="Dya-tF-M03" firstAttribute="top" secondItem="SFq-ZR-MzW" secondAttribute="bottom" constant="4" id="2gu-AC-drR"/>
+                            <constraint firstItem="k84-XL-nV3" firstAttribute="top" secondItem="Dya-tF-M03" secondAttribute="bottom" constant="117" id="7Y9-g1-L28"/>
+                            <constraint firstItem="yng-mI-NSs" firstAttribute="leading" secondItem="Ka5-Q8-ac4" secondAttribute="leading" constant="16" id="CK1-Bf-tRi"/>
+                            <constraint firstItem="MoS-WV-SdC" firstAttribute="top" secondItem="Ka5-Q8-ac4" secondAttribute="top" constant="28" id="DaK-nt-YtA"/>
+                            <constraint firstItem="Dya-tF-M03" firstAttribute="leading" secondItem="RAs-sC-JJS" secondAttribute="trailing" constant="48" id="G9T-FB-yRs"/>
+                            <constraint firstItem="yng-mI-NSs" firstAttribute="top" secondItem="qDH-Ak-CkN" secondAttribute="bottom" constant="20" id="M0e-9o-zPY"/>
+                            <constraint firstAttribute="trailing" secondItem="MoS-WV-SdC" secondAttribute="trailing" constant="16" id="OLK-Uc-m6N"/>
+                            <constraint firstItem="qDH-Ak-CkN" firstAttribute="top" secondItem="Ka5-Q8-ac4" secondAttribute="top" constant="28" id="SE8-Jd-rrw"/>
+                            <constraint firstItem="k84-XL-nV3" firstAttribute="leading" secondItem="Ka5-Q8-ac4" secondAttribute="leading" constant="16" id="UCS-rb-VXu"/>
+                            <constraint firstItem="SFq-ZR-MzW" firstAttribute="top" secondItem="yng-mI-NSs" secondAttribute="bottom" constant="8" id="Yr6-MS-qaB"/>
+                            <constraint firstItem="YCQ-cU-Z4A" firstAttribute="leading" secondItem="pHI-Ku-l5T" secondAttribute="trailing" constant="26" id="Zed-4g-JAh"/>
+                            <constraint firstItem="yng-mI-NSs" firstAttribute="top" secondItem="MoS-WV-SdC" secondAttribute="bottom" constant="80" id="byQ-81-5WA"/>
+                            <constraint firstItem="k84-XL-nV3" firstAttribute="top" secondItem="RAs-sC-JJS" secondAttribute="bottom" constant="117" id="dT1-Q1-kzA"/>
+                            <constraint firstItem="YCQ-cU-Z4A" firstAttribute="top" secondItem="yng-mI-NSs" secondAttribute="bottom" constant="8" id="fcU-94-TwN"/>
+                            <constraint firstItem="qDH-Ak-CkN" firstAttribute="leading" secondItem="Ka5-Q8-ac4" secondAttribute="leading" constant="16" id="jjl-iu-3tz"/>
+                            <constraint firstAttribute="trailing" secondItem="k84-XL-nV3" secondAttribute="trailing" constant="16" id="kNl-c1-eW7"/>
+                            <constraint firstItem="pHI-Ku-l5T" firstAttribute="leading" secondItem="Ka5-Q8-ac4" secondAttribute="leading" constant="102" id="p9m-cY-5f2"/>
+                            <constraint firstItem="pHI-Ku-l5T" firstAttribute="top" secondItem="yng-mI-NSs" secondAttribute="bottom" constant="11" id="wGG-Fs-mvd"/>
+                            <constraint firstItem="MoS-WV-SdC" firstAttribute="leading" secondItem="qDH-Ak-CkN" secondAttribute="trailing" constant="19" id="wlJ-kY-9F5"/>
+                            <constraint firstItem="RAs-sC-JJS" firstAttribute="top" secondItem="YCQ-cU-Z4A" secondAttribute="bottom" constant="4" id="wrA-xu-NQW"/>
+                            <constraint firstItem="SFq-ZR-MzW" firstAttribute="leading" secondItem="YCQ-cU-Z4A" secondAttribute="trailing" constant="38" id="yiy-ef-5Ch"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Sign up" id="rYf-bG-fa4"/>
