@@ -9,8 +9,8 @@
 #import "EditProfileViewController.h"
 #define f @"female"
 #define m @"male"
-#define unchecked @"checkbox.png"
-#define checked @"checkbox-checked.png"
+#define unchecked @"checked.png"
+#define checked @"unchecked.png"
 
 
 
