@@ -133,7 +133,6 @@ static const CLLocationCoordinate2D imperialCoord = {51.498639, -0.179344};
             [editPlaceVC.mapView setRegion:region animated:YES];
         } else {
             // hardcode location for now
-            NSLog(@"hardcoded location");
             region = MKCoordinateRegionMakeWithDistance(imperialCoord, 500, 500);
             [editPlaceVC.mapView setRegion:region animated:YES];
         }

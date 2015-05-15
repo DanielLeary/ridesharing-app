@@ -195,8 +195,6 @@ static const int dobPickerRowHeight = 180;
     interestsVC.user = user;
     interestsVC.fromSingup = YES;
     
-    NSLog(@"Prepared for Seague OfferRideEndSeague");
-    NSLog(@"user obj %@", user);
     [self.navigationController pushViewController:interestsVC animated:YES];
 }
 

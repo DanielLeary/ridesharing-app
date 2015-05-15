@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 Vaneet Mehta. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Ride.h"
+#import "OfferRideStartViewController.h"
 
 
 @interface OfferRideTimeViewController : UIViewController

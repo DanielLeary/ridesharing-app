@@ -7,7 +7,6 @@
 //
 
 #import "OfferRideStartViewController.h"
-#import "OfferRideDestinationViewController.h"
 #import <Parse/Parse.h>
 
 
@@ -58,7 +57,6 @@
     
     // If user location isn't available, set to default view, view of England
     if (self.locationManager.location == nil) {
-        NSLog(@"region!!: %@", nil);
         CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(start_place, 1000000, 1000000);
         [self.mapView setRegion:region animated:true];
@@ -181,7 +179,6 @@
         self.ride.startCordinate = self.pin.coordinate;
         OfferRideDestinationViewController *vc2 = (OfferRideDestinationViewController *)segue.destinationViewController;
         vc2.ride = self.ride;
-        NSLog(@"Prepared for Seague OfferRideDestinationSeague");
     }
     
 }

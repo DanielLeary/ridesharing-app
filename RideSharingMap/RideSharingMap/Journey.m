@@ -48,9 +48,7 @@
     
     
     [journey saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(succeeded) {
-            NSLog(@"saved journey");
-        } else {
+        if(!succeeded){
             NSLog(@"journey save failed");
         }
     }];

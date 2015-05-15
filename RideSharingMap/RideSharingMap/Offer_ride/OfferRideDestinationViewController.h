@@ -15,9 +15,13 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Ride *ride;
+
+//initiates the search
 - (IBAction)SearchBox:(UITextField *)sender;
+
+//zooms the map to current location
 - (IBAction)locationButton:(UIButton *)sender;
 
-
+//creates UIActionSheet to display favourite locations
 - (IBAction)favouritesActionSheet:(id)sender;
 @end

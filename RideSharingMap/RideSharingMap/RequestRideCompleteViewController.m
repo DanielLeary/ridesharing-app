@@ -36,8 +36,6 @@ MKPolyline *routeOverlay = nil;
         _navTitle.title = @"Request Ride";
     }
     
-    NSLog(@"rde: %@", self.ride);
-    
     [UIActivityIndicatorView appearance];
     self.mapView.delegate = self;
     [self getARoute];
@@ -157,7 +155,6 @@ MKPolyline *routeOverlay = nil;
                 [alert addAction:cancel];
             } else {
                 UIAlertAction* OK = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    NSLog(@"OK Pressed");
                     [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
                 }];
                 [alert addAction:OK];

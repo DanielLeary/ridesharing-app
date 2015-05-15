@@ -22,21 +22,6 @@
     
     // Creates footer that hides empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    NSLog(@"Ride object memory address: %p", self.ride);
-    // Print out object id
-    NSLog(@"Object memory address: %p", self.ride.rideOffers);
-    // Print out offer rides
-    NSLog(@"Size of results: %lu", (unsigned long)[self.ride.rideOffers count]);
-    for (PFObject* object in self.ride.rideOffers) {
-        NSLog(@"found %@", object.objectId);
-    }
-    
-    NSLog(@"Size of Drivers: %lu", (unsigned long) [self.ride.drivers count]);
-    for (PFUser* driver in self.ride.drivers) {
-        NSLog(@"Name of driver is: %@ %@", driver[@"Name"], driver[@"Surname"]);
-    }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -64,7 +49,6 @@
     PFUser* driver = self.ride.drivers[indexPath.row];
     
     // Display drivers username
-    NSLog(@"Driver: %@ %@", driver[@"Name"], driver[@"Surname"]);
     cell.driver.text = [NSString stringWithFormat:@"%@ %@", driver[@"Name"], driver[@"Surname"]];
     
     // Display distance to driver start location

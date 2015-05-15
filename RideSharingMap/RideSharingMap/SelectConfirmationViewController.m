@@ -27,10 +27,7 @@
     PFObject* offer = self.ride.rideOffers[self.ride.rowNumber];
     
     NSString *driverName = [NSString stringWithFormat:@"%@ %@", driver[@"Name"], driver[@"Surname"]];
-    NSLog(@"%@", driverName);
     NSDate* date = offer[@"dateTimeStart"];
-    
-    NSLog(@"date for request: %@", date );
     
     // date formatting stuff
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -39,7 +36,6 @@
     
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString* timeString = [dateFormatter stringFromDate:date];
-    NSLog(timeString);
     
     
     self.driverName.text = driverName;
@@ -78,7 +74,6 @@
             CLPlacemark *placemark = [placemarks firstObject];
             //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
             self.pickupLocation.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-            NSLog(@"%@", placemark.postalCode);
         }
     }];
 }
@@ -94,7 +89,6 @@
             CLPlacemark *placemark = [placemarks firstObject];
             //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
             self.destinationLocation.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-            NSLog(@"%@", placemark.postalCode);
         }
     }];
 }
@@ -204,7 +198,6 @@
             [alert addAction:cancel];
         } else {
             UIAlertAction* OK = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@"OK Pressed");
                 [self performSegueWithIdentifier:@"unwindToDashBoard" sender:self];
             }];
             [alert addAction:OK];

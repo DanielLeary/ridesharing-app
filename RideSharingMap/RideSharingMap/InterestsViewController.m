@@ -19,9 +19,6 @@ static const int rowHeight = 40;
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    
-    NSLog(@"user obj interests %@", _user);
-    
     allInterests = [[NSArray alloc] initWithObjects: @"Architecture", @"Art", @"Books & Literature", @"Dance", @"Design", @"Fashion", @"Film", @"Finance", @"Food & Drinks", @"Health & Fitness", @"Music", @"Photography", @"Politics", @"Sports", @"Technology", @"Travel", nil];
     
     if (!_fromSingup) {

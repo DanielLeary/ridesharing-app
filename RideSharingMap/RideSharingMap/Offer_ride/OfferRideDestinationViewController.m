@@ -53,14 +53,12 @@ MKPlacemark *the_placemark;
     
     // If user location isn't available, set to default view, view of England
     if (self.locationManager.location == nil) {
-        NSLog(@"region!!: %@", nil);
         CLLocationCoordinate2D start_place = CLLocationCoordinate2DMake(54.1108, -3.2261);
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(start_place, 1000000, 1000000);
         [self.mapView setRegion:region animated:true];
         
         
     } else {
-        NSLog(@"region??: %@", self.locationManager.location);
     // Create Coordinate region that is 500 meter square around current location
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, 500, 500);
         [self.mapView setRegion:region animated:true];
@@ -74,8 +72,6 @@ MKPlacemark *the_placemark;
     lpgr.minimumPressDuration = .5; //seconds
     lpgr.delegate = self;
     [self.mapView addGestureRecognizer:lpgr];
-
-    NSLog(@"rde: %@", self.ride);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,7 +94,6 @@ MKPlacemark *the_placemark;
         self.ride.endCordinate = self.pin.coordinate;
         RequestRideCompleteViewController *vc2 = (RequestRideCompleteViewController *)segue.destinationViewController;
         vc2.ride = self.ride;
-        NSLog(@"Prepared for Seague OfferRideEndSeague");
     }
     
 }

@@ -145,7 +145,6 @@
             CLPlacemark *placemark = [placemarks firstObject];
             //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
             self.pickupAddress.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-            NSLog(@"%@", placemark.postalCode);
         }
     }];
 }
@@ -160,7 +159,6 @@
             CLPlacemark *placemark = [placemarks firstObject];
             //self.pickupAddress.text = [NSString stringWithFormat:@"%@", placemark.postalCode];
             self.destAddress.text = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-            NSLog(@"%@", placemark.postalCode);
         }
     }];
 }

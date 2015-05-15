@@ -129,7 +129,6 @@ static CLLocationCoordinate2D emptyCoordinates = {empty, empty};
     [query findObjectsInBackgroundWithBlock:^(NSArray* objects, NSError *error) {
         
         //If query returns no results then display to user
-        NSLog(@"Number of returned values: %lu", [objects count]);
         if([objects count] == 0) {
             block(FALSE, error);
         }
