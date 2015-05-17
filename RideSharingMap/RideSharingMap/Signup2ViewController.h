@@ -16,15 +16,15 @@
 
 @interface Signup2ViewController : UIViewController <GenderPickerCellDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic)   IBOutlet UIImageView  *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (strong, nonatomic) IBOutlet UIButton     *addProfilePictureButton;
+@property (strong, nonatomic) IBOutlet UIButton *addProfilePictureButton;
 
-@property (strong, nonatomic) IBOutlet UITableView  *userInfoTableView;
+@property (strong, nonatomic) IBOutlet UITableView *userInfoTableView;
 
-@property (weak, nonatomic)   IBOutlet UILabel      *errorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
-@property (weak, nonatomic)   IBOutlet UIButton     *signUpbutton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpbutton;
 
 @property NSString *firstName;
 @property NSString *lastName;

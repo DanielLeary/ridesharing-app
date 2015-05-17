@@ -33,7 +33,7 @@ static const int dobPickerRowHeight = 180;
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
-    infoArray = @[@"Date of Birth:", @"Interests:"];
+    infoArray = @[@"Interests:", @"Date of Birth:"];
     genderArray = @[@"Female", @"Male", @"Other"];
     
     dobPickerIsShown = NO;
@@ -56,11 +56,23 @@ static const int dobPickerRowHeight = 180;
         [_mCheckBox setImage:[UIImage imageNamed:CHECKED] forState:UIControlStateNormal];
         [_fCheckBox setImage:[UIImage imageNamed:UNCHECKED] forState:UIControlStateNormal];
     }
-
-    
     
     self.userInfoTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
+
+/*
+- (void)viewDidAppear:(BOOL)animated {
+    // set minimum date to
+    [self.timeWheel setMinimumDate:self.ride.dateTimeStart];
+    
+    // Everytime wheel changes (UIControlEventValueChanged) runs the method printChange
+    [self.timeWheel addTarget:self action:@selector(printChange) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)printChange {
+    [self.ride setDateTimeStart:self.timeWheel.date];
+}
+*/
 
 
 /* METHODS FOR UI */
@@ -95,57 +107,42 @@ static const int dobPickerRowHeight = 180;
   
     UITableViewCell *cell;
     if (indexPath.row == 0) {
-        cell.textLabel.text = infoArray[0];
-    }
-    if (dobPickerIsShown ) {
-        if (indexPath.row == 1) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-        } else {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            if (indexPath.row == 2) {
-                cell.textLabel.text = infoArray[indexPath.row / 2];
-            }
-        }
-    } else if (dobPickerIsShown) {
-        if (indexPath.row == 1) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
-        } else {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-            if (indexPath.row == 2 || indexPath.row == 3) {
-                cell.textLabel.text = infoArray[indexPath.row - 1];
-            }
-        }
-    } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
-        cell.textLabel.text = infoArray[indexPath.row];
+        cell.textLabel.text = infoArray[0];
+    } else {
+        if (dobPickerIsShown) {
+            if (indexPath.row == 1) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+                cell.textLabel.text = infoArray[1];
+            } else if (indexPath.row == 2) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"dobPickerCell"];
+            }
+        } else {
+            if (indexPath.row == 1) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"infoCellWithPicker"];
+                cell.textLabel.text = infoArray[1];
+            }
+        }
     }
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     [tableView beginUpdates];
-    if (dobPickerIsShown) {
-        if (indexPath.row == 0) {
-            [self hidePicker:tableView inRow:1];
-            dobPickerIsShown = NO;
-        } else if (indexPath.row == 3) {
-            [self showInterestsVC];
-        }
-    } else if (dobPickerIsShown) {
-        if (indexPath.row == 0) {
-            [self hidePicker:tableView inRow:1];
-            dobPickerIsShown = NO;
-        } else if (indexPath.row == 2) {
-            [self showInterestsVC];
-        }
+    if (indexPath.row == 0) {
+        [self showInterestsVC];
     } else {
-        if (indexPath.row == 0) {
-            [self showPicker:tableView inRow:1];
-            dobPickerIsShown = YES;
-        } else if (indexPath.row == 1) {
-            [self showInterestsVC];
+        if (dobPickerIsShown) {
+            if (indexPath.row == 1) {
+                [self hidePicker:tableView inRow:2];
+                dobPickerIsShown = NO;
+            }
+        } else {
+            if (indexPath.row == 1) {
+                [self showPicker:tableView inRow:2];
+                dobPickerIsShown = YES;
+            }
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -155,11 +152,7 @@ static const int dobPickerRowHeight = 180;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = tableView.rowHeight;
-    if (dobPickerIsShown) {
-        if (indexPath.row == 1) {
-            rowHeight = dobPickerRowHeight;
-        }
-    } else if (dobPickerIsShown && indexPath.row == 1) {
+    if (dobPickerIsShown && indexPath.row == 2) {
         rowHeight = dobPickerRowHeight;
     }
     return rowHeight;
@@ -169,7 +162,7 @@ static const int dobPickerRowHeight = 180;
 /* DELEGATE METHOD FOR PICKERS */
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    //[viewModel changeSex:genderArray[row]];
+    NSLog(@"selected picker");
 }
 
 
@@ -187,10 +180,8 @@ static const int dobPickerRowHeight = 180;
 
 - (void)showInterestsVC {
     InterestsViewController *interestsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InterestsViewController"];
-    
     interestsVC.user = user;
     interestsVC.fromSingup = YES;
-    
     [self.navigationController pushViewController:interestsVC animated:YES];
 }
 
